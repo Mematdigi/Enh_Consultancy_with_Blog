@@ -1,0 +1,163 @@
+.custom-footer {
+  background-color: #1b0e01;
+  padding: 60px 0;
+  // color: #fff;
+  text-align: center;
+
+  .footer-logo {
+    text-align: center;
+    margin-bottom: 20px;
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      .highlight {
+        color: rgb(235, 174, 95);
+      }
+    }
+
+    .footer-divider {
+      width: 80%;
+      height: 2px;
+      background-color: rgb(235, 174, 95);
+      margin: 10px auto;
+    }
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    text-align: left;
+  }
+
+  .footer-links {
+    h5 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ffdcae;
+    }
+
+    p {
+      font-size: 14px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 6px;
+        a {
+          text-decoration: none;
+          color: #ccc;
+          transition: color 0.3s ease-in-out;
+          &:hover {
+            color: #855619;
+          }
+        }
+      }
+    }
+  }
+
+  .subscribe-section {
+    text-align: left;
+    h5 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ffdcae;
+    }
+
+    .form-control {
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 14px;
+      border: 2px solid #ffcc00;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+
+    .subscribe-btn {
+      background: rgb(235, 174, 95);
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      width: 100%;
+      border-radius: 8px;
+      color: #fff;
+
+      &:hover {
+        background: #e55b00;
+      }
+    }
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    gap: 20px;
+    font-size: 20px;
+    margin-top: 20px;
+
+    svg {
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+      &:hover {
+        transform: scale(1.2);
+        color: #ffcc00;
+      }
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #855619;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    p {
+      margin: 0;
+      color: #fff;
+    }
+
+    a {
+      color: #ffcc00;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* Container for the footer logo */
+.footer-logo {
+  text-align: center; /* Centers the logo */
+  margin-bottom: 30px; /* Adds space below the footer logo */
+}
+
+/* Footer logo image styling */
+.footer-logo-img {
+  max-width: 100%; /* Ensures logo doesn't exceed the container width */
+  width: 200px; /* Set the specific width */
+  height: 40px; /* Set the specific height */
+  margin-bottom: 20px; /* Adds spacing below the logo */
+  border-radius: 8px; /* Optional: rounded corners for logo */
+}
+
+/* Footer divider styling */
+.footer-divider {
+  width: 100%; /* Makes the divider full width */
+  height: 2px; /* Sets the height of the divider */
+  background-color: #fca311; /* Divider color */
+  margin-top: 20px; /* Adds space above the divider */
+}

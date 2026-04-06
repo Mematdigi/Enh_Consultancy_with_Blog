@@ -1,0 +1,211 @@
+
+/* Banner Image */
+.banner-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Section Titles */
+  .section-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 0px;
+  }
+  
+  .section-description {
+    font-size: 16px;
+  }
+  
+  .finance-service-page .banner-image{
+    border-radius:4px;
+    height:400px;
+  }
+  
+
+  /* Finance Investment Section */
+.finance-investment-section {
+  padding: 60px 0;
+  background-color: white;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: rgb(235, 174, 95);;
+}
+
+/* Section Description */
+.finance-service-page .section-description {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Feature List */
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.feature-icon {
+  background: rgb(235, 174, 95);;
+  color: white;
+  font-size: 20px;
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Call to Action */
+.cta-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.play-button {
+  width: 50px;
+  height: 50px;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.download-btn {
+  background: rgb(235, 174, 95);;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* Investment Boxes */
+.investment-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Investment Cards */
+.investment-card {
+  background: #1b0e01 !important;
+  color: white !important;
+  text-align: center;
+  border-radius: 10px !important;
+}
+
+.investment-card h5 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.investment-card p {
+  font-size: 14px;
+}
+.investment-icon img{
+  width: 80px;
+}
+
+.investment-card.dark {
+  background: url("./stocks-background.jpg") center/cover;
+  position: relative;
+}
+
+
+ /* Services Work Section */
+.services-work-section {
+  padding: 60px 0;
+  background:rgb(235, 174, 95);
+  text-align: center;
+}
+
+/* Section Header */
+.services-work-section .section-subtitle {
+  color: rgb(235, 174, 95);;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.services-work-section .section-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 40px;
+}
+
+/* Step Cards */
+.services-work-section .service-step-card {
+  background: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.services-work-section .service-step-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Step Header */
+.services-work-section .step-header {
+  display: flex;
+  align-items: center;
+  background:rgb(235, 174, 95);
+  border-radius: 10px;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.services-work-section .step-icon {
+  background: rgb(235, 174, 95);;
+  color: white;
+  font-size: 24px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.services-work-section .step-number {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Step Content */
+.services-work-section .service-step-card .card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.services-work-section .service-step-card .card-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.sidebar-container{
+  position: sticky;
+    top: 0;
+}

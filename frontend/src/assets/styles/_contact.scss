@@ -1,0 +1,105 @@
+/* Contact Section */
+.contact-section {
+    padding: 60px 0;
+    background: #f3f7f6;
+  }
+  
+  /* Contact Form Card */
+  .contact-form-card {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Contact Header */
+  .contact-header {
+    margin-bottom: 20px;
+  }
+  
+  .contact-header .badge {
+    background: rgb(235, 174, 95);;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .contact-header h2 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .contact-header p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Form Input Fields */
+  .contact-form-card .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    padding: 14px;
+  }
+  
+  /* Submit Button */
+  .contact-form-card .submit-btn {
+    background:#1b0e01;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 35px;
+  }
+  
+  .contact-form-card .submit-btn:hover {
+    background:#1b0e01;
+  }
+  
+  /* Contact Info Card */
+  .contact-info-card {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Contact Info Items */
+  .contact-page-info {
+    display: block;
+    align-items: center;
+    gap: 15px;
+    margin-bottom:20px;
+    text-align: center;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #DDE6E3;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+    
+  }
+  
+  .info-icon {
+    background: #eaf6f2;
+    color:rgb(235, 174, 95);;
+    font-size:70px;
+    padding: 15px;
+    border-radius: 50%;
+  }
+  
+  .contact-page-info h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .contact-page-info p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+  
+  

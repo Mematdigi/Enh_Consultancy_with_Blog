@@ -1,0 +1,1139 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// SERVICE VIEW PAGE  ·  _serviceViewPage.scss
+// All visual styles for ServiceViewPage.jsx — no inline CSS anywhere
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Design tokens ─────────────────────────────────────────────────────────────
+$gold:        rgb(235, 174, 95);
+$gold-20:     rgba(235, 174, 95, 0.2);
+$gold-35:     rgba(235, 174, 95, 0.35);
+$burn:        #d45b08;
+$dark:        #2c1500;
+$dark-bg:     #1a0d00;
+$mid:         #855619;
+$light:       #b07230;
+$bg:          #fff4e1;
+$bg-alt:      #f9f3e8;
+$bg-contact:  #f0ede8;
+$white:       #ffffff;
+$radius:      16px;
+$radius-sm:   10px;
+$shadow:      0 4px 6px rgba(133, 86, 25, 0.06), 0 20px 50px rgba(133, 86, 25, 0.12);
+$shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 0.18);
+
+// ── Mixins ────────────────────────────────────────────────────────────────────
+@mixin gold-underline($w: 48px) {
+  &::after {
+    content: "";
+    display: block;
+    width: $w;
+    height: 3px;
+    background: linear-gradient(90deg, $gold, $burn);
+    border-radius: 2px;
+    margin-top: 10px;
+  }
+}
+
+@mixin gold-gradient-btn {
+  background: linear-gradient(135deg, $gold 0%, $burn 100%);
+  color: $white;
+  border: none;
+  border-radius: $radius-sm;
+  font-weight: 700;
+  cursor: pointer;
+  transition: box-shadow 0.3s, transform 0.3s;
+
+  &:hover {
+    box-shadow: 0 8px 28px rgba(212, 91, 8, 0.38);
+    transform: translateY(-2px);
+  }
+}
+
+@mixin dark-reveal-btn {
+  position: relative;
+  overflow: hidden;
+  background: rgba(247, 104, 9, 0.671);
+  color: $white;
+  border: none;
+  border-radius: $radius-sm;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, $gold, $burn);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+
+  span,
+  svg { position: relative; z-index: 1; }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(26, 13, 0, 0.28);
+  }
+
+  &:active { transform: translateY(0); }
+}
+
+@mixin field-base {
+  display: block;
+  width: 100%;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  resize: none;
+  box-sizing: border-box;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+
+  &::placeholder { color: #c09060; font-size: 13.5px; }
+
+  &:focus {
+    border-color: $gold;
+    background: $white;
+    box-shadow: 0 0 0 3px rgba(235, 174, 95, 0.18);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BASE
+// ─────────────────────────────────────────────────────────────────────────────
+.service-view-page {
+  * { box-sizing: border-box; }
+
+  section { overflow: hidden; }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BREADCRUMB BANNER
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-breadcrumb {
+  background: linear-gradient(135deg, $dark 0%, $dark-bg 100%);
+  padding: 28px 0;
+  position: relative;
+  overflow: hidden;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(235, 174, 95, 0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__title {
+    color: $gold;
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0;
+    font-family: 'Georgia', serif;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  &__link {
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+
+    &:hover { color: $gold; }
+  }
+
+  &__sep { color: rgba(235, 174, 95, 0.5); }
+
+  &__current {
+    color: $gold;
+    font-weight: 700;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HERO BANNER
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-hero {
+  background:
+    linear-gradient(135deg, rgba(255, 244, 225, 0.82) 0%, rgba(255, 215, 138, 0.75) 60%, rgba(212, 91, 8, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&q=80') center / cover no-repeat;
+  padding: 80px 0 90px;
+  position: relative;
+  overflow: hidden;
+}
+
+// Animated blobs
+.svp-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.4;
+  pointer-events: none;
+  animation: svpBlobDrift 14s ease-in-out infinite alternate;
+
+  &--1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(235, 174, 95, 0.7), transparent 70%);
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+  }
+
+  &--2 {
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(212, 91, 8, 0.45), transparent 70%);
+    bottom: -80px;
+    right: 10%;
+    animation-delay: 4s;
+    animation-duration: 17s;
+  }
+
+  &--3 {
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(235, 174, 95, 0.35), transparent 70%);
+    top: 40%;
+    left: 45%;
+    animation-delay: 7s;
+    animation-duration: 11s;
+  }
+}
+
+@keyframes svpBlobDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(30px, 20px) scale(1.08); }
+  100% { transform: translate(-20px, 40px) scale(0.95); }
+}
+
+@keyframes svpSlideUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes svpSlideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes svpFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+// Badge
+.svp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(235, 174, 95, 0.18);
+  border: 1px solid rgba(235, 174, 95, 0.55);
+  color: $mid;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    background: $gold;
+    border-radius: 50%;
+    animation: svpDotPulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes svpDotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(235, 174, 95, 0.7); }
+  50%       { box-shadow: 0 0 0 6px rgba(235, 174, 95, 0); }
+}
+
+// Hero text
+.svp-hero {
+  &__h1 {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: $dark;
+    margin-bottom: 14px;
+    font-family: 'Georgia', serif;
+    animation: svpSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  &__sub {
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 700;
+    color: $burn;
+    margin-bottom: 10px;
+    animation: svpSlideUp 0.8s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  &__tagline {
+    font-size: 17px;
+    color: $mid;
+    margin-bottom: 22px;
+    line-height: 1.7;
+    animation: svpSlideUp 0.8s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  &__cta-bar {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(235, 174, 95, 0.4);
+    border-radius: 50px;
+    padding: 10px 22px;
+    backdrop-filter: blur(8px);
+    margin-bottom: 28px;
+    animation: svpSlideUp 0.8s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  &__cta-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: $dark;
+  }
+
+  // Stats strip
+  &__stats {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(235, 174, 95, 0.3);
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    padding: 16px 22px;
+    max-width: 380px;
+  }
+
+  &__stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+  &__stat-num {
+    font-size: 22px;
+    font-weight: 900;
+    color: $gold;
+    line-height: 1;
+  }
+
+  &__stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: $mid;
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  &__stat-sep {
+    display: block;
+    width: 1px;
+    height: 34px;
+    background: rgba(235, 174, 95, 0.4);
+    margin: 0 14px;
+  }
+
+  // Form card
+  &__form {
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 36px 30px 30px;
+    box-shadow: 0 8px 40px rgba(133, 86, 25, 0.22), inset 0 1px 0 rgba(255,255,255,0.6);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.4s, transform 0.4s;
+    animation: svpSlideInRight 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+    &:hover {
+      box-shadow: 0 16px 56px rgba(133, 86, 25, 0.28), inset 0 1px 0 rgba(255,255,255,0.7);
+      transform: translateY(-4px);
+    }
+  }
+
+  &__form-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, rgba(235, 174, 95, 0.22) 0%, transparent 60%);
+    border-radius: 0 20px 0 120px;
+    pointer-events: none;
+  }
+
+  &__form-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #3d1800;
+    margin-bottom: 4px;
+    font-family: 'Georgia', serif;
+    @include gold-underline(44px);
+  }
+
+  &__form-sub {
+    font-size: 14px;
+    color: $mid;
+    margin: 10px 0 18px;
+    font-weight: 500;
+  }
+
+  &__form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+
+    .svp-hero__input { flex: 1; min-width: 0; }
+  }
+
+  &__input {
+    @include field-base;
+    padding: 11px 14px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.28);
+    color: #3d1800;
+    margin-bottom: 10px;
+    backdrop-filter: blur(8px);
+
+    &::placeholder { color: rgba(133, 86, 25, 0.7); }
+
+    &:focus {
+      border-color: $gold;
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 0 3px rgba(235, 174, 95, 0.22);
+    }
+  }
+
+  &__textarea {
+    resize: none;
+  }
+
+  &__form-btn {
+    @include gold-gradient-btn;
+    width: 100%;
+    padding: 13px 20px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SHARED BUTTONS
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-outline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 24px;
+  background: transparent;
+  border: 2px solid $gold;
+  color: $dark;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+
+  &:hover {
+    background: $gold;
+    color: $white;
+  }
+}
+
+.svp-enquire-btn {
+  @include dark-reveal-btn;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-size: 14px;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INTRO SECTION
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-intro {
+  padding: 90px 0;
+  background: $white;
+
+  &__img-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: visible;
+  }
+
+  &__img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 48px rgba(133, 86, 25, 0.16);
+    display: block;
+  }
+
+  &__img-deco {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(235, 174, 95, 0.35);
+    border-radius: 20px;
+    top: 14px;
+    left: 14px;
+    z-index: -1;
+
+    &--right { left: -14px; }
+  }
+
+  &__title {
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 800;
+    color: $dark;
+    margin-bottom: 16px;
+    font-family: 'Georgia', serif;
+    @include gold-underline(52px);
+  }
+
+  &__text {
+    font-size: 15px;
+    color: $mid;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  &__enquire-note {
+    font-size: 13px;
+    font-weight: 700;
+    color: $burn;
+    margin-bottom: 20px;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// R&D SECTION
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-rd {
+  padding: 80px 0;
+  background: $bg-alt;
+
+  &__title {
+    font-size: clamp(22px, 3vw, 38px);
+    font-weight: 800;
+    color: $dark;
+    line-height: 1.25;
+    font-family: 'Georgia', serif;
+  }
+
+  &__card {
+    background: $white;
+    border-radius: $radius;
+    padding: 36px 28px;
+    height: 100%;
+    box-shadow: $shadow;
+    border: 1px solid rgba(235, 174, 95, 0.12);
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: default;
+
+    &:hover .svp-rd__icon {
+      background: linear-gradient(135deg, $gold, $burn);
+      color: $white;
+    }
+  }
+
+  &__icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(235, 174, 95, 0.2), rgba(212, 91, 8, 0.12));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $gold;
+    font-size: 22px;
+    margin-bottom: 18px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  &__card-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: $dark;
+    margin-bottom: 10px;
+  }
+
+  &__card-desc {
+    font-size: 14px;
+    color: $mid;
+    line-height: 1.7;
+    margin: 0;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WHY CHOOSE US
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-whyus {
+  background: $dark-bg;
+  padding: 90px 0;
+  position: relative;
+  overflow: hidden;
+
+  &__ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(235, 174, 95, 0.08);
+    pointer-events: none;
+
+    &--1 { width: 500px; height: 500px; top: -200px; right: -200px; }
+    &--2 { width: 360px; height: 360px; bottom: -150px; left: -100px; }
+  }
+
+  &__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: $gold;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 800;
+    color: $white;
+    margin-bottom: 0;
+    font-family: 'Georgia', serif;
+  }
+
+  &__card {
+    display: flex;
+    gap: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(235, 174, 95, 0.15);
+    border-radius: $radius;
+    padding: 28px 24px;
+    height: 100%;
+    transition: border-color 0.25s, background 0.25s;
+    cursor: default;
+
+    &:hover {
+      border-color: $gold;
+      background: rgba(235, 174, 95, 0.06);
+
+      .svp-whyus__icon-wrap {
+        background: $gold;
+        color: $white;
+      }
+    }
+  }
+
+  &__icon-wrap {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: rgba(235, 174, 95, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $gold;
+    font-size: 18px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  &__card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: $white;
+    margin-bottom: 8px;
+  }
+
+  &__card-desc {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.7;
+    margin: 0;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TESTIMONIALS
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-testimonials {
+  padding: 90px 0;
+  background: $white;
+
+  &__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: $gold;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 800;
+    color: $dark;
+    font-family: 'Georgia', serif;
+    margin: 0;
+  }
+
+  &__nav { display: flex; gap: 8px; }
+
+  &__arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(235, 174, 95, 0.4);
+    background: transparent;
+    color: $gold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-size: 13px;
+
+    &:hover {
+      background: $gold;
+      color: $white;
+      border-color: $gold;
+    }
+  }
+
+  &__card {
+    background: $bg-alt;
+    border: 1px solid rgba(235, 174, 95, 0.18);
+    border-radius: $radius;
+    padding: 30px 26px;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+
+    &--active {
+      border-color: $gold;
+      box-shadow: 0 8px 32px rgba(235, 174, 95, 0.18);
+    }
+  }
+
+  &__quote-icon {
+    font-size: 28px;
+    color: rgba(235, 174, 95, 0.25);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  &__stars {
+    display: flex;
+    gap: 3px;
+    color: $gold;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  &__text {
+    font-size: 14px;
+    color: $mid;
+    line-height: 1.75;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $gold, $burn);
+    color: $white;
+    font-weight: 800;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: 700;
+    color: $dark;
+    margin: 0 0 3px;
+  }
+
+  &__role {
+    font-size: 12px;
+    color: $light;
+    margin: 0;
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(235, 174, 95, 0.3);
+    cursor: pointer;
+    padding: 0;
+    transition: width 0.3s, background 0.3s, border-radius 0.3s;
+
+    &--active {
+      width: 28px;
+      border-radius: 4px;
+      background: $gold;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BLOG
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-blog {
+  padding: 80px 0;
+  background: $bg-alt;
+
+  &__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: $gold;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 800;
+    color: $dark;
+    font-family: 'Georgia', serif;
+    margin: 0;
+  }
+
+  &__card {
+    background: $white;
+    border-radius: $radius;
+    overflow: hidden;
+    height: 100%;
+    box-shadow: $shadow;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: $shadow-hover;
+
+      .svp-blog__img { transform: scale(1.06); }
+    }
+  }
+
+  &__img-wrap {
+    position: relative;
+    overflow: hidden;
+    height: 210px;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+
+  &__tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: $gold;
+    color: $white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+  }
+
+  &__body { padding: 22px 24px; }
+
+  &__date {
+    font-size: 12px;
+    color: $light;
+    margin-bottom: 8px;
+  }
+
+  &__card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: $dark;
+    margin-bottom: 14px;
+    line-height: 1.45;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: $burn;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: gap 0.25s, color 0.25s;
+
+    &:hover {
+      gap: 10px;
+      color: $dark;
+
+      .svp-blog__arrow-icon { transform: translateX(3px); }
+    }
+  }
+
+  &__arrow-icon { transition: transform 0.25s; }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CONTACT
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-contact {
+  padding: 90px 0;
+  background:
+    linear-gradient(135deg, rgba(240, 237, 232, 0.88) 0%, rgba(220, 210, 195, 0.80) 100%),
+    url('https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1600&q=80') center / cover no-repeat;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 60%, rgba(235, 174, 95, 0.14) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  &__eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: $gold;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    animation: svpSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  &__title {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    color: $dark;
+    font-family: 'Georgia', serif;
+    margin-bottom: 14px;
+    animation: svpSlideUp 0.7s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  &__desc {
+    font-size: 17px;
+    color: $mid;
+    line-height: 1.75;
+    margin-bottom: 30px;
+    max-width: 400px;
+    animation: svpSlideUp 0.7s 0.16s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(235, 174, 95, 0.18);
+    transition: background 0.2s;
+
+    &:last-child { border-bottom: none; }
+
+    &:hover .svp-contact__icon {
+      background: $gold;
+      color: $white;
+    }
+  }
+
+  &__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(235, 174, 95, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $gold;
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  &__item-label {
+    font-size: 13px;
+    color: $light;
+    margin: 0 0 4px;
+    font-weight: 600;
+  }
+
+  &__item-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: $dark;
+    margin: 0;
+  }
+
+  // Form card — transparent glass
+  &__form {
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow: 0 8px 40px rgba(133, 86, 25, 0.16), inset 0 1px 0 rgba(255,255,255,0.55);
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    animation: svpSlideInRight 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transition: box-shadow 0.4s, transform 0.4s;
+
+    &:hover {
+      box-shadow: 0 16px 56px rgba(133, 86, 25, 0.22), inset 0 1px 0 rgba(255,255,255,0.65);
+      transform: translateY(-3px);
+    }
+  }
+
+  &__form-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: $dark;
+    margin-bottom: 22px;
+    font-family: 'Georgia', serif;
+    @include gold-underline(44px);
+  }
+
+  &__field {
+    @include field-base;
+    padding: 13px 16px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.28);
+    color: #3d1800;
+    backdrop-filter: blur(8px);
+    font-size: 15px;
+
+    &::placeholder { color: rgba(133, 86, 25, 0.65); }
+
+    &:focus {
+      border-color: $gold;
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 0 3px rgba(235, 174, 95, 0.18);
+    }
+
+    &--select { cursor: pointer; }
+    &--textarea { height: 120px; resize: none; }
+  }
+
+  &__submit {
+    @include dark-reveal-btn;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 15px 28px;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+
+    &--sent {
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      pointer-events: none;
+
+      &::before { opacity: 0; }
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RESPONSIVE
+// ─────────────────────────────────────────────────────────────────────────────
+@media (max-width: 991px) {
+  .svp-hero__stats { max-width: 100%; }
+}
+
+@media (max-width: 767px) {
+  .svp-hero              { padding: 60px 0 70px; }
+  .svp-intro             { padding: 60px 0; }
+  .svp-rd                { padding: 60px 0; }
+  .svp-whyus             { padding: 64px 0; }
+  .svp-testimonials      { padding: 64px 0; }
+  .svp-blog              { padding: 60px 0; }
+  .svp-contact           { padding: 64px 0; }
+
+  .svp-hero__form-row    { flex-direction: column; }
+  .svp-contact__form     { padding: 28px 20px; }
+  .svp-hero__h1          { font-size: 28px; }
+  .svp-breadcrumb__inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 479px) {
+  .svp-hero__stats { flex-direction: column; gap: 12px; }
+  .svp-hero__stat-sep { width: 80%; height: 1px; margin: 0; }
+}

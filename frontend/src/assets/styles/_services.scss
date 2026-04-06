@@ -1,0 +1,60 @@
+.services {
+    padding: 80px 0;
+    background-color: #fff7e9;
+  
+    .section-title {
+      text-align: left;
+      font-size: 32px;
+      font-weight: bold;
+      color: #995b0a;
+      margin-bottom: 40px;
+    }
+  
+    .service-card {
+      background: #f9f8f3;
+      padding: 20px;
+      border-radius: 10px;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      text-align: left;
+      height: 100%;
+
+      .service-icon {
+        font-size: 36px;
+        color: rgb(235, 174, 95);
+        margin-bottom: 10px;
+      }
+
+      .card-title-service {
+        font-size: 20px;
+        font-weight: bold;
+        color: #995b0a;
+      }
+      .card-description-service {
+        font-size: 14px;
+        color: #995b0a;
+      }
+
+      &:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      }
+    }
+  }
+  /* Learn More Link */
+.service-link {
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  color: #d45b08;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.service-link:hover {
+  color:rgb(235, 174, 95);;
+}
+
+/* Arrow Icon */
+.arrow-icon {
+  margin-left: 5px;
+}

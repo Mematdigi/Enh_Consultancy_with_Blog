@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
@@ -9,6 +9,7 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
+import api from "../../utils/api";
 // import "../styles/_serviceViewPage.scss";
 
 // ─── Breadcrumb Banner ────────────────────────────────────────────────────────
@@ -61,11 +62,6 @@ const SERVICE_DATA = {
       { name: "Geeta Kadayaprath",   role: "The Breast Cancer Clinic", stars: 5, text: "This company has a great team which is able to create excellent content and post it at appropriate times. Response to queries and resolution of problems is also very quick. Thank you!" },
       { name: "Priya Sharma",        role: "Startup Founder",          stars: 5, text: "Absolutely brilliant team. They transformed our digital presence and we saw a 300% increase in qualified leads within 3 months." },
     ],
-    blogs: [
-      { tag: "Development", date: "24 March 2025",    title: "PHP vs Java: Which is Better for Web Development in 2025?",                    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&q=80" },
-      { tag: "Business",    date: "17 February 2025", title: "Beyond Design: How Powerful Websites Fuel Business Growth",                    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80" },
-      { tag: "Marketing",   date: "11 February 2025", title: "Smart Budgeting in Digital Marketing: How to Spend Wisely & Grow Sustainably", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&q=80" },
-    ],
   },
   "default": {
     badge: "Our Services",
@@ -93,11 +89,6 @@ const SERVICE_DATA = {
       { name: "Raman Kant Aggarwal", role: "Doctor",                  stars: 5, text: "Dedicated, focused, genuine trustworthy and enterprising! Real good value for Customers." },
       { name: "Geeta Kadayaprath",   role: "The Breast Cancer Clinic", stars: 5, text: "This company has a great team which is able to create excellent content and post it at appropriate times." },
       { name: "Priya Sharma",        role: "Startup Founder",          stars: 5, text: "Absolutely brilliant team. They transformed our digital presence and we saw a 300% increase in qualified leads." },
-    ],
-    blogs: [
-      { date: "24 March 2025",    title: "PHP vs Java: Which is Better for Web Development in 2025?", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&q=80" },
-      { date: "17 February 2025", title: "Beyond Design: How Powerful Websites Fuel Business Growth", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80" },
-      { date: "11 February 2025", title: "Smart Budgeting in Digital Marketing: How to Spend Wisely", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&q=80" },
     ],
   },
 };
@@ -137,6 +128,21 @@ function ScaleIn({ children, delay = 0 }) {
 // ─── SECTION 1 · Hero Banner ──────────────────────────────────────────────────
 function HeroBanner({ data }) {
   const [form, setForm] = useState({ name: "", phone: "", email: "", website: "", message: "" });
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.phone || !form.email) return;
+    setStatus("loading");
+    try {
+      await api.post("/enquiries", { ...form, source: "svp-hero" });
+      setStatus("success");
+      setForm({ name: "", phone: "", email: "", website: "", message: "" });
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
+    }
+  };
 
   return (
     <section className="svp-hero">
@@ -152,11 +158,6 @@ function HeroBanner({ data }) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* <span className="svp-badge">
-                <span className="svp-badge__dot" />
-                {data.badge}
-              </span> */}
-
               <h1 className="svp-hero__h1" style={{color:'#422308'}}>{data.headline}</h1>
               <p className="svp-hero__sub">{data.subheadline}</p>
               <p className="svp-hero__tagline text-lead" style={{color:'#422308'}}>{data.tagline}</p>
@@ -164,22 +165,6 @@ function HeroBanner({ data }) {
               <div className="svp-hero__cta-bar" style={{background:'#ffae45e0'}}>
                 <span className="svp-hero__cta-text">{data.cta}</span>
               </div>
-{/* 
-              <div className="svp-hero__stats">
-                {[
-                  { num: "500+", label: "Clients Served" },
-                  { num: "10+",  label: "Years Experience" },
-                  { num: "98%",  label: "Satisfaction Rate" },
-                ].map((s, i) => (
-                  <React.Fragment key={i}>
-                    {i > 0 && <span className="svp-hero__stat-sep" />}
-                    <div className="svp-hero__stat-item">
-                      <span className="svp-hero__stat-num">{s.num}</span>
-                      <span className="svp-hero__stat-label">{s.label}</span>
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div> */}
             </motion.div>
           </Col>
 
@@ -195,17 +180,24 @@ function HeroBanner({ data }) {
               <p className="svp-hero__form-sub">Free 30-min consultation, no strings attached</p>
 
               <div className="svp-hero__form-row">
-                <input className="svp-hero__input" placeholder="Your Name*"         value={form.name}    onChange={e => setForm({ ...form, name: e.target.value })} />
-                <input className="svp-hero__input" placeholder="Your Phone Number*" value={form.phone}   onChange={e => setForm({ ...form, phone: e.target.value })} type="tel" />
+                <input className="svp-hero__input" placeholder="Your Name*"         value={form.name}    onChange={e => setForm({ ...form, name: e.target.value })} disabled={status === "loading"} />
+                <input className="svp-hero__input" placeholder="Your Phone Number*" value={form.phone}   onChange={e => setForm({ ...form, phone: e.target.value })} type="tel" disabled={status === "loading"} />
               </div>
               <div className="svp-hero__form-row">
-                <input className="svp-hero__input" placeholder="Your E-Mail*"       value={form.email}   onChange={e => setForm({ ...form, email: e.target.value })} type="email" />
-                <input className="svp-hero__input" placeholder="Your Website"       value={form.website} onChange={e => setForm({ ...form, website: e.target.value })} />
+                <input className="svp-hero__input" placeholder="Your E-Mail*"       value={form.email}   onChange={e => setForm({ ...form, email: e.target.value })} type="email" disabled={status === "loading"} />
+                <input className="svp-hero__input" placeholder="Your Website"       value={form.website} onChange={e => setForm({ ...form, website: e.target.value })} disabled={status === "loading"} />
               </div>
-              <textarea className="svp-hero__input svp-hero__textarea" placeholder="Message..." value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} rows={3} />
+              <textarea className="svp-hero__input svp-hero__textarea" placeholder="Message..." value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} rows={3} disabled={status === "loading"} />
 
-              <motion.button className="svp-hero__form-btn" whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }}>
-                <FaPaperPlane /> Talk to An Expert
+              <motion.button
+                className="svp-hero__form-btn"
+                onClick={handleSubmit}
+                whileHover={status === "idle" ? { scale: 1.02, y: -2 } : {}}
+                whileTap={{ scale: 0.98 }}
+                disabled={status === "loading" || status === "success"}
+              >
+                <FaPaperPlane />
+                {status === "loading" ? " Sending..." : status === "success" ? " Request Sent!" : status === "error" ? " Try Again" : " Talk to An Expert"}
               </motion.button>
             </motion.div>
           </Col>
@@ -220,7 +212,7 @@ function IntroSection({ data }) {
   return (
     <section className="svp-intro" style={{background:'linear-gradient(135deg, #fff4e1 0%, #fdedce 60%, #ffd78a 100%)'}}>
       <Container>
-        <Row  className="align-items-center g-5 mt-5 p-3" style={{border: '1px solid rgba(212, 91, 8, 0.38)', borderRadius: '12px', boxShadow: '0 4px 16px rgba(212, 91, 8, 0.2)'}}>
+        <Row className="align-items-center g-5 mt-5 p-3" style={{border: '1px solid rgba(212, 91, 8, 0.38)', borderRadius: '12px', boxShadow: '0 4px 16px rgba(212, 91, 8, 0.2)'}}>
           <Col lg={6}>
             <FadeUp>
               <div className="svp-intro__img-wrap">
@@ -405,8 +397,30 @@ function TestimonialsSection({ data }) {
   );
 }
 
-// ─── SECTION 6 · Blog ─────────────────────────────────────────────────────────
-function BlogSection({ data }) {
+// ─── SECTION 6 · Blog (DYNAMIC) ───────────────────────────────────────────────
+function BlogSection() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const { data } = await api.get('/posts?limit=3');
+        setPosts(data.data);
+      } catch (e) {
+        console.error('Failed to fetch blog posts:', e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    load();
+  }, []);
+
+  const formatDate = (dateStr) =>
+    new Date(dateStr).toLocaleDateString('en-GB', {
+      day: 'numeric', month: 'long', year: 'numeric',
+    });
+
   return (
     <section className="svp-blog">
       <Container>
@@ -414,34 +428,83 @@ function BlogSection({ data }) {
           <p className="svp-blog__eyebrow">→ NEWS AND BLOG</p>
           <div className="svp-blog__header">
             <h2 className="svp-blog__title">Build your digital future</h2>
-            <motion.button className="svp-outline-btn" whileHover={{ scale: 1.04 }}>
-              View More <FiArrowUpRight />
-            </motion.button>
+            <Link to="/blog">
+              <motion.button
+                className="svp-outline-btn"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                View More <FiArrowUpRight />
+              </motion.button>
+            </Link>
           </div>
         </FadeUp>
 
         <Row className="g-4 mt-2">
-          {data.blogs.map((post, i) => (
-            <Col lg={4} md={6} key={i}>
-              <FadeUp delay={i * 0.3}>
-                <motion.div
-                  className="svp-blog__card"
-                  whileHover={{ y: -8 }}
-                  transition={{ type: "spring", stiffness: 280, damping: 20 }}
-                >
-                    <Link to="#" className="svp-blog__lin">
-                  <div className="svp-blog__img-wrap">
-                    <img src={post.img} alt={post.title} className="svp-blog__img" />
+          {loading ? (
+            // ── Skeleton placeholders ──
+            [...Array(3)].map((_, i) => (
+              <Col lg={4} md={6} key={i}>
+                <div className="svp-blog__card">
+                  <div
+                    className="svp-blog__img-wrap"
+                    style={{ background: '#e8ddd0', height: '220px' }}
+                  />
+                  <div className="svp-blog__body" style={{ padding: '16px' }}>
+                    <div style={{ height: 11, background: '#e8ddd0', borderRadius: 4, width: '45%', marginBottom: 10 }} />
+                    <div style={{ height: 15, background: '#e8ddd0', borderRadius: 4, width: '85%', marginBottom: 6 }} />
+                    <div style={{ height: 15, background: '#e8ddd0', borderRadius: 4, width: '65%' }} />
                   </div>
-                    </Link>
-                  <div className="svp-blog__body">
-                    <p className="svp-blog__date">{post.date}</p>
-                    <h4 className="svp-blog__card-title">{post.title}</h4>
-                  </div>
-                </motion.div>
-              </FadeUp>
+                </div>
+              </Col>
+            ))
+          ) : posts.length === 0 ? (
+            <Col>
+              <p style={{ color: '#888', textAlign: 'center', padding: '40px 0' }}>
+                No blog posts found.
+              </p>
             </Col>
-          ))}
+          ) : (
+            posts.map((post, i) => (
+              <Col lg={4} md={6} key={post._id}>
+                <FadeUp delay={i * 0.15}>
+                  <motion.div
+                    className="svp-blog__card"
+                    whileHover={{ y: -8 }}
+                    transition={{ type: "spring", stiffness: 280, damping: 20 }}
+                  >
+                    <Link to={`/blog/${post.slug}`} className="svp-blog__lin">
+                      <div className="svp-blog__img-wrap">
+                        <img
+                          src={post.featuredImage?.url || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&q=80'}
+                          alt={post.featuredImage?.alt || post.title}
+                          className="svp-blog__img"
+                        />
+                      </div>
+                    </Link>
+                    <div className="svp-blog__body">
+                      <p className="svp-blog__date">
+                        {post.category?.name && (
+                          <span style={{ color: '#d45b08', marginRight: '8px', fontWeight: 600 }}>
+                            {post.category.name}
+                          </span>
+                        )}
+                        {formatDate(post.createdAt)}
+                      </p>
+                      <h4 className="svp-blog__card-title">
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          style={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                          {post.title}
+                        </Link>
+                      </h4>
+                    </div>
+                  </motion.div>
+                </FadeUp>
+              </Col>
+            ))
+          )}
         </Row>
       </Container>
     </section>
@@ -452,7 +515,22 @@ function BlogSection({ data }) {
 function ContactSection() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", service: "", message: "" });
   const [sent, setSent] = useState(false);
-  const handleSubmit = () => { setSent(true); setTimeout(() => setSent(false), 3000); };
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.phone || !form.email) return;
+    setLoading(true);
+    try {
+      await api.post("/enquiries", { ...form, source: "svp-contact" });
+      setSent(true);
+      setForm({ name: "", phone: "", email: "", service: "", message: "" });
+      setTimeout(() => setSent(false), 3000);
+    } catch {
+      // silently fail
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="svp-contact">
@@ -466,8 +544,8 @@ function ContactSection() {
 
               <div className="svp-contact__items">
                 {[
-                  { icon: <FaPhoneAlt />,     label: "Have any question?", value: "+91-9212223317" },
-                  { icon: <FaEnvelope />,     label: "Write email",        value: "info@innovativedigitalmarketing.in" },
+                  { icon: <FaPhoneAlt />,     label: "Have any question?", value: "+971 505913055" },
+                  { icon: <FaEnvelope />,     label: "Write email",        value: "contact@enh.consulting" },
                   { icon: <FaMapMarkerAlt />, label: "Our Location",       value: "Ramesh Nagar, New Delhi" },
                 ].map((item, i) => (
                   <FadeUp delay={i * 0.08} key={i}>
@@ -516,11 +594,12 @@ function ContactSection() {
                     <motion.button
                       className={`svp-contact__submit${sent ? " svp-contact__submit--sent" : ""}`}
                       onClick={handleSubmit}
-                      whileHover={!sent ? { scale: 1.02, y: -2 } : {}}
+                      whileHover={!sent && !loading ? { scale: 1.02, y: -2 } : {}}
                       whileTap={{ scale: 0.98 }}
+                      disabled={sent || loading}
                     >
                       <FaPaperPlane />
-                      <span>{sent ? "Message Sent!" : "Send Message"}</span>
+                      <span>{loading ? "Sending..." : sent ? "Message Sent!" : "Send Message"}</span>
                     </motion.button>
                   </Col>
                 </Row>
@@ -546,7 +625,8 @@ function ServiceViewPage() {
       <RDSection data={data} />
       <WhyUsSection data={data} />
       <TestimonialsSection data={data} />
-      <BlogSection data={data} />
+      {/* BlogSection is now fully dynamic — no static data prop needed */}
+      <BlogSection />
       <ContactSection />
     </div>
   );

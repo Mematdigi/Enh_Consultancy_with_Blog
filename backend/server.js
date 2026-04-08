@@ -15,6 +15,7 @@ const mediaRoutes = require('./routes/media');
 const authorRoutes = require('./routes/authors');
 const commentRoutes = require('./routes/comments');
 const feedRoutes = require('./routes/feed');
+const enquiryRoutes = require('./routes/Enquiries'); // ← NEW
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/api/tags', tagRoutes);
 app.use('/api/media', mediaRoutes);
 app.use('/api/authors', authorRoutes);
 app.use('/api/comments', commentRoutes);
+app.use('/api/enquiries', enquiryRoutes); // ← NEW
 app.use('/', feedRoutes); // /feed.xml and /sitemap.xml
 
 // Health check

@@ -33,6 +33,7 @@ import Contact from './pages/enhPages/Contact';
 import ServiceViewPage from './pages/enhPages/ServiceViewPage';
 import Header from './components/enhComponent/Header';
 import Footer from './components/enhComponent/Footer';
+import EnquiriesManager from './pages/admin/EnquiriesManager';
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
@@ -78,6 +79,7 @@ export default function App() {
           <Route path="tags" element={<TagsManager />} />
           <Route path="authors" element={<AuthorsManager />} />
           <Route path="comments" element={<CommentsManager />} />
+          <Route path="enquiry-data" element={<EnquiriesManager />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

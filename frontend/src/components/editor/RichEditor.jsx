@@ -54,6 +54,7 @@ export default function RichEditor({ value, onChange, placeholder = 'Write your 
 
   const exec = useCallback((command, value = null) => {
     editorRef.current?.focus();
+  document.execCommand('styleWithCSS', false, true);
     document.execCommand(command, false, value);
     onChange(editorRef.current?.innerHTML || '');
     updateActiveFormats();
@@ -170,7 +171,7 @@ export default function RichEditor({ value, onChange, placeholder = 'Write your 
   return (
     <div className="border border-ink-200 rounded-xl overflow-hidden bg-white shadow-sm">
       {/* ── TOOLBAR ─────────────────────────────────────────────── */}
-      <div className="flex flex-wrap items-center gap-0.5 px-3 py-2 bg-ink-50 border-b border-ink-200">
+      <div className="sticky top-0 z-20 flex flex-wrap items-center gap-0.5 px-3 py-2 bg-ink-50 border-b border-ink-200">
 
         {/* Headings */}
         <select
@@ -263,7 +264,7 @@ export default function RichEditor({ value, onChange, placeholder = 'Write your 
         contentEditable
         suppressContentEditableWarning
         data-placeholder={placeholder}
-        className="blog-content min-h-[420px] px-6 py-5 focus:outline-none text-ink-800 leading-relaxed"
+        className="blog-content h-[500px] overflow-y-auto px-6 py-5 focus:outline-none text-ink-800 leading-relaxed"
         onInput={() => onChange(editorRef.current?.innerHTML || '')}
         onKeyUp={updateActiveFormats}
         onClick={handleEditorClick}

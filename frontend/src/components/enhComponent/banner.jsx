@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import api from "../../utils/api";
 
 function Banner() {
   const [formData, setFormData] = useState({
@@ -9,16 +10,44 @@ function Banner() {
     service: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+  const handleSubmit = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+
+    // Basic client-side validation
+    if (!formData.fullName.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      setErrorMsg("Please fill in Name, Phone and Email.");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      await api.post("/enquiries", {
+        ...formData,
+        name: formData.fullName,
+        source: "banner-quote",
+      });
+
+      setStatus("success");
+      setFormData({ fullName: "", phone: "", email: "", service: "", message: "" });
+
+      // Reset back to idle after 4 seconds
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch (err) {
+      setErrorMsg(
+        err?.response?.data?.message || "Something went wrong. Please try again."
+      );
+      setStatus("error");
+    }
   };
 
   return (
@@ -93,6 +122,7 @@ function Banner() {
                         placeholder="Full Name*"
                         value={formData.fullName}
                         onChange={handleChange}
+                        disabled={status === "loading"}
                         required
                       />
                     </div>
@@ -107,6 +137,7 @@ function Banner() {
                         placeholder="Phone*"
                         value={formData.phone}
                         onChange={handleChange}
+                        disabled={status === "loading"}
                         required
                       />
                     </div>
@@ -121,6 +152,7 @@ function Banner() {
                         placeholder="Email*"
                         value={formData.email}
                         onChange={handleChange}
+                        disabled={status === "loading"}
                         required
                       />
                     </div>
@@ -133,6 +165,7 @@ function Banner() {
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
+                        disabled={status === "loading"}
                         required
                       >
                         <option value="" disabled>Select Services *</option>
@@ -155,16 +188,30 @@ function Banner() {
                         rows={3}
                         value={formData.message}
                         onChange={handleChange}
+                        disabled={status === "loading"}
                       />
                     </div>
                   </Col>
 
+                  {/* Error message */}
+                  {status === "error" && (
+                    <Col sm={12}>
+                      <p className="form-feedback form-feedback--error">{errorMsg}</p>
+                    </Col>
+                  )}
+
                   <Col sm={12}>
                     <button
-                      className={`send-quote-btn ${submitted ? "sent" : ""}`}
+                      className={`send-quote-btn ${status === "success" ? "sent" : ""}`}
                       onClick={handleSubmit}
+                      disabled={status === "loading" || status === "success"}
                     >
-                      {submitted ? (
+                      {status === "loading" ? (
+                        <>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="spin-icon"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                          Sending...
+                        </>
+                      ) : status === "success" ? (
                         <>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                           Message Sent!
@@ -181,18 +228,6 @@ function Banner() {
               </div>
             </div>
           </Col>
-
-          {/* ── Image grid (commented out as requested) ── */}
-          {/*
-          <Col lg={6} className="banner-images">
-            <div className="image-grid">
-              <img src="./service1.jpg" className="img-one" alt="Fintech Image 1" />
-              <img src="./service2.jpg" className="img-two" alt="Fintech Image 2" />
-              <img src="./service3.jpg" className="img-three" alt="Fintech Image 3" />
-              <img src="./service4.jpg" className="img-four" alt="Fintech Image 4" />
-            </div>
-          </Col>
-          */}
 
         </Row>
       </Container>

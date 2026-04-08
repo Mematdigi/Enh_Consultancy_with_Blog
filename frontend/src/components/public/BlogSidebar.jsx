@@ -20,10 +20,10 @@ export default function BlogSidebar() {
           api.get('/tags'),
           api.get('/posts/popular'),
         ]);
-        setRecent(r.data.data);
-        setCategories(c.data.data);
-        setTags(t.data.data);
-        setPopular(p.data.data);
+        setRecent(r.data?.data ?? []);
+        setCategories(c.data?.data ?? []);
+        setTags(t.data?.data ?? []);
+        setPopular(p.data?.data ?? []);
       } catch (e) { console.error(e); }
     };
     load();

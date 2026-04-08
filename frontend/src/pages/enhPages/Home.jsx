@@ -6,8 +6,10 @@ import {
   FaLaptopCode, FaWallet, FaBullseye, FaPlay, FaQuoteLeft,
   FaUsers, FaCalendarAlt, FaTrophy,
 } from "react-icons/fa";
+import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import api from "../../utils/api";
 
 // ─── animation helpers ───────────────────────────────────────────────────────
 const fadeUp = {
@@ -24,6 +26,32 @@ const cardVariant = {
   hidden: { opacity: 0, y: 50, scale: 0.96 },
   show:   { opacity: 1, y: 0,  scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
+
+// ─── Reusable enquiry hook ───────────────────────────────────────────────────
+function useEnquiry() {
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const submit = async (payload) => {
+    setStatus("loading");
+    setErrorMsg("");
+    try {
+      await api.post("/enquiries", payload);
+      setStatus("success");
+      setTimeout(() => setStatus("idle"), 4000);
+      return true;
+    } catch (err) {
+      setErrorMsg(
+        err?.response?.data?.message || "Something went wrong. Please try again."
+      );
+      setStatus("error");
+      return false;
+    }
+  };
+
+  const reset = () => { setStatus("idle"); setErrorMsg(""); };
+  return { status, errorMsg, submit, reset };
+}
 
 // ✅ Services Component
 function Services() {
@@ -391,17 +419,17 @@ function Testimonials() {
   );
 }
 
-// ✅ Contact Section
+// ✅ Contact Section — wired to API
 function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const { status, errorMsg, submit } = useEnquiry();
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.name || !form.email) return;
-    setSent(true);
-    setTimeout(() => { setSent(false); setForm({ name: "", email: "", phone: "", subject: "", message: "" }); }, 3500);
+    const ok = await submit({ ...form, source: "home-contact" });
+    if (ok) setForm({ name: "", email: "", phone: "", subject: "", message: "" });
   };
 
   return (
@@ -421,42 +449,87 @@ function ContactSection() {
               <span className="cs-eyebrow-dot" />
               Start a Conversation
             </span>
-            <h2 className="cs-title" style={{color:'#ebae5f'}}>Get in Touch Now</h2>
+            <h2 className="cs-title" style={{ color: "#ebae5f" }}>Get in Touch Now</h2>
 
             <div className="cs-fields">
               <Row className="g-3">
                 <Col sm={6}>
                   <div className="cs-field-wrap">
-                    <input type="text" name="name" placeholder="Name" value={form.name} onChange={handleChange} />
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      value={form.name}
+                      onChange={handleChange}
+                      disabled={status === "loading"}
+                    />
                   </div>
                 </Col>
                 <Col sm={6}>
                   <div className="cs-field-wrap">
-                    <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={form.email}
+                      onChange={handleChange}
+                      disabled={status === "loading"}
+                    />
                   </div>
                 </Col>
                 <Col sm={6}>
                   <div className="cs-field-wrap">
-                    <input type="tel" name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} />
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                      disabled={status === "loading"}
+                    />
                   </div>
                 </Col>
                 <Col sm={6}>
                   <div className="cs-field-wrap">
-                    <input type="text" name="subject" placeholder="Subject" value={form.subject} onChange={handleChange} />
+                    <input
+                      type="text"
+                      name="subject"
+                      placeholder="Subject"
+                      value={form.subject}
+                      onChange={handleChange}
+                      disabled={status === "loading"}
+                    />
                   </div>
                 </Col>
                 <Col sm={12}>
                   <div className="cs-field-wrap">
-                    <textarea name="message" placeholder="Message" rows={2} value={form.message} onChange={handleChange} />
+                    <textarea
+                      name="message"
+                      placeholder="Message"
+                      rows={2}
+                      value={form.message}
+                      onChange={handleChange}
+                      disabled={status === "loading"}
+                    />
                   </div>
                 </Col>
               </Row>
             </div>
 
-            <button className={`get-started btn mt-3 p-2`} onClick={handleSubmit}>
-              {sent ? (
-                <><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg> Message Sent!</>
-              ) : "Submit Now"}
+            {status === "error" && (
+              <p className="form-feedback form-feedback--error mt-2">{errorMsg}</p>
+            )}
+
+            <button
+              className="get-started btn mt-3 p-2"
+              onClick={handleSubmit}
+              disabled={status === "loading" || status === "success"}
+            >
+              {status === "loading"
+                ? "Sending..."
+                : status === "success"
+                ? "✓ Message Sent!"
+                : "Submit Now"}
             </button>
           </motion.div>
 
@@ -468,7 +541,7 @@ function ContactSection() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className="cs-title p-4 pb-0" style={{color:'#ebae5f'}}>Contact Info</h2>
+            <h2 className="cs-title p-4 pb-0" style={{ color: "#ebae5f" }}>Contact Info</h2>
             {[
               {
                 icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
@@ -497,7 +570,7 @@ function ContactSection() {
               >
                 <div className="cs-info-icon">{info.icon}</div>
                 <div className="cs-info-text">
-                  <h5 style={{color:'#ebae5f'}}>{info.title}</h5>
+                  <h5 style={{ color: "#ebae5f" }}>{info.title}</h5>
                   {info.lines.map((l, li) => <p key={li}>{l}</p>)}
                 </div>
               </motion.div>
@@ -510,18 +583,18 @@ function ContactSection() {
   );
 }
 
-
+// ✅ Newsletter — wired to API
 function Newsletter() {
   const [form, setForm] = useState({ name: "", email: "", service: "" });
-  const [sent, setSent] = useState(false);
+  const { status, errorMsg, submit } = useEnquiry();
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
     if (!form.name || !form.email) return;
-    setSent(true);
-    setTimeout(() => setSent(false), 3500);
+    const ok = await submit({ ...form, source: "home-newsletter" });
+    if (ok) setForm({ name: "", email: "", service: "" });
   };
 
   return (
@@ -577,6 +650,7 @@ function Newsletter() {
                   placeholder="Your Name"
                   value={form.name}
                   onChange={handleChange}
+                  disabled={status === "loading"}
                   autoComplete="off"
                 />
               </div>
@@ -589,13 +663,19 @@ function Newsletter() {
                   placeholder="Your Email Address"
                   value={form.email}
                   onChange={handleChange}
+                  disabled={status === "loading"}
                   autoComplete="off"
                 />
               </div>
 
               <div className="nl-field-wrap nl-select-wrap">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                <select name="service" value={form.service} onChange={handleChange}>
+                <select
+                  name="service"
+                  value={form.service}
+                  onChange={handleChange}
+                  disabled={status === "loading"}
+                >
                   <option value="">Consultancy Services</option>
                   <option value="digital">Digital Marketing</option>
                   <option value="business">Business &amp; Management</option>
@@ -606,11 +686,21 @@ function Newsletter() {
                 <svg className="nl-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>
               </div>
 
+              {status === "error" && (
+                <p className="form-feedback form-feedback--error">{errorMsg}</p>
+              )}
+
               <button
-                className={`nl-submit ${sent ? "nl-sent" : ""}`}
+                className={`nl-submit ${status === "success" ? "nl-sent" : ""}`}
                 onClick={handleSubmit}
+                disabled={status === "loading" || status === "success"}
               >
-                {sent ? (
+                {status === "loading" ? (
+                  <>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="spin-icon"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                    Sending...
+                  </>
+                ) : status === "success" ? (
                   <>
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                     Done!
@@ -718,6 +808,123 @@ function StatsCounter() {
   );
 }
 
+// ✅ Home Blog Section (DYNAMIC)
+function HomeBlogSection() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const { data } = await api.get('/posts?limit=3');
+        setPosts(data?.data ?? []);
+      } catch (e) {
+        console.error('Failed to fetch blog posts:', e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    load();
+  }, []);
+
+  const formatDate = (dateStr) =>
+    new Date(dateStr).toLocaleDateString('en-GB', {
+      day: 'numeric', month: 'long', year: 'numeric',
+    });
+
+  return (
+    <section className="home-blog-section">
+      <Container>
+        {/* Section Header */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={staggerContainer}
+        >
+          <motion.p variants={fadeUp} className="home-blog__eyebrow">
+            → NEWS AND BLOG
+          </motion.p>
+          <motion.div variants={fadeUp} className="home-blog__header">
+            <h2 className="home-blog__title">Build your digital future</h2>
+            <Link to="/blog">
+              <motion.button
+                className="home-blog__view-btn"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                View More <FiArrowUpRight />
+              </motion.button>
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Cards */}
+        <Row className="g-4 mt-2">
+          {loading ? (
+            // ── Skeleton placeholders ──
+            [...Array(3)].map((_, i) => (
+              <Col lg={4} md={6} key={i}>
+                <div className="home-blog__card home-blog__card--skeleton">
+                  <div className="home-blog__img-wrap home-blog__img-wrap--skeleton" />
+                  <div className="home-blog__body">
+                    <div className="home-blog__skeleton-line home-blog__skeleton-line--short" />
+                    <div className="home-blog__skeleton-line" />
+                    <div className="home-blog__skeleton-line home-blog__skeleton-line--med" />
+                  </div>
+                </div>
+              </Col>
+            ))
+          ) : posts.length === 0 ? (
+            <Col>
+              <p className="home-blog__empty">No blog posts available yet.</p>
+            </Col>
+          ) : (
+            posts.map((post, i) => (
+              <Col lg={4} md={6} key={post._id}>
+                <motion.div
+                  className="home-blog__card"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.55, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -8, transition: { type: "spring", stiffness: 280, damping: 20 } }}
+                >
+                  {/* Image */}
+                  <Link to={`/blog/${post.slug}`} className="home-blog__img-link">
+                    <div className="home-blog__img-wrap">
+                      <img
+                        src={post.featuredImage?.url || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&q=80'}
+                        alt={post.featuredImage?.alt || post.title}
+                        className="home-blog__img"
+                      />
+                    </div>
+                  </Link>
+
+                  {/* Body */}
+                  <div className="home-blog__body">
+                    <p className="home-blog__date">
+                      {post.category?.name && (
+                        <span className="home-blog__cat">{post.category.name}</span>
+                      )}
+                      {formatDate(post.createdAt)}
+                    </p>
+                    <h4 className="home-blog__card-title">
+                      <Link to={`/blog/${post.slug}`} className="home-blog__card-link">
+                        {post.title}
+                      </Link>
+                    </h4>
+                  </div>
+                </motion.div>
+              </Col>
+            ))
+          )}
+        </Row>
+      </Container>
+    </section>
+  );
+}
+
 // ✅ Home Page
 function Home() {
   return (
@@ -767,6 +974,9 @@ function Home() {
 
       {/* Testimonials Carousel */}
       <Testimonials />
+
+      {/* Blog Section — Dynamic */}
+      <HomeBlogSection />
 
       {/* Contact */}
       <ContactSection />

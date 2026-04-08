@@ -67,10 +67,10 @@ function CommentForm({ postId, onSubmitted }) {
           <input type="email" className="input" required value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
         </div>
       </div>
-      <div>
+      {/* <div>
         <label className="label">Website</label>
         <input type="url" className="input" placeholder="https://…" value={form.website} onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))} />
-      </div>
+      </div> */}
       <div>
         <label className="label">Comment *</label>
         <textarea className="textarea h-28" required value={form.body} onChange={(e) => setForm((f) => ({ ...f, body: e.target.value }))} />

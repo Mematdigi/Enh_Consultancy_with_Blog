@@ -20,8 +20,8 @@
     inset: 0;
     background: linear-gradient(
       120deg,
-      rgba(73, 33, 4, 0.72) 0%,
-      rgba(190, 98, 17, 0.58) 50%,
+      rgba(63, 29, 4, 0.82) 0%,
+      rgba(110, 59, 14, 0.58) 50%,
       rgba(200, 120, 20, 0.48) 100%
     );
     z-index: 0;
@@ -535,7 +535,8 @@
 }
 
 .showcases {
-  padding: 80px 0;
+  padding-top: 80px;
+  background-color: #fff8ee;
 
   .section-header  { margin-bottom: 30px; }
   .section-title   { font-size: 34px; font-weight: bold; color: #995b0a; }
@@ -544,6 +545,8 @@
     position: relative;
     overflow: hidden;
     border-radius: 8px;
+    background-color: #fff2e1;
+    box-shadow: 0 4px 10px rgba(12, 11, 11, 0.2);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     img { width: 100%; height: auto; border-radius: 8px; }
@@ -713,7 +716,7 @@ button.learn-more:hover {
 // ─────────────────────────────────────────────
 
 .services-section {
-  background: #fff8ee;
+  background: #ffdba8;
   padding: 90px 0 100px;
   position: relative;
   overflow: hidden;
@@ -866,7 +869,8 @@ button.learn-more:hover {
   }
 
   .service-card {
-    background: #fff;
+    background: #f6e2e2;
+    box-shadow: 0 4px 10px rgba(12, 11, 11, 0.2);
     border: 1.5px solid rgba(235, 174, 95, 0.22);
     border-radius: 18px;
     padding: 34px 28px 28px;
@@ -1334,8 +1338,9 @@ button.learn-more:hover {
 
   // ── Individual card ──
   .counter-card {
-    background: #fff;
+    background: #fff5e7;
     border: 1.5px solid rgba(235, 174, 95, 0.18);
+    box-shadow: 0 4px 10px rgba(12, 11, 11, 0.2);
     border-radius: 18px;
     padding: 28px 24px;
     display: flex;
@@ -2244,5 +2249,574 @@ button.learn-more:hover {
   @media (max-width: 575px) {
     .home-blog__title     { font-size: 26px; }
     .home-blog__view-btn  { font-size: 13px; padding: 9px 18px; }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// NEW ANIMATION ADDITIONS — All sections fully animated
+// ═══════════════════════════════════════════════════════════════
+
+// ─────────────────────────────────────────────
+// FLOATING PARTICLES (reusable across sections)
+// ─────────────────────────────────────────────
+.floating-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+
+    @keyframes particleFloat {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+  }
+}
+
+// ensure sections that use particles have position:relative
+.services-section,
+.testimonials-v2,
+.contact-section,
+.about-us {
+  position: relative;
+}
+
+
+// ─────────────────────────────────────────────
+// MARQUEE TICKER STRIP
+// ─────────────────────────────────────────────
+.marquee-ticker {
+  background: linear-gradient(90deg, #1f1103, #3a1f05, #1f1103);
+  padding: 14px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, #1f1103, transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, #1f1103, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: marqueeScroll 28s linear infinite;
+
+    &:hover { animation-play-state: paused; }
+
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+  }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 32px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(235, 174, 95, 0.85);
+    white-space: nowrap;
+  }
+
+  .marquee-dot {
+    width: 5px;
+    height: 5px;
+    background: rgb(235, 174, 95);
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+}
+// ─────────────────────────────────────────────
+// MARQUEE TICKER STRIP
+// ─────────────────────────────────────────────
+.marquee-ticker-two {
+  background: linear-gradient(90deg, #1f1103, #3a1f05, #1f1103);
+  padding: 14px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, #1f1103, transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, #1f1103, transparent);
+  }
+
+  .marquee-track-two {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: marqueeScroll 28s linear infinite reverse;
+
+    &:hover { animation-play-state: paused; }
+
+    @keyframes marqueeScroll-two {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  }
+
+  .marquee-item-two {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 32px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(235, 174, 95, 0.85);
+    white-space: nowrap;
+  }
+
+  .marquee-dot-two {
+    width: 5px;
+    height: 5px;
+    background: rgb(235, 174, 95);
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+}
+
+
+// ─────────────────────────────────────────────
+// ABOUT US — enhanced with new elements
+// ─────────────────────────────────────────────
+.about-us {
+  padding: 90px 0;
+  background: #fff8ee;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 55px solid rgba(235, 174, 95, 0.06);
+    pointer-events: none;
+  }
+
+  .about-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #d45b08;
+    margin-bottom: 14px;
+
+    .about-eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgb(235, 174, 95);
+      animation: aboutDotPulse 2s ease-in-out infinite;
+
+      @keyframes aboutDotPulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(235, 174, 95, 0.7); }
+        50%       { box-shadow: 0 0 0 6px rgba(235, 174, 95, 0); }
+      }
+    }
+  }
+
+  .about-text {
+    h2 {
+      font-size: 42px;
+      font-weight: 800;
+      color: #2c1500;
+      line-height: 1.2;
+
+      .italic-text {
+        font-style: italic;
+        color: rgb(235, 174, 95);
+      }
+    }
+
+    .underline {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, rgb(235, 174, 95), #d45b08);
+      border-radius: 2px;
+      margin: 16px 0;
+      animation: underlineReveal 1s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+      transform-origin: left;
+
+      @keyframes underlineReveal {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+      }
+    }
+
+    p {
+      font-size: 16px;
+      color: #7a5030;
+      line-height: 1.72;
+      max-width: 500px;
+    }
+
+    .divider {
+      border-color: rgba(235, 174, 95, 0.25);
+      margin: 22px 0;
+    }
+  }
+
+  // Image wrapper with floating badge
+  .about-img-wrap {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.14);
+      display: block;
+    }
+
+    .about-img-ring {
+      position: absolute;
+      inset: -12px;
+      border-radius: 22px;
+      border: 2px dashed rgba(235, 174, 95, 0.3);
+      pointer-events: none;
+      animation: imgRingSpin 24s linear infinite;
+
+      @keyframes imgRingSpin {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: 28px;
+      left: -20px;
+      background: linear-gradient(135deg, rgb(235, 174, 95), #d45b08);
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(212, 91, 8, 0.35);
+      min-width: 100px;
+      animation: badgeFloat 4s ease-in-out infinite;
+
+      @keyframes badgeFloat {
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(-8px); }
+      }
+
+      .about-badge-num {
+        font-size: 26px;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .about-badge-label {
+        font-size: 11px;
+        font-weight: 600;
+        opacity: 0.9;
+        text-align: center;
+        margin-top: 4px;
+        letter-spacing: 0.04em;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 60px 0;
+
+    .about-text h2 { font-size: 32px; }
+    .about-img-wrap { margin-top: 40px; }
+    .about-img-wrap .about-badge { left: 10px; }
+  }
+
+  @media (max-width: 575px) {
+    .about-text h2 { font-size: 26px; }
+  }
+}
+
+
+// ─────────────────────────────────────────────
+// TAILORED SECTION — enhanced
+// ─────────────────────────────────────────────
+.tailored-section {
+  // Animated mesh behind the dark side
+  .tailored-mesh {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(235, 174, 95, 0.03) 0px,
+        rgba(235, 174, 95, 0.03) 1px,
+        transparent 1px,
+        transparent 40px
+      );
+    pointer-events: none;
+    animation: meshShift 20s linear infinite;
+
+    @keyframes meshShift {
+      0%   { background-position: 0 0; }
+      100% { background-position: 56px 56px; }
+    }
+  }
+
+  // Animated underline for the tailored section heading
+  .underline-animated {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, rgb(235, 174, 95), #d45b08);
+    border-radius: 2px;
+    margin: 16px 0;
+    animation: underlineReveal 1s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform-origin: left;
+  }
+
+  // Eyebrow label
+  .tailored-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgb(235, 174, 95);
+    margin-bottom: 12px;
+
+    .tailored-eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgb(235, 174, 95);
+      animation: tailoredDotPulse 2s ease-in-out infinite;
+
+      @keyframes tailoredDotPulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(235, 174, 95, 0.7); }
+        50%       { box-shadow: 0 0 0 5px rgba(235, 174, 95, 0); }
+      }
+    }
+  }
+
+  // Feature pills
+  .tailored-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .tailored-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(235, 174, 95, 0.15);
+    border: 1px solid rgba(235, 174, 95, 0.4);
+    color: rgb(235, 174, 95);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 50px;
+    letter-spacing: 0.04em;
+    transition: background 0.25s, color 0.25s, transform 0.25s;
+
+    &:hover {
+      background: rgb(235, 174, 95);
+      color: #1f1103;
+      transform: translateY(-2px);
+    }
+  }
+
+  // Floating badge on the image
+  .tailored-badge {
+    position: absolute;
+    top: 28px;
+    right: -16px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px 20px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
+    text-align: center;
+    min-width: 120px;
+
+    .tailored-badge-num {
+      display: block;
+      font-size: 26px;
+      font-weight: 900;
+      color: #d45b08;
+      line-height: 1;
+    }
+
+    .tailored-badge-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: #8a5520;
+      margin-top: 5px;
+    }
+  }
+
+  // Image container — add overflow hidden for parallax clip
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+
+    img {
+      width: 100%;
+      will-change: transform;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .tailored-badge { right: 10px; }
+  }
+}
+
+
+// ─────────────────────────────────────────────
+// SHOWCASES — overlay effect + stagger
+// ─────────────────────────────────────────────
+.showcases {
+  .showcase-img-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+
+    img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .showcase-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(31, 17, 3, 0.7), rgba(212, 91, 8, 0.55));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+
+      .showcase-view-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        backdrop-filter: blur(10px);
+        transform: translateY(12px);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    }
+
+    &:hover {
+      img { transform: scale(1.08); }
+
+      .showcase-overlay {
+        opacity: 1;
+
+        .showcase-view-btn { transform: translateY(0); }
+      }
+    }
+  }
+}
+
+
+// ─────────────────────────────────────────────
+// HOME PAGE WRAPPER — smooth scroll behavior
+// ─────────────────────────────────────────────
+.home-page {
+  overflow-x: hidden;
+}
+
+
+// ─────────────────────────────────────────────
+// GLOBAL SPIN ICON (loading state)
+// ─────────────────────────────────────────────
+.spin-icon {
+  animation: iconSpin 1s linear infinite;
+
+  @keyframes iconSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+}
+
+// form feedback
+.form-feedback {
+  font-size: 13px;
+  margin: 6px 0 0;
+  border-radius: 8px;
+  padding: 8px 12px;
+
+  &--error {
+    background: rgba(220, 53, 69, 0.08);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.2);
   }
 }

@@ -1137,3 +1137,291 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
   .svp-hero__stats { flex-direction: column; gap: 12px; }
   .svp-hero__stat-sep { width: 80%; height: 1px; margin: 0; }
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// NEW ANIMATION ADDITIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ── Floating particles ────────────────────────────────────────────────────────
+.svp-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.svp-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: svpParticleFloat linear infinite;
+
+  @keyframes svpParticleFloat {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateY(-80px) rotate(360deg); opacity: 0; }
+  }
+}
+
+// ── Breadcrumb scan lines ─────────────────────────────────────────────────────
+.svp-breadcrumb {
+  &__scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(235,174,95,0.03) 3px,
+      rgba(235,174,95,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// ── Hero badge additions ──────────────────────────────────────────────────────
+.svp-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(235,174,95,0.18);
+  border: 1px solid rgba(235,174,95,0.55);
+  color: $mid;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+
+  .svp-badge__dot {
+    width: 8px; height: 8px;
+    background: $gold;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: svpDotPulse 2s ease-in-out infinite;
+  }
+
+  &__live {
+    display: inline-block;
+    background: rgba(235,174,95,0.25);
+    border: 1px solid rgba(235,174,95,0.5);
+    color: $gold;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 50px;
+    margin-left: 6px;
+  }
+}
+
+// ── Hero trust pills ──────────────────────────────────────────────────────────
+.svp-hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+
+  &__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(235,174,95,0.28);
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(66,35,8,0.85);
+    cursor: default;
+    transition: background 0.25s;
+
+    svg { color: #d45b08; font-size: 10px; }
+  }
+}
+
+// ── Hero form shimmer ─────────────────────────────────────────────────────────
+.svp-hero__form {
+  .svp-hero__form-shimmer {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(235,174,95,0.18) 40%,
+      rgba(235,174,95,0.05) 60%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: svpFormShimmer 3.5s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes svpFormShimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}
+
+// ── Input focus bar ───────────────────────────────────────────────────────────
+.svp-input-wrap {
+  position: relative;
+
+  .svp-input-focus-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $gold, $burn);
+    border-radius: 0 0 10px 10px;
+    transform-origin: left;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  &--focused input { border-color: rgba(235,174,95,0.85) !important; }
+}
+
+// ── Button state wrapper ──────────────────────────────────────────────────────
+.svp-btn-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+// ── Spin icon ─────────────────────────────────────────────────────────────────
+.svp-spin {
+  animation: svpSpin 0.9s linear infinite;
+  @keyframes svpSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+}
+
+// ── Shared eyebrow tag ────────────────────────────────────────────────────────
+.svp-eyebrow-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $burn;
+  margin-bottom: 10px;
+
+  .svp-eyebrow-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: $gold;
+    flex-shrink: 0;
+    animation: svpDotPulse 2s ease-in-out infinite;
+  }
+
+  &--gold { color: $gold; .svp-eyebrow-dot { background: $gold; } }
+}
+
+// ── Intro section image shine ─────────────────────────────────────────────────
+.svp-intro__img-wrap {
+  .svp-intro__img-shine {
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.22) 50%, transparent 100%);
+    transform: skewX(-20deg);
+    animation: svpImgShine 5s ease-in-out infinite;
+    pointer-events: none;
+    border-radius: 20px;
+
+    @keyframes svpImgShine {
+      0%,100% { left: -75%; opacity: 0; }
+      30%      { opacity: 1; }
+      60%      { left: 125%; opacity: 0; }
+    }
+  }
+}
+
+// ── R&D card bottom progress bar ──────────────────────────────────────────────
+.svp-rd__card {
+  position: relative;
+  overflow: hidden;
+
+  .svp-rd__card-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $gold, $burn);
+    border-radius: 0 0 $radius $radius;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+}
+
+// ── Why Us rings now animated via framer (remove static) ─────────────────────
+.svp-whyus__ring {
+  animation: none !important; // overridden by framer-motion
+}
+
+// ── Contact form additions ────────────────────────────────────────────────────
+.svp-contact__form {
+  position: relative;
+
+  .svp-contact__form-shimmer {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(235,174,95,0.12) 40%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: svpFormShimmer 4s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.svp-contact-input-wrap {
+  position: relative;
+
+  .svp-contact-focus-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $gold, $burn);
+    transform-origin: left;
+    border-radius: 0 0 $radius-sm $radius-sm;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  &--focused .svp-contact__field {
+    border-color: $gold !important;
+  }
+}
+
+// ── Blog skeleton shimmer ─────────────────────────────────────────────────────
+.svp-blog__card--skeleton {
+  animation: svpSkeletonPulse 1.6s ease-in-out infinite;
+
+  @keyframes svpSkeletonPulse {
+    0%,100% { opacity: 1; }
+    50%      { opacity: 0.55; }
+  }
+}
+
+@media (max-width: 767px) {
+  .svp-hero-trust { gap: 6px; }
+  .svp-hero-badge { font-size: 11px; }
+}

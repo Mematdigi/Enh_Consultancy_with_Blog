@@ -21,7 +21,7 @@ function Header() {
             {/* <Nav.Link href="/team">Team</Nav.Link> */}
             <Nav.Link href="/contact">Contact Us</Nav.Link>
             <Nav.Link href="/blog">Blog</Nav.Link>
-            <Nav.Link href="/service-view">View</Nav.Link>
+            {/* <Nav.Link href="/service-view">View</Nav.Link> */}
           </Nav>
           {/* Contact Details */}
           <div className="contact-info d-flex align-items-center">

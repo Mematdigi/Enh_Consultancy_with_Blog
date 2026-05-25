@@ -118,6 +118,3 @@
 @keyframes slideIn  { from { transform: translateX(-100%); } to { transform: none; } }
 .animate-fade-in    { animation: fadeIn 0.2s ease both; }
 .animate-slide-in   { animation: slideIn 0.25s ease both; }
-* {
-  cursor: none;
-}

@@ -439,7 +439,7 @@ function WhyUsSection({ data }) {
       <Container>
         <motion.div initial="hidden" whileInView="show" viewport={vpMd} variants={stagger}>
           <Eyebrow gold>Why Choose Us</Eyebrow>
-          <motion.p className="svp-whyus__eyebrow" variants={fadeUp}>→ WHY CHOOSE US FOR</motion.p>
+          {/* <motion.p className="svp-whyus__eyebrow" variants={fadeUp}>→ WHY CHOOSE US FOR</motion.p> */}
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>Research and Development</motion.h2>
         </motion.div>
 

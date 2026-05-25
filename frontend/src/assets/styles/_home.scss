@@ -115,23 +115,19 @@
     }
 
     h2 {
-      font-size: 50px;
+      font-size: 35px;
       font-weight: 800;
-      line-height: 1.15;
-      color: #ffffff;
+      line-height: 1.1;
       animation: slideInLeft 0.8s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
-
-      .italic-text {
         font-style: italic;
         color: rgb(235, 174, 95);
-      }
     }
 
     p {
       font-size: 17px;
       margin-top: 18px;
       color: rgba(255, 255, 255, 0.88);
-      line-height: 1.7;
+      line-height: 1.4;
       max-width: 480px;
       animation: slideInLeft 0.8s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
@@ -848,7 +844,6 @@ button.learn-more:hover {
   .services-subtitle {
     font-size: 15.5px;
     color: #8a5520;
-    max-width: 560px;
     line-height: 1.65;
     margin: 0;
   }
@@ -2475,11 +2470,11 @@ button.learn-more:hover {
       font-size: 42px;
       font-weight: 800;
       color: #2c1500;
-      line-height: 1.2;
 
       .italic-text {
         font-style: italic;
         color: rgb(235, 174, 95);
+        font-size: 36px;
       }
     }
 
@@ -2501,7 +2496,7 @@ button.learn-more:hover {
     p {
       font-size: 16px;
       color: #7a5030;
-      line-height: 1.72;
+      line-height: 1.42;
       max-width: 500px;
     }
 

@@ -62,20 +62,17 @@ function Banner() {
 
           {/* ── Left: Text + Buttons ── */}
           <Col lg={6} className="banner-text mb-4">
-            <div className="badge-pill">
+            {/* <div className="badge-pill">
               <span className="badge-dot" />
               ENH Consulting
-            </div>
+            </div> */}
 
-            <h2>
-              <span className="italic-text">Smarter Strategies
-              for a Stronger Future</span>
+            <h2 className="italic-text">
+              AI Consulting & Development Company in Dubai Helping Businesses Grow Faster
             </h2>
 
             <p>
-              Your trusted partner in the ever-evolving world of finance and
-              technology. We bring cutting-edge solutions to empower you on your
-              financial journey.
+              Leading artificial intelligence consulting and development firm in Dubai, ENH Consulting assists startups, small and medium enterprises (SMEs), and big businesses all over the United Arab Emirates in achieving actual business development via smart technology and data-driven strategy. We transform difficult problems into quantifiable outcomes more quickly, better, and more reasonably than you could have ever imagined, from automating operations to creating bespoke AI tools.
             </p>
 
             <div className="banner-buttons">
@@ -84,7 +81,7 @@ function Banner() {
             </div>
 
             {/* Floating stats strip */}
-            <div className="stats-strip">
+            {/* <div className="stats-strip">
               <div className="stat-item">
                 <span className="stat-num">10K+</span>
                 <span className="stat-label">Clients</span>
@@ -99,7 +96,7 @@ function Banner() {
                 <span className="stat-num">15+</span>
                 <span className="stat-label">Years Exp.</span>
               </div>
-            </div>
+            </div> */}
           </Col>
 
           {/* ── Right: Quote Form ── */}

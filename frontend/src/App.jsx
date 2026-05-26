@@ -34,6 +34,7 @@ import ServiceViewPage from './pages/enhPages/ServiceViewPage';
 import Header from './components/enhComponent/Header';
 import Footer from './components/enhComponent/Footer';
 import EnquiriesManager from './pages/admin/EnquiriesManager';
+import AiConsulting from './pages/enhPages/Ai_Consulting';
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
@@ -50,6 +51,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/ai-consulting-services-in-dubai" element={<AiConsulting />} />
+
         <Route path="/team" element={<Team />} />
         <Route path="/finance-consulting" element={<FinanceConsulting />} />
         <Route path="/digital-marketing-consulting" element={<DigitalMarketingConsulting />} />

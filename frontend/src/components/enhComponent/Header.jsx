@@ -78,7 +78,7 @@ function Header() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <a href="/services" className={`nav-link services-nav-link ${dropdownOpen ? "open" : ""}`}>
+                <a href="/consulting" className={`nav-link services-nav-link ${dropdownOpen ? "open" : ""}`}>
                   Consulting
                   <FaChevronDown className="chevron" />
                 </a>

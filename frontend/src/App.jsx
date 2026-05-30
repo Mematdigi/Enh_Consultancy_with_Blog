@@ -23,12 +23,8 @@ import CommentsManager from './pages/admin/CommentsManager';
 import Home from './pages/enhPages/Home';
 import About from './pages/enhPages/About';
 import Services from './pages/enhPages/Services';
-import Team from './pages/enhPages/Team';
-import FinanceConsulting from './pages/enhPages/Finance_Consulting';
-import PropertyConsulting from './pages/enhPages/Property_Consulting';
 import BusinessConsultancy from './pages/enhPages/BusinessConsulting';
 import Contact from './pages/enhPages/Contact';
-import ServiceViewPage from './pages/enhPages/ServiceViewPage';
 import Header from './components/enhComponent/Header';
 import Footer from './components/enhComponent/Footer';
 import EnquiriesManager from './pages/admin/EnquiriesManager';
@@ -52,7 +48,7 @@ export default function App() {
         {/* enh public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
+        <Route path="/consulting" element={<Services />} />
         <Route path="/ai-consulting-services-in-dubai" element={<AiConsulting />} />
         <Route path="/business-consulting-services-in-dubai" element={<BusinessConsultancy />} />
         <Route path="/digital-marketing-consulting-services-in-dubai" element={<DigitalMarketingConsultancy />} />
@@ -60,11 +56,7 @@ export default function App() {
         <Route path="/it-consulting-services-in-dubai" element={<ItConsultancy />} />
         <Route path="/startup-consulting-services-in-dubai" element={<StartupConsultancy />} />
 
-        <Route path="/team" element={<Team />} />
-        <Route path="/finance-consulting" element={<FinanceConsulting />} />
-        <Route path="/property-consulting" element={<PropertyConsulting />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/service-view" element={<ServiceViewPage />} />
 
         {/* blog Public Routes */}
         <Route path="/blog" element={<BlogHome />} />

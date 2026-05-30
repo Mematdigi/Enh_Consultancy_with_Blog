@@ -9,7 +9,7 @@
     text-decoration: none;
 
     .highlight {
-      color: rgb(235, 174, 95);;
+      color: rgb(235, 174, 95);
     }
   }
 
@@ -20,7 +20,7 @@
     transition: color 0.3s ease-in-out;
 
     &:hover {
-      color: rgb(235, 174, 95);;
+      color: rgb(235, 174, 95);
     }
   }
 
@@ -31,7 +31,7 @@
 
     .cart-icon {
       font-size: 18px;
-      color: rgb(235, 174, 95);;
+      color: rgb(235, 174, 95);
       cursor: pointer;
     }
 
@@ -47,7 +47,15 @@
       }
     }
   }
+
+  // Keep nav items in a single row
+  .navbar-collapse {
+    .navbar-nav {
+      align-items: center;
+    }
+  }
 }
+
 /* Contact Info */
 .contact-info {
   align-items: center;
@@ -59,16 +67,120 @@
   align-items: center;
   color: white;
   margin-right: 15px;
-}
 
-.contact-item a {
-  text-decoration: none;
-  color: white;
-  margin-left: 5px;
-  font-size: 14px;
+  a {
+    text-decoration: none;
+    color: white;
+    margin-left: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
 }
 
 .contact-icon {
-  color: rgb(235, 174, 95);;
+  color: rgb(235, 174, 95);
   font-size: 16px;
+}
+
+/* Services Dropdown */
+.services-dropdown-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.services-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #fff !important;
+  font-weight: 500;
+  margin-right: 15px;
+  padding: 8px 0;
+  text-decoration: none;
+
+  &:hover {
+    color: rgb(235, 174, 95) !important;
+  }
+
+  .chevron {
+    transition: transform 0.25s ease;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+
+  &.open .chevron {
+    transform: rotate(180deg);
+  }
+}
+
+.services-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;                          // ← anchored to left of "Services" text
+  transform: translateY(-6px);
+  background: #1f1103;
+  border: 1px solid rgba(235, 174, 95, 0.25);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  min-width: 220px;
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 20px;
+    transform: none;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid rgba(235, 174, 95, 0.25);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    transform: none;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #1f1103;
+  }
+}
+
+.dropdown-service-item {
+  display: block;
+  padding: 9px 14px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(235, 174, 95, 0.12);
+    color: rgb(235, 174, 95);
+    text-decoration: none;
+  }
+}
+
+.dropdown-divider-line {
+  height: 1px;
+  background: rgba(235, 174, 95, 0.15);
+  margin: 3px 8px;
 }

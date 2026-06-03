@@ -5,79 +5,90 @@ import { FaBullseye, FaChartBar, FaEye, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 // ── Shared variants ──────────────────────────────────────────────────────────
-const fadeUp   = { hidden:{opacity:0,y:44},   show:{opacity:1,y:0,  transition:{duration:0.6, ease:[0.22,1,0.36,1]}} };
-const fadeLeft = { hidden:{opacity:0,x:-48},  show:{opacity:1,x:0,  transition:{duration:0.65,ease:[0.22,1,0.36,1]}} };
-const fadeRight= { hidden:{opacity:0,x:48},   show:{opacity:1,x:0,  transition:{duration:0.65,ease:[0.22,1,0.36,1]}} };
-const stagger  = { hidden:{}, show:{transition:{staggerChildren:0.1}} };
-const staggerSm= { hidden:{}, show:{transition:{staggerChildren:0.07}} };
-const cardV    = { hidden:{opacity:0,y:40,scale:0.95}, show:{opacity:1,y:0,scale:1,transition:{duration:0.55,ease:[0.22,1,0.36,1]}} };
-const vp = { once:true, amount:0.2 };
+const fadeUp = { hidden: { opacity: 0, y: 44 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } };
+const fadeLeft = { hidden: { opacity: 0, x: -48 }, show: { opacity: 1, x: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } } };
+const fadeRight = { hidden: { opacity: 0, x: 48 }, show: { opacity: 1, x: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } } };
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
+const staggerSm = { hidden: {}, show: { transition: { staggerChildren: 0.07 } } };
+const cardV = { hidden: { opacity: 0, y: 40, scale: 0.95 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } };
+const vp = { once: true, amount: 0.2 };
 
 // ── Animated count-up ────────────────────────────────────────────────────────
-function CountUp({ target, suffix="" }) {
+function CountUp({ target, suffix = "" }) {
   const [count, setCount] = useState(0);
   const [started, setStarted] = useState(false);
   const ref = useRef(null);
-  const num = parseInt(String(target).replace(/\D/g,""), 10);
-  const sfx = suffix || String(target).replace(/[0-9]/g,"");
+  const num = parseInt(String(target).replace(/\D/g, ""), 10);
+  const sfx = suffix || String(target).replace(/[0-9]/g, "");
 
   useEffect(() => {
-    const obs = new IntersectionObserver(([e])=>{ if(e.isIntersecting) setStarted(true); },{threshold:0.5});
-    if(ref.current) obs.observe(ref.current);
-    return ()=>obs.disconnect();
-  },[]);
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStarted(true); }, { threshold: 0.5 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
 
-  useEffect(()=>{
-    if(!started) return;
-    let f=0; const total=60;
-    const t=setInterval(()=>{
-      f++; const eased=1-Math.pow(1-f/total,3);
-      setCount(Math.round(eased*num));
-      if(f>=total){setCount(num);clearInterval(t);}
-    },25);
-    return ()=>clearInterval(t);
-  },[started,num]);
+  useEffect(() => {
+    if (!started) return;
+    let f = 0; const total = 60;
+    const t = setInterval(() => {
+      f++; const eased = 1 - Math.pow(1 - f / total, 3);
+      setCount(Math.round(eased * num));
+      if (f >= total) { setCount(num); clearInterval(t); }
+    }, 25);
+    return () => clearInterval(t);
+  }, [started, num]);
 
   return <span ref={ref}>{count}{sfx}</span>;
 }
 
 const events = [
-  { date:"MAY 02, 2018", title:"Best Employee Award",    description:"Right to find fault with a man who chooses to enjoy too much pleasure that has no annoying." },
-  { date:"MAR 06, 2017", title:"International Branch",   description:"Right to find fault with a man who chooses to enjoy a pleasure that has no annoying." },
-  { date:"JAN 01, 2017", title:"Our First Big Project",  description:"To take a trivial example, which undertakes physical exercise for some advantage." },
-  { date:"DEC 12, 2019", title:"Global Expansion",       description:"Expanding into international markets and increasing brand presence worldwide." },
-  { date:"SEP 22, 2020", title:"Innovation Award",       description:"Recognized for outstanding contributions in innovation and technology." },
+  { date: "MAY 02, 2018", title: "AI Consulting", description: "Industry-specific AI strategies that automate operations, improve efficiency, and accelerate business growth." },
+  { date: "MAR 06, 2017", title: "Digital Growth", description: "Comprehensive digital marketing solutions designed to increase visibility, leads, and conversions." },
+  { date: "JAN 01, 2017", title: "Web Solutions", description: "Custom websites and web applications built to enhance user experience and business performance." },
+  { date: "DEC 12, 2019", title: "Expert Team", description: "Skilled consultants and technology experts focused on delivering measurable business results." },
+  { date: "SEP 22, 2020", title: "Smart Strategies", description: "Data-driven solutions powered by innovation, analytics, and emerging technologies." },
+  { date: "JAN 01, 2017", title: "Business Support", description: "Dedicated guidance and support for startups, SMEs, and enterprise organizations." },
+  { date: "DEC 12, 2019", title: "Scalable Growth", description: "Future-ready solutions that adapt to your business needs and support long-term success." }
 ];
 
 const responsive = {
-  desktop:{ breakpoint:{max:3000,min:1024}, items:3 },
-  tablet: { breakpoint:{max:1024,min:768},  items:2 },
-  mobile: { breakpoint:{max:768,min:0},     items:1 },
+  desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3 },
+  tablet: { breakpoint: { max: 1024, min: 768 }, items: 2 },
+  mobile: { breakpoint: { max: 768, min: 0 }, items: 1 },
 };
 
 function About() {
   const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target:heroRef, offset:["start end","end start"] });
-  const imgScale = useTransform(scrollYProgress,[0,0.5,1],[0.93,1,1.05]);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start end", "end start"] });
+  const imgScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.93, 1, 1.05]);
 
-  const [ctaForm, setCtaForm] = useState({ name:"", email:"", service:"" });
+  const [ctaForm, setCtaForm] = useState({ name: "", email: "", service: "" });
   const [ctaStatus, setCtaStatus] = useState("idle");
 
   const handleCta = () => {
-    if(!ctaForm.name||!ctaForm.email) return;
+    if (!ctaForm.name || !ctaForm.email) return;
     setCtaStatus("loading");
-    setTimeout(()=>{ setCtaStatus("success"); setCtaForm({name:"",email:"",service:""}); setTimeout(()=>setCtaStatus("idle"),3000); },900);
+    setTimeout(() => { setCtaStatus("success"); setCtaForm({ name: "", email: "", service: "" }); setTimeout(() => setCtaStatus("idle"), 3000); }, 900);
   };
 
   const values = [
-    "✔️ Integrity","✔️ Commitment to excellence",
-    "✔️ Consumer focus","✔️ Accountability","✔️ Inclusiveness",
+    "✔️ Innovation-Driven Thinking", "✔️ Client-Centric Approach",
+    "✔️  Transparency & Integrity", "✔️  Excellence in Execution", "✔️ Data-Driven Decision Making", "✔️  Continuous Learning & Growth", "✔️  Accountability & Results"
   ];
+
+  const postUrl = window.location.href;
 
   return (
     <div className="about-page">
+      <Helmet>
+        <title>About ENH Consulting | AI Consulting Company in Dubai</title>
+        <meta name="description" content='Learn about ENH Consulting, a Dubai-based firm helping business across the UAE embrace AI, innovation, and digital transformation for sustainable growth. ' />
+        <link rel="canonical" href={postUrl} />
+      </Helmet>
       {/* Breadcrumb */}
       <BreadcrumbBanner title="About" />
 
@@ -85,14 +96,14 @@ function About() {
       <section className="about-us about-us--page" ref={heroRef}>
         {/* floating particles */}
         <div className="about-particles" aria-hidden="true">
-          {Array.from({length:12},(_,i)=>(
+          {Array.from({ length: 12 }, (_, i) => (
             <div key={i} className="about-particle"
               style={{
-                left:`${Math.random()*100}%`, top:`${Math.random()*100}%`,
-                width:4+Math.random()*8, height:4+Math.random()*8,
-                animationDuration:`${7+Math.random()*8}s`,
-                animationDelay:`${Math.random()*5}s`,
-              }}/>
+                left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`,
+                width: 4 + Math.random() * 8, height: 4 + Math.random() * 8,
+                animationDuration: `${7 + Math.random() * 8}s`,
+                animationDelay: `${Math.random() * 5}s`,
+              }} />
           ))}
         </div>
 
@@ -101,22 +112,40 @@ function About() {
             {/* Image */}
             <Col lg={6} className="about-image">
               <motion.div className="about-img-frame"
-                initial={{opacity:0,x:-50}} whileInView={{opacity:1,x:0}}
-                viewport={vp} transition={{duration:0.75,ease:[0.22,1,0.36,1]}}>
+                initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
+                viewport={vp} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}>
                 <motion.img src="./about.jpg" alt="About Us" className="img-fluid"
-                  style={{scale:imgScale, borderRadius:16}}/>
-                <div className="about-img-ring"/>
-                <div className="about-img-ring about-img-ring--2"/>
+                  style={{ scale: imgScale, borderRadius: 16 }} />
+                <div className="about-img-ring" />
+                <div className="about-img-ring about-img-ring--2" />
                 <motion.div className="about-float-badge"
-                  initial={{opacity:0,scale:0,rotate:-10}}
-                  whileInView={{opacity:1,scale:1,rotate:0}}
-                  viewport={{once:true}}
-                  transition={{delay:0.5,type:"spring",stiffness:220}}
-                  animate={{y:[0,-8,0]}}
+                  initial={{ opacity: 0, scale: 0, rotate: -10 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, type: "spring", stiffness: 220 }}
+                  animate={{ y: [0, -8, 0] }}
                 >
-                  <span className="afb-num"><CountUp target={20} suffix="+"/></span>
+                  <span className="afb-num"><CountUp target={20} suffix="+" /></span>
                   <span className="afb-label">Years</span>
                 </motion.div>
+              </motion.div>
+              {/* Animated stats */}
+              <motion.h3 className="mt-5 text-center" style={{ color: "rgb(126 69 19)", lineHeight: 1.15, fontSize: "2rem", fontWeight: "500" }}>
+                Our Achievements
+              </motion.h3>
+              <motion.div variants={fadeUp} className="underline about-underline-anim" />
+              <motion.div className="about-stats-row" variants={staggerSm}>
+                {[
+                  { val: 1000, sfx: "+", label: "Successful Projects" },
+                  { val: 99, sfx: "%", label: "Satisfaction rate " },
+                  { val: 15, sfx: "+", label: " Years of Experience" },
+                ].map((s, i) => (
+                  <motion.div key={i} className="about-stat-pill" variants={fadeUp}
+                    whileHover={{ y: -5, boxShadow: "0 10px 28px rgba(212,91,8,0.18)" }}>
+                    <h3><CountUp target={s.val} suffix={s.sfx} /></h3>
+                    <p>{s.label}</p>
+                  </motion.div>
+                ))}
               </motion.div>
             </Col>
 
@@ -124,35 +153,23 @@ function About() {
             <Col lg={6} className="about-text">
               <motion.div initial="hidden" whileInView="show" viewport={vp} variants={stagger}>
                 <motion.div variants={fadeUp} className="about-eyebrow-tag">
-                  <span className="aet-dot"/>About Us
+                  <span className="aet-dot" />About Us
                 </motion.div>
-                <motion.h2 variants={fadeLeft}>
-                  Your financial well-being is <span className="italic-text">our priority.</span>
-                </motion.h2>
-                <motion.div variants={fadeUp} className="underline about-underline-anim"/>
+                <motion.h1 variants={fadeLeft} className="italic-text" style={{ color: "rgb(126 69 19)", lineHeight: 1.15, fontSize: "2rem", fontWeight: "500" }}>
+                  Transforming Businesses with AI, Innovation & Digital Growth Across Dubai and the UAE
+                </motion.h1>
+                <motion.div variants={fadeUp} className="underline about-underline-anim" />
                 <motion.p variants={fadeUp}>
-                  Stay ahead of the game with real-time insights into your finances. Our dynamic analytics
-                  provide you with a clear understanding of your financial health, empowering you to make
-                  informed decisions.
+                  At <Link to="/" style={{ fontSize: "1.2rem" }}>ENH Consulting</Link>, we help businesses unlock new growth opportunities through advanced AI consulting, digital transformation strategies, and result-driven online marketing solutions. technology, and business expertise to help organizations stay ahead in a rapidly evolving digital landscape.
                 </motion.p>
-                <motion.hr variants={fadeUp} className="divider"/>
-
-                {/* Animated stats */}
-                <motion.div className="about-stats-row" variants={staggerSm}>
-                  {[
-                    {val:384, sfx:"",  label:"Successful projects"},
-                    {val:1000,sfx:"+", label:"Satisfied clients"},
-                    {val:20,  sfx:"",  label:"Years working"},
-                  ].map((s,i)=>(
-                    <motion.div key={i} className="about-stat-pill" variants={fadeUp}
-                      whileHover={{y:-5,boxShadow:"0 10px 28px rgba(212,91,8,0.18)"}}>
-                      <h3><CountUp target={s.val} suffix={s.sfx}/></h3>
-                      <p>{s.label}</p>
-                    </motion.div>
-                  ))}
-                </motion.div>
+                <motion.p variants={fadeUp}>
+                  Our team works closely with startups, SMEs, enterprises, and growing brands to develop intelligent business solutions that improve efficiency, automate processes, increase visibility, and drive measurable results. From AI-powered business consulting and automation to SEO, digital marketing, web development, and performance-driven growth strategies, we deliver solutions tailored to your unique business goals.
+                </motion.p>
+                <motion.hr variants={fadeUp} className="divider" />
               </motion.div>
             </Col>
+          </Row>
+          <Row>
           </Row>
         </Container>
       </section>
@@ -162,7 +179,7 @@ function About() {
         <Container>
           <motion.div className="text-center" initial="hidden" whileInView="show" viewport={vp} variants={stagger}>
             <motion.div variants={fadeUp} className="about-eyebrow-tag mx-auto mb-3">
-              <span className="aet-dot"/>What We Stand For
+              <span className="aet-dot" />What We Stand For
             </motion.div>
             <motion.h2 variants={fadeUp} className="section-title">Stand Out From The Rest</motion.h2>
           </motion.div>
@@ -171,43 +188,43 @@ function About() {
             <Row className="gy-4 mt-4">
               {/* Mission */}
               <Col md={4} className="d-flex flex-column">
-                <motion.div variants={cardV} whileHover={{y:-8,boxShadow:"0 20px 48px rgba(133,86,25,0.15)"}} className="image-card mb-4">
+                <motion.div variants={cardV} whileHover={{ y: -8, boxShadow: "0 20px 48px rgba(133,86,25,0.15)" }} className="image-card mb-4">
                   <div className="biz-img-wrap">
-                    <img src="./mission.jpg" alt="Mission" className="img-fluid"/>
-                    <div className="biz-img-overlay"/>
+                    <img src="./mission.jpg" alt="Mission" className="img-fluid" />
+                    <div className="biz-img-overlay" />
                   </div>
                 </motion.div>
-                <motion.div variants={cardV} whileHover={{y:-5}} className="info-card flex-grow-1">
+                <motion.div variants={cardV} whileHover={{ y: -5 }} className="info-card flex-grow-1">
                   <Card.Body className="text-center">
                     <motion.div
-                      animate={{rotate:[0,-8,8,0]}}
-                      transition={{duration:4,repeat:Infinity,ease:"easeInOut"}}>
-                      <FaBullseye className="info-icon"/>
+                      animate={{ rotate: [0, -8, 8, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
+                      <FaBullseye className="info-icon" />
                     </motion.div>
                     <Card.Title>Our Mission</Card.Title>
-                    <Card.Text>Equal blame belongs to those who fail in their duty through weakness of will.</Card.Text>
+                    <Card.Text>Our mission is to help businesses leverage artificial intelligence, digital technologies, and strategic marketing to accelerate growth, improve customer experiences, and maximize operational efficiency. We are committed to delivering innovative solutions that generate measurable business outcomes while creating long-term value for our clients.</Card.Text>
                   </Card.Body>
                 </motion.div>
               </Col>
 
               {/* Core Values */}
               <Col md={4}>
-                <motion.div variants={cardV} whileHover={{y:-5}} className="info-card text-center core">
+                <motion.div variants={cardV} whileHover={{ y: -5 }} className="info-card text-center core">
                   <Card.Body>
                     <motion.div
-                      animate={{scale:[1,1.12,1]}}
-                      transition={{duration:2.5,repeat:Infinity,ease:"easeInOut"}}>
-                      <FaChartBar className="info-icon"/>
+                      animate={{ scale: [1, 1.12, 1] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}>
+                      <FaChartBar className="info-icon" />
                     </motion.div>
                     <Card.Title>Our Core Values</Card.Title>
-                    <Card.Text>Equal blame belongs to those who fail in their duty through weakness of will.</Card.Text>
+                    {/* <Card.Text>Equal blame belongs to those who fail in their duty through weakness of will.</Card.Text> */}
                     <ul className="values-list">
-                      {values.map((v,i)=>(
+                      {values.map((v, i) => (
                         <motion.li key={i}
-                          initial={{opacity:0,x:-16}}
-                          whileInView={{opacity:1,x:0}}
-                          viewport={{once:true}}
-                          transition={{delay:0.1+i*0.08,duration:0.4}}>
+                          initial={{ opacity: 0, x: -16 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1 + i * 0.08, duration: 0.4 }}>
                           {v}
                         </motion.li>
                       ))}
@@ -218,21 +235,21 @@ function About() {
 
               {/* Vision */}
               <Col md={4} className="d-flex flex-column">
-                <motion.div variants={cardV} whileHover={{y:-5}} className="info-card flex-grow-1 mb-4">
+                <motion.div variants={cardV} whileHover={{ y: -5 }} className="info-card flex-grow-1 mb-4">
                   <Card.Body className="text-center">
                     <motion.div
-                      animate={{rotateY:[0,180,360]}}
-                      transition={{duration:5,repeat:Infinity,ease:"easeInOut"}}>
-                      <FaEye className="info-icon"/>
+                      animate={{ rotateY: [0, 180, 360] }}
+                      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
+                      <FaEye className="info-icon" />
                     </motion.div>
                     <Card.Title>Our Vision</Card.Title>
-                    <Card.Text>Equal blame belongs to those who fail in their duty through weakness of will.</Card.Text>
+                    <Card.Text>To become one of the leading AI business consulting and digital transformation companies in Dubai and the UAE by helping organizations adopt intelligent technologies, embrace innovation, and achieve sustainable digital success.</Card.Text>
                   </Card.Body>
                 </motion.div>
-                <motion.div variants={cardV} whileHover={{y:-8,boxShadow:"0 20px 48px rgba(133,86,25,0.15)"}} className="image-card">
+                <motion.div variants={cardV} whileHover={{ y: -8, boxShadow: "0 20px 48px rgba(133,86,25,0.15)" }} className="image-card">
                   <div className="biz-img-wrap">
-                    <img src="./vision.jpg" alt="Vision" className="img-fluid"/>
-                    <div className="biz-img-overlay"/>
+                    <img src="./vision.jpg" alt="Vision" className="img-fluid" />
+                    <div className="biz-img-overlay" />
                   </div>
                 </motion.div>
               </Col>
@@ -245,39 +262,38 @@ function About() {
       <section className="event-carousel">
         <Container className="text-center">
           <motion.div initial="hidden" whileInView="show" viewport={vp} variants={stagger}>
-            <motion.div variants={fadeUp} className="about-eyebrow-tag mx-auto mb-3" style={{color:"rgb(235,174,95)"}}>
-              <span className="aet-dot"/>Our Journey
+            <motion.div variants={fadeUp} className="about-eyebrow-tag mx-auto mb-3" style={{ color: "rgb(235,174,95)" }}>
+              <span className="aet-dot" />Our Journey
             </motion.div>
-            <motion.h2 variants={fadeUp} className="section-title">Events Timeline</motion.h2>
-            <motion.p variants={fadeUp} className="section-description" style={{color:"#7a5030",maxWidth:600,margin:"0 auto 30px"}}>
-              Consulting Events offer a range of opportunities for sponsors to reach qualified prospects including
-              Recognition Dinners, Roundtables, Editorial Breakfasts, and our Annual Consulting Summit.
+            <motion.h2 variants={fadeUp} className="section-title">Why Businesses Choose ENH Consulting</motion.h2>
+            <motion.p variants={fadeUp} className="section-description" style={{ color: "#7a5030", maxWidth: 600, margin: "0 auto 30px" }}>
+              At ENH Consulting, we do more than provide services—we build partnerships that help businesses adapt, innovate, and grow. Whether you are looking to implement AI solutions, improve your online visibility, automate business processes, or accelerate digital growth, our team is ready to help you achieve your goals across Dubai, the UAE, and beyond.
             </motion.p>
           </motion.div>
 
           <motion.div
-            initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}}
-            viewport={vp} transition={{duration:0.6}}>
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={vp} transition={{ duration: 0.6 }}>
             <Carousel responsive={responsive} infinite autoPlay autoPlaySpeed={3000} arrows>
-              {events.map((event,index)=>(
+              {events.map((event, index) => (
                 <div className="event-card" key={index}>
                   <motion.div
                     className="event-card-content"
-                    whileHover={{y:-8,scale:1.02,boxShadow:"0 18px 44px rgba(133,86,25,0.18)"}}
-                    transition={{type:"spring",stiffness:280,damping:18}}>
+                    whileHover={{ y: -8, scale: 1.02, boxShadow: "0 18px 44px rgba(133,86,25,0.18)" }}
+                    transition={{ type: "spring", stiffness: 280, damping: 18 }}>
                     <Card.Body>
-                      <motion.h5 className="event-date"
-                        animate={{color:["#d45b08","#ebae5f","#d45b08"]}}
-                        transition={{duration:3,repeat:Infinity,delay:index*0.4}}>
+                      {/* <motion.h5 className="event-date"
+                        animate={{ color: ["#d45b08", "#ebae5f", "#d45b08"] }}
+                        transition={{ duration: 3, repeat: Infinity, delay: index * 0.4 }}>
                         {event.date}
-                      </motion.h5>
+                      </motion.h5> */}
                       <Card.Title>{event.title}</Card.Title>
                       <Card.Text>{event.description}</Card.Text>
-                      <motion.div whileHover={{x:4}}>
+                      {/* <motion.div whileHover={{ x: 4 }}>
                         <Button variant="link" className="read-more">
-                          Read More <FaArrowRight style={{fontSize:11,marginLeft:4}}/>
+                          Read More <FaArrowRight style={{ fontSize: 11, marginLeft: 4 }} />
                         </Button>
-                      </motion.div>
+                      </motion.div> */}
                     </Card.Body>
                   </motion.div>
                 </div>
@@ -294,49 +310,51 @@ function About() {
             <Col lg={5} className="cta-text">
               <motion.div initial="hidden" whileInView="show" viewport={vp} variants={stagger}>
                 <motion.div variants={fadeUp} className="about-eyebrow-tag mb-2">
-                  <span className="aet-dot"/>Stay Updated
+                  <span className="aet-dot" />Get a 30min Free Consulting
                 </motion.div>
-                <motion.h3 variants={fadeUp}>Newsletter</motion.h3>
-                <motion.h2 variants={fadeLeft}>Get Updates &amp; Latest News</motion.h2>
-                <motion.p variants={fadeUp}>Get in your inbox the latest News and Offers from us.</motion.p>
+                {/* <motion.h3 variants={fadeUp}>Newsletter</motion.h3> */}
+                <motion.h2 variants={fadeLeft}>Let's Talk About Your Business</motion.h2>
+                {/* <motion.p variants={fadeUp}>Get in your inbox the latest News and Offers from us.</motion.p> */}
               </motion.div>
             </Col>
 
             <Col lg={7}>
               <motion.div
                 className="cta-form-wrap"
-                initial={{opacity:0,x:40}} whileInView={{opacity:1,x:0}}
-                viewport={vp} transition={{duration:0.65,ease:[0.22,1,0.36,1]}}>
+                initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }}
+                viewport={vp} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
                 <Form className="cta-form d-flex">
                   {[
-                    {type:"text",  placeholder:"Your Name",          name:"name"},
-                    {type:"email", placeholder:"Your Email Address",  name:"email"},
-                  ].map((f,i)=>(
-                    <motion.div key={f.name} style={{flex:1}}
-                      whileHover={{scale:1.02}} transition={{duration:0.2}}>
+                    { type: "text", placeholder: "Your Name", name: "name" },
+                    { type: "email", placeholder: "Your Email Address", name: "email" },
+                  ].map((f, i) => (
+                    <motion.div key={f.name} style={{ flex: 1 }}
+                      whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
                       <Form.Control type={f.type} placeholder={f.placeholder}
                         className="input-field"
                         value={ctaForm[f.name]}
-                        onChange={e=>setCtaForm({...ctaForm,[f.name]:e.target.value})}/>
+                        onChange={e => setCtaForm({ ...ctaForm, [f.name]: e.target.value })} />
                     </motion.div>
                   ))}
-                  <motion.div style={{flex:1}} whileHover={{scale:1.02}}>
+                  <motion.div style={{ flex: 1 }} whileHover={{ scale: 1.02 }}>
                     <Form.Select className="input-field" value={ctaForm.service}
-                      onChange={e=>setCtaForm({...ctaForm,service:e.target.value})}>
-                      <option>Consultancy Services</option>
-                      <option>Business Strategy</option>
-                      <option>Marketing Consulting</option>
-                      <option>IT Solutions</option>
-                      <option>Financial Advisory</option>
+                      onChange={e => setCtaForm({ ...ctaForm, service: e.target.value })}>
+                      <option value="">Select Services</option>
+                      <option>Digital Marketing</option>
+                      <option>IT Consulting</option>
+                      <option>Business Consulting</option>
+                      <option>EdTech &amp; AI</option>
+                      <option>Finance Consulting</option>
+                      <option>Property Consulting</option>
                     </Form.Select>
                   </motion.div>
-                  <motion.div whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.96}}>
+                  <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.96 }}>
                     <Button className="cta-btn" onClick={handleCta}
-                      disabled={ctaStatus==="loading"||ctaStatus==="success"}>
+                      disabled={ctaStatus === "loading" || ctaStatus === "success"}>
                       <AnimatePresence mode="wait">
-                        {ctaStatus==="loading" && <motion.span key="l" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>...</motion.span>}
-                        {ctaStatus==="success" && <motion.span key="s" initial={{opacity:0,scale:0.7}} animate={{opacity:1,scale:1}} exit={{opacity:0}}>✓ Done!</motion.span>}
-                        {(ctaStatus==="idle") && <motion.span key="i" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>Sign Up</motion.span>}
+                        {ctaStatus === "loading" && <motion.span key="l" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>...</motion.span>}
+                        {ctaStatus === "success" && <motion.span key="s" initial={{ opacity: 0, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>✓ Done!</motion.span>}
+                        {(ctaStatus === "idle") && <motion.span key="i" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>Sign Up</motion.span>}
                       </AnimatePresence>
                     </Button>
                   </motion.div>

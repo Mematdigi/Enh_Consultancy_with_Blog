@@ -5,8 +5,9 @@ import {
   FaArrowRight, FaLightbulb, FaBriefcase, FaGraduationCap,
   FaLaptopCode, FaWallet, FaBullseye, FaPlay, FaQuoteLeft,
   FaUsers, FaCalendarAlt, FaTrophy,
+  FaAirFreshener,
 } from "react-icons/fa";
-import { FiArrowUpRight } from "react-icons/fi";
+import { FiArrowDownRight, FiArrowUpRight} from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import api from "../../utils/api";
@@ -106,9 +107,8 @@ function FloatingParticles({ count = 12, color = "rgba(235,174,95,0.15)" }) {
 // ─── Marquee / ticker strip ───────────────────────────────────────────────────
 function MarqueeTicker() {
   const items = [
-    "Digital Marketing", "Business Strategy", "Financial Planning",
-    "IT Consulting", "EdTech & AI", "Property Advisory",
-    "Wealth Management", "Risk Management",
+    "Ai Consulting", "Business Consulting", "Digital Marketing Consulting",
+    "Ed tech Consulting", "IT Consulting", "Startup Consulting",
   ];
 
   return (
@@ -127,9 +127,8 @@ function MarqueeTicker() {
 
 function MarqueeTicker2() {
   const items = [
-    "Digital Marketing", "Business Strategy", "Financial Planning",
-    "IT Consulting", "EdTech & AI", "Property Advisory",
-    "Wealth Management", "Risk Management",
+    "Ai Consulting", "Business Consulting", "Digital Marketing Consulting",
+    "Ed tech Consulting", "IT Consulting", "Startup Consulting",
   ];
 
   return (
@@ -148,12 +147,12 @@ function MarqueeTicker2() {
 // ✅ Services Component
 function Services() {
   const serviceList = [
-    { icon: <FaLightbulb />, title: "AI Consulting", description: "We assist companies in Dubai in creating a straightforward, practical artificial intelligence plan and development road map, locating the appropriate opportunities, choosing the appropriate technology, and ensuring that every artificial intelligence project provides measurable business value from the very first step.", link: "/ai-consulting-services-in-dubai", number: "01" },
-    { icon: <FaBriefcase />, title: "Business Consulting", description: "Dubai-based results-driven artificial intelligence and business consulting firm ENH helps businesses simplify processes, enhance decision-making, and create scalable systems fit for long-term growth. To provide every client a real competitive advantage in the Dubai and UAE market, our business consulting firm blends in-depth commercial knowledge with AI-powered insights.", link: "/business-consulting-services-in-dubai", number: "02" },
-    { icon: <FaGraduationCap />, title: "Digital Marketing Consulting", description: "Using data, automation, and AI-driven audience insights, our digital marketing consulting firm in Dubai assists companies in developing high-performance digital strategies that produce actual, quantifiable growth. From paid media and SEO to content strategy and conversion optimization, we create digital marketing systems that consistently deliver results and effectively scale across every platform.", link: "/digital-marketing-consulting-services-in-dubai", number: "03" },
-    { icon: <FaLaptopCode />, title: "EdTech Consulting", description: "EdTech Consulting in Dubai by ENH assists educational institutions, training organizations, and companies providing learning technologies in designing, developing, and expanding more sophisticated digital learning experiences supported by artificial intelligence and contemporary technological infrastructure.", link: "/edtech-consulting-services-in-dubai", number: "04" },
-    { icon: <FaWallet />, title: "IT Consulting", description: "As a reputable IT consulting firm in Dubai, ENH assists companies in modernizing their technology infrastructure, enhancing system performance, and matching their IT investments to the strategic objectives that genuinely promote expansion. From system integration and digital transformation planning to cloud migration and cybersecurity concerns, our IT consulting team provides realistic answers that function in the actual world.", link: "/it-consulting-services-in-dubai", number: "05" },
-    { icon: <FaBullseye />, title: "Startup Consulting", description: "Our startup consulting business is especially designed for founders who need more than just guidance; they need a hands-on partner who knows the Dubai startup scene, acts swiftly, and assists them in developing the systems, processes, and technical foundations that give early-stage firms the finest possible chance of successfully growing.", link: "/Startup-consulting-services-in-dubai", number: "06" },
+    { icon: <FiArrowDownRight />, title: "AI Consulting", description: "We assist companies in Dubai in creating a straightforward, practical artificial intelligence plan and development road map, locating the appropriate opportunities, choosing the appropriate technology, and ensuring that every artificial intelligence project provides measurable business value from the very first step.", link: "/ai-consulting-services-in-dubai", number: "01" },
+    { icon: <FiArrowDownRight />, title: "Business Consulting", description: "Dubai-based results-driven artificial intelligence and business consulting firm ENH helps businesses simplify processes, enhance decision-making, and create scalable systems fit for long-term growth. To provide every client a real competitive advantage in the Dubai and UAE market, our business consulting firm blends in-depth commercial knowledge with AI-powered insights.", link: "/business-consulting-services-in-dubai", number: "02" },
+    { icon: <FiArrowDownRight />, title: "Digital Marketing Consulting", description: "Using data, automation, and AI-driven audience insights, our digital marketing consulting firm in Dubai assists companies in developing high-performance digital strategies that produce actual, quantifiable growth. From paid media and SEO to content strategy and conversion optimization, we create digital marketing systems that consistently deliver results and effectively scale across every platform.", link: "/digital-marketing-consulting-services-in-dubai", number: "03" },
+    { icon: <FiArrowDownRight />, title: "EdTech Consulting", description: "EdTech Consulting in Dubai by ENH assists educational institutions, training organizations, and companies providing learning technologies in designing, developing, and expanding more sophisticated digital learning experiences supported by artificial intelligence and contemporary technological infrastructure.", link: "/edtech-consulting-services-in-dubai", number: "04" },
+    { icon: <FiArrowDownRight />, title: "IT Consulting", description: "As a reputable IT consulting firm in Dubai, ENH assists companies in modernizing their technology infrastructure, enhancing system performance, and matching their IT investments to the strategic objectives that genuinely promote expansion. From system integration and digital transformation planning to cloud migration and cybersecurity concerns, our IT consulting team provides realistic answers that function in the actual world.", link: "/it-consulting-services-in-dubai", number: "05" },
+    { icon: <FiArrowDownRight />, title: "Startup Consulting", description: "Our startup consulting business is especially designed for founders who need more than just guidance; they need a hands-on partner who knows the Dubai startup scene, acts swiftly, and assists them in developing the systems, processes, and technical foundations that give early-stage firms the finest possible chance of successfully growing.", link: "/Startup-consulting-services-in-dubai", number: "06" },
   ];
 
   return (
@@ -351,9 +350,9 @@ function Showcases() {
                 >
                   <div className="showcase-img-wrap">
                     <img src={item.image} alt={item.title} className="img-fluid" />
-                    <div className="showcase-overlay">
+                    {/* <div className="showcase-overlay">
                       <span className="showcase-view-btn">View Project <FiArrowUpRight /></span>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="showcase-text">
                     <h4>{item.title}</h4>
@@ -981,12 +980,12 @@ function Home() {
       <Banner />
       <MarqueeTicker />
       <MarqueeTicker2 />
+      <StatsCounter />
       <AboutUs />
       <Services />
       <Newsletter />
       <RDSection />
       <Showcases />
-      <StatsCounter />
       <TailoredSection />
       <Testimonials />
       <HomeBlogSection />

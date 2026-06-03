@@ -5,12 +5,13 @@ import BlogHeader from '../../components/public/BlogHeader';
 import BlogSidebar from '../../components/public/BlogSidebar';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
+import { Helmet } from "react-helmet-async";
 
 // ── Table of Contents generator ──────────────────────────────────
 function buildTOC(html) {
   const div = document.createElement('div');
   div.innerHTML = html;
-  const headings = div.querySelectorAll('h2, h3');
+  const headings = div.querySelectorAll('h2');
   return Array.from(headings).map((h, i) => ({
     id: `toc-${i}`,
     text: h.textContent,
@@ -222,6 +223,11 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'linear-gradient(135deg, rgb(255, 244, 225) 0%, rgb(253, 237, 206) 60%, rgb(255, 215, 138) 100%)' }}>
       {/* <BlogHeader /> */}
+      <Helmet>
+        <title>{post.seoMeta.metaTitle}</title>
+        <meta name="description" content={post.seoMeta.metaDescription} />
+        <link rel="canonical" href={postUrl} />
+      </Helmet>
 
       {/* Featured Image */}
       {post.featuredImage?.url && (

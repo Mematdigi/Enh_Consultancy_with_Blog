@@ -488,13 +488,13 @@ function Services() {
                 </motion.div>
 
                 <motion.div variants={fadeUp}>
-                    <motion.button className="svp-enquire-btn mt-4 mt-md-5"
-                        whileHover={{ scale: 1.04, x: 5, boxShadow: "0 8px 24px rgba(212,91,8,0.35)" }}
-                        whileTap={{ scale: 0.97 }}>
-                        <Link to="/contact" style={{ color: "inherit", textDecoration: "none" }}>
+                    <Link to="/contact" style={{ color: "inherit", textDecoration: "none" }}>
+                        <motion.button className="svp-enquire-btn mt-4 mt-md-5"
+                            whileHover={{ scale: 1.04, x: 5, boxShadow: "0 8px 24px rgba(212,91,8,0.35)" }}
+                            whileTap={{ scale: 0.97 }}>
                             Let’s Discuss Your Requirements
-                        </Link>
-                    </motion.button>
+                        </motion.button>
+                    </Link>
                 </motion.div>
             </Container>
         </section>
@@ -565,7 +565,7 @@ function TestimonialsSection({ data }) {
         <section className="svp-testimonials">
             <Container>
                 <motion.div initial="hidden" whileInView="show" viewport={vpMd} variants={stagger}>
-                    <Eyebrow>Ai Consulting Process</Eyebrow>
+                    <Eyebrow>Our Process</Eyebrow>
                     <motion.div className="svp-testimonials__header" variants={fadeUp}>
                         <h2 className="svp-testimonials__title" style={{ color: '#532a06' }}>How Our Digital Marketing Consulting Works</h2>
                         <div className="svp-testimonials__nav">

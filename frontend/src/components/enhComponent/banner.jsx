@@ -67,9 +67,9 @@ function Banner() {
               ENH Consulting
             </div> */}
 
-            <h2 className="italic-text">
+            <h1 className="italic-text">
               AI Consulting & Development Company in Dubai Helping Businesses Grow Faster
-            </h2>
+            </h1>
 
             <p>
               Leading artificial intelligence consulting and development firm in Dubai, ENH Consulting assists startups, small and medium enterprises (SMEs), and big businesses all over the United Arab Emirates in achieving actual business development via smart technology and data-driven strategy. We transform difficult problems into quantifiable outcomes more quickly, better, and more reasonably than you could have ever imagined, from automating operations to creating bespoke AI tools.
@@ -166,11 +166,12 @@ function Banner() {
                         required
                       >
                         <option value="" disabled>Select Services *</option>
-                        <option value="financial-planning">Financial Planning</option>
-                        <option value="investment">Investment Advisory</option>
-                        <option value="insurance">Insurance Solutions</option>
-                        <option value="tax">Tax Consulting</option>
-                        <option value="wealth">Wealth Management</option>
+                        <option value="ai">Ai Consulting</option>
+                        <option value="business">Business Consulting</option>
+                        <option value="digital">Digital Marketing Consulting</option>
+                        <option value="it">IT Consulting</option>
+                        <option value="startup">Startup Consulting</option>
+                        <option value="ed-tech">EdTech Consulting</option>
                       </select>
                       <svg className="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </div>

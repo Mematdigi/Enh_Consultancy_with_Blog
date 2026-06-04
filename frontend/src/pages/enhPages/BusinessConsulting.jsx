@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView, AnimatePresence, } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import secondSection from "../../../public/serviceSecondSection.png";
+import faqImage from "../../../public/faqImage.png";
 import {
     FaArrowRight, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt,
     FaStar, FaQuoteLeft, FaFlask, FaLightbulb, FaSearch, FaRocket,
@@ -66,7 +68,7 @@ const SERVICE_DATA = {
         badge: "Our Services", headline: "Business Consulting Services in Dubai for Startups, SMEs & Enterprises",
         tagline: "Most companies in Dubai do not suffer from a lack of ambition; instead, they suffer from the absence of the proper plan, systems, and execution partners to convert that ambition into quantifiable, compounding development. Beyond guidance, ENH is a results-driven business consulting company in Dubai that develops plans, operational structures, and growth systems that enable startups, small and medium enterprises, and major corporations to scale more quickly and profitably across the UAE. Our business experts in Dubai are designed for one outcome: real results, regardless of whether you are stuck at a sales plateau, entering a new market, or developing from the ground up.",
         cta: "Request a Quote",
-        heroImg: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80",
+        heroImg: secondSection,
         introTitle: "Scale Faster with Dubai's Most Trusted Business Management Consultants",
         introText: "Most companies in Dubai concentrate on business creation; ENH concentrates on everything following. As reputable business management consultants in Dubai, we provide integrated marketing, AI-powered insights, and business strategy consulting under one roof to produce quantifiable growth, not simply frameworks. Our business advising services in Dubai have helped clients cut lead follow-up time by 71%, boost conversion rates by 43%, and lower customer acquisition expenses by 54% below the industry norm. That is the ENH difference. ",
         // introText2: "Every week you wait is a week they get closer, and the difference is increasing more quickly than most business owners notice. You don't need to know more about artificial intelligence. You need a clear plan, the right execution, and a companion who has done it before. ENH's AI consulting services for business in Dubai address exactly these needs. ",
@@ -818,21 +820,21 @@ function FAQSection({ data }) {
                             {/* Dummy image preview — swaps with active FAQ */}
                             <motion.div className="svp-faq__media" variants={fadeUp}>
                                 <AnimatePresence mode="wait">
-                                    <motion.div key={openIdx >= 0 ? openIdx : "default"}
+                                    <motion.div
                                         className="svp-faq__media-inner"
                                         initial={{ opacity: 0, scale: 1.04 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.97 }}
                                         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
-                                        <img src={activeFaq?.img}
-                                            alt={activeFaq?.imgLabel || "FAQ visual"}
+                                        <img src={faqImage}
+                                            alt={"FAQ visual"}
                                             className="svp-faq__media-img" />
-                                        <div className="svp-faq__media-overlay" />
-                                        <div className="svp-faq__media-tag">
+                                        {/* <div className="svp-faq__media-overlay" /> */}
+                                        {/* <div className="svp-faq__media-tag">
                                             <span className="svp-faq__media-dot" />
                                             Q{(openIdx >= 0 ? openIdx : 0) + 1}
-                                        </div>
-                                        <p className="svp-faq__media-label">{activeFaq?.imgLabel}</p>
+                                        </div> */}
+                                        {/* <p className="svp-faq__media-label">{activeFaq?.imgLabel}</p> */}
                                     </motion.div>
                                 </AnimatePresence>
                             </motion.div>
@@ -914,7 +916,7 @@ function ContactSection() {
     const contactItems = [
         { icon: <FaPhoneAlt />, label: "Have any question?", value: "+971 505913055" },
         { icon: <FaEnvelope />, label: "Write email", value: "contact@enh.consulting" },
-        { icon: <FaMapMarkerAlt />, label: "Our Location", value: "Ramesh Nagar, New Delhi" },
+        { icon: <FaMapMarkerAlt />, label: "Our Location", value: "DSO-IFZA, IFZA Properties, Dubai Silicon Oasis, Dubai" },
     ];
 
     const fields = [

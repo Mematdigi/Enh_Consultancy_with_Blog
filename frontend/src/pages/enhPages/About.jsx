@@ -85,12 +85,12 @@ function About() {
   return (
     <div className="about-page">
       <Helmet>
-        <title>About ENH Consulting | AI Consulting Company in Dubai</title>
+        <title>About ENH Consulting</title>
         <meta name="description" content='Learn about ENH Consulting, a Dubai-based firm helping business across the UAE embrace AI, innovation, and digital transformation for sustainable growth. ' />
         <link rel="canonical" href={postUrl} />
       </Helmet>
       {/* Breadcrumb */}
-      <BreadcrumbBanner title="About" />
+      {/* <BreadcrumbBanner title="About" /> */}
 
       {/* ── About Us ── */}
       <section className="about-us about-us--page" ref={heroRef}>
@@ -125,7 +125,7 @@ function About() {
                   transition={{ delay: 0.5, type: "spring", stiffness: 220 }}
                   animate={{ y: [0, -8, 0] }}
                 >
-                  <span className="afb-num"><CountUp target={20} suffix="+" /></span>
+                  <span className="afb-num"><CountUp target={15} suffix="+" /></span>
                   <span className="afb-label">Years</span>
                 </motion.div>
               </motion.div>

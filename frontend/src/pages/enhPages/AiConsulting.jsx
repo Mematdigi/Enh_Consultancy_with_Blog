@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView, AnimatePresence, } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import serviceHeroBannerAi from "../../../public/serviceHeroBannerAi.png";
 import {
     FaArrowRight, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt,
     FaStar, FaQuoteLeft, FaFlask, FaLightbulb, FaSearch, FaRocket,
@@ -219,7 +220,7 @@ function HeroBanner({ data }) {
     const bannerStagger = { hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } } };
 
     return (
-        <section className="svp-hero">
+        <section className="svp-hero" style={{backgroundImage:`url(${serviceHeroBannerAi})`, backgroundSize: "cover", backgroundPosition: "center",}}>
             <motion.span className="svp-blob svp-blob--1"
                 animate={{ x: [0, 28, -18, 0], y: [0, -22, 32, 0], scale: [1, 1.1, 0.94, 1] }}
                 transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }} />
@@ -229,7 +230,6 @@ function HeroBanner({ data }) {
             <motion.span className="svp-blob svp-blob--3"
                 animate={{ x: [0, 22, -28, 0], y: [0, -28, 12, 0], scale: [1, 1.14, 0.9, 1] }}
                 transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 5 }} />
-
             <Container>
                 <Row className="align-items-center g-4">
                     <Col lg={7}>
@@ -872,7 +872,7 @@ function ContactSection() {
     const contactItems = [
         { icon: <FaPhoneAlt />, label: "Have any question?", value: "+971 505913055" },
         { icon: <FaEnvelope />, label: "Write email", value: "contact@enh.consulting" },
-        { icon: <FaMapMarkerAlt />, label: "Our Location", value: "Ramesh Nagar, New Delhi" },
+        { icon: <FaMapMarkerAlt />, label: "Our Location", value: "DSO-IFZA, IFZA Properties, Dubai Silicon Oasis, Dubai" },
     ];
 
     const fields = [

@@ -19,7 +19,7 @@ function Services() {
   return (
     <div className="services-page">
       {/* Breadcrumb Section */}
-      <BreadcrumbBanner title="Services" />
+      {/* <BreadcrumbBanner title="Services" /> */}
 
       {/* Services Section */}
       <AnimationWrapper className="stagger-children">

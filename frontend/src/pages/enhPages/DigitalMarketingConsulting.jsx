@@ -860,7 +860,7 @@ function ContactSection() {
     const contactItems = [
         { icon: <FaPhoneAlt />, label: "Have any question?", value: "+971 505913055" },
         { icon: <FaEnvelope />, label: "Write email", value: "contact@enh.consulting" },
-        { icon: <FaMapMarkerAlt />, label: "Our Location", value: "Ramesh Nagar, New Delhi" },
+        { icon: <FaMapMarkerAlt />, label: "Our Location", value: "DSO-IFZA, IFZA Properties, Dubai Silicon Oasis, Dubai" },
     ];
 
     const fields = [

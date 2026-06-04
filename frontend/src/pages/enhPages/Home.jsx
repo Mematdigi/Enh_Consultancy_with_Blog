@@ -276,18 +276,18 @@ function TailoredSection() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.img
-                src="./unique.jpg"
-                alt="Tailored Solution"
+                src="./uniques.jpg"
+                alt="Results ENH Have Delivered for Businesses in Dubai and the UAE"
                 className="img-fluid"
                 style={{ y: imgY }}
               />
-              <motion.div
+              {/* <motion.div
                 className="play-button"
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.92 }}
-              >
-                <FaPlay />
-              </motion.div>
+              > */}
+                {/* <FaPlay />
+              </motion.div> */}
               <motion.div
                 className="tailored-badge"
                 initial={{ opacity: 0, y: 20 }}
@@ -310,12 +310,12 @@ function TailoredSection() {
 // ✅ Showcases — with hover zoom + stagger
 function Showcases() {
   const showcaseItems = [
-    { title: "Retail & E-Commerce", category: "We assist retail and e-commerce companies all around Dubai in using artificial intelligence to customize customer experiences, maximize inventories, and increase conversion rates dramatically across every medium.", image: "./service1.jpg" },
-    { title: "Healthcare", category: "Our artificial intelligence in UAE healthcare solutions assists clinics, hospitals, and health technology firms in simplifying patient management, enhancing diagnostic assistance, and creating more sophisticated, responsive healthcare systems.", image: "./service2.jpg" },
-    { title: "Real Estate", category: "ENH provides AI for real estate in Dubai that aids firms, developers, and property platforms in automating lead management, improving property recommendations, and accelerating data-driven investment decisions.", image: "./service3.jpg" },
-    { title: "Education & EdTech", category: "For noticeably improved results, we assist educational organizations and learning platforms throughout the UAE in including artificial intelligence into their curriculum delivery, student engagement systems, and operational procedures.", image: "./service4.jpg" },
-    { title: "Finance & Fintech", category: "Our artificial intelligence systems for financial organizations help automate risk analysis, enhance fraud detection, and create clever customer-facing technologies that increase trust and speed development.", image: "./service5.jpg" },
-    { title: "Hospitality & Tourism", category: "For hotels, travel platforms, and hospitality companies in Dubai, we assist them in using AI to customize guest experiences, improve pricing, and create loyalty programs to bring people back.", image: "./service6.jpg" },
+    { title: "Retail & E-Commerce", category: "We assist retail and e-commerce companies all around Dubai in using artificial intelligence to customize customer experiences, maximize inventories, and increase conversion rates dramatically across every medium.", image: "./service1.png" },
+    { title: "Healthcare", category: "Our artificial intelligence in UAE healthcare solutions assists clinics, hospitals, and health technology firms in simplifying patient management, enhancing diagnostic assistance, and creating more sophisticated, responsive healthcare systems.", image: "./service2.png" },
+    { title: "Real Estate", category: "ENH provides AI for real estate in Dubai that aids firms, developers, and property platforms in automating lead management, improving property recommendations, and accelerating data-driven investment decisions.", image: "./service3.png" },
+    { title: "Education & EdTech", category: "For noticeably improved results, we assist educational organizations and learning platforms throughout the UAE in including artificial intelligence into their curriculum delivery, student engagement systems, and operational procedures.", image: "./service4.png" },
+    { title: "Finance & Fintech", category: "Our artificial intelligence systems for financial organizations help automate risk analysis, enhance fraud detection, and create clever customer-facing technologies that increase trust and speed development.", image: "./service5.png" },
+    { title: "Hospitality & Tourism", category: "For hotels, travel platforms, and hospitality companies in Dubai, we assist them in using AI to customize guest experiences, improve pricing, and create loyalty programs to bring people back.", image: "./service6.png" },
   ];
 
   return (
@@ -349,14 +349,14 @@ function Showcases() {
                   whileHover={{ y: -12, scale: 1.02, transition: { type: "spring", stiffness: 280, damping: 18 } }}
                 >
                   <div className="showcase-img-wrap">
-                    <img src={item.image} alt={item.title} className="img-fluid" />
+                    <img src={item.image} alt={item.title} className="img-fluid" style={{ height: '50px', width: '50px' }} />
                     {/* <div className="showcase-overlay">
                       <span className="showcase-view-btn">View Project <FiArrowUpRight /></span>
                     </div> */}
                   </div>
                   <div className="showcase-text">
                     <h4>{item.title}</h4>
-                    <p className="category mt-2" style={{color: '#8A5520'}}>{item.category}</p>
+                    <p className="category mt-2" style={{ color: '#8A5520' }}>{item.category}</p>
                   </div>
                 </motion.div>
               </Col>
@@ -373,7 +373,7 @@ function Testimonials() {
   const testimonials = [
     { name: "Raman Kant Aggarwal", role: "Doctor", company: "Apollo Hospitals", image: "./testimonial1.jpg", rating: 5, review: "ENH developed a system for us; they not only provided us with a plan. Our artificial intelligence tools are active; our marketing is working; and our staff at last possesses the operational clarity we have been seeking for two years. Best financial decision we have made as a company in Dubai. - CEO, SaaS Startup, Dubai" },
     { name: "Geeta Kadayaprath", role: "Director", company: "The Breast Cancer Clinic", image: "./testimonial2.jpg", rating: 5, review: "ENH stands out because they really get startups. They came in with useful, reasonably priced answers that fit where we really were, not an enterprise playbook. We are a totally different company six months later. - Founder, HealthTech Company, UAE" },
-    { name: "David L.", role: "Entrepreneur", company: "FinStart Ventures", image: "./testimonial3.jpg", rating: 5, review: "The artificial intelligence roadmap ENH developed for us became the cornerstone of our whole digital transformation. An AI consulting partner in Dubai, precisely what we required: clear, actionable, and truly results-oriented. - Director of Operations, Retail Group, UAE" },
+    { name: "David L.", role: "Entrepreneur", company: "FinStart Ventures", image: "./testimonial3.jpg", rating: 5, review: "The artificial intelligence roadmap ENH developed for us became the cornerstone of our whole digital transformation. An IT consulting partner in Dubai, precisely what we required: clear, actionable, and truly results-oriented. - Director of Operations, Retail Group, UAE" },
     { name: "Lisa B.", role: "Small Business Owner", company: "Bloom & Co.", image: "./testimonial1.jpg", rating: 5, review: "From branding to digital marketing, every solution felt tailor-made. My revenue grew by 60% in the first quarter alone. Absolutely outstanding partner!" },
     { name: "Carlos S.", role: "CTO", company: "NexaCloud", image: "./testimonial2.jpg", rating: 4, review: "Their IT consulting team is simply world-class. Cloud migration was flawless, zero downtime, and the cybersecurity audit uncovered issues we didn't even know existed." },
   ];
@@ -603,9 +603,9 @@ function Newsletter() {
       <Container className="position-relative">
         <div className="nl-inner">
           <motion.div className="nl-copy" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}>
-            <span className="nl-eyebrow"><span className="nl-eyebrow-dot" />Newsletter</span>
-            <h2 className="nl-title">Get Updates &amp; <br /><span className="nl-title-accent">Latest News</span></h2>
-            <p className="nl-desc">Get the latest insights, offers, and consultancy news delivered straight to your inbox. No spam — ever.</p>
+            <span className="nl-eyebrow"><span className="nl-eyebrow-dot" />Get on a Quick Call</span>
+            <h2 className="nl-title">Build a Winning<br /><span className="nl-title-accent">Business Strategy</span></h2>
+            <p className="nl-desc">Connect with our experts to discuss your goals and challenges. Build a winning business strategy that drives growth, innovation, and long-term success.</p>
           </motion.div>
           <motion.div className="nl-form-wrap" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}>
             <div className="nl-fields">
@@ -620,12 +620,13 @@ function Newsletter() {
               <div className="nl-field-wrap nl-select-wrap">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /></svg>
                 <select name="service" value={form.service} onChange={handleChange} disabled={status === "loading"}>
-                  <option value="">Consultancy Services</option>
-                  <option value="digital">Digital Marketing</option>
-                  <option value="business">Business &amp; Management</option>
+                  <option value="" disabled>Select Services *</option>
+                  <option value="ai">Ai Consulting</option>
+                  <option value="business">Business Consulting</option>
+                  <option value="digital">Digital Marketing Consulting</option>
                   <option value="it">IT Consulting</option>
-                  <option value="finance">Finance Consulting</option>
-                  <option value="property">Property Consulting</option>
+                  <option value="startup">Startup Consulting</option>
+                  <option value="ed-tech">EdTech Consulting</option>
                 </select>
                 <svg className="nl-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9" /></svg>
               </div>
@@ -846,7 +847,12 @@ function AboutUs() {
               <motion.hr variants={fadeUp} className="divider" />
               <motion.div variants={fadeUp}>
                 <Row className="stats">
-                  <Button className="btn get-started m-2 w-25">Read more</Button>
+                  <button className="btn get-started m-2 w-25">
+                    <Link to="/about">
+                      Read more
+                    </Link>
+                  </button>
+
                 </Row>
               </motion.div>
             </motion.div>
@@ -918,8 +924,7 @@ function RDSection() {
                   className="svp-outline-btn"
                   whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgb(235,174,95)", color: "#fff", borderColor: "rgb(235,174,95)" }}
                   whileTap={{ scale: 0.97 }}
-                >
-                  Talk to Us <FiArrowUpRight />
+                ><Link to="/contact">Talk to Us</Link> <FiArrowUpRight />
                 </motion.button>
               </motion.div>
             </Col>

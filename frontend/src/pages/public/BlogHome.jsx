@@ -5,6 +5,7 @@ import BlogHeader from '../../components/public/BlogHeader';
 import BlogSidebar from '../../components/public/BlogSidebar';
 import PostCard from '../../components/public/PostCard';
 import { format } from 'date-fns';
+import { Helmet } from 'react-helmet-async';
 
 export default function BlogHome() {
   const [posts, setPosts] = useState([]);
@@ -32,9 +33,15 @@ export default function BlogHome() {
     load();
   }, [page]);
 
+const postUrl = window.location.href;
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'linear-gradient(135deg, rgb(255, 244, 225) 0%, rgb(253, 237, 206) 60%, rgb(255, 215, 138) 100%)' }}>
       {/* <BlogHeader /> */}
+      <Helmet>
+        <title>AI Consulting and Development Company in Dubai | ENH Consulting</title>
+        <meta name="description" content="ENH Consulting is an AI consulting and development company in Dubai helping startups & SMEs with strategy, custom tools & marketing. Book a free call today." />
+        <link rel="canonical" href={postUrl} />
+      </Helmet>
 
       <main className="  mx-auto px-4 sm:px-6 py-10">
         {/* Hero featured post */}

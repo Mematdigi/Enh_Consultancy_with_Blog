@@ -30,7 +30,7 @@ function Contact() {
         <link rel="canonical" href={postUrl} />
       </Helmet>
       {/* Dynamic Breadcrumb */}
-      <BreadcrumbBanner title="Contact" />
+      {/* <BreadcrumbBanner title="Contact" /> */}
       <section className="contact-section">
         <Container>
           <Row className="justify-content-center">

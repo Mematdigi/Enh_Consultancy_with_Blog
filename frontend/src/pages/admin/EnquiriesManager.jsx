@@ -301,6 +301,8 @@ export default function EnquiriesManager() {
         </form>
 
         {/* Source filter */}
+
+        <label className='label'>Select</label>
         <select
           className="input w-48"
           value={source}
@@ -313,6 +315,7 @@ export default function EnquiriesManager() {
         </select>
 
         {/* Status filter */}
+        <label className='label'>Select</label>
         <select
           className="input w-36"
           value={status}

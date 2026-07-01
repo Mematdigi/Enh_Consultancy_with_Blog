@@ -5,47 +5,48 @@ import {
   FaArrowRight, FaLightbulb, FaBriefcase, FaGraduationCap,
   FaLaptopCode, FaWallet, FaBullseye, FaPlay, FaQuoteLeft,
   FaUsers, FaCalendarAlt, FaTrophy,
+  FaAirFreshener,
 } from "react-icons/fa";
-import { FiArrowUpRight } from "react-icons/fi";
+import { FiArrowDownRight, FiArrowUpRight} from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import api from "../../utils/api";
-import Ballpit from "../transitions/Ballpit";
+import { FaArrowTrendUp } from "react-icons/fa6";
 
 // ─── animation helpers ───────────────────────────────────────────────────────
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
-  show:   { opacity: 1, y: 0,  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const fadeLeft = {
   hidden: { opacity: 0, x: -40 },
-  show:   { opacity: 1, x: 0,  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const fadeRight = {
   hidden: { opacity: 0, x: 40 },
-  show:   { opacity: 1, x: 0,  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const staggerContainer = {
   hidden: {},
-  show:   { transition: { staggerChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.1 } },
 };
 
 const staggerFast = {
   hidden: {},
-  show:   { transition: { staggerChildren: 0.07 } },
+  show: { transition: { staggerChildren: 0.07 } },
 };
 
 const cardVariant = {
   hidden: { opacity: 0, y: 50, scale: 0.96 },
-  show:   { opacity: 1, y: 0,  scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.85 },
-  show:   { opacity: 1, scale: 1, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
 };
 
 // ─── Reusable enquiry hook ───────────────────────────────────────────────────
@@ -107,9 +108,8 @@ function FloatingParticles({ count = 12, color = "rgba(235,174,95,0.15)" }) {
 // ─── Marquee / ticker strip ───────────────────────────────────────────────────
 function MarqueeTicker() {
   const items = [
-    "Digital Marketing", "Business Strategy", "Financial Planning",
-    "IT Consulting", "EdTech & AI", "Property Advisory",
-    "Wealth Management", "Risk Management",
+    "Ai Consulting", "Business Consulting", "Digital Marketing Consulting",
+    "Ed tech Consulting", "IT Consulting", "Startup Consulting",
   ];
 
   return (
@@ -128,9 +128,8 @@ function MarqueeTicker() {
 
 function MarqueeTicker2() {
   const items = [
-    "Digital Marketing", "Business Strategy", "Financial Planning",
-    "IT Consulting", "EdTech & AI", "Property Advisory",
-    "Wealth Management", "Risk Management",
+    "Ai Consulting", "Business Consulting", "Digital Marketing Consulting",
+    "Ed tech Consulting", "IT Consulting", "Startup Consulting",
   ];
 
   return (
@@ -146,26 +145,23 @@ function MarqueeTicker2() {
     </div>
   );
 }
-
 // ✅ Services Component
 function Services() {
   const serviceList = [
-    { icon: <FaLightbulb />, title: "Digital Marketing Consulting", description: "Providing expert advice and problem-solving strategies across multiple industries, helping businesses improve efficiency, innovation, and performance.", link: "/digital-marketing-consulting", number: "01" },
-    { icon: <FaBriefcase />, title: "Business & Management Consulting", description: "Guiding companies in optimizing operations, leadership, organizational structure, and overall business strategies to enhance productivity and profitability.", link: "/business-consultancy", number: "02" },
-    { icon: <FaGraduationCap />, title: "EdTech & AI Consulting", description: "Specializing in educational technology and artificial intelligence solutions to enhance learning experiences, student engagement, and adaptive learning models.", link: "/digital-marketing-consulting", number: "03" },
-    { icon: <FaLaptopCode />, title: "IT Consulting", description: "Helping businesses with IT strategy, software development, cybersecurity, cloud computing, and digital transformation to improve operational efficiency.", link: "/it-consulting", number: "04" },
-    { icon: <FaWallet />, title: "Finance Consulting", description: "Offering expertise in financial planning, risk management, investments, and corporate finance to optimize profitability and long-term financial health.", link: "/finance-consulting", number: "05" },
-    { icon: <FaBullseye />, title: "Property Consulting", description: "Focusing on business expansion, market entry, competitive positioning, and long-term strategic planning to drive sustainable growth.", link: "/property-consulting", number: "06" },
+    { icon: <FiArrowDownRight />, title: "AI Consulting", description: "We assist companies in Dubai in creating a straightforward, practical artificial intelligence plan and development road map, locating the appropriate opportunities, choosing the appropriate technology, and ensuring that every artificial intelligence project provides measurable business value from the very first step.", link: "/ai-consulting-services-in-dubai", number: "01" },
+    { icon: <FiArrowDownRight />, title: "Business Consulting", description: "Dubai-based results-driven artificial intelligence and business consulting firm ENH helps businesses simplify processes, enhance decision-making, and create scalable systems fit for long-term growth. To provide every client a real competitive advantage in the Dubai and UAE market, our business consulting firm blends in-depth commercial knowledge with AI-powered insights.", link: "/business-consulting-services-in-dubai", number: "02" },
+    { icon: <FiArrowDownRight />, title: "Digital Marketing Consulting", description: "Using data, automation, and AI-driven audience insights, our digital marketing consulting firm in Dubai assists companies in developing high-performance digital strategies that produce actual, quantifiable growth. From paid media and SEO to content strategy and conversion optimization, we create digital marketing systems that consistently deliver results and effectively scale across every platform.", link: "/digital-marketing-consulting-services-in-dubai", number: "03" },
+    { icon: <FiArrowDownRight />, title: "EdTech Consulting", description: "EdTech Consulting in Dubai by ENH assists educational institutions, training organizations, and companies providing learning technologies in designing, developing, and expanding more sophisticated digital learning experiences supported by artificial intelligence and contemporary technological infrastructure.", link: "/edtech-consulting-services-in-dubai", number: "04" },
+    { icon: <FiArrowDownRight />, title: "IT Consulting", description: "As a reputable IT consulting firm in Dubai, ENH assists companies in modernizing their technology infrastructure, enhancing system performance, and matching their IT investments to the strategic objectives that genuinely promote expansion. From system integration and digital transformation planning to cloud migration and cybersecurity concerns, our IT consulting team provides realistic answers that function in the actual world.", link: "/it-consulting-services-in-dubai", number: "05" },
+    { icon: <FiArrowDownRight />, title: "Startup Consulting", description: "Our startup consulting business is especially designed for founders who need more than just guidance; they need a hands-on partner who knows the Dubai startup scene, acts swiftly, and assists them in developing the systems, processes, and technical foundations that give early-stage firms the finest possible chance of successfully growing.", link: "/Startup-consulting-services-in-dubai", number: "06" },
   ];
 
   return (
     <section className="services-section">
-
-
       {/* ── Floating particles on top of ballpit ── */}
       <FloatingParticles count={8} color="rgba(235,174,95,0.12)" />
-
       <FloatingParticles count={10} />
+
       <Container>
         <motion.div
           className="services-header"
@@ -180,15 +176,11 @@ function Services() {
           </motion.div>
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
-              Our <span className="title-accent">Services</span>
+              <span className="title-accent" style={{ color: '#8a5520' }} >Explore Our Range of AI & Technology Solutions for Businesses in Dubai</span>
             </h2>
-            <Button className="services-discover-btn">
-              Discover More <FaArrowRight />
-            </Button>
           </motion.div>
-          <motion.p className="services-subtitle" variants={fadeUp}>
-            Comprehensive consulting solutions designed to accelerate your growth,
-            streamline operations, and unlock new opportunities.
+          <motion.p className="services-subtitle mt-4" variants={fadeUp}>
+            Leading AI solutions company in Dubai, ENH Consulting provides a full range of AI strategy and development as well as technology consulting services meant to change the way that businesses run, compete, and expand throughout the UAE. Every answer we provide is customized, useful, and designed for actual results, not just theory.
           </motion.p>
         </motion.div>
 
@@ -255,15 +247,12 @@ function TailoredSection() {
                 Why Choose Us
               </motion.span>
               <motion.h2 variants={fadeUp}>
-                Tailored to your <br />
-                unique <span className="italic-text">needs</span>
+                <span className="italic-text">Results We Have Delivered for Businesses in Dubai and the UAE</span>
               </motion.h2>
               <motion.div variants={fadeUp} className="underline-animated" />
               <motion.p variants={fadeUp}>
-                Ready to embrace a future where finance meets technology? Join us today and experience
-                the next level of financial innovation. Ready to embrace a future where finance meets technology? Join us today and experience
-                Ready to embrace a future where finance meets technology? Join us today and experience
-                the next level of financial innovation. Ready to embrace a future where finance meets 
+                Numbers tell the story more than any promise, and at ENH Consulting, we let our results speak most powerfully. This is a peek at the real, quantifiable influence we have provided for companies all over the UAE as a trusted artificial intelligence consulting company in Dubai and an AI solutions supplier in Dubai.<br></br>
+                EnH is an integrated artificial intelligence and business consulting firm located in Dubai that provides impact across technology, strategy, and marketing at once because the greatest outcomes always come when all three move in concert toward the same objectives.
               </motion.p>
               <motion.div variants={fadeUp}>
                 <Button variant="warning" className="learn-more mt-3">Learn more</Button>
@@ -289,17 +278,17 @@ function TailoredSection() {
             >
               <motion.img
                 src="./unique.jpg"
-                alt="Tailored Solution"
+                alt="Results ENH Have Delivered for Businesses in Dubai and the UAE"
                 className="img-fluid"
                 style={{ y: imgY }}
               />
-              <motion.div
+              {/* <motion.div
                 className="play-button"
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.92 }}
               >
                 <FaPlay />
-              </motion.div>
+              </motion.div> */}
               <motion.div
                 className="tailored-badge"
                 initial={{ opacity: 0, y: 20 }}
@@ -309,7 +298,7 @@ function TailoredSection() {
                 animate={{ y: [0, -6, 0] }}
               >
                 <span className="tailored-badge-num">15+</span>
-                <span className="tailored-badge-label">Years of Excellence</span>
+                <span className="tailored-badge-label">Industries Served</span>
               </motion.div>
             </motion.div>
           </Col>
@@ -322,12 +311,12 @@ function TailoredSection() {
 // ✅ Showcases — with hover zoom + stagger
 function Showcases() {
   const showcaseItems = [
-    { title: "Empowering Businesses",              category: "Businesses", image: "./service1.jpg" },
-    { title: "Innovation & Strategy",              category: "Strategy",   image: "./service2.jpg" },
-    { title: "Service Industries",                 category: "Industries", image: "./service3.jpg" },
-    { title: "Your Success, Our Expertise",        category: "Expertise",  image: "./service4.jpg" },
-    { title: "Smart Solutions for Business", category: "Business", image: "./service5.jpg" },
-    { title: "Navigating Growth with Expert",      category: "Expert",     image: "./service6.jpg" },
+    { title: "Retail & E-Commerce", category: "We assist retail and e-commerce companies all around Dubai in using artificial intelligence to customize customer experiences, maximize inventories, and increase conversion rates dramatically across every medium.", image: "./service1.png" },
+    { title: "Healthcare", category: "Our artificial intelligence in UAE healthcare solutions assists clinics, hospitals, and health technology firms in simplifying patient management, enhancing diagnostic assistance, and creating more sophisticated, responsive healthcare systems.", image: "./service2.png" },
+    { title: "Real Estate", category: "ENH provides AI for real estate in Dubai that aids firms, developers, and property platforms in automating lead management, improving property recommendations, and accelerating data-driven investment decisions.", image: "./service3.png" },
+    { title: "Education & EdTech", category: "For noticeably improved results, we assist educational organizations and learning platforms throughout the UAE in including artificial intelligence into their curriculum delivery, student engagement systems, and operational procedures.", image: "./service4.png" },
+    { title: "Finance & Fintech", category: "Our artificial intelligence systems for financial organizations help automate risk analysis, enhance fraud detection, and create clever customer-facing technologies that increase trust and speed development.", image: "./service5.png" },
+    { title: "Hospitality & Tourism", category: "For hotels, travel platforms, and hospitality companies in Dubai, we assist them in using AI to customize guest experiences, improve pricing, and create loyalty programs to bring people back.", image: "./service6.png" },
   ];
 
   return (
@@ -340,7 +329,7 @@ function Showcases() {
           viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
-          <motion.h2 variants={fadeLeft} className="section-title">Our Work</motion.h2>
+          <h2 className="section-title">Industries We Serve Across Dubai and the UAE</h2>
           <motion.div variants={fadeRight}>
             <Button variant="warning" className="get-started">Discover more</Button>
           </motion.div>
@@ -361,14 +350,14 @@ function Showcases() {
                   whileHover={{ y: -12, scale: 1.02, transition: { type: "spring", stiffness: 280, damping: 18 } }}
                 >
                   <div className="showcase-img-wrap">
-                    <img src={item.image} alt={item.title} className="img-fluid" />
-                    <div className="showcase-overlay">
+                    <img src={item.image} alt={item.title} className="img-fluid" style={{ height: '50px', width: '50px' }} />
+                    {/* <div className="showcase-overlay">
                       <span className="showcase-view-btn">View Project <FiArrowUpRight /></span>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="showcase-text">
                     <h4>{item.title}</h4>
-                    <p className="category">{item.category}</p>
+                    <p className="category mt-2" style={{ color: '#8A5520' }}>{item.category}</p>
                   </div>
                 </motion.div>
               </Col>
@@ -383,11 +372,11 @@ function Showcases() {
 // ✅ Testimonials Carousel
 function Testimonials() {
   const testimonials = [
-    { name: "Raman Kant Aggarwal", role: "Doctor", company: "Apollo Hospitals", image: "./testimonial1.jpg", rating: 5, review: "Dedicated, focused, genuinely trustworthy and enterprising. Real good value for customers — their consulting transformed our operational efficiency beyond expectations." },
-    { name: "Geeta Kadayaprath", role: "Director", company: "The Breast Cancer Clinic", image: "./testimonial2.jpg", rating: 5, review: "Prompt services with a great team which is able to create excellent content and post it at appropriate times. Response to queries and resolution of problems is also very quick. Thank you!" },
-    { name: "David L.", role: "Entrepreneur", company: "FinStart Ventures", image: "./testimonial3.jpg", rating: 5, review: "Their financial consulting gave our startup a clear roadmap. The team's expertise in investment strategy helped us secure Series A funding in record time." },
-    { name: "Lisa B.", role: "Small Business Owner", company: "Bloom & Co.", image: "./testimonial4.jpg", rating: 5, review: "From branding to digital marketing, every solution felt tailor-made. My revenue grew by 60% in the first quarter alone. Absolutely outstanding partner!" },
-    { name: "Carlos S.", role: "CTO", company: "NexaCloud", image: "./testimonial5.jpg", rating: 4, review: "Their IT consulting team is simply world-class. Cloud migration was flawless, zero downtime, and the cybersecurity audit uncovered issues we didn't even know existed." },
+    { name: "Raman Kant Aggarwal", role: "Doctor", company: "Apollo Hospitals", image: "./testimonial1.jpg", rating: 5, review: "ENH developed a system for us; they not only provided us with a plan. Our artificial intelligence tools are active; our marketing is working; and our staff at last possesses the operational clarity we have been seeking for two years. Best financial decision we have made as a company in Dubai. - CEO, SaaS Startup, Dubai" },
+    { name: "Geeta Kadayaprath", role: "Director", company: "The Breast Cancer Clinic", image: "./testimonial2.jpg", rating: 5, review: "ENH stands out because they really get startups. They came in with useful, reasonably priced answers that fit where we really were, not an enterprise playbook. We are a totally different company six months later. - Founder, HealthTech Company, UAE" },
+    { name: "David L.", role: "Entrepreneur", company: "FinStart Ventures", image: "./testimonial3.jpg", rating: 5, review: "The artificial intelligence roadmap ENH developed for us became the cornerstone of our whole digital transformation. An IT consulting partner in Dubai, precisely what we required: clear, actionable, and truly results-oriented. - Director of Operations, Retail Group, UAE" },
+    { name: "Lisa B.", role: "Small Business Owner", company: "Bloom & Co.", image: "./testimonial1.jpg", rating: 5, review: "From branding to digital marketing, every solution felt tailor-made. My revenue grew by 60% in the first quarter alone. Absolutely outstanding partner!" },
+    { name: "Carlos S.", role: "CTO", company: "NexaCloud", image: "./testimonial2.jpg", rating: 4, review: "Their IT consulting team is simply world-class. Cloud migration was flawless, zero downtime, and the cybersecurity audit uncovered issues we didn't even know existed." },
   ];
 
   const [current, setCurrent] = useState(0);
@@ -444,7 +433,7 @@ function Testimonials() {
               whileTap={{ scale: 0.9 }}
               aria-label="Previous"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
             </motion.button>
             <motion.button
               className={`tv2-nav-btn ${current >= maxIndex ? "disabled" : ""}`}
@@ -453,7 +442,7 @@ function Testimonials() {
               whileTap={{ scale: 0.9 }}
               aria-label="Next"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
             </motion.button>
           </div>
         </motion.div>
@@ -483,7 +472,7 @@ function Testimonials() {
                     <div className="tv2-stars">
                       {Array.from({ length: 5 }).map((_, si) => (
                         <svg key={si} width="15" height="15" viewBox="0 0 24 24" fill={si < t.rating ? "rgb(235,174,95)" : "none"} stroke="rgb(235,174,95)" strokeWidth="1.5">
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                         </svg>
                       ))}
                     </div>
@@ -563,9 +552,9 @@ function ContactSection() {
           >
             <h2 className="cs-title p-4 pb-0" style={{ color: "#ebae5f" }}>Contact Info</h2>
             {[
-              { icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>, title: "Email Address", lines: ["info@enhconsultancy.com", "support@enhconsultancy.com"] },
-              { icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.26 12 19.79 19.79 0 0 1 1.17 3.2 2 2 0 0 1 3.14 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 8 8l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>, title: "Phone Number", lines: ["+656 (354) 981 516", "+123 (458) 585 568"] },
-              { icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>, title: "Office Location", lines: ["8502 Preston Rd, Inglewood", "Maine 98380, USA"] },
+              { icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>, title: "Email Address", lines: ["info@enh.consulting", "contact@enh.consulting"] },
+              { icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.26 12 19.79 19.79 0 0 1 1.17 3.2 2 2 0 0 1 3.14 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 8 8l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg>, title: "Phone Number", lines: ["+971 505913055"] },
+              { icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>, title: "Office Location", lines: ["DSO-IFZA, IFZA Properties, Dubai Silicon Oasis, Dubai"] },
             ].map((info, i) => (
               <motion.div
                 key={i}
@@ -615,38 +604,39 @@ function Newsletter() {
       <Container className="position-relative">
         <div className="nl-inner">
           <motion.div className="nl-copy" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}>
-            <span className="nl-eyebrow"><span className="nl-eyebrow-dot" />Newsletter</span>
-            <h2 className="nl-title">Get Updates &amp; <br /><span className="nl-title-accent">Latest News</span></h2>
-            <p className="nl-desc">Get the latest insights, offers, and consultancy news delivered straight to your inbox. No spam — ever.</p>
+            <span className="nl-eyebrow"><span className="nl-eyebrow-dot" />Get on a Quick Call</span>
+            <h2 className="nl-title">Build a Winning<br /><span className="nl-title-accent">Business Strategy</span></h2>
+            <p className="nl-desc">Connect with our experts to discuss your goals and challenges. Build a winning business strategy that drives growth, innovation, and long-term success.</p>
           </motion.div>
           <motion.div className="nl-form-wrap" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}>
             <div className="nl-fields">
               <div className="nl-field-wrap">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                 <input type="text" name="name" placeholder="Your Name" value={form.name} onChange={handleChange} disabled={status === "loading"} autoComplete="off" />
               </div>
               <div className="nl-field-wrap">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
                 <input type="email" name="email" placeholder="Your Email Address" value={form.email} onChange={handleChange} disabled={status === "loading"} autoComplete="off" />
               </div>
               <div className="nl-field-wrap nl-select-wrap">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /></svg>
                 <select name="service" value={form.service} onChange={handleChange} disabled={status === "loading"}>
-                  <option value="">Consultancy Services</option>
-                  <option value="digital">Digital Marketing</option>
-                  <option value="business">Business &amp; Management</option>
+                  <option value="" disabled>Select Services *</option>
+                  <option value="ai">Ai Consulting</option>
+                  <option value="business">Business Consulting</option>
+                  <option value="digital">Digital Marketing Consulting</option>
                   <option value="it">IT Consulting</option>
-                  <option value="finance">Finance Consulting</option>
-                  <option value="property">Property Consulting</option>
+                  <option value="startup">Startup Consulting</option>
+                  <option value="ed-tech">EdTech Consulting</option>
                 </select>
-                <svg className="nl-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg className="nl-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9" /></svg>
               </div>
               {status === "error" && <p className="form-feedback form-feedback--error">{errorMsg}</p>}
               <button className={`nl-submit ${status === "success" ? "nl-sent" : ""}`} onClick={handleSubmit} disabled={status === "loading" || status === "success"}>
-                {status === "loading" ? (<><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="spin-icon"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>Sending...</>) : status === "success" ? (<><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>Done!</>) : (<>Sign Up<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></>)}
+                {status === "loading" ? (<><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="spin-icon"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></svg>Sending...</>) : status === "success" ? (<><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>Done!</>) : (<>Submit<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg></>)}
               </button>
             </div>
-            <p className="nl-privacy">🔒 &nbsp;We respect your privacy. Unsubscribe anytime.</p>
+            {/* <p className="nl-privacy">🔒 &nbsp;We respect your privacy. Unsubscribe anytime.</p> */}
           </motion.div>
         </div>
       </Container>
@@ -705,10 +695,10 @@ function CounterCard({ icon, target, suffix, label, delay }) {
 
 function StatsCounter() {
   const stats = [
-    { icon: <FaUsers />,      target: 800,  suffix: "+", label: "Happy Clients",    delay: 0 },
-    { icon: <FaCalendarAlt />,target: 2011, suffix: "",  label: "Established",      delay: 0.1 },
-    { icon: <FaBriefcase />,  target: 1000, suffix: "+", label: "Complete Projects", delay: 0.2 },
-    { icon: <FaTrophy />,     target: 100,  suffix: "+", label: "Winning Awards",   delay: 0.3 },
+    { icon: <FaUsers />, target: 100, suffix: "+", label: "Happy Clients", delay: 0 },
+    { icon: <FaArrowTrendUp />, target: 99, suffix: "%", label: "Client Satisfaction", delay: 0.1 },
+    { icon: <FaBriefcase />, target: 15, suffix: "+", label: "Industries Served", delay: 0.2 },
+    { icon: <FaTrophy />, target: 135, suffix: "+", label: "Projects Delivered", delay: 0.3 },
   ];
 
   return (
@@ -816,14 +806,23 @@ function HomeBlogSection() {
   );
 }
 
-// ✅ About Us — Ballpit as absolute background, content on top
+// ✅ About Us Section
 function AboutUs() {
   return (
     <section className="about-us" style={{ position: 'relative', minHeight: '600px' }}>
-
-      {/* ── Main content above canvas ── */}
       <Container style={{ position: 'relative', zIndex: 1 }}>
         <Row className="align-items-center">
+          <motion.h2
+            className="italic-text mb-4"
+            style={{ color: "#8a5520", fontSize: "2.8rem", fontWeight: "500" }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Our AI Consulting & Development Company in Dubai Serves Startups, SMEs to Enterprises
+          </motion.h2>
+
           <Col lg={6} className="about-text">
             <motion.div
               initial="hidden"
@@ -835,23 +834,31 @@ function AboutUs() {
                 <span className="about-eyebrow-dot" />
                 About ENH Consulting
               </motion.span>
-              <motion.h2 variants={fadeUp}>
-                Your financial well-being is <span className="italic-text">our priority.</span>
-              </motion.h2>
               <motion.div variants={fadeUp} className="underline" />
               <motion.p variants={fadeUp}>
-                Stay ahead of the game with real-time insights into your finances. Our dynamic
-                analytics provide you with a clear understanding of your financial health,
-                empowering you to make informed decisions.
+                In Dubai, ENH Consulting is a real AI-first business providing full-service artificial intelligence and business consulting to assist businesses of all sizes throughout the United Arab Emirates to compete, expand, and lead in a progressively intelligent society.
               </motion.p>
+              <motion.p variants={fadeUp} className="mt-3">
+                As a trusted provider of AI consulting services in Dubai, we cover everything your business needs to grow - with every solution built around real, measurable results from day one: AI consulting, business consulting, digital marketing consulting, EdTech consulting, IT consulting, and startup consulting, each meant to provide quantifiable results from day one.
+              </motion.p>
+              <motion.p variants={fadeUp} className="mt-3">
+                Whether you are an established business ready to grow throughout the UAE or a first-year startup still finding your footing in the Dubai market, our artificial intelligence consulting and development company is here to meet you precisely where you are and guide you precisely where you need to be.
+              </motion.p>
+
               <motion.hr variants={fadeUp} className="divider" />
               <motion.div variants={fadeUp}>
                 <Row className="stats">
-                  <Button className="btn get-started m-2 w-50">Read more</Button>
+                  <button className="btn get-started m-2 w-25">
+                    <Link to="/about">
+                      Read more
+                    </Link>
+                  </button>
+
                 </Row>
               </motion.div>
             </motion.div>
           </Col>
+
           <Col lg={6} className="about-image">
             <motion.div
               className="about-img-wrap"
@@ -870,7 +877,7 @@ function AboutUs() {
                 transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
                 animate={{ y: [0, -8, 0] }}
               >
-                <span className="about-badge-num">98%</span>
+                <span className="about-badge-num">99%</span>
                 <span className="about-badge-label">Satisfaction</span>
               </motion.div>
             </motion.div>
@@ -881,31 +888,113 @@ function AboutUs() {
   );
 }
 
+// ✅ R&D Section — Why Choose Us for AI & Technology
+function RDSection() {
+  const [hovered, setHovered] = useState(null);
+
+  // Define viewport and variants
+  const vp = { once: true, amount: 0.2 };
+  const vpMd = { once: true, amount: 0.3 };
+  const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
+  const cardV = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } };
+
+  const data = {
+    rdTitle: "Why Businesses in Dubai Choose ENH Consulting for AI & Technology Solutions",
+    rdCards: [
+      { icon: <FaLightbulb />, title: "AI-First Approach", desc: "ENH Consulting develops practical AI tools, automation systems, and smart business solutions that help companies improve efficiency, reduce manual work, and achieve measurable business growth instead of offering only theoretical consulting advice." },
+      { icon: <FaBriefcase />, title: "Multi-Service Expertise", desc: "We provide AI consulting, digital marketing, technology solutions, and business strategy services under one roof, helping businesses simplify communication, improve project execution, save time, and achieve stronger, faster, and more effective business results." },
+      { icon: <FaLaptopCode />, title: "Startup & SME Focused", desc: "ENH Consulting supports startups and SMEs in Dubai with scalable AI solutions, flexible pricing models, faster implementation, and customized strategies designed to match the goals and operational needs of modern businesses." },
+    ]
+  };
+
+  return (
+    <section className="svp-rd">
+      <FloatingParticles count={6} color="rgba(235,174,95,0.10)" />
+      <Container>
+        <motion.div initial="hidden" whileInView="show" viewport={vpMd} variants={stagger}>
+          <Row className="align-items-center mb-5">
+            <Col lg={10}>
+              <motion.div variants={fadeUp} className="svp-rd__eyebrow">
+                <span className="svp-rd__eyebrow-dot"></span>
+              </motion.div>
+              <motion.h2 className="svp-rd__title" style={{ color: '#8a5520' }} variants={fadeLeft}>{data.rdTitle}</motion.h2>
+            </Col>
+            <Col lg={2} className="text-lg-end mt-3 mt-lg-0">
+              <motion.div variants={fadeRight}>
+                <motion.button
+                  className="svp-outline-btn"
+                  whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgb(235,174,95)", color: "#fff", borderColor: "rgb(235,174,95)" }}
+                  whileTap={{ scale: 0.97 }}
+                ><Link to="/contact">Talk to Us</Link> <FiArrowUpRight />
+                </motion.button>
+              </motion.div>
+            </Col>
+          </Row>
+        </motion.div>
+
+        <motion.p
+          className="mb-5 fw-bold"
+          style={{ color: '#8a5520' }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+        >
+          Businesses across Dubai and the UAE choose ENH Consulting because we don't just provide AI advice — we build, implement, and deliver real business results. This makes us a trusted AI consulting and development company in Dubai.
+        </motion.p>
+
+        <motion.div initial="hidden" whileInView="show" viewport={vp} variants={stagger}>
+          <Row className="g-4">
+            {data.rdCards.map((card, i) => (
+              <Col lg={4} md={6} key={i}>
+                <motion.div variants={cardV} onHoverStart={() => setHovered(i)} onHoverEnd={() => setHovered(null)}>
+                  <motion.div
+                    className="svp-rd__card"
+                    animate={{ boxShadow: hovered === i ? "0 20px 52px rgba(133,86,25,0.18)" : "0 4px 6px rgba(133,86,25,0.06)" }}
+                    whileHover={{ y: -10, transition: { type: "spring", stiffness: 300, damping: 18 } }}
+                  >
+                    <motion.div
+                      className="svp-rd__icon"
+                      animate={{ backgroundColor: hovered === i ? "linear-gradient(135deg,rgb(235,174,95),#d45b08)" : "rgba(235,174,95,0.2)" }}
+                      whileHover={{ rotate: -8, scale: 1.12, backgroundColor: "rgb(235,174,95)", color: "#fff" }}
+                      transition={{ type: "spring", stiffness: 280, damping: 14 }}
+                    >
+                      {card.icon}
+                    </motion.div>
+                    <h4 className="svp-rd__card-title">{card.title}</h4>
+                    <p className="svp-rd__card-desc">{card.desc}</p>
+                    <motion.div
+                      className="svp-rd__card-bar"
+                      animate={{ scaleX: hovered === i ? 1 : 0 }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </motion.div>
+                </motion.div>
+              </Col>
+            ))}
+          </Row>
+        </motion.div>
+      </Container>
+    </section>
+  );
+}
+
 // ✅ Home Page
 function Home() {
   return (
     <div className="home-page">
       <Banner />
-
       <MarqueeTicker />
       <MarqueeTicker2 />
-
-      <AboutUs />
-
-      <Services />
-
-      <Newsletter />
-
-      <Showcases />
-
       <StatsCounter />
-
+      <AboutUs />
+      <Services />
+      <Newsletter />
+      <RDSection />
+      <Showcases />
       <TailoredSection />
-
       <Testimonials />
-
       <HomeBlogSection />
-
       <ContactSection />
     </div>
   );

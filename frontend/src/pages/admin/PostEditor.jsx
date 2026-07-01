@@ -110,17 +110,54 @@ export default function PostEditor() {
     if (!form.title) { toast.error('Title is required'); return; }
     if (!form.content) { toast.error('Content is required'); return; }
     setSaving(true);
+    
     try {
-      const payload = {
-        ...form,
-        status: overrideStatus || form.status,
-        scheduledAt: form.status === 'scheduled' ? form.scheduledAt : undefined,
+      const targetStatus = overrideStatus || form.status;
+      
+      // Initialize a standard Form Envelope
+      const formData = new FormData();
+      
+      // Append text inputs and key-value pairs
+      formData.append('title', form.title);
+      formData.append('slug', form.slug);
+      formData.append('content', form.content);
+      formData.append('excerpt', form.excerpt || '');
+      formData.append('status', targetStatus);
+      formData.append('visibility', form.visibility);
+      formData.append('password', form.password || '');
+      formData.append('category', form.category || '');
+      formData.append('author', form.author || '');
+      formData.append('isFeatured', String(form.isFeatured));
+      
+      if (targetStatus === 'scheduled' && form.scheduledAt) {
+        formData.append('scheduledAt', form.scheduledAt);
+      }
+
+      // Convert arrays and objects into serialized strings for Multer
+      formData.append('tags', JSON.stringify(form.tags || []));
+      formData.append('seoMeta', JSON.stringify(form.seoMeta || EMPTY.seoMeta));
+
+      // Append Featured Image References
+      // If FeaturedImageUploader handles a local binary file instance, attach it:
+      if (form.featuredImage?.file) {
+        formData.append('image', form.featuredImage.file);
+      } else {
+        // Fallback to text configuration for metadata if no new file is selected
+        formData.append('featuredImage', JSON.stringify(form.featuredImage || { url: '', alt: '' }));
+      }
+
+      // Define Request Configurations for multipart form processing
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       };
+
       if (isEdit) {
-        await api.put(`/posts/${id}`, payload);
+        await api.put(`/posts/${id}`, formData, config);
         toast.success('Post updated!');
       } else {
-        const { data } = await api.post('/posts', payload);
+        const { data } = await api.post('/posts', formData, config);
         toast.success('Post created!');
         navigate(`/admin/posts/edit/${data.data._id}`);
       }

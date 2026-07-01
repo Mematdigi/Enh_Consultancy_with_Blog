@@ -4,7 +4,7 @@
 
 .hero-banner {
   // Background image with warm amber overlay — matches the office/consulting aesthetic
-  background-image: url('../../../public/service6.jpg'); // ← swap to your actual image path
+  background-image: url('../../../public/homePageBanner.webp'); // ← swap to your actual image path
   background-size: cover;
   background-position: center center center;
   background-repeat: no-repeat;
@@ -114,24 +114,20 @@
       }
     }
 
-    h2 {
-      font-size: 50px;
+    h1 h2 {
+      font-size: 35px;
       font-weight: 800;
-      line-height: 1.15;
-      color: #ffffff;
+      line-height: 1.1;
       animation: slideInLeft 0.8s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
-
-      .italic-text {
         font-style: italic;
         color: rgb(235, 174, 95);
-      }
     }
 
     p {
       font-size: 17px;
       margin-top: 18px;
       color: rgba(255, 255, 255, 0.88);
-      line-height: 1.7;
+      line-height: 1.4;
       max-width: 480px;
       animation: slideInLeft 0.8s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
@@ -545,7 +541,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    background-color: #fff2e1;
+    background-color: #ffffff;
     box-shadow: 0 4px 10px rgba(12, 11, 11, 0.2);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
@@ -848,7 +844,6 @@ button.learn-more:hover {
   .services-subtitle {
     font-size: 15.5px;
     color: #8a5520;
-    max-width: 560px;
     line-height: 1.65;
     margin: 0;
   }
@@ -869,7 +864,7 @@ button.learn-more:hover {
   }
 
   .service-card {
-    background: #f6e2e2;
+    background: #ffffff;
     box-shadow: 0 4px 10px rgba(12, 11, 11, 0.2);
     border: 1.5px solid rgba(235, 174, 95, 0.22);
     border-radius: 18px;
@@ -1338,7 +1333,7 @@ button.learn-more:hover {
 
   // ── Individual card ──
   .counter-card {
-    background: #fff5e7;
+    background: #ffffff;
     border: 1.5px solid rgba(235, 174, 95, 0.18);
     box-shadow: 0 4px 10px rgba(12, 11, 11, 0.2);
     border-radius: 18px;
@@ -2475,11 +2470,11 @@ button.learn-more:hover {
       font-size: 42px;
       font-weight: 800;
       color: #2c1500;
-      line-height: 1.2;
 
       .italic-text {
         font-style: italic;
         color: rgb(235, 174, 95);
+        font-size: 36px;
       }
     }
 
@@ -2501,7 +2496,7 @@ button.learn-more:hover {
     p {
       font-size: 16px;
       color: #7a5030;
-      line-height: 1.72;
+      line-height: 1.42;
       max-width: 500px;
     }
 

@@ -21,10 +21,19 @@ export default function PostsList() {
       if (search) params.set('search', search);
       if (status) params.set('status', status);
       const { data } = await api.get(`/posts/admin/all?${params}`);
+      
       setPosts(data.data);
       setPagination(data.pagination);
-    } catch { toast.error('Failed to load posts'); }
-    finally { setLoading(false); }
+
+      // Fixed console.log to correctly show paths after data is loaded
+      if (data.data && data.data.length > 0) {
+        console.log("First image production URL path:", `https://enh.consulting/${data.data[0].featuredImage?.url}`);
+      }
+    } catch { 
+      toast.error('Failed to load posts'); 
+    } finally { 
+      setLoading(false); 
+    }
   };
 
   useEffect(() => { load(); }, [page, status]); // eslint-disable-line
@@ -56,7 +65,7 @@ export default function PostsList() {
   };
 
   return (
-    <div className="p-8   mx-auto">
+    <div className="p-8 mx-auto">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <h1 className="font-serif text-2xl font-bold text-ink-900">Posts</h1>
         <div className="flex gap-3">
@@ -75,6 +84,7 @@ export default function PostsList() {
           <input type="text" placeholder="Search posts…" className="input flex-1" value={search} onChange={(e) => setSearch(e.target.value)} />
           <button type="submit" className="btn-secondary text-sm px-3">Search</button>
         </form>
+        <label className='label'>Select</label>
         <select className="input w-40" value={status} onChange={(e) => { setStatus(e.target.value); setPage(1); }}>
           <option value="">All Status</option>
           <option value="published">Published</option>
@@ -109,17 +119,29 @@ export default function PostsList() {
                 <td className="px-4 py-3">
                   <input type="checkbox" checked={selected.includes(post._id)} onChange={() => toggleSelect(post._id)} className="rounded" />
                 </td>
-                <td className="px-4 py-3">
-                  <div className="flex items-center gap-3">
-                    {post.featuredImage?.url && (
-                      <img src={post.featuredImage.url} alt="" className="w-9 h-9 rounded-md object-cover flex-shrink-0" />
-                    )}
-                    <div>
-                      <p className="font-medium text-ink-900 line-clamp-1">{post.title}</p>
-                      <p className="text-ink-400 text-xs">{post.slug}</p>
-                    </div>
-                  </div>
-                </td>
+                  <td className="px-4 py-3">
+                      <div className="flex items-center gap-3">
+                        {post.featuredImage?.url && (() => {
+                          const computedSrc = `https://enh.consulting/${post.featuredImage.url.replace(/^\//, '')}`;
+                          
+                          // This will print the exact image link to your browser DevTools console
+                          console.log(`Post [${post.title.substring(0, 15)}...] Image Src:`, computedSrc);
+
+                          return (
+                            <img 
+                              src={computedSrc} 
+                              alt={post.featuredImage.alt || post.title} 
+                              className="w-9 h-9 rounded-md object-cover flex-shrink-0" 
+                              onError={(e) => console.error("This URL failed to load:", computedSrc)}
+                            />
+                          );
+                        })()}
+                        <div>
+                          <p className="font-medium text-ink-900 line-clamp-1">{post.title}</p>
+                          <p className="text-ink-400 text-xs">{post.slug}</p>
+                        </div>
+                      </div>
+                    </td>
                 <td className="px-4 py-3 hidden md:table-cell text-ink-600">{post.category?.name || '—'}</td>
                 <td className="px-4 py-3">
                   <span className={`badge-${post.status}`}>{post.status}</span>

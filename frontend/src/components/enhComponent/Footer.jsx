@@ -1,137 +1,115 @@
 import { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { FaFacebookF, FaInstagram, FaTimes, FaDribbble, FaPinterestP } from "react-icons/fa";
-import api from "../../utils/api";
+import { Container, Row, Col } from "react-bootstrap";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaDribbble,
+  FaPinterestP,
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
-const ENX_logo = "../../public/ENX_logo.png";
+const ENH_logo = "/ENH_logo.png";
 
 function Footer() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle"); // idle | loading | success | error
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const handleSubscribe = async () => {
-    if (!email.trim()) {
-      setErrorMsg("Please enter your email address.");
-      setStatus("error");
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setErrorMsg("Please enter a valid email address.");
-      setStatus("error");
-      return;
-    }
-
-    setStatus("loading");
-    setErrorMsg("");
-
-    try {
-      await api.post("/enquiries", {
-        email,
-        source: "footer-subscribe",
-      });
-
-      setStatus("success");
-      setEmail("");
-      setTimeout(() => setStatus("idle"), 4000);
-    } catch (err) {
-      setErrorMsg(
-        err?.response?.data?.message || "Something went wrong. Please try again."
-      );
-      setStatus("error");
-    }
-  };
-
   return (
     <footer className="custom-footer">
       <Container>
-        {/* Logo and Divider */}
+        {/* Logo */}
         <div className="footer-logo-section d-flex justify-content-center">
-          <img alt="Consultancy Logo" className="footer-logo-img mb-0" src={ENX_logo} />
+          <img alt="ENH Logo" className="footer-logo-img" src={ENH_logo} />
         </div>
+
+        {/* Divider */}
         <div className="footer-divider"></div>
 
-        {/* Footer Content */}
+        {/* Main Content */}
         <Row className="footer-content">
-          {/* Footer Navigation Links */}
-          <Col lg={8} className="footer-links">
-            <Row>
-              <Col md={6}>
-                <h5>Address</h5>
-                <p>GI-34, First Floor, Lawrence Road,</p>
-                <p>Delhi-110035</p>
-              </Col>
-
-              <Col md={3}>
-                <h5>Quick Links</h5>
-                <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">About US</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Contact US</a></li>
-                </ul>
-              </Col>
-              <Col md={3}>
-                <h5>Useful Links</h5>
-                <ul>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Terms & Condition</a></li>
-                </ul>
-              </Col>
-            </Row>
+          {/* Quick Links */}
+          <Col lg={2} md={3} sm={6} xs={12} className="footer-col">
+            <h5 className="footer-heading">Quick Links</h5>
+            <ul className="footer-list">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About US</a></li>
+              <li><a href="/consulting">Services</a></li>
+              <li><a href="/contact">Contact US</a></li>
+              <li><a href="/blog">Blogs</a></li>
+            </ul>
           </Col>
 
-          {/* Subscription Box */}
-          <Col lg={4} className="subscribe-section">
-            <h5>Say Hi!</h5>
-            <Form>
-              <Form.Group controlId="footerEmail">
-                <Form.Control
-                  type="email"
-                  placeholder="Your email address"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    if (status === "error") setStatus("idle");
-                  }}
-                  disabled={status === "loading" || status === "success"}
-                />
-              </Form.Group>
+          {/* Consulting Solution */}
+          <Col lg={3} md={3} sm={6} xs={12} className="footer-col">
+            <h5 className="footer-heading">Consulting Solution</h5>
+            <ul className="footer-list">
+              <li><a href="/ai-consulting-services-in-dubai" title="ai consulting services in dubai">AI Consulting</a></li>
+              <li><a href="/business-consulting-services-in-dubai" title="business consulting services in dubai">Business Consulting</a></li>
+              <li><a href="/digital-marketing-consulting-services-in-dubai" title="digital marketing services in dubai">Digital Marketing Consulting</a></li>
+              <li><a href="/edtech-consulting-services-in-dubai" title="edTech consulting services in dubai">EdTech Consulting</a></li>
+              <li><a href="/it-consulting-services-in-dubai" title="it consulting services in dubai">IT Consulting</a></li>
+              <li><a href="/startup-consulting-services-in-dubai" title="startup consulting services in dubai">Startup Consulting</a></li>
+            </ul>
+          </Col>
 
-              {status === "error" && (
-                <p className="footer-subscribe-error mt-1">{errorMsg}</p>
-              )}
+          {/* Digital & IT Solutions */}
+          <Col lg={3} md={3} sm={6} xs={12} className="footer-col">
+            <h5 className="footer-heading">Digital &amp; IT Solutions</h5>
+            <ul className="footer-list">
+              <li><a href="/">Digital Marketing Services</a></li>
+              <li><a href="/">SEO Services</a></li>
+              <li><a href="/">PPC Services</a></li>
+              <li><a href="/">Web Development</a></li>
+              <li><a href="/">App Development</a></li>
+              <li><a href="/">Software Development</a></li>
+            </ul>
+          </Col>
 
-              <Button
-                variant="warning"
-                className="subscribe-btn"
-                onClick={handleSubscribe}
-                disabled={status === "loading" || status === "success"}
-              >
-                {status === "loading"
-                  ? "Subscribing..."
-                  : status === "success"
-                  ? "✓ Subscribed!"
-                  : "Subscribe"}
-              </Button>
-            </Form>
+          {/* Contact US */}
+          <Col lg={4} md={3} sm={6} xs={12} className="footer-col contact-col">
+            <h5 className="footer-heading">Contact US</h5>
+            <div className="contact-info">
+              <p className="contact-phone">+971 505913055</p>
+              <p className="contact-email">contact@enh.consulting</p>
+              <div className="footer-divider-vertical d-none d-md-block"></div>
+              <p className="contact-address-label">Address</p>
+              <p className="contact-address">
+                DSO-IFZA, IFZA Properties,<br />
+                Dubai Silicon Oasis, Dubai
+              </p>
+            </div>
+            {/* Google Map Embed */}
+            <div className="footer-map">
+              <iframe
+                title="ENH Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.9!2d55.38!3d25.12!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDA3JzEyLjAiTiA1NcKwMjInNDguMCJF!5e0!3m2!1sen!2sae!4v1234567890"
+                width="100%"
+                height="130"
+                style={{ border: 0, borderRadius: "6px" }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </Col>
         </Row>
 
         {/* Social Icons */}
         <div className="social-icons">
-          <FaFacebookF />
-          <FaInstagram />
-          <FaTimes />
-          <FaDribbble />
-          <FaPinterestP />
+          <a href="/" aria-label="Facebook"><FaFacebookF /></a>
+          <a href="/" aria-label="Instagram"><FaInstagram /></a>
+          <a href="/" aria-label="X (Twitter)"><FaXTwitter /></a>
+          <a href="/" aria-label="Dribbble"><FaDribbble /></a>
+          <a href="/" aria-label="Pinterest"><FaPinterestP /></a>
         </div>
 
         {/* Footer Bottom */}
         <div className="footer-bottom">
-          <p>© 2025 all rights reserved.</p>
           <p>
-            Powered by <a href="/">MematDigi</a>
+            Powered by <a href="https://mematdigi.com">MematDigi</a>{" "}
+            &nbsp;© 2026 all rights reserved. By ENH Consulting
+          </p>
+          <p className="footer-legal-links">
+            <a href="/">Privacy Policy</a>
+            <span className="divider-pipe"> | </span>
+            <a href="/">Terms &amp; Condition</a>
           </p>
         </div>
       </Container>

@@ -2,12 +2,16 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// ─── LOCAL STORAGE ───────────────────────────────────────────────
+// ── SINGLE SOURCE OF TRUTH ───────────────────────────────────────
+// All local uploads live in backend/uploads — the SAME folder that
+// server.js serves at /uploads and that the media-delete route reads.
+const UPLOAD_DIR = path.join(__dirname, '../uploads');
+
+// ── LOCAL STORAGE ───────────────────────────────────────────────
 const localStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadPath = path.join(__dirname, '../uploads');
-    if (!fs.existsSync(uploadPath)) fs.mkdirSync(uploadPath, { recursive: true });
-    cb(null, uploadPath);
+    if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+    cb(null, UPLOAD_DIR);
   },
   filename: (req, file, cb) => {
     const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -15,7 +19,7 @@ const localStorage = multer.diskStorage({
   },
 });
 
-// ─── FILE FILTER ─────────────────────────────────────────────────
+// ── FILE FILTER ─────────────────────────────────────────────────
 const fileFilter = (req, file, cb) => {
   const allowed = /jpeg|jpg|png|gif|webp|svg/;
   const ext = allowed.test(path.extname(file.originalname).toLowerCase());

@@ -23,17 +23,16 @@ import CommentsManager from './pages/admin/CommentsManager';
 import Home from './pages/enhPages/Home';
 import About from './pages/enhPages/About';
 import Services from './pages/enhPages/Services';
-import Team from './pages/enhPages/Team';
-import FinanceConsulting from './pages/enhPages/Finance_Consulting';
-import DigitalMarketingConsulting from './pages/enhPages/Digital_Marketing_Consulting';
-import ItConsulting from './pages/enhPages/IT_Consulting';
-import PropertyConsulting from './pages/enhPages/Property_Consulting';
-import BusinessConsultancy from './pages/enhPages/Business_Consultancy';
+import DigitalMarketingConsulting from './pages/enhPages/DigitalMarketingConsulting';
+import ItConsultancy from './pages/enhPages/ITConsulting';
+import BusinessConsultancy from './pages/enhPages/BusinessConsulting';
 import Contact from './pages/enhPages/Contact';
-import ServiceViewPage from './pages/enhPages/ServiceViewPage';
 import Header from './components/enhComponent/Header';
 import Footer from './components/enhComponent/Footer';
 import EnquiriesManager from './pages/admin/EnquiriesManager';
+import AiConsulting from './pages/enhPages/AiConsulting';
+import EdTechConsultancy from './pages/enhPages/EdTechConsulting';
+import StartupConsultancy from './pages/enhPages/StartupConsulting';
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
@@ -49,15 +48,15 @@ export default function App() {
         {/* enh public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/finance-consulting" element={<FinanceConsulting />} />
-        <Route path="/digital-marketing-consulting" element={<DigitalMarketingConsulting />} />
-        <Route path="/it-consulting" element={<ItConsulting />} />
-        <Route path="/property-consulting" element={<PropertyConsulting />} />
-        <Route path="/business-consultancy" element={<BusinessConsultancy />} />
+        <Route path="/consulting" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/service-view" element={<ServiceViewPage />} />
+        <Route path="/ai-consulting-services-in-dubai" element={<AiConsulting />} />
+        <Route path="/business-consulting-services-in-dubai" element={<BusinessConsultancy />} />
+        <Route path="/digital-marketing-consulting-services-in-dubai" element={<DigitalMarketingConsulting />} />
+        <Route path="/edtech-consulting-services-in-dubai" element={<EdTechConsultancy />} />
+        <Route path="/it-consulting-services-in-dubai" element={<ItConsultancy />} />
+        <Route path="/startup-consulting-services-in-dubai" element={<StartupConsultancy />} />
+
 
         {/* blog Public Routes */}
         <Route path="/blog" element={<BlogHome />} />

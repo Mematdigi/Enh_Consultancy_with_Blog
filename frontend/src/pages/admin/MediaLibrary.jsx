@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import api from '../../utils/api';
 import toast from 'react-hot-toast';
+import { imageUrl } from '../../lib/imageUrl'; // ← adjust path if your lib folder differs
 
 export default function MediaLibrary() {
   const [media, setMedia] = useState([]);
@@ -52,7 +53,7 @@ export default function MediaLibrary() {
   };
 
   const handleCopy = (url) => {
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(imageUrl(url)); // copy the full, usable URL
     toast.success('URL copied!');
   };
 
@@ -110,7 +111,7 @@ export default function MediaLibrary() {
                     selected?._id === m._id ? 'border-brand-500 shadow-md' : 'border-transparent hover:border-ink-200'
                   }`}
                 >
-                  <img src={m.url} alt={m.alt || m.originalName} className="w-full h-full object-cover" />
+                  <img src={imageUrl(m.url)} alt={m.alt || m.originalName} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
@@ -133,7 +134,7 @@ export default function MediaLibrary() {
         {selected && (
           <div className="w-64 flex-shrink-0">
             <div className="card p-4 sticky top-6 space-y-4">
-              <img src={selected.url} alt={selected.alt} className="w-full rounded-lg object-cover" />
+              <img src={imageUrl(selected.url)} alt={selected.alt} className="w-full rounded-lg object-cover" />
               <div>
                 <p className="text-xs font-semibold text-ink-600 mb-1 uppercase tracking-wider">Filename</p>
                 <p className="text-ink-800 text-xs break-all">{selected.originalName}</p>

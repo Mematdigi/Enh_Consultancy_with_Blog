@@ -89,8 +89,12 @@ export default function Dashboard() {
           {posts.map((post) => (
             <div key={post._id} className="flex items-center gap-4 px-6 py-4 hover:bg-ink-50 transition-colors">
               {post.featuredImage?.url && (
-                <img src={post.featuredImage.url} alt="" className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
-              )}
+                      <img 
+                        src={`/uploads/${post.featuredImage.url.replace(/^uploads\//, '')}`} 
+                        alt={post.featuredImage.alt || post.title} 
+                        className="w-12 h-12 rounded-lg object-cover flex-shrink-0" 
+                      />
+                    )}
               <div className="flex-1 min-w-0">
                 <p className="font-medium text-ink-900 truncate text-sm">{post.title}</p>
                 <p className="text-xs text-ink-400 mt-0.5">{format(new Date(post.updatedAt), 'MMM d, yyyy')}</p>

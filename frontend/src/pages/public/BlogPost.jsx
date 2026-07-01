@@ -5,12 +5,14 @@ import BlogHeader from '../../components/public/BlogHeader';
 import BlogSidebar from '../../components/public/BlogSidebar';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
+import { Helmet } from "react-helmet-async";
+import { imageUrl } from '../../lib/imageUrl'; // ← adjust path if your lib folder differs
 
 // ── Table of Contents generator ──────────────────────────────────
 function buildTOC(html) {
   const div = document.createElement('div');
   div.innerHTML = html;
-  const headings = div.querySelectorAll('h2, h3');
+  const headings = div.querySelectorAll('h2');
   return Array.from(headings).map((h, i) => ({
     id: `toc-${i}`,
     text: h.textContent,
@@ -67,10 +69,6 @@ function CommentForm({ postId, onSubmitted }) {
           <input type="email" className="input" required value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
         </div>
       </div>
-      {/* <div>
-        <label className="label">Website</label>
-        <input type="url" className="input" placeholder="https://…" value={form.website} onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))} />
-      </div> */}
       <div>
         <label className="label">Comment *</label>
         <textarea className="textarea h-28" required value={form.body} onChange={(e) => setForm((f) => ({ ...f, body: e.target.value }))} />
@@ -158,8 +156,12 @@ export default function BlogPost() {
               }
             });
 
-            // Image preview modal
+            // Image preview modal + normalize relative src so content images resolve from site root
             contentRef.current.querySelectorAll('img').forEach((img) => {
+              const raw = img.getAttribute('src') || '';
+              if (raw && !/^https?:\/\//i.test(raw) && !raw.startsWith('/')) {
+                img.setAttribute('src', `/${raw}`); // "uploads/x.jpg" → "/uploads/x.jpg"
+              }
               img.style.cursor = 'zoom-in';
               img.onclick = () => {
                 const overlay = document.createElement('div');
@@ -195,7 +197,6 @@ export default function BlogPost() {
 
   if (loading) return (
     <div className="min-h-screen" style={{ backgroundColor: 'linear-gradient(135deg, rgb(255, 244, 225) 0%, rgb(253, 237, 206) 60%, rgb(255, 215, 138) 100%)' }}>
-      {/* <BlogHeader /> */}
       <div className="  mx-auto px-4 py-16 text-center text-ink-400">
         <div className="animate-pulse space-y-4 max-w-2xl mx-auto">
           <div className="h-8 bg-ink-100 rounded w-3/4 mx-auto" />
@@ -208,7 +209,6 @@ export default function BlogPost() {
 
   if (!post) return (
     <div className="min-h-screen" style={{ backgroundColor: 'linear-gradient(135deg, rgb(255, 244, 225) 0%, rgb(253, 237, 206) 60%, rgb(255, 215, 138) 100%)' }}>
-      {/* <BlogHeader /> */}
       <div className="max-w-4xl mx-auto px-4 py-20 text-center">
         <p className="text-6xl mb-4">🔍</p>
         <h1 className="font-serif text-2xl font-bold text-ink-900 mb-2">Post Not Found</h1>
@@ -221,12 +221,16 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'linear-gradient(135deg, rgb(255, 244, 225) 0%, rgb(253, 237, 206) 60%, rgb(255, 215, 138) 100%)' }}>
-      {/* <BlogHeader /> */}
+      <Helmet>
+        <title>{post.seoMeta.metaTitle}</title>
+        <meta name="description" content={post.seoMeta.metaDescription} />
+        <link rel="canonical" href={postUrl} />
+      </Helmet>
 
       {/* Featured Image */}
       {post.featuredImage?.url && (
         <div className="w-full max-h-[480px] overflow-hidden">
-          <img src={post.featuredImage.url} alt={post.featuredImage.alt || post.title} className="w-full object-cover max-h-[480px]" />
+          <img src={imageUrl(post.featuredImage.url)} alt={post.featuredImage.alt || post.title} className="w-full object-cover max-h-[480px]" />
         </div>
       )}
 
@@ -247,7 +251,7 @@ export default function BlogPost() {
                 {post.author && (
                   <div className="flex items-center gap-2">
                     {post.author.avatar ? (
-                      <img src={post.author.avatar} alt={post.author.name} className="w-8 h-8 rounded-full object-cover" />
+                      <img src={imageUrl(post.author.avatar)} alt={post.author.name} className="w-8 h-8 rounded-full object-cover" />
                     ) : (
                       <div className="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 text-sm font-bold">{post.author.name[0]}</div>
                     )}
@@ -297,7 +301,7 @@ export default function BlogPost() {
             {post.author?.bio && (
               <div className="mt-8 bg-white rounded-2xl border border-ink-100 p-6 flex items-start gap-4">
                 {post.author.avatar ? (
-                  <img src={post.author.avatar} alt={post.author.name} className="w-16 h-16 rounded-full object-cover flex-shrink-0" />
+                  <img src={imageUrl(post.author.avatar)} alt={post.author.name} className="w-16 h-16 rounded-full object-cover flex-shrink-0" />
                 ) : (
                   <div className="w-16 h-16 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 text-2xl font-bold flex-shrink-0">{post.author.name[0]}</div>
                 )}
@@ -322,7 +326,7 @@ export default function BlogPost() {
                     <Link key={r._id} to={`/blog/${r.slug}`} className="group">
                       <div className="aspect-[16/9] rounded-xl overflow-hidden bg-ink-100 mb-2">
                         {r.featuredImage?.url && (
-                          <img src={r.featuredImage.url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                          <img src={imageUrl(r.featuredImage.url)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                         )}
                       </div>
                       <p className="text-sm font-medium text-ink-800 group-hover:text-brand-600 transition-colors line-clamp-2">{r.title}</p>

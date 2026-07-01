@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../utils/api';
 import { format } from 'date-fns';
+import { imageUrl } from '../../lib/imageUrl'; // ← adjust path if your lib folder differs
 
 export default function BlogSidebar() {
   const [recent, setRecent] = useState([]);
@@ -53,7 +54,11 @@ export default function BlogSidebar() {
             {recent.map((post) => (
               <Link key={post._id} to={`/blog/${post.slug}`} className="flex gap-3 group">
                 {post.featuredImage?.url ? (
-                  <img src={post.featuredImage.url} alt={post.featuredImage.alt} className="w-16 h-14 rounded-lg object-cover flex-shrink-0" />
+                  <img
+                    src={imageUrl(post.featuredImage.url)}
+                    alt={post.featuredImage.alt}
+                    className="w-16 h-14 rounded-lg object-cover flex-shrink-0"
+                  />
                 ) : (
                   <div className="w-16 h-14 rounded-lg bg-ink-100 flex-shrink-0" />
                 )}
@@ -88,9 +93,12 @@ export default function BlogSidebar() {
         <div className="bg-white rounded-2xl border border-ink-100 p-5 shadow-sm">
           <h3 className="font-serif font-bold text-ink-800 mb-4 text-lg">Tags</h3>
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <Link key={tag._id} to={`/tag/${tag.slug}`}
-                className="inline-flex items-center px-3 py-1 bg-ink-100 text-ink-600 rounded-full text-xs hover:bg-brand-100 hover:text-brand-700 transition-colors">
+            {tags.slice(0, 8).map((tag) => (
+              <Link
+                key={tag._id}
+                to={`/tag/${tag.slug}`}
+                className="inline-flex items-center px-3 py-1 bg-ink-100 text-ink-600 rounded-full text-xs hover:bg-brand-100 hover:text-brand-700 transition-colors"
+              >
                 #{tag.name}
               </Link>
             ))}

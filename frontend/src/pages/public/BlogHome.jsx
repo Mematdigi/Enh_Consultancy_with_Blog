@@ -5,6 +5,8 @@ import BlogHeader from '../../components/public/BlogHeader';
 import BlogSidebar from '../../components/public/BlogSidebar';
 import PostCard from '../../components/public/PostCard';
 import { format } from 'date-fns';
+import { Helmet } from 'react-helmet-async';
+import { imageUrl } from '../../lib/imageUrl'; // ← adjust path if your lib folder differs
 
 export default function BlogHome() {
   const [posts, setPosts] = useState([]);
@@ -32,9 +34,14 @@ export default function BlogHome() {
     load();
   }, [page]);
 
+  const postUrl = window.location.href;
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'linear-gradient(135deg, rgb(255, 244, 225) 0%, rgb(253, 237, 206) 60%, rgb(255, 215, 138) 100%)' }}>
-      {/* <BlogHeader /> */}
+      <Helmet>
+        <title>ENH Consulting Blogs</title>
+        <meta name="description" content="Stay updated with the latest tech, AI, consulting, & business solutions through ENH Consulting Blogs. Discover expert tips to grow your business in Dubai, UAE." />
+        <link rel="canonical" href={postUrl} />
+      </Helmet>
 
       <main className="  mx-auto px-4 sm:px-6 py-10">
         {/* Hero featured post */}
@@ -42,7 +49,7 @@ export default function BlogHome() {
           <Link to={`/blog/${featured.slug}`} className="block mb-10 group">
             <div className="relative rounded-3xl overflow-hidden bg-ink-900 aspect-[21/9] shadow-xl">
               {featured.featuredImage?.url ? (
-                <img src={featured.featuredImage.url} alt={featured.featuredImage.alt} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" />
+                <img src={imageUrl(featured.featuredImage.url)} alt={featured.featuredImage.alt} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" />
               ) : (
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-800 to-ink-900" />
               )}
@@ -122,14 +129,14 @@ export default function BlogHome() {
         </div>
       </main>
 
-      <footer className="border-t border-ink-100 mt-16 py-8 text-center text-ink-400 text-sm">
-        <p>© {new Date().getFullYear()} Blog CMS · Built with React & Node.js</p>
+      {/* <footer className="border-t border-ink-100 mt-16 py-8 text-center text-ink-400 text-sm">
+        <p>© {new Date().getFullYear()} ENH Consulting · Built with React & Node.js</p>
         <div className="flex justify-center gap-4 mt-2">
           <a href="/feed.xml" target="_blank" className="hover:text-brand-600">RSS Feed</a>
           <a href="/sitemap.xml" target="_blank" className="hover:text-brand-600">Sitemap</a>
           <Link to="/admin/login" className="hover:text-brand-600">Admin</Link>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }

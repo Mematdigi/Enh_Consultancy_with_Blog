@@ -26,7 +26,7 @@ export default function AdminLogin() {
           <div className="w-14 h-14 bg-brand-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 shadow-lg shadow-brand-600/30">
             B
           </div>
-          <h1 className="font-serif text-white text-2xl font-bold">Blog CMS</h1>
+          <h1 className="font-serif text-white text-2xl font-bold">ENH Consulting</h1>
           <p className="text-ink-400 text-sm mt-1">Sign in to your admin panel</p>
         </div>
 

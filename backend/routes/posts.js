@@ -1,9 +1,31 @@
 const express = require('express');
 const slugify = require('slugify');
 const Post = require('../models/Post');
+const upload = require('../config/upload'); // shared multer config (same folder as media uploads)
 const { protect } = require('../middleware/auth');
+const { submitUrlToBing } = require('../services/bingService');
 
 const router = express.Router();
+
+// ── Helpers ───────────────────────────────────────────────────────
+
+// FormData sends arrays/objects as JSON strings — turn them back into real values.
+const parseMaybeJSON = (val, fallback) => {
+  if (val === undefined || val === null) return fallback;
+  if (typeof val !== 'string') return val; // already an array/object
+  try { return JSON.parse(val); } catch { return fallback; }
+};
+
+// Empty strings can't be cast to ObjectId — remove them so Mongoose ignores the field.
+const dropEmptyRefs = (data) => {
+  ['category', 'author'].forEach((k) => {
+    if (data[k] === '' || data[k] === 'null' || data[k] === 'undefined') delete data[k];
+  });
+};
+
+// Build the stored featuredImage.url for an uploaded file.
+const fileUrl = (file) =>
+  process.env.UPLOAD_TYPE === 'cloudinary' ? file.path : `/uploads/${file.filename}`;
 
 const makeSlug = async (title, excludeId = null) => {
   let slug = slugify(title, { lower: true, strict: true });
@@ -18,7 +40,7 @@ const makeSlug = async (title, excludeId = null) => {
 
 // ─── PUBLIC ROUTES ────────────────────────────────────────────────
 
-// GET /api/posts  — published posts with pagination, search, filter
+// GET /api/posts
 router.get('/', async (req, res, next) => {
   try {
     const { page = 1, limit = 9, category, tag, search, author, featured } = req.query;
@@ -75,7 +97,7 @@ router.get('/popular', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// GET /api/posts/:slug  — single post by slug (public)
+// GET /api/posts/:slug
 router.get('/:slug', async (req, res, next) => {
   try {
     const post = await Post.findOneAndUpdate(
@@ -94,7 +116,7 @@ router.get('/:slug', async (req, res, next) => {
 
 // ─── ADMIN ROUTES ─────────────────────────────────────────────────
 
-// GET /api/posts/admin/all  — all posts for admin
+// GET /api/posts/admin/all
 router.get('/admin/all', protect, async (req, res, next) => {
   try {
     const { page = 1, limit = 20, status, search } = req.query;
@@ -125,7 +147,7 @@ router.get('/admin/all', protect, async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// GET /api/posts/admin/:id  — single post by ID for editing
+// GET /api/posts/admin/:id
 router.get('/admin/:id', protect, async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id)
@@ -137,33 +159,89 @@ router.get('/admin/:id', protect, async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// POST /api/posts  — create post
-router.post('/', protect, async (req, res, next) => {
+// POST /api/posts — create
+router.post('/', protect, upload.single('image'), async (req, res, next) => {
   try {
     const { title, ...rest } = req.body;
     const slug = rest.slug || await makeSlug(title);
-    const post = await Post.create({ title, slug, ...rest });
+
+    const postData = { ...rest, title, slug };
+
+    // Unwrap JSON-encoded fields coming from multipart/form-data
+    postData.tags = parseMaybeJSON(rest.tags, []);
+    postData.seoMeta = parseMaybeJSON(rest.seoMeta, {});
+    postData.featuredImage = parseMaybeJSON(rest.featuredImage, {});
+
+    // Booleans arrive as strings ("true"/"false")
+    postData.isFeatured = rest.isFeatured === 'true' || rest.isFeatured === true;
+
+    dropEmptyRefs(postData);
+
+    // A newly uploaded file wins over any URL in featuredImage
+    if (req.file) {
+      if (typeof postData.featuredImage !== 'object' || !postData.featuredImage) postData.featuredImage = {};
+      postData.featuredImage.url = fileUrl(req.file);
+    }
+
+    const post = await Post.create(postData);
+
+    // ADD THIS BLOCK:
+    if (post.status === 'published') {
+      submitUrlToBing(post.slug);
+    }
+
     await post.populate(['category', 'tags', 'author']);
     res.status(201).json({ success: true, data: post });
   } catch (err) { next(err); }
 });
 
-// PUT /api/posts/:id  — update post
-router.put('/:id', protect, async (req, res, next) => {
+// PUT /api/posts/:id — update
+router.put('/:id', protect, upload.single('image'), async (req, res, next) => {
   try {
     const { title, slug: newSlug, ...rest } = req.body;
+
     let slug = newSlug;
     if (!slug && title) slug = await makeSlug(title, req.params.id);
     else if (slug) {
       const existing = await Post.findOne({ slug, _id: { $ne: req.params.id } });
       if (existing) slug = await makeSlug(slug, req.params.id);
     }
+
+    const updateData = { ...rest };
+    if (title) updateData.title = title;
+    if (slug) updateData.slug = slug;
+
+    // Unwrap JSON-encoded fields coming from multipart/form-data
+    if (rest.tags !== undefined) updateData.tags = parseMaybeJSON(rest.tags, []);
+    if (rest.seoMeta !== undefined) updateData.seoMeta = parseMaybeJSON(rest.seoMeta, {});
+    if (rest.featuredImage !== undefined) updateData.featuredImage = parseMaybeJSON(rest.featuredImage, {});
+
+    // Booleans arrive as strings ("true"/"false")
+    if (rest.isFeatured !== undefined) {
+      updateData.isFeatured = rest.isFeatured === 'true' || rest.isFeatured === true;
+    }
+
+    dropEmptyRefs(updateData);
+
+    // A newly uploaded file wins over any URL in featuredImage
+    if (req.file) {
+      if (typeof updateData.featuredImage !== 'object' || !updateData.featuredImage) updateData.featuredImage = {};
+      updateData.featuredImage.url = fileUrl(req.file);
+    }
+
     const post = await Post.findByIdAndUpdate(
       req.params.id,
-      { title, slug, ...rest },
+      updateData,
       { new: true, runValidators: true }
     ).populate(['category', 'tags', 'author']);
+
     if (!post) return res.status(404).json({ success: false, message: 'Post not found' });
+
+    // ADD THIS BLOCK:
+    if (post.status === 'published') {
+      submitUrlToBing(post.slug);
+    }
+
     res.json({ success: true, data: post });
   } catch (err) { next(err); }
 });
@@ -177,7 +255,7 @@ router.delete('/:id', protect, async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// DELETE /api/posts/bulk  — bulk delete
+// POST /api/posts/bulk-delete
 router.post('/bulk-delete', protect, async (req, res, next) => {
   try {
     const { ids } = req.body;

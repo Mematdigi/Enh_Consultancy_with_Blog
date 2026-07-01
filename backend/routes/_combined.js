@@ -109,7 +109,7 @@ mediaRouter.post('/upload', protect, upload.array('images', 10), async (req, res
     const files = req.files;
     const savedMedia = await Promise.all(
       files.map((file) => {
-        const url = process.env.UPLOAD_TYPE === 'cloudinary' ? file.path : `${process.env.BACKEND_URL || 'http://localhost:5000'}/uploads/${file.filename}`;
+        const url = `/uploads/${file.filename}`
         return Media.create({
           url,
           filename: file.filename || file.public_id,

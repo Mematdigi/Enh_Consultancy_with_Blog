@@ -174,6 +174,7 @@ export default function RichEditor({ value, onChange, placeholder = 'Write your 
       <div className="sticky top-0 z-20 flex flex-wrap items-center gap-0.5 px-3 py-2 bg-ink-50 border-b border-ink-200">
 
         {/* Headings */}
+        <label className='label'>Headings</label>
         <select
           className="text-xs border border-ink-200 rounded px-2 py-1.5 bg-white text-ink-700 focus:outline-none focus:ring-1 focus:ring-brand-400 mr-1"
           onChange={(e) => { if (e.target.value) { insertHeading(e.target.value); e.target.value = ''; } }}

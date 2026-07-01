@@ -54,7 +54,7 @@ export default function AdminLayout() {
               B
             </div>
             <div>
-              <p className="text-white font-semibold text-sm">Blog CMS</p>
+              <p className="text-white font-semibold text-sm">ENH Consulting</p>
               <p className="text-ink-400 text-xs">Admin Panel</p>
             </div>
           </div>

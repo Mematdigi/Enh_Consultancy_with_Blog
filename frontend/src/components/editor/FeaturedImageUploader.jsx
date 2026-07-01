@@ -8,6 +8,7 @@ export default function FeaturedImageUploader({ value, onChange }) {
     if (!files.length) return;
     try {
       const fd = new FormData();
+      // Notice: Appends file payload to match your media routing parameters
       fd.append('images', files[0]);
       const { data } = await api.post('/media/upload', fd);
       const uploaded = data.data[0];
@@ -24,11 +25,25 @@ export default function FeaturedImageUploader({ value, onChange }) {
     multiple: false,
   });
 
+  // Dynamically points relative image strings directly to your live asset directory
+  const getImageUrl = (url) => {
+    if (!url) return '';
+    if (url.startsWith('http')) return url;
+    return `https://enh.consulting/${url.replace(/^\//, '')}`;
+  };
+
   return (
     <div className="space-y-3">
       {value?.url ? (
         <div className="relative group rounded-xl overflow-hidden border border-ink-200">
-          <img src={value.url} alt={value.alt} className="w-full h-40 object-cover" />
+          <img 
+            src={getImageUrl(value.url)} 
+            alt={value.alt} 
+            className="w-full h-40 object-cover" 
+            onError={(e) => {
+              e.target.src = "https://placehold.co/400x200?text=Image+Missing+On+Server";
+            }}
+          />
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
             <button
               type="button"

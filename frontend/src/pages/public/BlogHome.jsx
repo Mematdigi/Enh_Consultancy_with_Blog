@@ -20,14 +20,14 @@ export default function BlogHome() {
       setLoading(true);
       try {
         const { data } = await api.get(`/posts?page=${page}&limit=9`);
-        const all = data.data;
+        const all = Array.isArray(data?.data) ? data.data : [];
         if (page === 1 && all.length > 0) {
           setFeatured(all[0]);
           setPosts(all.slice(1));
         } else {
           setPosts(all);
         }
-        setPagination(data.pagination);
+        setPagination(data?.pagination || {});
       } catch (e) { console.error(e); }
       finally { setLoading(false); }
     };

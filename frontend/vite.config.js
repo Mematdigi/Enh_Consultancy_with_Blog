@@ -9,6 +9,9 @@ module.exports = defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    target: 'es2018',
+  },
   server: {
     port: 3000,
     proxy: {

@@ -38,8 +38,8 @@ export default function BlogSidebar() {
   return (
     <aside className="space-y-6 w-full">
       {/* Search */}
-      <div className="bg-white rounded-2xl border border-ink-100 p-5 shadow-sm">
-        <h3 className="font-serif font-bold text-ink-800 mb-3 text-lg">Search</h3>
+      <div className="bg-white rounded-2xl border border-ink-100 p-3 shadow-sm">
+        <h3 className="font-bold text-ink-800 mb-3 text-lg">Search</h3>
         <form onSubmit={handleSearch} className="flex gap-2">
           <input type="search" placeholder="Search posts…" className="input flex-1" value={search} onChange={(e) => setSearch(e.target.value)} />
           <button type="submit" className="btn-primary px-3 text-sm">Go</button>
@@ -48,7 +48,7 @@ export default function BlogSidebar() {
 
       {/* Recent Posts */}
       {recent.length > 0 && (
-        <div className="bg-white rounded-2xl border border-ink-100 p-5 shadow-sm">
+        <div className="bg-white rounded-2xl border border-ink-100 p-3 shadow-sm">
           <h3 className="font-serif font-bold text-ink-800 mb-4 text-lg">Recent Posts</h3>
           <div className="space-y-4">
             {recent.map((post) => (
@@ -74,7 +74,7 @@ export default function BlogSidebar() {
 
       {/* Categories */}
       {categories.length > 0 && (
-        <div className="bg-white rounded-2xl border border-ink-100 p-5 shadow-sm">
+        <div className="bg-white rounded-2xl border border-ink-100 p-3 shadow-sm">
           <h3 className="font-serif font-bold text-ink-800 mb-4 text-lg">Categories</h3>
           <div className="space-y-2">
             {categories.map((cat) => (
@@ -90,7 +90,7 @@ export default function BlogSidebar() {
 
       {/* Tags Cloud */}
       {tags.length > 0 && (
-        <div className="bg-white rounded-2xl border border-ink-100 p-5 shadow-sm">
+        <div className="bg-white rounded-2xl border border-ink-100 p-3 shadow-sm">
           <h3 className="font-serif font-bold text-ink-800 mb-4 text-lg">Tags</h3>
           <div className="flex flex-wrap gap-2">
             {tags.slice(0, 8).map((tag) => (
@@ -108,7 +108,7 @@ export default function BlogSidebar() {
 
       {/* Popular Posts */}
       {popular.length > 0 && (
-        <div className="bg-white rounded-2xl border border-ink-100 p-5 shadow-sm">
+        <div className="bg-white rounded-2xl border border-ink-100 p-3 shadow-sm">
           <h3 className="font-serif font-bold text-ink-800 mb-4 text-lg">Popular Posts</h3>
           <div className="space-y-3">
             {popular.map((post, i) => (

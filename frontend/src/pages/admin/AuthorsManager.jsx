@@ -78,7 +78,7 @@ export default function AuthorsManager() {
   const setLink = (key, val) => setForm((f) => ({ ...f, socialLinks: { ...f.socialLinks, [key]: val } }));
 
   return (
-    <div className="p-8 max-w-5xl mx-auto">
+    <div className="p-8 mx-auto">
       <h1 className="font-serif text-2xl font-bold text-ink-900 mb-6">Authors</h1>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
 

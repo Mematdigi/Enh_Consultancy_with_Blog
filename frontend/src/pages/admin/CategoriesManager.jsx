@@ -59,7 +59,7 @@ export default function CategoriesManager() {
   };
 
   return (
-    <div className="p-8 max-w-4xl mx-auto">
+    <div className="p-8 mx-auto">
       <h1 className="font-serif text-2xl font-bold text-ink-900 mb-6">Categories</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 

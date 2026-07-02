@@ -49,7 +49,7 @@ export default function TagsManager() {
   };
 
   return (
-    <div className="p-8 max-w-3xl mx-auto">
+    <div className="p-8 mx-auto">
       <h1 className="font-serif text-2xl font-bold text-ink-900 mb-6">Tags</h1>
 
       {/* Add/Edit Form */}

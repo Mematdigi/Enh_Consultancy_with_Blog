@@ -5,7 +5,7 @@ export default function PostCard({ post }) {
   return (
     <article className="bg-white rounded-2xl border border-ink-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow group flex flex-col">
       {/* Image */}
-      <Link to={`/blog/${post.slug}`} className="block overflow-hidden aspect-[16/9] bg-ink-100 flex-shrink-0">
+      <Link to={`/blog/${post.slug}`} className="block overflow-hidden aspect-[23/8] bg-ink-100 flex-shrink-0">
         {post.featuredImage?.url ? (
           <img
             src={post.featuredImage.url}
@@ -18,7 +18,7 @@ export default function PostCard({ post }) {
       </Link>
 
       {/* Content */}
-      <div className="p-5 flex flex-col flex-1">
+      <div className="p-2 flex flex-col">
         {/* Category badge */}
         {post.category && (
           <Link to={`/category/${post.category.slug}`}
@@ -28,7 +28,7 @@ export default function PostCard({ post }) {
         )}
 
         {/* Title */}
-        <h2 className="font-serif font-bold text-ink-900 text-lg leading-snug mb-2 group-hover:text-brand-700 transition-colors line-clamp-2">
+        <h2 className="font-serif font-bold text-ink-900 text-lg leading-snug group-hover:text-brand-700 transition-colors line-clamp-2">
           <Link to={`/blog/${post.slug}`}>{post.title}</Link>
         </h2>
 

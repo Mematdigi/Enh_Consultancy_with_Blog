@@ -67,7 +67,7 @@ export default function ImageInsertModal({ onInsert, onClose }) {
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-ink-100">
-          <h3 className="font-serif font-bold text-ink-900 text-lg">Insert Image</h3>
+          <h3 className="font-bold text-ink-900 text-lg">Insert Image</h3>
           <button onClick={onClose} className="text-ink-400 hover:text-ink-700 text-2xl leading-none">&times;</button>
         </div>
 

@@ -90,7 +90,7 @@ export default function Dashboard() {
             <div key={post._id} className="flex items-center gap-4 px-6 py-4 hover:bg-ink-50 transition-colors">
               {post.featuredImage?.url && (
                       <img 
-                        src={`/uploads/${post.featuredImage.url.replace(/^uploads\//, '')}`} 
+                        src={`${post.featuredImage.url.replace(/^uploads\//, '')}`} 
                         alt={post.featuredImage.alt || post.title} 
                         className="w-12 h-12 rounded-lg object-cover flex-shrink-0" 
                       />

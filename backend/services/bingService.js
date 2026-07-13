@@ -1,20 +1,25 @@
-// services/bingService.js
 const axios = require('axios');
 
-/**
- * Notifies Bing about a URL change using the IndexNow protocol.
- * We do not use 'await' in the controller to keep the UI snappy.
- */
 const submitUrlToBing = async (slug) => {
   const url = `${process.env.FRONTEND_URL}/posts/${slug}`;
-  const endpoint = `https://www.bing.com/indexnow?url=${encodeURIComponent(url)}&key=${process.env.BING_API_KEY}`;
+  const endpoint = `https://api.indexnow.org/indexnow`; // Use the official API endpoint
+
+  const payload = {
+    host: new URL(process.env.FRONTEND_URL).hostname,
+    key: process.env.BING_API_KEY,
+    urlList: [url]
+  };
 
   try {
-    await axios.post(endpoint);
+    await axios.post(endpoint, payload, {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    });
     console.log(`[Bing Indexing] Successfully submitted: ${url}`);
   } catch (error) {
-    // We log it but don't throw, so the user's post action succeeds even if Bing is down.
-    console.error(`[Bing Indexing] Failed for ${url}:`, error.message);
+    // The error object provides more detail about why the 415/400 occurred
+    console.error(`[Bing Indexing] Failed for ${url}:`, error.response?.data || error.message);
   }
 };
 

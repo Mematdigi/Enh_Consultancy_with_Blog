@@ -14,7 +14,7 @@ function Services() {
     { icon: <FiArrowDownRight />, title: "Digital Marketing Consulting", description: "Using data, automation, and AI-driven audience insights, our digital marketing consulting firm in Dubai assists companies in developing high-performance digital strategies that produce actual, quantifiable growth. From paid media and SEO to content strategy and conversion optimization, we create digital marketing systems that consistently deliver results and effectively scale across every platform.", link: "/digital-marketing-consulting-services-in-dubai", number: "03" },
     { icon: <FiArrowDownRight />, title: "EdTech Consulting", description: "EdTech Consulting in Dubai by ENH assists educational institutions, training organizations, and companies providing learning technologies in designing, developing, and expanding more sophisticated digital learning experiences supported by artificial intelligence and contemporary technological infrastructure.", link: "/edtech-consulting-services-in-dubai", number: "04" },
     { icon: <FiArrowDownRight />, title: "IT Consulting", description: "As a reputable IT consulting firm in Dubai, ENH assists companies in modernizing their technology infrastructure, enhancing system performance, and matching their IT investments to the strategic objectives that genuinely promote expansion. From system integration and digital transformation planning to cloud migration and cybersecurity concerns, our IT consulting team provides realistic answers that function in the actual world.", link: "/it-consulting-services-in-dubai", number: "05" },
-    { icon: <FiArrowDownRight />, title: "Startup Consulting", description: "Our startup consulting business is especially designed for founders who need more than just guidance; they need a hands-on partner who knows the Dubai startup scene, acts swiftly, and assists them in developing the systems, processes, and technical foundations that give early-stage firms the finest possible chance of successfully growing.", link: "/Startup-consulting-services-in-dubai", number: "06" },
+    { icon: <FiArrowDownRight />, title: "Startup Consulting", description: "Our startup consulting business is especially designed for founders who need more than just guidance; they need a hands-on partner who knows the Dubai startup scene, acts swiftly, and assists them in developing the systems, processes, and technical foundations that give early-stage firms the finest possible chance of successfully growing.", link: "/startup-consulting-services-in-dubai", number: "06" },
   ];
 
   const postUrl = window.location.href;
@@ -23,7 +23,7 @@ function Services() {
       <Helmet>
         <title>ENH Consulting Services</title>
         <meta name="description" content="Explore ENH's major consulting services in Dubai, UAE, designed to support business growth, digital transformation, and long-term success." />
-        <link rel="canonical" href={postUrl} />
+        <link rel="canonical" href={`https://enh.consulting/consulting/`} />
       </Helmet>
       {/* Breadcrumb Section */}
       {/* <BreadcrumbBanner title="Services" /> */}

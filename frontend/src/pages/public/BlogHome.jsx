@@ -34,13 +34,12 @@ export default function BlogHome() {
     load();
   }, [page]);
 
-  const postUrl = window.location.href;
   return (
     <div className='min-h-screen bg-gradient-to-br from-[#fff4e1] via-[#fdedce] to-[#ffd78a]'>
       <Helmet>
         <title>ENH Consulting Blogs</title>
         <meta name="description" content="Stay updated with the latest tech, AI, consulting, & business solutions through ENH Consulting Blogs. Discover expert tips to grow your business in Dubai, UAE." />
-        <link rel="canonical" href={postUrl} />
+        <link rel="canonical" href={`https://enh.consulting/blog/`} />
       </Helmet>
 
       <main className="mx-auto px-4 py-8 sm:px-6 sm:py-10">

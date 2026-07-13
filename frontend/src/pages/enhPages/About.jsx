@@ -7,6 +7,9 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import aboutImage from '../../../public/about.jpg'
+import missionImage from '../../../public/mission.webp'
+import visionImage from '../../../public/vision.webp'
 
 // ── Shared variants ──────────────────────────────────────────────────────────
 const fadeUp = { hidden: { opacity: 0, y: 44 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } };
@@ -87,7 +90,7 @@ function About() {
       <Helmet>
         <title>About ENH Consulting</title>
         <meta name="description" content='Learn about ENH Consulting, a Dubai-based firm helping business across the UAE embrace AI, innovation, and digital transformation for sustainable growth. ' />
-        <link rel="canonical" href={postUrl} />
+        <link rel="canonical" href={`https://enh.consulting/about`} />
       </Helmet>
       {/* Breadcrumb */}
       {/* <BreadcrumbBanner title="About" /> */}
@@ -114,7 +117,7 @@ function About() {
               <motion.div className="about-img-frame"
                 initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
                 viewport={vp} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}>
-                <motion.img src="./about.jpg" alt="About Us" className="img-fluid"
+                <motion.img src={aboutImage} alt="About Us" className="img-fluid"
                   style={{ scale: imgScale, borderRadius: 16 }} />
                 <div className="about-img-ring" />
                 <div className="about-img-ring about-img-ring--2" />
@@ -190,7 +193,7 @@ function About() {
               <Col md={4} className="d-flex flex-column">
                 <motion.div variants={cardV} whileHover={{ y: -8, boxShadow: "0 20px 48px rgba(133,86,25,0.15)" }} className="image-card mb-4">
                   <div className="biz-img-wrap">
-                    <img src="./mission.webp" alt="Mission" className="img-fluid" />
+                    <img src={missionImage} alt="Our Mission" className="img-fluid" />
                     <div className="biz-img-overlay" />
                   </div>
                 </motion.div>
@@ -248,7 +251,7 @@ function About() {
                 </motion.div>
                 <motion.div variants={cardV} whileHover={{ y: -8, boxShadow: "0 20px 48px rgba(133,86,25,0.15)" }} className="image-card">
                   <div className="biz-img-wrap">
-                    <img src="./vision.webp" alt="Vision" className="img-fluid" />
+                    <img src={visionImage} alt="Our Vision" className="img-fluid" />
                     <div className="biz-img-overlay" />
                   </div>
                 </motion.div>

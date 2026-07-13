@@ -1057,7 +1057,7 @@ function AiConsulting() {
             <Helmet>
                 <title>AI Consulting Services in Dubai | Hire an AI Consultant Today</title>
                 <meta name="description" content="Looking to hire an AI consultant in Dubai? We deliver tailored AI consulting services that drive real business results. Book a free consultation today." />
-                <link rel="canonical" href={postUrl} />
+                <link rel="canonical" href={`https://enh.consulting/ai-consulting-services-in-dubai`} />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

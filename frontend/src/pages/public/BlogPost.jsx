@@ -233,7 +233,7 @@ export default function BlogPost() {
       <Helmet>
         <title>{post.seoMeta.metaTitle}</title>
         <meta name="description" content={post.seoMeta.metaDescription} />
-        <link rel="canonical" href={postUrl} />
+        <link rel="canonical" href={`https://enh.consulting/blog/${post.slug}`} />
       </Helmet>
 
       {/* Featured Image */}
@@ -246,7 +246,7 @@ export default function BlogPost() {
       <main className="  mx-auto px-4 sm:px-6 py-10">
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Article */}
-          <article className="flex-1 min-w-0">
+          <article className="flex-1 min-w-0">``
             {/* Header */}
             <div className="mb-8">
               {post.category && (

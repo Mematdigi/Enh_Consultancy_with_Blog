@@ -46,24 +46,28 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && react-snap && ln -sf /var/www/enhconsulting/frontend/public/uploads /var/www/enhconsulting/frontend/dist/uploads",
+    "build": "vite build && react-snap && node scripts/flatten.js && ln -sf /var/www/enhconsulting/frontend/public/uploads /var/www/enhconsulting/frontend/dist/uploads",
     "preview": "vite preview"
   },
-  "reactSnap": {
-    "source": "dist",
-    "skipThirdPartyRequests": true,
-    "include": [
-      "/",
-      "/about",
-      "/contact",
-      "/consulting",
-      "/ai-consulting-services-in-dubai",
-      "/business-consulting-services-in-dubai",
-      "/digital-marketing-consulting-services-in-dubai",
-      "/edtech-consulting-services-in-dubai",
-      "/it-consulting-services-in-dubai",
-      "/startup-consulting-services-in-dubai",
-      "/blog"
-    ]
-  }
+"reactSnap": {
+  "source": "dist",
+  "skipThirdPartyRequests": true,
+  "puppeteerArgs": [
+    "--no-sandbox",
+    "--disable-setuid-sandbox"
+  ],
+  "include": [
+    "/",
+    "/about",
+    "/contact",
+    "/consulting",
+    "/ai-consulting-services-in-dubai",
+    "/business-consulting-services-in-dubai",
+    "/digital-marketing-consulting-services-in-dubai",
+    "/edtech-consulting-services-in-dubai",
+    "/it-consulting-services-in-dubai",
+    "/startup-consulting-services-in-dubai",
+    "/blog"
+  ]
+}
 }

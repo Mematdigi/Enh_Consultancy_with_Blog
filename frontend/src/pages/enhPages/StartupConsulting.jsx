@@ -1200,7 +1200,7 @@ function StartupConsultancy() {
             <Helmet>
                 <title>Startup Consulting Services in Dubai | Expert Business Consultants</title>
                 <meta name="description" content="Need startup consulting services in Dubai? We guide founders from idea to scale with proven business strategies. Hire a startup consultant today." />
-                <link rel="canonical" href={postUrl} />
+                <link rel="canonical" href={`https://enh.consulting/startup-consulting-services-in-dubai`} />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

@@ -1092,7 +1092,7 @@ function BusinessConsultancy() {
             <Helmet>
                 <title>Business Consulting Services in Dubai for Growth & Strategy</title>
                 <meta name="description" content="Get expert business consulting services in Dubai to improve strategy, operations, and growth. Work with Enh Consulting to scale your business faster. Book a free consultation today." />
-                <link rel="canonical" href={postUrl} />
+                <link rel="canonical" href={`https://enh.consulting/business-consulting-services-in-dubai`} />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

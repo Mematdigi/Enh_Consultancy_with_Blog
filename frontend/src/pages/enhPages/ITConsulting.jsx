@@ -1098,7 +1098,7 @@ function ItConsultancy() {
             <Helmet>
                 <title>IT Consulting Services in Dubai | Trusted IT Consultancy</title>
                 <meta name="description" content="Looking for IT consulting services in Dubai? We deliver expert IT strategy, solutions & consultancy for businesses across the UAE. Book a free consultation today." />
-                <link rel="canonical" href={postUrl} />
+                <link rel="canonical" href={`https://enh.consulting/it-consulting-services-in-dubai`} />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

@@ -27,7 +27,7 @@ function Contact() {
       <Helmet>
         <title>Contact ENH Consulting | AI & Digital Growth Experts </title>
         <meta name="description" content='Get in touch with ENH Consulting for AI consulting, digital transformation, and business growth solutions in Dubai and across the UAE. ' />
-        <link rel="canonical" href={postUrl} />
+        <link rel="canonical" href={`https://enh.consulting/contact`} />
       </Helmet>
       {/* Dynamic Breadcrumb */}
       {/* <BreadcrumbBanner title="Contact" /> */}

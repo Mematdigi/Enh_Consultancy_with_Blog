@@ -58,7 +58,7 @@ const postUrl = window.location.href;
       <Helmet>
         <title>AI Consulting and Development Company in Dubai | ENH Consulting</title>
         <meta name="description" content="ENH Consulting is an AI consulting and development company in Dubai helping startups & SMEs with strategy, custom tools & marketing. Book a free call today." />
-        <link rel="canonical" href={postUrl} />
+        <link rel="canonical" href={`https://enh.consulting`} />
       </Helmet>
       {/* Animated background blobs */}
       <div className="bg-blob blob-1" />

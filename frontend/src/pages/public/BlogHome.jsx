@@ -20,57 +20,67 @@ export default function BlogHome() {
       setLoading(true);
       try {
         const { data } = await api.get(`/posts?page=${page}&limit=9`);
-        const all = data.data;
+        const all = Array.isArray(data?.data) ? data.data : [];
         if (page === 1 && all.length > 0) {
           setFeatured(all[0]);
           setPosts(all.slice(1));
         } else {
           setPosts(all);
         }
-        setPagination(data.pagination);
+        setPagination(data?.pagination || {});
       } catch (e) { console.error(e); }
       finally { setLoading(false); }
     };
     load();
   }, [page]);
 
-  const postUrl = window.location.href;
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'linear-gradient(135deg, rgb(255, 244, 225) 0%, rgb(253, 237, 206) 60%, rgb(255, 215, 138) 100%)' }}>
+    <div className='min-h-screen bg-gradient-to-br from-[#fff4e1] via-[#fdedce] to-[#ffd78a]'>
       <Helmet>
         <title>ENH Consulting Blogs</title>
         <meta name="description" content="Stay updated with the latest tech, AI, consulting, & business solutions through ENH Consulting Blogs. Discover expert tips to grow your business in Dubai, UAE." />
-        <link rel="canonical" href={postUrl} />
+        <link rel="canonical" href={`https://enh.consulting/blog`} />
       </Helmet>
 
-      <main className="  mx-auto px-4 sm:px-6 py-10">
+      <main className="mx-auto px-4 py-8 sm:px-6 sm:py-10">
         {/* Hero featured post */}
         {featured && page === 1 && (
-          <Link to={`/blog/${featured.slug}`} className="block mb-10 group">
-            <div className="relative rounded-3xl overflow-hidden bg-ink-900 aspect-[21/9] shadow-xl">
+          <Link to={`/blog/${featured.slug}`} className="group mb-8 block sm:mb-10">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-ink-900 shadow-xl sm:aspect-[26/9] sm:rounded-3xl">
               {featured.featuredImage?.url ? (
-                <img src={imageUrl(featured.featuredImage.url)} alt={featured.featuredImage.alt} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" />
+                <img
+                  src={imageUrl(featured.featuredImage.url)}
+                  alt={featured.featuredImage.alt}
+                  className="absolute inset-0 h-full w-full object-cover opacity-60 transition-all duration-700 group-hover:scale-105 group-hover:opacity-70"
+                />
               ) : (
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-800 to-ink-900" />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
                 {featured.category && (
-                  <span className="inline-block mb-3 px-3 py-1 bg-brand-500 text-white text-xs font-semibold rounded-full uppercase tracking-wider">
+                  <span className="mb-3 inline-block rounded-full bg-brand-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white sm:text-xs">
                     {featured.category.name}
                   </span>
                 )}
-                <h1 className="font-serif text-white text-3xl md:text-4xl font-bold leading-tight mb-3 line-clamp-2">
+                <h1 className="mb-2 line-clamp-2 text-xl font-bold leading-tight text-white sm:mb-3 sm:text-3xl md:text-4xl">
                   {featured.title}
                 </h1>
                 {featured.excerpt && (
-                  <p className="text-white/70 text-sm md:text-base mb-4 line-clamp-2 max-w-2xl">{featured.excerpt}</p>
+                  <p className="mb-3 line-clamp-2 max-w-2xl text-xs text-white/70 sm:mb-4 sm:text-sm md:text-base">
+                    {featured.excerpt}
+                  </p>
                 )}
-                <div className="flex items-center gap-3 text-white/60 text-sm">
-                  <span>{featured.author?.name || 'Author'}</span>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-white/60 sm:gap-3 sm:text-sm">
+                  <span>{featured.author?.name || "Author"}</span>
                   <span>·</span>
-                  <span>{format(new Date(featured.createdAt), 'MMM d, yyyy')}</span>
-                  {featured.readingTime && <><span>·</span><span>{featured.readingTime} min read</span></>}
+                  <span>{format(new Date(featured.createdAt), "MMM d, yyyy")}</span>
+                  {featured.readingTime && (
+                    <>
+                      <span>·</span>
+                      <span>{featured.readingTime} min read</span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -82,7 +92,7 @@ export default function BlogHome() {
           {/* Posts grid */}
           <div className="flex-1 min-w-0">
             {loading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-5">
                 {[...Array(6)].map((_, i) => (
                   <div key={i} className="bg-white rounded-2xl border border-ink-100 overflow-hidden animate-pulse">
                     <div className="aspect-[16/9] bg-ink-100" />
@@ -100,7 +110,7 @@ export default function BlogHome() {
                 <p className="text-lg">No posts published yet.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-5">
                 {posts.map((post) => <PostCard key={post._id} post={post} />)}
               </div>
             )}

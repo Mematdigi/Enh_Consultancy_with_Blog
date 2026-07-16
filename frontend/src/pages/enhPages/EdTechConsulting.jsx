@@ -1034,7 +1034,7 @@ export default function EdTechConsultancy() {
             <Helmet>
                 <title>EdTech Consulting Services in Dubai | EdTech Consultancy UAE</title>
                 <meta name="description" content="Hire a leading EdTech consultant in Dubai for strategy, brand positioning & growth. We help education businesses in UAE scale smarter. Book a free call today." />
-                <link rel="canonical" href={postUrl} />
+                <link rel="canonical" href={`https://enh.consulting/edtech-consulting-services-in-dubai`} />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

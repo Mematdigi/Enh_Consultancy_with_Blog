@@ -128,64 +128,73 @@ export default function BlogPost() {
       window.scrollTo(0, 0);
       try {
         const { data } = await api.get(`/posts/${slug}`);
-        const p = data.data;
-        setPost(p);
-        setToc(buildTOC(p.content));
+        const p = data?.data;
+        if (p) {
+          setPost(p);
+          setToc(buildTOC(p.content || ''));
 
-        // Inject heading IDs and set content
-        setTimeout(() => {
-          if (contentRef.current) {
-            const headings = contentRef.current.querySelectorAll('h2, h3');
-            headings.forEach((h, i) => { h.id = `toc-${i}`; });
+          // Inject heading IDs and set content
+          setTimeout(() => {
+            if (contentRef.current) {
+              const headings = contentRef.current.querySelectorAll('h2, h3');
+              headings.forEach((h, i) => { h.id = `toc-${i}`; });
 
-            // Add copy buttons to code blocks
-            contentRef.current.querySelectorAll('pre').forEach((pre) => {
-              if (!pre.querySelector('.copy-code-btn')) {
-                const btn = document.createElement('button');
-                btn.className = 'copy-code-btn';
-                btn.textContent = 'Copy';
-                btn.onclick = () => {
-                  const code = pre.querySelector('code');
-                  navigator.clipboard.writeText(code?.textContent || pre.textContent).then(() => {
-                    btn.textContent = 'Copied!';
-                    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
-                  });
+              // Add copy buttons to code blocks
+              contentRef.current.querySelectorAll('pre').forEach((pre) => {
+                if (!pre.querySelector('.copy-code-btn')) {
+                  const btn = document.createElement('button');
+                  btn.className = 'copy-code-btn';
+                  btn.textContent = 'Copy';
+                  btn.onclick = () => {
+                    const code = pre.querySelector('code');
+                    navigator.clipboard.writeText(code?.textContent || pre.textContent).then(() => {
+                      btn.textContent = 'Copied!';
+                      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+                    });
+                  };
+                  pre.style.position = 'relative';
+                  pre.appendChild(btn);
+                }
+              });
+
+              // Image preview modal + normalize relative src so content images resolve from site root
+              contentRef.current.querySelectorAll('img').forEach((img) => {
+                const raw = img.getAttribute('src') || '';
+                if (raw && !/^https?:\/\//i.test(raw) && !raw.startsWith('/')) {
+                  img.setAttribute('src', `/${raw}`); // "uploads/x.jpg" → "/uploads/x.jpg"
+                }
+                img.style.cursor = 'zoom-in';
+                img.onclick = () => {
+                  const overlay = document.createElement('div');
+                  overlay.className = 'img-preview-overlay';
+                  const clone = document.createElement('img');
+                  clone.src = img.src;
+                  clone.style.cssText = 'max-width:90vw;max-height:90vh;border-radius:12px;';
+                  overlay.appendChild(clone);
+                  overlay.onclick = () => document.body.removeChild(overlay);
+                  document.body.appendChild(overlay);
                 };
-                pre.style.position = 'relative';
-                pre.appendChild(btn);
-              }
-            });
+              });
+            }
+          }, 100);
 
-            // Image preview modal + normalize relative src so content images resolve from site root
-            contentRef.current.querySelectorAll('img').forEach((img) => {
-              const raw = img.getAttribute('src') || '';
-              if (raw && !/^https?:\/\//i.test(raw) && !raw.startsWith('/')) {
-                img.setAttribute('src', `/${raw}`); // "uploads/x.jpg" → "/uploads/x.jpg"
-              }
-              img.style.cursor = 'zoom-in';
-              img.onclick = () => {
-                const overlay = document.createElement('div');
-                overlay.className = 'img-preview-overlay';
-                const clone = document.createElement('img');
-                clone.src = img.src;
-                clone.style.cssText = 'max-width:90vw;max-height:90vh;border-radius:12px;';
-                overlay.appendChild(clone);
-                overlay.onclick = () => document.body.removeChild(overlay);
-                document.body.appendChild(overlay);
-              };
-            });
+          // Load related posts
+          if (p.category?._id) {
+            try {
+              const rel = await api.get(`/posts?category=${p.category._id}&limit=4`);
+              const relData = Array.isArray(rel.data?.data) ? rel.data.data : [];
+              setRelated(relData.filter((r) => r._id !== p._id).slice(0, 3));
+            } catch (e) { console.error(e); }
           }
-        }, 100);
 
-        // Load related posts
-        if (p.category?._id) {
-          const rel = await api.get(`/posts?category=${p.category._id}&limit=4`);
-          setRelated(rel.data.data.filter((r) => r._id !== p._id).slice(0, 3));
+          // Load comments
+          try {
+            const comm = await api.get(`/comments/post/${p._id}`);
+            setComments(Array.isArray(comm.data?.data) ? comm.data.data : []);
+          } catch (e) { console.error(e); }
+        } else {
+          setPost(null);
         }
-
-        // Load comments
-        const comm = await api.get(`/comments/post/${p._id}`);
-        setComments(comm.data.data);
       } catch (e) {
         console.error(e);
       } finally {
@@ -224,7 +233,7 @@ export default function BlogPost() {
       <Helmet>
         <title>{post.seoMeta.metaTitle}</title>
         <meta name="description" content={post.seoMeta.metaDescription} />
-        <link rel="canonical" href={postUrl} />
+        <link rel="canonical" href={`https://enh.consulting/blog/${post.slug}`} />
       </Helmet>
 
       {/* Featured Image */}
@@ -237,7 +246,7 @@ export default function BlogPost() {
       <main className="  mx-auto px-4 sm:px-6 py-10">
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Article */}
-          <article className="flex-1 min-w-0">
+          <article className="flex-1 min-w-0">``
             {/* Header */}
             <div className="mb-8">
               {post.category && (

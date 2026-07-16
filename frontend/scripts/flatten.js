@@ -10,6 +10,9 @@ entries.forEach((entry) => {
 
     if (!fs.statSync(full).isDirectory()) return;
 
+    // Skip the blog directory because it contains the statically generated blog posts and its index.html
+    if (entry === 'blog') return;
+
     const indexFile = path.join(full, "index.html");
 
     if (!fs.existsSync(indexFile)) return;

@@ -20,7 +20,10 @@ const enquiryRoutes = require('./routes/Enquiries'); // ← NEW
 const app = express();
 
 // Connect to MongoDB
-connectDB();
+connectDB().then(() => {
+  const { regenerateAllBlogPages } = require('./services/staticGenerator');
+  regenerateAllBlogPages();
+});
 
 // Middleware
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));

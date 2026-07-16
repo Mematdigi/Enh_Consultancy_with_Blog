@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../utils/api';
 import BlogHeader from '../../components/public/BlogHeader';
@@ -6,16 +6,44 @@ import BlogSidebar from '../../components/public/BlogSidebar';
 import PostCard from '../../components/public/PostCard';
 import { format } from 'date-fns';
 import { Helmet } from 'react-helmet-async';
-import { imageUrl } from '../../lib/imageUrl'; // ← adjust path if your lib folder differs
+import { imageUrl } from '../../lib/imageUrl'; // adjust path if your lib folder differs
 
 export default function BlogHome() {
-  const [posts, setPosts] = useState([]);
-  const [featured, setFeatured] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState(() => {
+    if (typeof window !== 'undefined' && window.__INITIAL_DATA__ && window.__INITIAL_DATA__.posts) {
+      const all = window.__INITIAL_DATA__.posts;
+      return all.length > 0 ? all.slice(1) : all;
+    }
+    return [];
+  });
+  const [featured, setFeatured] = useState(() => {
+    if (typeof window !== 'undefined' && window.__INITIAL_DATA__ && window.__INITIAL_DATA__.posts) {
+      return window.__INITIAL_DATA__.posts[0] || null;
+    }
+    return null;
+  });
+  const [loading, setLoading] = useState(() => {
+    if (typeof window !== 'undefined' && window.__INITIAL_DATA__ && window.__INITIAL_DATA__.posts) {
+      return false;
+    }
+    return true;
+  });
   const [page, setPage] = useState(1);
-  const [pagination, setPagination] = useState({});
+  const [pagination, setPagination] = useState(() => {
+    if (typeof window !== 'undefined' && window.__INITIAL_DATA__ && window.__INITIAL_DATA__.posts) {
+      const total = window.__INITIAL_DATA__.posts.length;
+      return { total, page: 1, limit: 9, pages: Math.ceil(total / 9) };
+    }
+    return {};
+  });
+
+  const isHydrated = useRef(typeof window !== 'undefined' && !!window.__INITIAL_DATA__ && !!window.__INITIAL_DATA__.posts);
 
   useEffect(() => {
+    if (isHydrated.current && page === 1) {
+      isHydrated.current = false;
+      return;
+    }
     const load = async () => {
       setLoading(true);
       try {

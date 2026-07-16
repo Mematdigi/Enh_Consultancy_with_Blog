@@ -115,16 +115,34 @@ function ShareButtons({ title, url }) {
 // ── Main component ────────────────────────────────────────────────
 export default function BlogPost() {
   const { slug } = useParams();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState(() => {
+    if (typeof window !== 'undefined' && window.__INITIAL_DATA__ && window.__INITIAL_DATA__.slug === slug) {
+      return window.__INITIAL_DATA__;
+    }
+    return null;
+  });
   const [related, setRelated] = useState([]);
   const [comments, setComments] = useState([]);
-  const [toc, setToc] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [toc, setToc] = useState(() => {
+    if (typeof window !== 'undefined' && window.__INITIAL_DATA__ && window.__INITIAL_DATA__.slug === slug) {
+      return buildTOC(window.__INITIAL_DATA__.content || '');
+    }
+    return [];
+  });
+  const [loading, setLoading] = useState(() => {
+    if (typeof window !== 'undefined' && window.__INITIAL_DATA__ && window.__INITIAL_DATA__.slug === slug) {
+      return false;
+    }
+    return true;
+  });
   const contentRef = useRef(null);
 
   useEffect(() => {
     const load = async () => {
-      setLoading(true);
+      const hasInitialData = typeof window !== 'undefined' && window.__INITIAL_DATA__ && window.__INITIAL_DATA__.slug === slug;
+      if (!hasInitialData) {
+        setLoading(true);
+      }
       window.scrollTo(0, 0);
       try {
         const { data } = await api.get(`/posts/${slug}`);

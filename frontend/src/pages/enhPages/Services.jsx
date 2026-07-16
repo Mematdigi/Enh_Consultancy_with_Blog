@@ -23,7 +23,7 @@ function Services() {
       <Helmet>
         <title>ENH Consulting Services</title>
         <meta name="description" content="Explore ENH's major consulting services in Dubai, UAE, designed to support business growth, digital transformation, and long-term success." />
-        <link rel="canonical" href={`https://enh.consulting/consulting/`} />
+        <link rel="canonical" href={`https://enh.consulting/consulting`} />
       </Helmet>
       {/* Breadcrumb Section */}
       {/* <BreadcrumbBanner title="Services" /> */}

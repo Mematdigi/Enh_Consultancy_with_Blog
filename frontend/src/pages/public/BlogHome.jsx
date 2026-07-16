@@ -39,7 +39,7 @@ export default function BlogHome() {
       <Helmet>
         <title>ENH Consulting Blogs</title>
         <meta name="description" content="Stay updated with the latest tech, AI, consulting, & business solutions through ENH Consulting Blogs. Discover expert tips to grow your business in Dubai, UAE." />
-        <link rel="canonical" href={`https://enh.consulting/blog/`} />
+        <link rel="canonical" href={`https://enh.consulting/blog`} />
       </Helmet>
 
       <main className="mx-auto px-4 py-8 sm:px-6 sm:py-10">

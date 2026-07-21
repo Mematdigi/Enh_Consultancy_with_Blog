@@ -7,6 +7,7 @@ const upload = require('../config/upload');
 const { protect } = require('../middleware/auth');
 const path = require('path');
 const fs = require('fs');
+const { regenerateAllBlogPages, generatePostPage } = require('../services/staticGenerator');
 
 // ─── TAGS ROUTER ──────────────────────────────────────────────────
 const tagRouter = express.Router();
@@ -38,6 +39,10 @@ tagRouter.put('/:id', protect, async (req, res, next) => {
     const { name } = req.body;
     const slug = slugify(name, { lower: true, strict: true });
     const tag = await Tag.findByIdAndUpdate(req.params.id, { name, slug }, { new: true });
+    
+    // Regenerate pages to reflect updated tag details
+    await regenerateAllBlogPages();
+
     res.json({ success: true, data: tag });
   } catch (err) { next(err); }
 });
@@ -45,6 +50,10 @@ tagRouter.put('/:id', protect, async (req, res, next) => {
 tagRouter.delete('/:id', protect, async (req, res, next) => {
   try {
     await Tag.findByIdAndDelete(req.params.id);
+    
+    // Regenerate pages since posts won't reference this tag anymore
+    await regenerateAllBlogPages();
+
     res.json({ success: true, message: 'Tag deleted' });
   } catch (err) { next(err); }
 });
@@ -77,6 +86,10 @@ authorRouter.put('/:id', protect, upload.single('avatar'), async (req, res, next
     const updateData = { name, bio, socialLinks: typeof socialLinks === 'string' ? JSON.parse(socialLinks) : socialLinks };
     if (req.file) updateData.avatar = process.env.UPLOAD_TYPE === 'cloudinary' ? req.file.path : `/uploads/${req.file.filename}`;
     const author = await Author.findByIdAndUpdate(req.params.id, updateData, { new: true });
+    
+    // Regenerate pages since author details display on all their blog posts
+    await regenerateAllBlogPages();
+
     res.json({ success: true, data: author });
   } catch (err) { next(err); }
 });
@@ -84,6 +97,10 @@ authorRouter.put('/:id', protect, upload.single('avatar'), async (req, res, next
 authorRouter.delete('/:id', protect, async (req, res, next) => {
   try {
     await Author.findByIdAndDelete(req.params.id);
+    
+    // Regenerate pages since posts from this author won't display author info anymore
+    await regenerateAllBlogPages();
+
     res.json({ success: true, message: 'Author deleted' });
   } catch (err) { next(err); }
 });
@@ -177,13 +194,35 @@ commentRouter.post('/', async (req, res, next) => {
 commentRouter.put('/:id/approve', protect, async (req, res, next) => {
   try {
     const comment = await Comment.findByIdAndUpdate(req.params.id, { approved: true }, { new: true });
+    if (comment) {
+      const Post = require('../models/Post');
+      const post = await Post.findById(comment.post)
+        .populate('category', 'name slug')
+        .populate('tags', 'name slug')
+        .populate('author', 'name bio avatar socialLinks');
+      if (post) {
+        await generatePostPage(post);
+      }
+    }
     res.json({ success: true, data: comment });
   } catch (err) { next(err); }
 });
 
 commentRouter.delete('/:id', protect, async (req, res, next) => {
   try {
-    await Comment.findByIdAndDelete(req.params.id);
+    const comment = await Comment.findById(req.params.id);
+    if (comment) {
+      await Comment.findByIdAndDelete(req.params.id);
+      
+      const Post = require('../models/Post');
+      const post = await Post.findById(comment.post)
+        .populate('category', 'name slug')
+        .populate('tags', 'name slug')
+        .populate('author', 'name bio avatar socialLinks');
+      if (post) {
+        await generatePostPage(post);
+      }
+    }
     res.json({ success: true, message: 'Comment deleted' });
   } catch (err) { next(err); }
 });

@@ -52,14 +52,30 @@ function Banner() {
     }
   };
 
-const postUrl = window.location.href;
+  const postUrl = window.location.href;
   return (
     <section className="hero-banner">
-      <Helmet>
+    <Helmet>
         <title>AI Consulting and Development Company in Dubai | ENH Consulting</title>
         <meta name="description" content="ENH Consulting is an AI consulting and development company in Dubai helping startups & SMEs with strategy, custom tools & marketing. Book a free call today." />
-        <link rel="canonical" href={`https://enh.consulting`} />
-      </Helmet>
+        <link rel="canonical" href="https://enh.consulting" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ENH Consulting" />
+        <meta property="og:locale" content="en_US" />
+
+        <meta property="og:title" content="AI Consulting and Development Company in Dubai | ENH Consulting" />
+        <meta property="og:description" content="ENH Consulting is an AI consulting and development company in Dubai helping startups & SMEs with strategy, custom tools & marketing. Book a free call today." />
+        <meta property="og:url" content="https://enh.consulting" />
+        <meta property="og:image" content="https://enh.consulting/ENH_logo.png" />
+        <meta property="og:image:width" content="614" />
+        <meta property="og:image:height" content="154" />
+        <meta property="og:image:alt" content="ENH Logo" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AI Consulting and Development Company in Dubai | ENH Consulting" />
+        <meta name="twitter:description" content="ENH Consulting is an AI consulting and development company in Dubai helping startups & SMEs with strategy, custom tools & marketing. Book a free call today." />
+        <meta name="twitter:image" content="https://enh.consulting/ENH_logo.png" />
+  </Helmet>
       {/* Animated background blobs */}
       <div className="bg-blob blob-1" />
       <div className="bg-blob blob-2" />
@@ -71,9 +87,9 @@ const postUrl = window.location.href;
           {/* ── Left: Text + Buttons ── */}
           <Col lg={6} className="banner-text mb-4">
             {/* <div className="badge-pill">
-              <span className="badge-dot" />
-              ENH Consulting
-            </div> */}
+                                          <span className="badge-dot" />
+                                          ENH Consulting
+                                          </div> */}
 
             <h1 className="italic-text" style={{ color: "rgb(235, 174, 95)", fontSize: "35px", fontWeight: "800", lineHeight: "1.1" }}>
               AI Consulting & Development Company in Dubai Helping Businesses Grow Faster

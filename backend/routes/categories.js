@@ -3,6 +3,7 @@ const slugify = require('slugify');
 const { Category } = require('../models');
 const Post = require('../models/Post');
 const { protect } = require('../middleware/auth');
+const { regenerateAllBlogPages } = require('../services/staticGenerator');
 
 const router = express.Router();
 
@@ -45,6 +46,10 @@ router.put('/:id', protect, async (req, res, next) => {
     const { name, description } = req.body;
     const slug = slugify(name, { lower: true, strict: true });
     const cat = await Category.findByIdAndUpdate(req.params.id, { name, slug, description }, { new: true });
+    
+    // Regenerate pages to reflect changed category name/slug
+    await regenerateAllBlogPages();
+
     res.json({ success: true, data: cat });
   } catch (err) { next(err); }
 });
@@ -53,6 +58,10 @@ router.put('/:id', protect, async (req, res, next) => {
 router.delete('/:id', protect, async (req, res, next) => {
   try {
     await Category.findByIdAndDelete(req.params.id);
+    
+    // Regenerate pages since posts under this category won't show it anymore
+    await regenerateAllBlogPages();
+
     res.json({ success: true, message: 'Category deleted' });
   } catch (err) { next(err); }
 });

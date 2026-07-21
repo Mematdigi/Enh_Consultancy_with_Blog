@@ -1036,7 +1036,7 @@ function DigitalMarketingConsulting() {
         <div className="service-view-page">
             <Helmet>
                 <title>Best Digital Marketing Consultant in Dubai for Your Business</title>
-                <meta name="description" content="Get expert digital marketing consulting services that drive real leads. Enh Consulting helps businesses in Dubai scale with SEO, PPC & Automation. Contact us today." />
+                <meta name="description" content="ENH Consulting offers digital marketing consulting services in Dubai to help businesses grow with SEO, PPC, and digital strategies. Contact us Now." />
                 <link rel="canonical" href={`https://enh.consulting/digital-marketing-consulting-services-in-dubai`} />
             </Helmet>
             <HeroBanner data={data} />

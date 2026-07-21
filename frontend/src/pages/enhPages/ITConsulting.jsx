@@ -1097,7 +1097,7 @@ function ItConsultancy() {
         <div className="service-view-page">
             <Helmet>
                 <title>IT Consulting Services in Dubai | Trusted IT Consultancy</title>
-                <meta name="description" content="Looking for IT consulting services in Dubai? We deliver expert IT strategy, solutions & consultancy for businesses across the UAE. Book a free consultation today." />
+                <meta name="description" content="Get expert IT consulting services in Dubai with ENH Consulting. We improve IT strategy, security, and digital transformation. Contact us today." />
                 <link rel="canonical" href={`https://enh.consulting/it-consulting-services-in-dubai`} />
             </Helmet>
             <HeroBanner data={data} />

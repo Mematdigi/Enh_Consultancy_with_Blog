@@ -4,6 +4,7 @@ const Post = require('../models/Post');
 const upload = require('../config/upload'); // shared multer config (same folder as media uploads)
 const { protect } = require('../middleware/auth');
 const { submitUrlToBing } = require('../services/bingService');
+const { generatePostPage, generateBlogListPage, deletePostPage } = require('../services/staticGenerator');
 
 const router = express.Router();
 
@@ -191,6 +192,12 @@ router.post('/', protect, upload.single('image'), async (req, res, next) => {
     }
 
     await post.populate(['category', 'tags', 'author']);
+
+    if (post.status === 'published' && post.visibility === 'public') {
+      await generatePostPage(post);
+      await generateBlogListPage();
+    }
+
     res.status(201).json({ success: true, data: post });
   } catch (err) { next(err); }
 });
@@ -229,6 +236,12 @@ router.put('/:id', protect, upload.single('image'), async (req, res, next) => {
       updateData.featuredImage.url = fileUrl(req.file);
     }
 
+    const oldPost = await Post.findById(req.params.id);
+    if (!oldPost) return res.status(404).json({ success: false, message: 'Post not found' });
+    const oldSlug = oldPost.slug;
+    const oldStatus = oldPost.status;
+    const oldVisibility = oldPost.visibility;
+
     const post = await Post.findByIdAndUpdate(
       req.params.id,
       updateData,
@@ -242,6 +255,18 @@ router.put('/:id', protect, upload.single('image'), async (req, res, next) => {
       submitUrlToBing(post.slug);
     }
 
+    // Static pages generation and cleanup
+    if ((oldStatus === 'published' && oldVisibility === 'public') && 
+        (post.status !== 'published' || post.visibility !== 'public' || post.slug !== oldSlug)) {
+      deletePostPage(oldSlug);
+    }
+
+    if (post.status === 'published' && post.visibility === 'public') {
+      await generatePostPage(post);
+    }
+
+    await generateBlogListPage();
+
     res.json({ success: true, data: post });
   } catch (err) { next(err); }
 });
@@ -251,6 +276,12 @@ router.delete('/:id', protect, async (req, res, next) => {
   try {
     const post = await Post.findByIdAndDelete(req.params.id);
     if (!post) return res.status(404).json({ success: false, message: 'Post not found' });
+
+    if (post.status === 'published' && post.visibility === 'public') {
+      deletePostPage(post.slug);
+    }
+    await generateBlogListPage();
+
     res.json({ success: true, message: 'Post deleted' });
   } catch (err) { next(err); }
 });
@@ -259,7 +290,17 @@ router.delete('/:id', protect, async (req, res, next) => {
 router.post('/bulk-delete', protect, async (req, res, next) => {
   try {
     const { ids } = req.body;
+    const postsToDelete = await Post.find({ _id: { $in: ids } });
+
     await Post.deleteMany({ _id: { $in: ids } });
+
+    for (const post of postsToDelete) {
+      if (post.status === 'published' && post.visibility === 'public') {
+        deletePostPage(post.slug);
+      }
+    }
+    await generateBlogListPage();
+
     res.json({ success: true, message: `${ids.length} posts deleted` });
   } catch (err) { next(err); }
 });

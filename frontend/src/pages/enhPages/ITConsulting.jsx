@@ -207,7 +207,7 @@ function HeroBanner({ data }) {
     const bannerStagger = { hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } } };
 
     return (
-        <section className="svp-hero" style={{backgroundImage:`url(${serviceHeroBannerIt})`, backgroundSize: "cover", backgroundPosition: "center", position: "relative", overflow: "hidden"}}>
+        <section className="svp-hero" style={{ backgroundImage: `url(${serviceHeroBannerIt})`, backgroundSize: "cover", backgroundPosition: "center", position: "relative", overflow: "hidden" }}>
             <div style={{
                 position: "absolute",
                 inset: 0,
@@ -503,7 +503,7 @@ function Services() {
                         whileHover={{ scale: 1.04, x: 5, boxShadow: "0 8px 24px rgba(212,91,8,0.35)" }}
                         whileTap={{ scale: 0.97 }}>
                         <Link to="/contact" style={{ color: "inherit", textDecoration: "none" }}>
-                        <a href="/contact">Let’s Discuss Your Requirements</a>
+                            <a href="/contact">Let’s Discuss Your Requirements</a>
                         </Link>
                     </motion.button>
                 </motion.div>
@@ -834,7 +834,7 @@ function FAQSection({ data }) {
                                 Frequently Asked Questions About IT Consulting in Dubai
                             </motion.h2>
 
-                            
+
                             <motion.div className="svp-faq__media" variants={fadeUp}>
                                 <AnimatePresence mode="wait">
                                     <motion.div
@@ -1098,7 +1098,23 @@ function ItConsultancy() {
             <Helmet>
                 <title>IT Consulting Services in Dubai | Trusted IT Consultancy</title>
                 <meta name="description" content="Get expert IT consulting services in Dubai with ENH Consulting. We improve IT strategy, security, and digital transformation. Contact us today." />
-                <link rel="canonical" href={`https://enh.consulting/it-consulting-services-in-dubai`} />
+                <link rel="canonical" href="https://enh.consulting/it-consulting-services-in-dubai" />
+                <meta property="og:type" content="website" />
+                <meta property="og:site_name" content="ENH Consulting" />
+                <meta property="og:locale" content="en_US" />
+
+                <meta property="og:title" content="IT Consulting Services in Dubai | Trusted IT Consultancy" />
+                <meta property="og:description" content="Get expert IT consulting services in Dubai with ENH Consulting. We improve IT strategy, security, and digital transformation. Contact us today." />
+                <meta property="og:url" content="https://enh.consulting/it-consulting-services-in-dubai" />
+                <meta property="og:image" content="https://enh.consulting/assets/serviceHeroBannerIt-iV9k5fCm.webp" />
+                <meta property="og:image:width" content="1915" />
+                <meta property="og:image:height" content="821" />
+                <meta property="og:image:alt" content="IT Consulting Services in Dubai | Trusted IT Consultancy" />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="IT Consulting Services in Dubai | Trusted IT Consultancy" />
+                <meta name="twitter:description" content="Get expert IT consulting services in Dubai with ENH Consulting. We improve IT strategy, security, and digital transformation. Contact us today." />
+                <meta name="twitter:image" content="https://enh.consulting/assets/serviceHeroBannerIt-iV9k5fCm.webp" />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

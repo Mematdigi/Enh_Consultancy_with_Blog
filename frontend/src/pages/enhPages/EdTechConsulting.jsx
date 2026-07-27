@@ -203,7 +203,7 @@ function HeroBanner({ data }) {
     const bannerStagger = { hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } } };
 
     return (
-        <section className="svp-hero" style={{backgroundImage:`url(${serviceHeroBannerEdTech})`, backgroundSize: "cover", backgroundPosition: "center", position: "relative", overflow: "hidden"}}>
+        <section className="svp-hero" style={{ backgroundImage: `url(${serviceHeroBannerEdTech})`, backgroundSize: "cover", backgroundPosition: "center", position: "relative", overflow: "hidden" }}>
             <div style={{
                 position: "absolute",
                 inset: 0,
@@ -769,7 +769,7 @@ function FAQSection({ data }) {
                                 Frequently Asked Questions
                             </motion.h2>
 
-                            
+
                             <motion.div className="svp-faq__media" variants={fadeUp}>
                                 <AnimatePresence mode="wait">
                                     <motion.div
@@ -1034,7 +1034,23 @@ export default function EdTechConsultancy() {
             <Helmet>
                 <title>EdTech Consulting Services in Dubai | EdTech Consultancy UAE</title>
                 <meta name="description" content="Hire a leading EdTech consultant in Dubai for strategy, brand positioning & growth. We help education businesses in UAE scale smarter. Book a free call today." />
-                <link rel="canonical" href={`https://enh.consulting/edtech-consulting-services-in-dubai`} />
+                <link rel="canonical" href="https://enh.consulting/edtech-consulting-services-in-dubai" />
+                <meta property="og:type" content="website" />
+                <meta property="og:site_name" content="ENH Consulting" />
+                <meta property="og:locale" content="en_US" />
+
+                <meta property="og:title" content="EdTech Consulting Services in Dubai | EdTech Consultancy UAE" />
+                <meta property="og:description" content="Hire a leading EdTech consultant in Dubai for strategy, brand positioning & growth. We help education businesses in UAE scale smarter. Book a free call today." />
+                <meta property="og:url" content="https://enh.consulting/edtech-consulting-services-in-dubai" />
+                <meta property="og:image" content="https://enh.consulting/assets/serviceHeroBannerEdTech-K6NxB9LX.webp" />
+                <meta property="og:image:width" content="1727" />
+                <meta property="og:image:height" content="911" />
+                <meta property="og:image:alt" content="EdTech Consulting Services in Dubai | EdTech Consultancy UAE" />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="EdTech Consulting Services in Dubai | EdTech Consultancy UAE" />
+                <meta name="twitter:description" content="Hire a leading EdTech consultant in Dubai for strategy, brand positioning & growth. We help education businesses in UAE scale smarter. Book a free call today." />
+                <meta name="twitter:image" content="https://enh.consulting/assets/serviceHeroBannerEdTech-K6NxB9LX.webp" />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

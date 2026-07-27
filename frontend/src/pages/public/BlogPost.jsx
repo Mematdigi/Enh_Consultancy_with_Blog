@@ -252,6 +252,23 @@ export default function BlogPost() {
         <title>{post.seoMeta.metaTitle}</title>
         <meta name="description" content={post.seoMeta.metaDescription} />
         <link rel="canonical" href={`https://enh.consulting/blog/${post.slug}`} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ENH Consulting" />
+        <meta property="og:locale" content="en_US" />
+
+        <meta property="og:title" content={post.seoMeta.metaTitle}/>
+        <meta property="og:description" content={post.seoMeta.metaDescription}  />
+        <meta property="og:url" content={`https://enh.consulting/blog/${post.slug}`} />
+        <meta property="og:image" content={`${post.featuredImage.url}`} />
+        <meta property="og:image:width" content="667" />
+        <meta property="og:image:height" content="332" />
+        <meta property="og:image:alt" content={`${post.featuredImage.alt}`} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.seoMeta.metaTitle} />
+        <meta name="twitter:description" content={post.seoMeta.metaDescription} />
+        <meta name="twitter:image" content={`${post.featuredImage.url}`} />
       </Helmet>
 
       {/* Featured Image */}

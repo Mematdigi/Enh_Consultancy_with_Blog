@@ -223,15 +223,15 @@ function HeroBanner({ data }) {
     const bannerStagger = { hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } } };
 
     return (
-        <section className="svp-hero" style={{ backgroundImage: `url(${serviceHeroBannerAi})`, backgroundSize: "cover", backgroundPosition: "center", position: "relative", overflow: "hidden"}}>
+        <section className="svp-hero" style={{ backgroundImage: `url(${serviceHeroBannerAi})`, backgroundSize: "cover", backgroundPosition: "center", position: "relative", overflow: "hidden" }}>
             {/* ── Gradient overlay ── */}
-  <div style={{
-    position: "absolute",
-    inset: 0,
-    background: "linear-gradient(to right, rgba(228, 198, 140, 0.81) 0%, rgba(255, 237, 200, 0.57) 10%, rgba(243, 200, 114, 0.28) 65%, rgba(255,237,200,0.0) 90%)",
-    zIndex: 0,
-    pointerEvents: "none",
-  }} />
+            <div style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to right, rgba(228, 198, 140, 0.81) 0%, rgba(255, 237, 200, 0.57) 10%, rgba(243, 200, 114, 0.28) 65%, rgba(255,237,200,0.0) 90%)",
+                zIndex: 0,
+                pointerEvents: "none",
+            }} />
             <motion.span className="svp-blob svp-blob--1"
                 animate={{ x: [0, 28, -18, 0], y: [0, -22, 32, 0], scale: [1, 1.1, 0.94, 1] }}
                 transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }} />
@@ -1057,7 +1057,23 @@ function AiConsulting() {
             <Helmet>
                 <title>AI Consulting Services in Dubai | Hire an AI Consultant Today</title>
                 <meta name="description" content="Looking to hire an AI consultant in Dubai? We deliver tailored AI consulting services that drive real business results. Book a free consultation today." />
-                <link rel="canonical" href={`https://enh.consulting/ai-consulting-services-in-dubai`} />
+                <link rel="canonical" href="https://enh.consulting/ai-consulting-services-in-dubai" />
+                <meta property="og:type" content="website" />
+                <meta property="og:site_name" content="ENH Consulting" />
+                <meta property="og:locale" content="en_US" />
+
+                <meta property="og:title" content="AI Consulting Services in Dubai | Hire an AI Consultant Today" />
+                <meta property="og:description" content="Looking to hire an AI consultant in Dubai? We deliver tailored AI consulting services that drive real business results. Book a free consultation today." />
+                <meta property="og:url" content="https://enh.consulting/ai-consulting-services-in-dubai" />
+                <meta property="og:image" content="https://enh.consulting/assets/serviceHeroBannerAi-CjzjLyWN.webp" />
+                <meta property="og:image:width" content="1931" />
+                <meta property="og:image:height" content="814" />
+                <meta property="og:image:alt" content="AI Consulting Services in Dubai | Hire an AI Consultant Today" />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="AI Consulting Services in Dubai | Hire an AI Consultant Today" />
+                <meta name="twitter:description" content="Looking to hire an AI consultant in Dubai? We deliver tailored AI consulting services that drive real business results. Book a free consultation today." />
+                <meta name="twitter:image" content="https://enh.consulting/assets/serviceHeroBannerAi-CjzjLyWN.webp" />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

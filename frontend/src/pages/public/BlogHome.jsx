@@ -37,9 +37,25 @@ export default function BlogHome() {
   return (
     <div className='min-h-screen bg-gradient-to-br from-[#fff4e1] via-[#fdedce] to-[#ffd78a]'>
       <Helmet>
-        <title>ENH Consulting Blogs</title>
-        <meta name="description" content="Stay updated with the latest tech, AI, consulting, & business solutions through ENH Consulting Blogs. Discover expert tips to grow your business in Dubai, UAE." />
-        <link rel="canonical" href={`https://enh.consulting/blog`} />
+        <title>ENH Consulting Blogs | AI, IT & Business Insights</title>
+        <meta name="description" content="Explore expert blogs on AI, IT consulting, business strategy, startups, and digital transformation to help businesses grow in Dubai and the UAE." />
+        <link rel="canonical" href="https://enh.consulting/blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ENH Consulting" />
+        <meta property="og:locale" content="en_US" />
+
+        <meta property="og:title" content="ENH Consulting Blogs | AI, IT & Business Insights" />
+        <meta property="og:description" content="Explore expert blogs on AI, IT consulting, business strategy, startups, and digital transformation to help businesses grow in Dubai and the UAE." />
+        <meta property="og:url" content="https://enh.consulting/blog" />
+        <meta property="og:image" content="https://enh.consulting/ENH_logo.png" />
+        <meta property="og:image:width" content="150" />
+        <meta property="og:image:height" content="138" />
+        <meta property="og:image:alt" content="ENH Consulting Blogs | AI, IT & Business Insights" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ENH Consulting Blogs | AI, IT & Business Insights" />
+        <meta name="twitter:description" content="Explore expert blogs on AI, IT consulting, business strategy, startups, and digital transformation to help businesses grow in Dubai and the UAE." />
+        <meta name="twitter:image" content="https://enh.consulting/ENH_logo.png" />
       </Helmet>
 
       <main className="mx-auto px-4 py-8 sm:px-6 sm:py-10">

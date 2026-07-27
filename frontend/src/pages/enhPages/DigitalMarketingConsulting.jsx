@@ -211,7 +211,7 @@ function HeroBanner({ data }) {
     const bannerStagger = { hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } } };
 
     return (
-        <section className="svp-hero" style={{backgroundImage:`url(${serviceHeroBannerDigitalMarketing})`, backgroundSize: "cover", backgroundPosition: "center",position: "relative", overflow: "hidden"}}>
+        <section className="svp-hero" style={{ backgroundImage: `url(${serviceHeroBannerDigitalMarketing})`, backgroundSize: "cover", backgroundPosition: "center", position: "relative", overflow: "hidden" }}>
             <div style={{
                 position: "absolute",
                 inset: 0,
@@ -774,7 +774,7 @@ function FAQSection({ data }) {
                                 Frequently Asked Questions About Digital Marketing Consulting in Dubai
                             </motion.h2>
 
-                            
+
                             <motion.div className="svp-faq__media" variants={fadeUp}>
                                 <AnimatePresence mode="wait">
                                     <motion.div
@@ -1037,7 +1037,23 @@ function DigitalMarketingConsulting() {
             <Helmet>
                 <title>Best Digital Marketing Consultant in Dubai for Your Business</title>
                 <meta name="description" content="ENH Consulting offers digital marketing consulting services in Dubai to help businesses grow with SEO, PPC, and digital strategies. Contact us Now." />
-                <link rel="canonical" href={`https://enh.consulting/digital-marketing-consulting-services-in-dubai`} />
+                <link rel="canonical" href="https://enh.consulting/digital-marketing-consulting-services-in-dubai" />
+                <meta property="og:type" content="website" />
+                <meta property="og:site_name" content="ENH Consulting" />
+                <meta property="og:locale" content="en_US" />
+
+                <meta property="og:title" content="Best Digital Marketing Consultant in Dubai for Your Business" />
+                <meta property="og:description" content="ENH Consulting offers digital marketing consulting services in Dubai to help businesses grow with SEO, PPC, and digital strategies. Contact us Now." />
+                <meta property="og:url" content="https://enh.consulting/digital-marketing-consulting-services-in-dubai" />
+                <meta property="og:image" content="https://enh.consulting/assets/serviceHeroBannerDigitalMarketing-DYpg-5Y9.webp" />
+                <meta property="og:image:width" content="1935" />
+                <meta property="og:image:height" content="813" />
+                <meta property="og:image:alt" content="Digital Marketing Consulting Services in Dubai | ENH Consulting" />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Best Digital Marketing Consultant in Dubai for Your Business" />
+                <meta name="twitter:description" content="ENH Consulting offers digital marketing consulting services in Dubai to help businesses grow with SEO, PPC, and digital strategies. Contact us Now." />
+                <meta name="twitter:image" content="https://enh.consulting/assets/serviceHeroBannerDigitalMarketing-DYpg-5Y9.webp" />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

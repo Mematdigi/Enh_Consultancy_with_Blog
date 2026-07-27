@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import AnimationWrapper from "../../animations/AnimationWrapper";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FaArrowRight} from "react-icons/fa";
-import { FiArrowDownRight} from "react-icons/fi";
+import { FaArrowRight } from "react-icons/fa";
+import { FiArrowDownRight } from "react-icons/fi";
 import { Helmet } from "react-helmet-async";
 
 function Services() {
@@ -21,9 +21,25 @@ function Services() {
   return (
     <div className="services-page">
       <Helmet>
-        <title>ENH Consulting Services</title>
+        <title>Expert Consulting Services | ENH Consulting</title>
         <meta name="description" content="Explore ENH's major consulting services in Dubai, UAE, designed to support business growth, digital transformation, and long-term success." />
-        <link rel="canonical" href={`https://enh.consulting/consulting`} />
+        <link rel="canonical" href="https://enh.consulting/consulting" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ENH Consulting" />
+        <meta property="og:locale" content="en_US" />
+
+        <meta property="og:title" content="Expert Consulting Services | ENH Consulting" />
+        <meta property="og:description" content="Explore ENH's major consulting services in Dubai, UAE, designed to support business growth, digital transformation, and long-term success." />
+        <meta property="og:url" content="https://enh.consulting/consulting" />
+        <meta property="og:image" content="https://enh.consulting/ENH_logo.png" />
+        <meta property="og:image:width" content="150" />
+        <meta property="og:image:height" content="138" />
+        <meta property="og:image:alt" content="ENH Consulting Blogs | AI, IT & Business Insights" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Expert Consulting Services | ENH Consulting" />
+        <meta name="twitter:description" content="Explore ENH's major consulting services in Dubai, UAE, designed to support business growth, digital transformation, and long-term success." />
+        <meta name="twitter:image" content="https://enh.consulting/ENH_logo.png" />
       </Helmet>
       {/* Breadcrumb Section */}
       {/* <BreadcrumbBanner title="Services" /> */}
@@ -33,13 +49,13 @@ function Services() {
         <section className="services hover-lift">
           <Container>
             <div className="section-header text-center">
-              <motion.h2
+              <motion.h1
                 className="section-title"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-              >Our Services</motion.h2>
+              >Expert Consulting Services for Business Growth</motion.h1>
             </div>
             <Row>
               {serviceList.map((service, index) => (

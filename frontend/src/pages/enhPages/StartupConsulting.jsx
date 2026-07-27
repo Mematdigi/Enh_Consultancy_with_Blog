@@ -1198,10 +1198,26 @@ function StartupConsultancy() {
     return (
         <div className="service-view-page">
             <Helmet>
-                <title>Startup Consulting Services in Dubai | Expert Business Consultants</title>
-                <meta name="description" content="Need startup consulting services in Dubai? We guide founders from idea to scale with proven business strategies. Hire a startup consultant today." />
-                <link rel="canonical" href={`https://enh.consulting/startup-consulting-services-in-dubai`} />
-            </Helmet>
+        <title>Startup Consulting Services in Dubai | Expert Business Consultants</title>
+        <meta name="description" content="Launch and scale your business with expert startup consulting services in Dubai. ENH Consulting helps founders with strategy, business planning, market entry, and sustainable growth." />
+        <link rel="canonical" href="https://enh.consulting/startup-consulting-services-in-dubai" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ENH Consulting" />
+        <meta property="og:locale" content="en_US" />
+
+        <meta property="og:title" content="Startup Consulting Services in Dubai | Expert Business Consultants" />
+        <meta property="og:description" content="Need startup consulting services in Dubai? We guide founders from idea to scale with proven business strategies. Hire a startup consultant today." />
+        <meta property="og:url" content="https://enh.consulting/startup-consulting-services-in-dubai" />
+        <meta property="og:image" content="https://enh.consulting/assets/serviceHeroBannerStartup-CQ72AL34.webp" />
+        <meta property="og:image:width" content="1915" />
+        <meta property="og:image:height" content="821" />
+        <meta property="og:image:alt" content="Startup Consulting Services in Dubai | Expert Business Consultants" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Startup Consulting Services in Dubai | Expert Business Consultants" />
+        <meta name="twitter:description" content="Need startup consulting services in Dubai? We guide founders from idea to scale with proven business strategies. Hire a startup consultant today." />
+        <meta name="twitter:image" content="https://enh.consulting/assets/serviceHeroBannerStartup-CQ72AL34.webp" />
+</Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />
             <RDSection data={data} />

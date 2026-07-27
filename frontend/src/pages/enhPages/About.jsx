@@ -88,10 +88,26 @@ function About() {
   return (
     <div className="about-page">
       <Helmet>
-        <title>About ENH Consulting</title>
-        <meta name="description" content='Learn about ENH Consulting, a Dubai-based firm helping business across the UAE embrace AI, innovation, and digital transformation for sustainable growth. ' />
-        <link rel="canonical" href={`https://enh.consulting/about`} />
-      </Helmet>
+        <title>About ENH Consulting | AI & Business Consulting</title>
+        <meta name="description" content="Learn about ENH Consulting, a Dubai-based firm helping business across the UAE embrace AI, innovation, and digital transformation for sustainable growth." />
+        <link rel="canonical" href="https://enh.consulting/about" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ENH Consulting" />
+        <meta property="og:locale" content="en_US" />
+
+        <meta property="og:title" content="About ENH Consulting | AI & Business Consulting" />
+        <meta property="og:description" content="Learn about ENH Consulting, a Dubai-based firm helping business across the UAE embrace AI, innovation, and digital transformation for sustainable growth." />
+        <meta property="og:url" content="https://enh.consulting/about" />
+        <meta property="og:image" content="https://enh.consulting/ENH_logo.png" />
+        <meta property="og:image:width" content="150" />
+        <meta property="og:image:height" content="38" />
+        <meta property="og:image:alt" content="About ENH Consulting | AI Consulting & Development Company in Dubai" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About ENH Consulting | AI & Business Consulting" />
+        <meta name="twitter:description" content="Learn about ENH Consulting, a Dubai-based firm helping business across the UAE embrace AI, innovation, and digital transformation for sustainable growth." />
+        <meta name="twitter:image" content="https://enh.consulting/ENH_logo.png" />
+</Helmet>
       {/* Breadcrumb */}
       {/* <BreadcrumbBanner title="About" /> */}
 

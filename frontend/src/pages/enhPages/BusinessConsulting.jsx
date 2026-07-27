@@ -501,7 +501,7 @@ function Services() {
                         whileHover={{ scale: 1.04, x: 5, boxShadow: "0 8px 24px rgba(212,91,8,0.35)" }}
                         whileTap={{ scale: 0.97 }}>
                         <Link to="/contact">
-                        <a href="/contact">Let’s Discuss Your Requirements</a>
+                            <a href="/contact">Let’s Discuss Your Requirements</a>
                         </Link>
                     </motion.button>
                 </motion.div>
@@ -1091,8 +1091,24 @@ function BusinessConsultancy() {
         <div className="service-view-page">
             <Helmet>
                 <title>Business Consulting Services in Dubai for Growth & Strategy</title>
-                <meta name="description" content="Get expert business consulting services in Dubai to improve strategy, operations, and growth. Work with Enh Consulting to scale your business faster. Book a free consultation today." />
-                <link rel="canonical" href={`https://enh.consulting/business-consulting-services-in-dubai`} />
+                <meta name="description" content="Drive sustainable growth with expert business consulting services in Dubai. ENH Consulting helps startups, SMEs & enterprises with strategy, operations & execution." />
+                <link rel="canonical" href="https://enh.consulting/business-consulting-services-in-dubai" />
+                <meta property="og:type" content="website" />
+                <meta property="og:site_name" content="ENH Consulting" />
+                <meta property="og:locale" content="en_US" />
+
+                <meta property="og:title" content="Business Consulting Services in Dubai for Growth & Strategy" />
+                <meta property="og:description" content="Drive sustainable growth with expert business consulting services in Dubai. ENH Consulting helps startups, SMEs & enterprises with strategy, operations & execution." />
+                <meta property="og:url" content="https://enh.consulting/business-consulting-services-in-dubai" />
+                <meta property="og:image" content="https://enh.consulting/assets/serviceHeroBannerBusiness-CmbOmnyI.webp" />
+                <meta property="og:image:width" content="1774" />
+                <meta property="og:image:height" content="887" />
+                <meta property="og:image:alt" content="Business Consulting Services in Dubai for Growth & Strategy" />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Business Consulting Services in Dubai for Growth & Strategy" />
+                <meta name="twitter:description" content="Drive sustainable growth with expert business consulting services in Dubai. ENH Consulting helps startups, SMEs & enterprises with strategy, operations & execution." />
+                <meta name="twitter:image" content="https://enh.consulting/assets/serviceHeroBannerBusiness-CmbOmnyI.webp" />
             </Helmet>
             <HeroBanner data={data} />
             <IntroSection data={data} />

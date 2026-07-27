@@ -25,10 +25,26 @@ function Contact() {
   return (
     <div className="contact">
       <Helmet>
-        <title>Contact ENH Consulting | AI & Digital Growth Experts </title>
-        <meta name="description" content='Get in touch with ENH Consulting for AI consulting, digital transformation, and business growth solutions in Dubai and across the UAE. ' />
-        <link rel="canonical" href={`https://enh.consulting/contact`} />
-      </Helmet>
+        <title>Contact ENH Consulting | AI & Digital Growth Experts</title>
+        <meta name="description" content="Get in touch with ENH Consulting for AI consulting, business strategy, digital marketing, and technology solutions in Dubai. Book your free 30-minute consultation today." />
+        <link rel="canonical" href="https://enh.consulting/contact" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ENH Consulting" />
+        <meta property="og:locale" content="en_US" />
+
+        <meta property="og:title" content="Contact ENH Consulting | AI & Digital Growth Experts" />
+        <meta property="og:description" content="Get in touch with ENH Consulting for AI consulting, business strategy, digital marketing, and technology solutions in Dubai. Book your free 30-minute consultation today." />
+        <meta property="og:url" content="https://enh.consulting/contact" />
+        <meta property="og:image" content="https://enh.consulting/ENH_logo.png" />
+        <meta property="og:image:width" content="150" />
+        <meta property="og:image:height" content="138" />
+        <meta property="og:image:alt" content="Contact ENH Consulting | AI & Digital Growth Experts" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact ENH Consulting | AI & Digital Growth Experts" />
+        <meta name="twitter:description" content="Get in touch with ENH Consulting for AI consulting, business strategy, digital marketing, and technology solutions in Dubai. Book your free 30-minute consultation today." />
+        <meta name="twitter:image" content="https://enh.consulting/ENH_logo.png" />
+</Helmet>
       {/* Dynamic Breadcrumb */}
       {/* <BreadcrumbBanner title="Contact" /> */}
       <section className="contact-section">
@@ -40,7 +56,7 @@ function Contact() {
                 <Card.Body>
                   <div className="contact-header">
                     <span className="badge">● Get a 30 min Free Consulting </span>
-                    <h2>Let's Build Something Extraordinary Together</h2>
+                    <h1 style={{fontSize:"28px"}} className="font-weight-bold mt-3 mb-3">Let's Build Something Extraordinary Together</h1>
                     <p>
                       Fill out the contact form, send us an email, or give us a call. Our team will get back to you promptly to discuss your requirements and explore how we can help your business grow.
                     </p>

@@ -1,14 +1,20 @@
 const fs = require('fs');
 const path = require('path');
+const puppeteer = require('puppeteer');
 const Post = require('../models/Post');
 
 // Path to the frontend build directory
 const DIST_DIR = path.join(__dirname, '../../frontend/dist');
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
+const SITEMAP_PATH = path.join(DIST_DIR, 'sitemap.xml');
 
-/**
- * Ensures that a directory exists, creating it if necessary.
- */
+const SITE_ORIGIN = process.env.SITE_ORIGIN || 'https://enh.consulting';
+
+// The sitemap ALWAYS advertises the real public domain, regardless of what
+// SITE_ORIGIN is set to for internal Puppeteer prerendering (e.g. if that's
+// pointed at 127.0.0.1). Search engines must never see a localhost URL.
+const PUBLIC_URL = 'https://enh.consulting';
+
 function ensureDirectoryExistence(filePath) {
   const dirname = path.dirname(filePath);
   if (fs.existsSync(dirname)) {
@@ -18,18 +24,6 @@ function ensureDirectoryExistence(filePath) {
   fs.mkdirSync(dirname);
 }
 
-/**
- * Strips whatever is currently inside <div id="root">...</div>.
- *
- * Why this exists: dist/index.html is produced by react-snap, which
- * prerenders the "/" route and bakes the fully-rendered Home page markup
- * into #root. That's fine for the home page itself, but this file is also
- * reused as the BASE TEMPLATE for /blog and /blog/:slug pages. Without
- * stripping, every blog/post page we generate would inherit the Home
- * page's leftover content in #root. This does a depth-aware scan (not a
- * naive regex) so it correctly finds the matching closing </div> even
- * though the Home page markup is full of nested divs.
- */
 function emptyRootDiv(html) {
   const openTagRegex = /<div[^>]*\bid=["']root["'][^>]*>/i;
   const openMatch = openTagRegex.exec(html);
@@ -64,11 +58,6 @@ function emptyRootDiv(html) {
   return html.slice(0, contentStart) + html.slice(closeIndex);
 }
 
-/**
- * Reads the base template index.html and strips out any pre-rendered
- * content react-snap left inside #root, so blog/post pages start from a
- * genuinely empty root for React to hydrate into.
- */
 function getTemplate() {
   if (!fs.existsSync(INDEX_HTML_PATH)) {
     console.warn(`[StaticGenerator] Base index.html template not found at ${INDEX_HTML_PATH}. Run 'npm run build' in frontend first.`);
@@ -78,20 +67,10 @@ function getTemplate() {
   return emptyRootDiv(raw);
 }
 
-/**
- * Clean up existing tags in head and replace/inject title, description,
- * canonical link, and full Open Graph / Twitter Card meta — mirrors exactly
- * what the client-side <Helmet> renders, so crawlers and pre-hydration
- * paint see the same meta as the fully hydrated React page.
- *
- * `image` is optional: { url, width, height, alt }. Pages without a
- * specific image (e.g. the blog list) can omit it.
- */
 function injectMeta(html, { title, description, canonicalUrl, ogType = 'website', siteName = 'ENH Consulting', locale = 'en_US', image }) {
   let updatedHtml = html;
   const esc = (str) => String(str ?? '').replace(/"/g, '&quot;');
 
-  // Replace Title
   const titleRegex = /<title>[^<]*<\/title>/i;
   const newTitle = `<title>${title}</title>`;
   if (titleRegex.test(updatedHtml)) {
@@ -100,7 +79,6 @@ function injectMeta(html, { title, description, canonicalUrl, ogType = 'website'
     updatedHtml = updatedHtml.replace('<head>', `<head>${newTitle}`);
   }
 
-  // Replace Description (both standard and react-helmet-async / data-rh versions)
   const descRegex = /<meta[^>]*name=["']description["'][^>]*>/gi;
   const newDesc = `<meta name="description" content="${esc(description)}" data-rh="true">`;
   if (descRegex.test(updatedHtml)) {
@@ -109,7 +87,6 @@ function injectMeta(html, { title, description, canonicalUrl, ogType = 'website'
     updatedHtml = updatedHtml.replace('</head>', `${newDesc}</head>`);
   }
 
-  // Replace Canonical Link
   const canonicalRegex = /<link[^>]*rel=["']canonical["'][^>]*>/gi;
   const newCanonical = `<link rel="canonical" href="${canonicalUrl}" data-rh="true">`;
   if (canonicalRegex.test(updatedHtml)) {
@@ -118,8 +95,6 @@ function injectMeta(html, { title, description, canonicalUrl, ogType = 'website'
     updatedHtml = updatedHtml.replace('</head>', `${newCanonical}</head>`);
   }
 
-  // Strip any existing og:*/twitter:* tags first so repeated regeneration
-  // never accumulates duplicates (idempotent).
   updatedHtml = updatedHtml.replace(/\s*<meta[^>]*property=["']og:[^"']+["'][^>]*>/gi, '');
   updatedHtml = updatedHtml.replace(/\s*<meta[^>]*name=["']twitter:[^"']+["'][^>]*>/gi, '');
 
@@ -151,15 +126,6 @@ function injectMeta(html, { title, description, canonicalUrl, ogType = 'website'
   return updatedHtml;
 }
 
-/**
- * Inject hydration data (window.__INITIAL_DATA__) before </body>.
- *
- * NOTE: This intentionally does NOT touch <div id="root">. The root div is
- * left exactly as it comes from the build (empty) so the real React app is
- * the single source of truth for markup. We only pre-seed the data it needs,
- * so first paint doesn't wait on an API round trip, and crawlers get meta
- * tags without a second, hand-maintained copy of the UI to keep in sync.
- */
 function injectInitialData(html, initialData) {
   let updatedHtml = html;
 
@@ -173,16 +139,125 @@ function injectInitialData(html, initialData) {
   return updatedHtml;
 }
 
+function stripInitialDataScript(html) {
+  return html.replace(/<script>\s*window\.__INITIAL_DATA__\s*=[\s\S]*?<\/script>/, '');
+}
+
+let browserInstance = null;
+
+async function getBrowser() {
+  if (!browserInstance) {
+    browserInstance = await puppeteer.launch({
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+  }
+  return browserInstance;
+}
+
+async function closeBrowser() {
+  if (browserInstance) {
+    await browserInstance.close();
+    browserInstance = null;
+  }
+}
+
+async function prerenderHtml(url, waitSelector) {
+  const browser = await getBrowser();
+  const page = await browser.newPage();
+  try {
+    await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
+    if (waitSelector) {
+      await page.waitForSelector(waitSelector, { timeout: 15000 }).catch(() => {
+        console.warn(`[StaticGenerator] Selector "${waitSelector}" never appeared on ${url} — capturing whatever rendered anyway.`);
+      });
+    }
+    await new Promise((r) => setTimeout(r, 400));
+    return await page.content();
+  } finally {
+    await page.close();
+  }
+}
+
+// ── Sitemap ──────────────────────────────────────────────────────
+// These marketing pages don't change often. If you redesign/rewrite one,
+// bump its lastmod here manually. The /blog list itself gets "today" every
+// generation since its content (which posts appear) changes constantly.
+const STATIC_PAGES = [
+  { loc: '/', lastmod: '2026-06-06', priority: '1.0' },
+  { loc: '/about', lastmod: '2026-06-06', priority: '0.8' },
+  { loc: '/contact', lastmod: '2026-06-06', priority: '0.6' },
+  { loc: '/consulting', lastmod: '2026-06-06', priority: '0.9' },
+  { loc: '/ai-consulting-services-in-dubai', lastmod: '2026-06-06', priority: '0.9' },
+  { loc: '/business-consulting-services-in-dubai', lastmod: '2026-06-06', priority: '0.9' },
+  { loc: '/digital-marketing-consulting-services-in-dubai', lastmod: '2026-06-06', priority: '0.9' },
+  { loc: '/edtech-consulting-services-in-dubai', lastmod: '2026-06-06', priority: '0.9' },
+  { loc: '/it-consulting-services-in-dubai', lastmod: '2026-06-06', priority: '0.9' },
+  { loc: '/startup-consulting-services-in-dubai', lastmod: '2026-06-06', priority: '0.9' },
+];
+
+function formatDate(d) {
+  return new Date(d).toISOString().split('T')[0];
+}
+
+function escapeXml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+function buildUrlTag(loc, lastmod, priority) {
+  return `<url>\n    <loc>${escapeXml(loc)}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${priority}</priority>\n</url>`;
+}
+
 /**
- * Generate the pre-rendered HTML for the Blog Home Page (/blog)
- * Only meta tags + initial data are injected — React renders all content.
+ * Regenerates sitemap.xml from the live Post collection.
+ *
+ * This is the piece that used to be a hand-maintained file — every time a
+ * post was published it had to be added here manually, which is why the
+ * sitemap you pasted only had 4 old blog URLs despite many more being live.
+ * Now it's a plain Mongo query (no Puppeteer, cheap and fast), so it's safe
+ * to call this on every publish/update/delete without worrying about cost.
  */
+async function generateSitemap() {
+  try {
+    const posts = await Post.find({ status: 'published', visibility: 'public' })
+      .select('slug updatedAt createdAt')
+      .sort({ createdAt: -1 });
+
+    const urlTags = [];
+
+    for (const page of STATIC_PAGES) {
+      urlTags.push(buildUrlTag(`${PUBLIC_URL}${page.loc}`, page.lastmod, page.priority));
+    }
+
+    // /blog list page — lastmod tracks "today" since its content (which
+    // posts show up) changes whenever any post is published/edited.
+    urlTags.push(buildUrlTag(`${PUBLIC_URL}/blog`, formatDate(new Date()), '0.8'));
+
+    for (const post of posts) {
+      const lastmod = formatDate(post.updatedAt || post.createdAt);
+      urlTags.push(buildUrlTag(`${PUBLIC_URL}/blog/${post.slug}`, lastmod, '0.7'));
+    }
+
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n\n${urlTags.join('\n\n')}\n\n</urlset>\n`;
+
+    ensureDirectoryExistence(SITEMAP_PATH);
+    fs.writeFileSync(SITEMAP_PATH, xml, 'utf8');
+    console.log(`[SitemapGenerator] Successfully generated sitemap.xml (${STATIC_PAGES.length + 1} static + ${posts.length} blog URLs).`);
+  } catch (error) {
+    console.error(`[SitemapGenerator] Error generating sitemap.xml:`, error);
+  }
+}
+
 async function generateBlogListPage() {
   try {
     const template = getTemplate();
     if (!template) return;
 
-    // Fetch the first page of blogs (same query the client-side API call uses)
     const limit = 9;
     const query = { status: 'published', visibility: 'public' };
     const posts = await Post.find(query)
@@ -210,13 +285,17 @@ async function generateBlogListPage() {
     const outputPath = path.join(DIST_DIR, 'blog.html');
     ensureDirectoryExistence(outputPath);
     fs.writeFileSync(outputPath, html, 'utf8');
-    console.log(`[StaticGenerator] Successfully generated blog.html`);
+    console.log(`[StaticGenerator] Wrote shell for blog.html, prerendering...`);
 
-    // react-snap crawls the "/blog" route at build time and creates its own
-    // blog/index.html (stale, build-time content) alongside our blog.html.
-    // Since /blog is canonical (no trailing slash) and blog.html is the file
-    // we want served for it, we remove react-snap's leftover index.html so
-    // there's no second, stale file competing for the same route.
+    try {
+      const renderedHtml = await prerenderHtml(canonicalUrl, '.showcase-card, [class*="grid"] a');
+      const finalHtml = stripInitialDataScript(renderedHtml);
+      fs.writeFileSync(outputPath, finalHtml, 'utf8');
+      console.log(`[StaticGenerator] Successfully prerendered blog.html`);
+    } catch (renderErr) {
+      console.error(`[StaticGenerator] Prerender failed for blog.html, keeping shell version:`, renderErr.message);
+    }
+
     const staleIndexPath = path.join(DIST_DIR, 'blog', 'index.html');
     if (fs.existsSync(staleIndexPath)) {
       fs.unlinkSync(staleIndexPath);
@@ -227,10 +306,6 @@ async function generateBlogListPage() {
   }
 }
 
-/**
- * Generate the pre-rendered HTML for a single Blog Post Page (/blog/:slug)
- * Only meta tags + initial data are injected — React renders all content.
- */
 async function generatePostPage(post) {
   try {
     if (!post || post.status !== 'published') return;
@@ -251,15 +326,27 @@ async function generatePostPage(post) {
     const outputPath = path.join(DIST_DIR, 'blog', `${post.slug}.html`);
     ensureDirectoryExistence(outputPath);
     fs.writeFileSync(outputPath, html, 'utf8');
-    console.log(`[StaticGenerator] Successfully generated blog/${post.slug}.html`);
+    console.log(`[StaticGenerator] Wrote shell for blog/${post.slug}.html, prerendering...`);
+
+    const renderUrl = canonicalUrl.replace('https://enh.consulting', SITE_ORIGIN);
+
+    try {
+      const renderedHtml = await prerenderHtml(renderUrl, '.blog-content');
+      const finalHtml = stripInitialDataScript(renderedHtml);
+      fs.writeFileSync(outputPath, finalHtml, 'utf8');
+      console.log(`[StaticGenerator] Successfully prerendered blog/${post.slug}.html`);
+    } catch (renderErr) {
+      console.error(`[StaticGenerator] Prerender failed for ${post.slug}, keeping shell version (meta tags only, no rendered content):`, renderErr.message);
+    }
+
+    // New post live (or an existing one just got edited/republished) —
+    // keep sitemap.xml in sync automatically, no manual step required.
+    await generateSitemap();
   } catch (error) {
     console.error(`[StaticGenerator] Error generating post page for ${post?.slug}:`, error);
   }
 }
 
-/**
- * Delete a pre-rendered HTML page for a single Blog Post
- */
 function deletePostPage(slug) {
   try {
     const filePath = path.join(DIST_DIR, 'blog', `${slug}.html`);
@@ -270,19 +357,16 @@ function deletePostPage(slug) {
   } catch (error) {
     console.error(`[StaticGenerator] Error deleting blog/${slug}.html:`, error);
   }
+  // Fire-and-forget: pull the deleted post's URL back out of the sitemap too.
+  generateSitemap();
 }
 
-/**
- * Regenerate all blog lists and individual blog post pages.
- */
 async function regenerateAllBlogPages() {
   try {
     console.log(`[StaticGenerator] Starting full regeneration of static blog pages...`);
 
-    // Generate the list page
     await generateBlogListPage();
 
-    // Fetch and generate all published, public posts
     const query = { status: 'published', visibility: 'public' };
     const posts = await Post.find(query)
       .populate('category', 'name slug')
@@ -290,18 +374,24 @@ async function regenerateAllBlogPages() {
       .populate('author', 'name bio avatar socialLinks');
 
     for (const post of posts) {
-      await generatePostPage(post);
+      await generatePostPage(post); // already calls generateSitemap() internally
     }
 
     console.log(`[StaticGenerator] Completed full regeneration of static blog pages (${posts.length} posts).`);
   } catch (error) {
     console.error(`[StaticGenerator] Error in full regeneration:`, error);
+  } finally {
+    await closeBrowser();
   }
 }
+
+process.on('SIGINT', async () => { await closeBrowser(); process.exit(0); });
+process.on('SIGTERM', async () => { await closeBrowser(); process.exit(0); });
 
 module.exports = {
   generateBlogListPage,
   generatePostPage,
   deletePostPage,
   regenerateAllBlogPages,
+  generateSitemap,
 };

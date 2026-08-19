@@ -16,6 +16,7 @@ const authorRoutes = require('./routes/authors');
 const commentRoutes = require('./routes/comments');
 const feedRoutes = require('./routes/feed');
 const enquiryRoutes = require('./routes/Enquiries'); // ← NEW
+const { generateSitemap } = require('./services/staticGenerator');
 
 const app = express();
 
@@ -62,5 +63,6 @@ app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📁 Environment: ${process.env.NODE_ENV}`);
 });
+generateSitemap();
 
 module.exports = app;

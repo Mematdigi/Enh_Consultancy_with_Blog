@@ -1,29 +1,50 @@
+# ===========================================
+# ENH Consulting - Robots.txt
+# ===========================================
+
 User-agent: *
 Allow: /
-# ---------------------------
-# Block internal search pages
-# ---------------------------
+
+# -------------------------------------------
+# Block Internal Search Pages
+# -------------------------------------------
 Disallow: /search
 Disallow: /*?s=
 Disallow: /*?q=
 Disallow: /*search_query=
+
+# -------------------------------------------
+# Block Low-Value Archive Pages
+# -------------------------------------------
+Disallow: /category/
 Disallow: /tag/
-# ---------------------------
-# Block admin & system areas
-# ---------------------------
+
+# -------------------------------------------
+# Block WordPress/System Pages
+# -------------------------------------------
 Disallow: /admin/
-# ---------------------------
-# Block unnecessary folders
-# ---------------------------
 Disallow: /cgi-bin/
-Disallow: /writable/
 Disallow: /vendor/
+Disallow: /writable/
 Disallow: /cdn-cgi/
-# ---------------------------
-# Allow important content areas
-# ---------------------------
+
+# -------------------------------------------
+# Block RSS Feeds
+# -------------------------------------------
+Disallow: /feed/
+Disallow: */feed/
+
+# -------------------------------------------
+# Block Comment Reply URLs
+# -------------------------------------------
+Disallow: /*?replytocom=
+
+# -------------------------------------------
+# Allow Important Assets
+# -------------------------------------------
 Allow: /uploads/
-# ---------------------------
-# Sitemap
-# ---------------------------
+
+# -------------------------------------------
+# XML Sitemap
+# -------------------------------------------
 Sitemap: https://enh.consulting/sitemap.xml

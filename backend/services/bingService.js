@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const submitUrlToBing = async (slug) => {
-  const url = `${process.env.FRONTEND_URL}/posts/${slug}`;
+  const url = `${process.env.FRONTEND_URL}/blog/${slug}`;
   const endpoint = `https://api.indexnow.org/indexnow`; // Use the official API endpoint
 
   const payload = {

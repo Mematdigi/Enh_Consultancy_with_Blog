@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // SERVICE VIEW PAGE  ·  _serviceViewPage.scss
-// All visual styles for ServiceViewPage.jsx — no inline CSS anywhere
+// All visual styles for DigitalMarketingAgency.jsx — no inline CSS anywhere
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
@@ -526,11 +526,109 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
     margin-bottom: 16px;
   }
 
+  // Pain-point bullet list (business challenges)
+  &__bullets {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 16px;
+  }
+
+  &__bullet-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 13.5px;
+    color: $dark;
+    font-weight: 600;
+    line-height: 1.5;
+    background: rgba(235, 174, 95, 0.08);
+    border: 1px solid rgba(235, 174, 95, 0.22);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+
+  &__bullet-icon {
+    color: $burn;
+    font-size: 13px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
   &__enquire-note {
     font-size: 13px;
     font-weight: 700;
     color: $burn;
     margin-bottom: 20px;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WHY PARTNER WITH ENH  (new section)
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-partner {
+  position: relative;
+  padding: 90px 0;
+  background: $bg-alt;
+  overflow: hidden;
+
+  &__title {
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 800;
+    color: $dark;
+    margin-bottom: 16px;
+    font-family: 'Georgia', serif;
+    line-height: 1.25;
+    @include gold-underline(52px);
+  }
+
+  &__text {
+    font-size: 15px;
+    color: $mid;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  &__highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  &__highlight-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: $white;
+    border: 1px solid rgba(235, 174, 95, 0.22);
+    border-radius: $radius;
+    padding: 20px 24px;
+    box-shadow: $shadow;
+    transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
+
+    &:hover { box-shadow: $shadow-hover; }
+  }
+
+  &__highlight-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(235, 174, 95, 0.2), rgba(212, 91, 8, 0.12));
+    color: $burn;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  &__highlight-label {
+    margin: 0;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: $dark;
   }
 }
 
@@ -963,7 +1061,7 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// WHY CHOOSE ENH  (new section)
+// WHY CHOOSE ENH  /  EXPECTED RESULTS
 // ─────────────────────────────────────────────────────────────────────────────
 .svp-why-enh {
   position: relative;
@@ -1121,7 +1219,7 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FAQ  (new section)
+// FAQ
 // ─────────────────────────────────────────────────────────────────────────────
 .svp-faq {
   position: relative;
@@ -1342,6 +1440,71 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// LET'S TALK GROWTH  (new mid-page CTA banner)
+// ─────────────────────────────────────────────────────────────────────────────
+.svp-growth-banner {
+  position: relative;
+  padding: 56px 0;
+  background: linear-gradient(120deg, #2e1701 0%, #8a470d 50%, #b45b13 100%);
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 15% 50%, rgba(235,174,95,0.22) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  &__text-block {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  &__title {
+    font-size: clamp(20px, 2.6vw, 32px);
+    font-weight: 900;
+    color: $white;
+    font-family: 'Georgia', serif;
+    margin: 0 0 10px;
+    line-height: 1.25;
+  }
+
+  &__text {
+    font-size: 14.5px;
+    color: rgb(255, 255, 255);
+    line-height: 1.7;
+    margin: 0 0 8px;
+  }
+
+  &__note {
+    font-size: 13px;
+    font-weight: 700;
+    color: $gold;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  &__action {
+    flex-shrink: 0;
+  }
+
+  &__btn {
+    white-space: nowrap;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // CONTACT
 // ─────────────────────────────────────────────────────────────────────────────
 .svp-contact {
@@ -1508,7 +1671,7 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
 
 // ═════════════════════════════════════════════════════════════════════════════
 // ─────────────────────────────────────────────────────────────────────────────
-// FINAL CTA  (new closing section)
+// FINAL CTA  (closing section)
 // ─────────────────────────────────────────────────────────────────────────────
 .svp-final-cta {
   position: relative;
@@ -1644,12 +1807,14 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
 @media (max-width: 1199px) {
   .svp-hero               { padding: 70px 0 80px; }
   .svp-intro              { padding: 80px 0; }
+  .svp-partner            { padding: 80px 0; }
   .svp-rd                 { padding: 70px 0; }
   .svp-whyus              { padding: 80px 0; }
   .svp-testimonials       { padding: 80px 0; }
   .svp-blog               { padding: 70px 0; }
   .svp-why-enh            { padding: 80px 0; }
   .svp-faq                { padding: 80px 0; }
+  .svp-growth-banner      { padding: 48px 0; }
   .svp-contact            { padding: 80px 0; }
   .svp-final-cta          { padding: 90px 0; }
 
@@ -1665,6 +1830,10 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
 
   .svp-intro              { padding: 64px 0; }
   .svp-intro__img-wrap    { margin-bottom: 12px; }
+  .svp-intro__bullets     { grid-template-columns: 1fr; }
+
+  .svp-partner            { padding: 70px 0; }
+  .svp-partner__highlights{ margin-top: 8px; }
 
   .svp-rd                 { padding: 64px 0; }
   .svp-whyus              { padding: 70px 0; }
@@ -1678,6 +1847,10 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
   .svp-faq__intro         { margin-bottom: 12px; }
   .svp-faq__cta-block     { padding-bottom: 8px; }
   .svp-faq__media         { margin-top: 28px; max-width: 100%; aspect-ratio: 16 / 9; }
+
+  .svp-growth-banner__inner { flex-direction: column; align-items: flex-start; }
+  .svp-growth-banner__action { width: 100%; }
+  .svp-growth-banner__btn    { width: 100%; justify-content: center; }
 
   .svp-contact            { padding: 70px 0; }
   .svp-contact__form      { margin-top: 20px; padding: 32px 26px; }
@@ -1699,6 +1872,11 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
   .svp-intro__title       { margin-bottom: 12px; }
   .svp-intro__text        { font-size: 14.5px; }
   .svp-intro-row          { padding: 16px !important; }
+  .svp-intro__bullet-item { font-size: 13px; padding: 9px 11px; }
+
+  .svp-partner            { padding: 60px 0; }
+  .svp-partner__highlight-card { padding: 16px 18px; gap: 12px; }
+  .svp-partner__highlight-icon { width: 44px; height: 44px; font-size: 17px; }
 
   .svp-rd                 { padding: 56px 0; }
   .svp-rd__card           { padding: 28px 22px; }
@@ -1735,6 +1913,10 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
   .svp-faq__media-label   { font-size: 14px; bottom: 14px; left: 14px; right: 14px; }
   .svp-faq__media-tag     { top: 12px; left: 12px; font-size: 10px; padding: 4px 10px; }
 
+  .svp-growth-banner      { padding: 40px 0; }
+  .svp-growth-banner__title { font-size: 50px; }
+  .svp-growth-banner__text  { font-size: 13.5px; }
+
   .svp-contact            { padding: 60px 0; }
   .svp-contact__form      { padding: 26px 20px; border-radius: 16px; }
   .svp-contact__form-title{ font-size: 22px; margin-bottom: 18px; }
@@ -1764,13 +1946,16 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
 
   .svp-intro              { padding: 48px 0; }
   .svp-intro-row          { padding: 12px !important; }
+  .svp-intro__bullets     { gap: 8px; }
 
+  .svp-partner            { padding: 52px 0; }
   .svp-rd                 { padding: 48px 0; }
   .svp-whyus              { padding: 52px 0; }
   .svp-testimonials       { padding: 52px 0; }
   .svp-blog               { padding: 48px 0; }
   .svp-why-enh            { padding: 52px 0; }
   .svp-faq                { padding: 52px 0; }
+  .svp-growth-banner      { padding: 36px 0; }
   .svp-contact            { padding: 52px 0; }
   .svp-final-cta          { padding: 56px 0; }
 
@@ -1963,7 +2148,7 @@ $shadow-hover:0 8px 12px rgba(133, 86, 25, 0.10), 0 30px 70px rgba(133, 86, 25, 
   align-items: center;
   gap: 8px;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: $burn;

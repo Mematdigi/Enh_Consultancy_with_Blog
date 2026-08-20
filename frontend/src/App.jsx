@@ -33,6 +33,8 @@ import EnquiriesManager from './pages/admin/EnquiriesManager';
 import AiConsulting from './pages/enhPages/AiConsulting';
 import EdTechConsultancy from './pages/enhPages/EdTechConsulting';
 import StartupConsultancy from './pages/enhPages/StartupConsulting';
+import DigitalMarketingAgency from './pages/enhPages/innerService/DigitalMarketingAgencyInDubai';
+import SEOAgencyDubai from './pages/enhPages/innerService/SeoAgencyInDubai';
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
@@ -57,6 +59,8 @@ export default function App() {
         <Route path="/it-consulting-services-in-dubai" element={<ItConsultancy />} />
         <Route path="/startup-consulting-services-in-dubai" element={<StartupConsultancy />} />
 
+        <Route path="/digital-marketing-agency-in-dubai" element={<DigitalMarketingAgency />} />
+        <Route path="/best-seo-agency-in-dubai" element={<SEOAgencyDubai />} />
 
         {/* blog Public Routes */}
         <Route path="/blog" element={<BlogHome />} />

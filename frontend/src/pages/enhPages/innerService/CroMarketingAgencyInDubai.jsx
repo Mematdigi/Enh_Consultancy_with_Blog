@@ -40,6 +40,13 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaFileAlt,
+  FaFilter,
+  FaUsers,
+  FaClipboardList,
+  FaFire,
+  FaChartLine,
+  FaClipboardCheck,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +98,165 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const croFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "What is conversion rate optimization?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "Conversion rate optimization (CRO) is the structured process of improving the percentage of website visitors who complete a valuable action - like making a purchase, submitting a form, or booking a consultation - through data analysis, testing, and UX improvements.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "What does a CRO agency do?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "A CRO agency analyzes how visitors behave on your website, tests different versions of key pages and elements, improves UX and conversion funnels, and measures the impact of those changes against defined conversion goals.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "How does website conversion rate optimization work?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "It combines data analysis, user behavior research, structured A/B testing, and UX improvements, applied continuously rather than as a single fix, so recommendations are based on evidence rather than assumptions about what should work.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "What are conversion rate optimization services?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "Our services include CRO audits, website and landing page optimization, funnel analysis, A/B testing, UX and CTA optimization, form optimization, behavioral analysis, and ongoing conversion tracking and reporting.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "How long does CRO take to show results?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "Timelines depend on your traffic volume, website complexity, and testing cycles - higher-traffic pages can produce test results faster, while lower-traffic pages may need longer to reach a statistically meaningful result.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "How do you identify conversion problems on a website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "Through a combination of analytics review, user behavior analysis, funnel mapping, UX review, and conversion tracking, we can see where visitors are actually dropping off rather than guessing at the cause.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "Do you provide A/B testing?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "Yes, A/B testing is a core part of how we validate changes to headlines, CTAs, layouts, forms, and other key elements before rolling them out more broadly.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "Can CRO improve PPC performance?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "Yes. Better landing pages and a smoother conversion journey mean more of your paid traffic actually converts, which improves the return you're getting from existing PPC spend rather than requiring a bigger budget.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can CRO help e-commerce websites increase sales?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. CRO for e-commerce typically focuses on product pages, cart abandonment, checkout friction, and the overall purchase journey, aiming to convert more of the traffic already reaching your store.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do you measure CRO success?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We track conversion rate, qualified leads, revenue, cost per acquisition, and funnel performance, tying results back to defined business goals rather than a single isolated metric.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Why should I hire a CRO agency in Dubai?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A specialist agency brings structured testing, analytics expertise, and ongoing optimization that's hard to maintain consistently in-house, along with an understanding of how local audiences and market conditions influence conversion behavior.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const croServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/conversion-rate-optimization-agency-dubai/#service",
+  name: "Conversion Rate Optimization Services in Dubai",
+  serviceType: "Conversion Rate Optimization",
+  url: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
+  description:
+    "ENH Consulting provides conversion rate optimization services in Dubai to help businesses turn more website visitors into qualified leads and customers through CRO audits, conversion funnel optimization, landing page optimization, A/B testing, UX optimization, CTA optimization, form optimization, user behavior analysis, and conversion tracking.",
+  provider: {
+    "@type": "Organization",
+    name: "ENH Consulting",
+    url: "https://enh.consulting/",
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Dubai",
+      containedInPlace: {
+        "@type": "Country",
+        name: "United Arab Emirates",
+      },
+    },
+    {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Conversion Rate Optimization Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Website Conversion Rate Optimization" },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landing Page Optimization" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Conversion Funnel Optimization" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "A/B Testing and Experimentation" },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "User Experience Optimization" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "CTA Optimization" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Form and Lead Generation Optimization" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Heatmaps and User Behavior Analysis" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Conversion Tracking and Analytics" },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "CRO Audit" } },
+    ],
+  },
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,247 +306,268 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const CRO_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
-    headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+    badge: "CRO Agency",
+    headline: "Conversion Rate Optimization Agency in Dubai That Turns Visitors into Customers",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "A conversion rate optimization agency in Dubai helps businesses turn existing website traffic into more qualified leads and customers. When visitors leave without submitting forms, booking consultations, or making purchases, your acquisition investment loses value. ENH Consulting identifies conversion barriers, improves user journeys, and uses data-driven CRO strategies to increase website performance, generate more conversions, and maximize the value of your existing traffic.",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Website Getting Traffic but Not Enough Conversions?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many businesses attract website traffic but struggle to turn visitors into leads or customers. Common issues include low conversion rates, unclear calls to action, complicated forms, poor mobile experiences, slow user journeys, cart abandonment, and PPC traffic that fails to convert.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "These challenges often indicate that the website needs a structured CRO strategy to identify where visitors are dropping off and why. Simply generating more traffic isn't always the solution. ENH Consulting analyzes user behavior, conversion funnels, landing pages, and performance data to identify opportunities for improvement. Through testing, UX optimization, and continuous refinement, we help Dubai businesses convert more of their existing traffic, improve lead generation, increase sales, and get greater value from their SEO and PPC investments.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven Conversion Rate Optimization Agency in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "SEO, PPC, and social media help bring the right visitors to your website, while CRO focuses on what happens after they arrive, improving the experience, reducing friction, and increasing the likelihood that they take a valuable action. Getting that right takes data analysis, user behavior research, structured testing, and continuous refinement, not a one-time redesign.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "ENH Consulting approaches conversion rate optimization services as an ongoing, evidence-based process: analyzing how visitors behave on your website, testing landing pages and key conversion elements, improving funnels and calls to action, and refining the user experience based on what the data shows rather than assumptions. We act as a strategic partner, identifying why visitors aren't converting and what can realistically be changed to improve performance.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Conversion Rate Optimization Services Designed to Increase Conversions",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaLaptopCode />,
+        title: "Website Conversion Rate Optimization",
+        desc: "We analyze your website's pages to identify the friction points actually preventing visitors from converting - page structure, navigation, content clarity, CTAs, trust signals, the overall user journey, mobile experience, and the conversion elements on each page. This looks at the site as a whole rather than fixing individual pages in isolation.",
+      },
+      {
+        icon: <FaFileAlt />,
+        title: "Landing Page Optimization",
+        desc: "We improve landing pages to generate more leads or sales from the traffic already arriving on them, refining headlines, messaging, CTA placement, page structure, trust elements, forms, and visual hierarchy, along with mobile usability. A page that doesn't match the ad that brought someone there wastes a meaningful share of every click already being paid for.",
+      },
+      {
+        icon: <FaFilter />,
+        title: "Conversion Funnel Optimization",
+        desc: "We map how visitors actually move from their first interaction with your business through to conversion, identifying drop-off points, unnecessary steps, friction, weak messaging, and poor transitions between pages, including checkout or lead-generation abandonment. The focus is on making that journey simpler and more logical.",
+      },
+      {
+        icon: <FaFlask />,
+        title: "A/B Testing & Experimentation",
+        desc: "We test different versions of key website elements, headlines, CTAs, images, forms, page layouts, offers, copy, and navigation, against each other to identify what actually performs better with your audience. Decisions are based on real performance data rather than opinion about what should convert best.",
+      },
+      {
+        icon: <FaUsers />,
+        title: "User Experience Optimization",
+        desc: "We look at how UX affects conversion behavior across navigation, mobile usability, page clarity, information hierarchy, and accessibility, reducing the friction that stops visitors from completing an important action. The goal is straightforward: make it easier for a visitor to understand what to do next.",
       },
       {
         icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
+        title: "CTA Optimization",
+        desc: "We refine call-to-action wording, placement, visibility, design, and context so each CTA matches where the visitor actually is in their buying journey, rather than using a generic \"Submit\" or \"Learn More\" everywhere on the site.",
       },
       {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
+        icon: <FaClipboardList />,
+        title: "Form & Lead Generation Optimization",
+        desc: "We review the number and relevance of form fields, layout, CTA wording, error handling, mobile usability, and trust messaging to reduce the friction forms often add unnecessarily, without stripping out the information your team actually needs to follow up effectively.",
       },
       {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
+        icon: <FaFire />,
+        title: "Heatmaps & User Behavior Analysis",
+        desc: "We use behavioral data to understand where visitors click, scroll, hesitate, or drop off, turning that into concrete input for CRO decisions rather than relying on assumptions about how a page is being used.",
       },
       {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        icon: <FaChartLine />,
+        title: "Conversion Tracking & Analytics",
+        desc: "Accurate tracking has to come before any CRO decision gets made. We set up and review tracking for form submissions, calls, purchases, and other key website actions, so recommendations are based on real user journeys and conversion data.",
       },
       {
-        icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
-      },
-      {
-        icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
-      },
-      {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaClipboardCheck />,
+        title: "CRO Audit",
+        desc: "The CRO audit is usually the starting point, a structured review of website UX, landing pages, conversion paths, CTAs, forms, analytics, mobile experience, page performance, funnel drop-offs, and trust signals, producing a prioritized roadmap showing where the biggest conversion opportunities actually are.",
       },
     ],
 
     // Industries we serve
     whyUs: [
       {
+        icon: <FaShoppingCart />,
+        title: "E-commerce & Retail",
+        desc: "Focused on product pages, cart abandonment, checkout optimization, and purchase conversion.",
+      },
+      {
+        icon: <FaLaptopCode />,
+        title: "SaaS & Technology",
+        desc: "Focused on free trials, demos, sign-ups, and lead-generation funnels.",
+      },
+      {
         icon: <FaHeartbeat />,
         title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
+        desc: "Focused on appointment requests, consultation forms, and trust-building on service pages.",
       },
       {
         icon: <FaGraduationCap />,
         title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        desc: "Focused on course enquiries, applications, admissions forms, and consultation requests.",
       },
       {
         icon: <FaBuilding />,
         title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
+        desc: "Focused on property enquiries, lead forms, calls, and buyer or investor journeys.",
       },
       {
         icon: <FaHotel />,
         title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
+        desc: "Focused on bookings, enquiries, offers, and direct conversion journeys.",
       },
       {
-        icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
-      },
-      {
-        icon: <FaIndustry />,
-        title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        icon: <FaHandshake />,
+        title: "Professional & B2B Services",
+        desc: "Focused on consultation requests, lead forms, calls, and longer consideration journeys.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — CRO Audit & Data Analysis",
+        text: "We assess your website, analytics, user behavior, conversion goals, and existing performance to identify key opportunities.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — Conversion Funnel Analysis",
+        text: "We examine the customer journey to find friction, usability issues, and drop-off points that may be limiting conversions.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — Opportunity Identification & Prioritization",
+        text: "We prioritize optimization opportunities based on data, potential impact, customer intent, and implementation effort.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — Testing & Experimentation",
+        text: "We test different page elements, messaging, layouts, calls to action, and user experiences to determine what performs better.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — Implementation & Performance Tracking",
+        text: "We implement validated improvements and continuously monitor their impact against defined conversion goals.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Continuous Optimization",
+        text: "We use new performance data and testing insights to refine the website and improve conversion performance over time.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
         icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        title: "Higher Conversion Rates",
+        desc: "Turn more website visitors into leads, customers, or other valuable actions.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaHandshake />,
+        title: "More Qualified Leads",
+        desc: "Build conversion journeys around genuine customer intent to attract more relevant prospects.",
       },
       {
         num: "03",
-        icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        icon: <FaWallet />,
+        title: "Improved Cost per Acquisition",
+        desc: "Generate more conversions from existing traffic, helping improve the efficiency of your marketing spend.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaUsers />,
+        title: "Better User Experience",
+        desc: "Remove unnecessary friction and make it easier for visitors to complete important actions.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaRocket />,
+        title: "Higher Revenue from Existing Traffic",
+        desc: "Increase the commercial value of the visitors your website already attracts.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaChartLine />,
+        title: "Better ROI from SEO and PPC Traffic",
+        desc: "Improve what happens after visitors arrive so your acquisition channels generate more business value.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "What is conversion rate optimization?",
+        a: "Conversion rate optimization (CRO) is the structured process of improving the percentage of website visitors who complete a valuable action, like making a purchase, submitting a form, or booking a consultation, through data analysis, testing, and UX improvements.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "What CRO means",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "What does a CRO agency do?",
+        a: "A CRO agency analyzes how visitors behave on your website, tests different versions of key pages and elements, improves UX and conversion funnels, and measures the impact of those changes against defined conversion goals.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "What a CRO agency does",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "How does website conversion rate optimization work?",
+        a: "It combines data analysis, user behavior research, structured A/B testing, and UX improvements, applied continuously rather than as a single fix, so recommendations are based on evidence rather than assumptions about what should work.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "How CRO works",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "What are conversion rate optimization services?",
+        a: "Our services include CRO audits, website and landing page optimization, funnel analysis, A/B testing, UX and CTA optimization, form optimization, behavioral analysis, and ongoing conversion tracking and reporting.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "What's included",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "How long does CRO take to show results?",
+        a: "Timelines depend on your traffic volume, website complexity, and testing cycles, higher-traffic pages can produce test results faster, while lower-traffic pages may need longer to reach a statistically meaningful result.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "Timelines for CRO results",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        q: "How do you identify conversion problems on a website?",
+        a: "Through a combination of analytics review, user behavior analysis, funnel mapping, UX review, and conversion tracking, we can see where visitors are actually dropping off rather than guessing at the cause.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Diagnosing conversion problems",
+      },
+      {
+        q: "Do you provide A/B testing?",
+        a: "Yes, A/B testing is a core part of how we validate changes to headlines, CTAs, layouts, forms, and other key elements before rolling them out more broadly.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
+        imgLabel: "A/B testing",
       },
       {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        q: "Can CRO improve PPC performance?",
+        a: "Yes. Better landing pages and a smoother conversion journey mean more of your paid traffic actually converts, which improves the return you're getting from existing PPC spend rather than requiring a bigger budget.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Metrics that matter",
+        imgLabel: "CRO and PPC together",
+      },
+      {
+        q: "Can CRO help e-commerce websites increase sales?",
+        a: "Yes. CRO for e-commerce typically focuses on product pages, cart abandonment, checkout friction, and the overall purchase journey, aiming to convert more of the traffic already reaching your store.",
+        img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
+        imgLabel: "CRO for e-commerce",
+      },
+      {
+        q: "How do you measure CRO success?",
+        a: "We track conversion rate, qualified leads, revenue, cost per acquisition, and funnel performance, tying results back to defined business goals rather than a single isolated metric.",
+        img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+        imgLabel: "Measuring CRO success",
+      },
+      {
+        q: "Why should I hire a CRO agency in Dubai?",
+        a: "A specialist agency brings structured testing, analytics expertise, and ongoing optimization that's hard to maintain consistently in-house, along with an understanding of how local audiences and market conditions influence conversion behavior.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Why hire an agency",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Let's Turn More Website Visitors into Customers",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
-    growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
+      "Growth doesn't always mean more traffic. Often, the opportunity is already sitting inside the visitors your website is currently attracting, you just need to know where they're being lost and what can realistically be changed. ENH Consulting can help you find that out.",
+    growthNote: "Talk to ENH Consulting about your CRO opportunities.",
     growthCta: "Get Started",
   },
 };
@@ -907,7 +1025,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1153,12 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                CRO isn't one single activity, it's the combination of
+                website analysis, user behavior research, structured
+                testing, UX improvements, and conversion-focused changes
+                working together. ENH Consulting covers the full range of
+                that work, from technical audits through to ongoing testing
+                and optimization.
               </p>
             </Col>
           </Row>
@@ -1099,9 +1217,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1127,21 +1249,21 @@ function Services() {
       icon: <FaRocket />,
       title: "Startups",
       description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
+        "Startups are often working with limited traffic and a tighter advertising budget, which makes every visitor more valuable. We focus on fixing major conversion barriers first, the things costing you leads or sales right now, before recommending you spend more on acquisition to bring in additional traffic.",
       number: "01",
     },
     {
       icon: <FaBriefcase />,
       title: "Small & Medium Businesses",
       description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
+        "Growing businesses typically want more leads or sales without continuously increasing their advertising spend to get there. We focus on getting more value from the traffic your website already receives, so growth doesn't depend entirely on a bigger acquisition budget every quarter.",
       number: "02",
     },
     {
       icon: <FaGlobe />,
       title: "Enterprises",
       description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
+        "Larger organizations are often managing complex websites with multiple products or services, several distinct conversion journeys, and high traffic volumes across different audiences. We bring the structured testing, prioritization, and reporting needed to improve conversion performance at that scale.",
       number: "03",
     },
   ];
@@ -1163,14 +1285,13 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                CRO Solutions for Businesses of Every Size
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            CRO priorities shift with traffic volume, website complexity, and
+            growth stage. Here's how we tailor our approach for each.
           </motion.p>
         </motion.div>
 
@@ -1227,34 +1348,34 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "Data-Driven CRO Strategies",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "Recommendations are based on analytics and real user behavior, not assumptions about what should convert better.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "User-Centered Optimization",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "Every change is aimed at making the customer journey clearer and easier to complete, not just different.",
     },
     {
-      title: "Transparent Reporting",
+      title: "Continuous Testing & Improvement",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "CRO is treated as an ongoing process, not a one-time website redesign that's left untouched afterward.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Conversion-Focused Website Analysis",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
+        "Pages are evaluated against their ability to support defined business goals, not general design preferences.",
     },
     {
-      title: "Multi-Channel Expertise",
+      title: "Transparent Performance Reporting",
       description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
+        "Testing results and performance changes are communicated clearly, so you can see what changed and why it mattered.",
     },
     {
-      title: "Local Market Understanding",
+      title: "Dubai & UAE Market Understanding",
       description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "Recommendations account for how local audience behavior and market conditions actually shape conversion decisions.",
     },
   ];
 
@@ -1275,8 +1396,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Businesses Choose ENH for Conversion Rate Optimization
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1456,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Industries We Help Improve Through Conversion Rate Optimization
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            CRO principles shift depending on how customers behave and what
+            they're actually converting toward, so our approach adapts by
+            industry.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1536,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Conversion Rate Optimization Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,9 +1558,9 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns a redesign into
+            measurable conversion gains. Here's exactly how we take CRO from
+            audit to ongoing results.
           </p>
         </motion.div>
 
@@ -1516,7 +1636,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help You Convert More Visitors
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,11 +1812,11 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Our CRO Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
+            Every recommendation we make is tied to measurable outcomes, not
+            general design preferences. Here's what businesses typically
             experience when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
@@ -1765,8 +1885,8 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
-                Dubai
+                Frequently Asked Questions About Conversion Rate Optimization
+                in Dubai
               </motion.h4>
 
               <motion.div className="svp-faq__media" variants={fadeUp}>
@@ -1788,8 +1908,8 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
-                marketing agency in Dubai.
+                Everything you need to know before partnering with a CRO
+                agency in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -1868,7 +1988,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2114,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start turning your existing traffic
+                into more leads and customers with expert CRO.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2213,33 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="website-cro">
+                        Website Conversion Rate Optimization
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="landing-page-optimization">
+                        Landing Page Optimization
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="funnel-optimization">
+                        Conversion Funnel Optimization
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="ab-testing">
+                        A/B Testing & Experimentation
+                      </option>
+                      <option value="ux-optimization">
+                        User Experience Optimization
+                      </option>
+                      <option value="cta-optimization">CTA Optimization</option>
+                      <option value="form-optimization">
+                        Form & Lead Generation Optimization
+                      </option>
+                      <option value="heatmaps">
+                        Heatmaps & User Behavior Analysis
+                      </option>
+                      <option value="conversion-tracking">
+                        Conversion Tracking & Analytics
+                      </option>
+                      <option value="cro-audit">CRO Audit</option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2367,15 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Improve Your Website Conversion Rate?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            From identifying conversion barriers to improving website
+            performance, increasing qualified leads, and getting more value
+            from the traffic you already have, ENH Consulting builds a
+            conversion rate optimization strategy around your business and
+            your goals.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2257,7 +2388,7 @@ function FinalCTA() {
                 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Book a Free Consultation <FaArrowRight />
+                Get Your CRO Audit <FaArrowRight />
               </motion.button>
             </Link>
           </motion.div>
@@ -2270,21 +2401,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function CROAgencyDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = CRO_DATA[slug] || CRO_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Conversion Rate Optimization Agency in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Conversion rate optimization services in Dubai that turn more website visitors into leads and customers. Get a CRO audit from ENH Consulting today."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/conversion-rate-optimization-agency-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2424,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Conversion Rate Optimization Agency in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Conversion rate optimization services in Dubai that turn more website visitors into leads and customers. Get a CRO audit from ENH Consulting today."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/conversion-rate-optimization-agency-dubai"
         />
         <meta
           property="og:image"
@@ -2312,24 +2443,27 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Conversion Rate Optimization Agency in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Conversion Rate Optimization Agency in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Conversion rate optimization services in Dubai that turn more website visitors into leads and customers. Get a CRO audit from ENH Consulting today."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(croFaqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(croServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
@@ -2348,5 +2482,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

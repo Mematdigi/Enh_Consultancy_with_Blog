@@ -40,6 +40,20 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaPaintBrush,
+  FaLayerGroup,
+  FaCreditCard,
+  FaPlug,
+  FaBoxes,
+  FaExchangeAlt,
+  FaShoppingBag,
+  FaStore,
+  FaTshirt,
+  FaMicrochip,
+  FaSpa,
+  FaShoppingBasket,
+  FaCouch,
+  FaTags,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +105,154 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const ecomFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "How much does ecommerce website development cost in Dubai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "Cost depends on scope, platform, functionality, integrations, and the size of your product catalogue, so there's no single fixed price that applies across every project. A simple storefront costs far less than a custom build with extensive integrations. Rather than quoting a generic figure, we scope pricing around your specific requirements once we understand the project in detail.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "How long does it take to develop an ecommerce website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "Timelines depend on complexity, integrations, catalogue size, and how much customization is involved. A straightforward store with a standard platform and limited products can launch relatively quickly, while a custom build with extensive functionality, multiple system integrations, and a large catalogue takes considerably longer to plan, build, and test properly.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "Which ecommerce platform is best for my business?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "It depends on your business model, catalogue size, scalability needs, and the systems you need it to integrate with - there's no universal answer that fits every business. We assess these factors during discovery rather than defaulting to one platform for every client, so the recommendation actually matches how your business operates.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "Can you develop a custom ecommerce website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "Yes. When standard templates and off-the-shelf platforms can't accommodate specific business requirements, workflows, or customer journeys, we build custom functionality designed around what your business actually needs, rather than forcing your operations to adapt to a platform's built-in limitations.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "Can you integrate payment gateways into an ecommerce website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "Yes, we implement secure payment gateway integrations supporting the payment methods relevant to your market and customers. Every integration goes through proper testing across the full transaction flow - from checkout through confirmation - so payments process reliably and customers aren't left uncertain about whether an order went through.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "Can you migrate my existing ecommerce website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "Yes, we handle ecommerce migrations while protecting your data, products, customer information, URLs, and existing functionality throughout the move. Migrations are planned carefully to avoid losing search rankings or disrupting the customer experience, since a poorly handled platform switch can quietly cost a business both traffic and orders.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "Will my ecommerce website be mobile-friendly?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "Yes, every store we build is developed mobile-first, since the majority of ecommerce traffic and purchasing now happens on mobile devices rather than desktop. That means navigation, product pages, and checkout are all designed and tested for a smooth mobile experience first, not adapted afterward as an afterthought.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "Can you optimize an existing ecommerce website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "Yes, we work with existing stores to improve performance, UX, technical foundations, and conversion, without necessarily requiring a full rebuild. This often means addressing specific friction points - slow pages, weak product discovery, checkout drop-off - that are quietly limiting sales despite the store already being live.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const ecomServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/ecommerce-website-development-company-in-dubai/#service",
+  name: "Ecommerce Website Development Services in Dubai",
+  serviceType: "Ecommerce Website Development",
+  url: "https://enh.consulting/ecommerce-website-development-company-in-dubai",
+  description:
+    "ENH Consulting provides ecommerce website development services in Dubai, including custom ecommerce development, ecommerce UI/UX design, platform development, payment gateway integration, shopping cart and checkout development, API and third-party integrations, product and inventory management, ecommerce migration, and ongoing maintenance and optimization.",
+  provider: {
+    "@type": "Organization",
+    "@id": "https://enh.consulting/#organization",
+    name: "ENH Consulting",
+    url: "https://enh.consulting/",
+  },
+  areaServed: {
+    "@type": "City",
+    name: "Dubai",
+    containedInPlace: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  },
+  audience: {
+    "@type": "BusinessAudience",
+    audienceType: [
+      "B2C Ecommerce Businesses",
+      "B2B Ecommerce Businesses",
+      "D2C Brands",
+      "Marketplace Businesses",
+      "Retail Businesses",
+    ],
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Ecommerce Website Development Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Custom Ecommerce Website Development" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Ecommerce UI/UX Design & Development" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Ecommerce Platform Development" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Ecommerce Payment Gateway Integration" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Shopping Cart & Checkout Development" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Ecommerce API & Third-Party Integration" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Product & Inventory Management" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Ecommerce Migration & Platform Upgrade" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Ecommerce Maintenance & Optimization" },
+      },
+    ],
+  },
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,248 +302,251 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const ECOM_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
-    headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+    badge: "Ecommerce Web Development",
+    headline: "Ecommerce Website Development Company in Dubai for High-Converting Online Stores",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "As an ecommerce website development company in Dubai, ENH Consulting builds online stores for businesses that need more than an attractive storefront. A real ecommerce site has to be fast, secure, scalable, mobile-friendly, and built around getting a visitor from browsing to checkout with as little friction as possible. Every build is evaluated against a simple question: does it support sales, customer experience, and business growth, rather than simply looking good on a homepage?",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Ecommerce Website Limiting Your Online Sales?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many online stores attract traffic but struggle to turn visitors into customers. Common challenges include slow product pages, clunky mobile experiences, complicated navigation, high cart abandonment, weak product discovery, limited payment options, and poor integration with inventory, CRM, or shipping systems.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "These issues can prevent an ecommerce store from reaching its full sales potential. As an ecommerce website development company in Dubai, ENH Consulting focuses on building smoother shopping journeys, faster performance, mobile-first experiences, and conversion-focused checkout processes. We also create scalable ecommerce solutions that integrate with essential business systems and support efficient product management.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven Ecommerce Website Development Company in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "Building an ecommerce store that attracts visitors is only the first step. Your website also needs to create a smooth buying journey, build trust, and turn visitors into customers. ENH Consulting provides ecommerce website development in Dubai focused on your products, target audience, customer journey, and business goals rather than generic templates or one-size-fits-all solutions.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "Our approach combines mobile-first design, conversion-focused UX, secure payment integration, and scalable infrastructure to create ecommerce experiences that make it easier for customers to discover products and complete purchases. We also plan essential integrations such as inventory management, CRM, shipping, and other operational tools to help your store run efficiently as your business grows. With SEO-friendly development and performance-focused architecture, your ecommerce store is built to support both search visibility and sales.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Ecommerce Website Development Services We Provide",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaLaptopCode />,
+        title: "Custom Ecommerce Website Development",
+        desc: "For businesses whose catalogue, workflows, or customer journeys don't fit a standard template, we build custom ecommerce functionality tailored to how your business actually operates, so the platform supports the business instead of limiting it.",
       },
       {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
+        icon: <FaPaintBrush />,
+        title: "Ecommerce UI/UX Design & Development",
+        desc: "Product discovery, navigation, category structure, and responsive design all built around a friction-free customer journey, from the first browse to mobile checkout. Every layout decision is weighed against how it affects the path to purchase.",
       },
       {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
+        icon: <FaLayerGroup />,
+        title: "Ecommerce Platform Development",
+        desc: "Development built around whichever platform genuinely fits your business model, catalogue size, and growth plans, rather than pushing one platform for every client regardless of fit. The right choice depends on scalability needs, budget, and required integrations.",
       },
       {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
+        icon: <FaCreditCard />,
+        title: "Ecommerce Payment Gateway Integration",
+        desc: "Secure, convenient payment experiences with the transaction flow and checkout integration customers expect, supporting the payment methods relevant to your specific market. Every integration is tested thoroughly across the full checkout process.",
       },
       {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        icon: <FaShoppingCart />,
+        title: "Shopping Cart & Checkout Development",
+        desc: "Focused specifically on reducing friction between product selection and purchase, since a streamlined checkout is one of the highest-impact places to fix cart abandonment. Every extra step or unclear field at checkout is an opportunity for a customer to leave.",
       },
       {
-        icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
+        icon: <FaPlug />,
+        title: "Ecommerce API & Third-Party Integration",
+        desc: "Integration with CRM, ERP, payment systems, shipping providers, marketing platforms, and inventory systems, so the store connects properly with how your business actually operates day to day, keeping data consistent across systems.",
       },
       {
-        icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
+        icon: <FaBoxes />,
+        title: "Product & Inventory Management",
+        desc: "Product catalogues, variants, categories, stock information, and pricing built to stay synchronized across the store, so what customers see always reflects what's actually available, reducing overselling and manual cleanup.",
       },
       {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaExchangeAlt />,
+        title: "Ecommerce Migration & Platform Upgrade",
+        desc: "Migration from an existing platform that protects your data, functionality, URLs, and customer experience throughout the move, so a platform change doesn't cost you search rankings or lost orders.",
+      },
+      {
+        icon: <FaTools />,
+        title: "Ecommerce Maintenance & Optimization",
+        desc: "Ongoing technical updates, performance improvements, security monitoring, and bug fixes, so the store keeps improving rather than slowly degrading after launch. Continuous attention is needed as traffic, catalogue size, and integrations evolve.",
       },
     ],
 
     // Industries we serve
     whyUs: [
       {
+        icon: <FaTshirt />,
+        title: "Retail & Fashion",
+        desc: "Visual product discovery and sizing/variant management built for browsing-heavy shopping.",
+      },
+      {
+        icon: <FaMicrochip />,
+        title: "Electronics",
+        desc: "Detailed product specifications and comparison-friendly product pages.",
+      },
+      {
+        icon: <FaSpa />,
+        title: "Beauty & Cosmetics",
+        desc: "Strong visual merchandising and easy reordering for repeat purchases.",
+      },
+      {
+        icon: <FaShoppingBasket />,
+        title: "Food & Grocery",
+        desc: "Fast, simple checkout built for frequent, time-sensitive ordering.",
+      },
+      {
         icon: <FaHeartbeat />,
         title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
+        desc: "Clear product information and trust-focused purchasing experiences.",
       },
       {
-        icon: <FaGraduationCap />,
-        title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        icon: <FaCouch />,
+        title: "Furniture & Home",
+        desc: "Rich product detail and imagery for higher-consideration purchases.",
       },
       {
-        icon: <FaBuilding />,
-        title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
+        icon: <FaBriefcase />,
+        title: "B2B & Wholesale",
+        desc: "Account-based pricing and bulk-ordering functionality.",
       },
       {
-        icon: <FaHotel />,
-        title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
-      },
-      {
-        icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
-      },
-      {
-        icon: <FaIndustry />,
-        title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        icon: <FaTags />,
+        title: "Consumer Brands",
+        desc: "D2C storefronts built to own the full customer relationship.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — Discovery & Ecommerce Strategy",
+        text: "We understand your products, customers, business model, competitors, and conversion goals.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — UX Planning & Store Architecture",
+        text: "We plan navigation, product categories, user journeys, and conversion paths.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — Design & Development",
+        text: "The storefront, functionality, integrations, and responsive experience get built.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — Integration & Testing",
+        text: "Payments, forms, APIs, inventory, checkout, and mobile experience are tested thoroughly.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — SEO, Security & Performance Optimization",
+        text: "The technical foundation is checked for crawlability, performance, and security.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Launch & Continuous Optimization",
+        text: "The store launches, and performance gets monitored and improved based on real data.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
-        icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        icon: <FaShoppingCart />,
+        title: "Better Shopping Experience",
+        desc: "Easier product discovery and checkout across desktop and mobile.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaBullseye />,
+        title: "Higher Conversion Potential",
+        desc: "Less friction across product pages, cart, and checkout.",
       },
       {
         num: "03",
         icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        title: "Improved Website Performance",
+        desc: "A faster experience that supports usability and engagement.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaGlobe />,
+        title: "Better Mobile Shopping",
+        desc: "A responsive experience for customers browsing and buying on mobile.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaPlug />,
+        title: "Streamlined Operations",
+        desc: "Ecommerce functionality connected with inventory, CRM, ERP, and other business systems.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaLayerGroup />,
+        title: "Scalable Ecommerce Infrastructure",
+        desc: "A foundation that supports more products, customers, and functionality as the business grows.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "How much does ecommerce website development cost in Dubai?",
+        a: "Cost depends on scope, platform, functionality, integrations, and the size of your product catalogue, so there's no single fixed price that applies across every project. A simple storefront costs far less than a custom build with extensive integrations.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "Pricing built around scope",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "How long does it take to develop an ecommerce website?",
+        a: "Timelines depend on complexity, integrations, catalogue size, and how much customization is involved. A straightforward store can launch relatively quickly, while a custom build with extensive functionality takes considerably longer to plan, build, and test properly.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Timelines by complexity",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "Which ecommerce platform is best for my business?",
+        a: "It depends on your business model, catalogue size, scalability needs, and the systems you need it to integrate with, there's no universal answer that fits every business. We assess these factors during discovery rather than defaulting to one platform for every client.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "Choosing the right platform",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "Can you develop a custom ecommerce website?",
+        a: "Yes. When standard templates and off-the-shelf platforms can't accommodate specific business requirements, workflows, or customer journeys, we build custom functionality designed around what your business actually needs.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "Custom ecommerce builds",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "Can you integrate payment gateways into an ecommerce website?",
+        a: "Yes, we implement secure payment gateway integrations supporting the payment methods relevant to your market and customers. Every integration goes through proper testing across the full transaction flow.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "Payment gateway integration",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        q: "Can you migrate my existing ecommerce website?",
+        a: "Yes, we handle ecommerce migrations while protecting your data, products, customer information, URLs, and existing functionality throughout the move, since a poorly handled platform switch can quietly cost a business both traffic and orders.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Ecommerce migrations",
+      },
+      {
+        q: "Will my ecommerce website be mobile-friendly?",
+        a: "Yes, every store we build is developed mobile-first, since the majority of ecommerce traffic and purchasing now happens on mobile devices rather than desktop.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
+        imgLabel: "Mobile-first by default",
       },
       {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        q: "Can you optimize an existing ecommerce website?",
+        a: "Yes, we work with existing stores to improve performance, UX, technical foundations, and conversion, without necessarily requiring a full rebuild, addressing specific friction points that are quietly limiting sales.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Metrics that matter",
+        imgLabel: "Optimizing existing stores",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Ready to Build an Ecommerce Website That Converts?",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
-    growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
-    growthCta: "Get Started",
+      "Whether you're launching a new store or fixing one that isn't converting, ENH Consulting can help plan, develop, integrate, and optimize an ecommerce website built around your business model and growth objectives.",
+    growthNote: "Talk to ENH Consulting about your ecommerce project.",
+    growthCta: "Get Your Ecommerce Website Consultation",
   },
 };
 
@@ -907,7 +1003,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1131,8 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                A high-performing store depends on several pieces working
+                together. Here's how we structure that work.
               </p>
             </Col>
           </Row>
@@ -1054,7 +1146,7 @@ function RDSection({ data }) {
         >
           <Row className="g-4">
             {data.rdCards.map((card, i) => (
-              <Col lg={6} md={6} key={i}>
+              <Col lg={4} md={6} key={i}>
                 <motion.div
                   variants={cardV}
                   onHoverStart={() => setHovered(i)}
@@ -1099,9 +1191,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1124,24 +1220,24 @@ function RDSection({ data }) {
 function Services() {
   const serviceList = [
     {
-      icon: <FaRocket />,
-      title: "Startups",
+      icon: <FaShoppingBag />,
+      title: "B2C Ecommerce",
       description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
+        "Direct-to-consumer experiences built around product discovery, fast checkout, and the kind of experience that brings customers back for repeat purchases.",
       number: "01",
     },
     {
       icon: <FaBriefcase />,
-      title: "Small & Medium Businesses",
+      title: "B2B Ecommerce",
       description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
+        "Wholesale ordering, account-based pricing, bulk ordering, and customer accounts built around how business buyers actually purchase.",
       number: "02",
     },
     {
-      icon: <FaGlobe />,
-      title: "Enterprises",
+      icon: <FaStore />,
+      title: "Marketplace & Multi-Vendor Ecommerce",
       description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
+        "Vendor management, multiple sellers, commission structures, and product management for platforms connecting several sellers with one customer base.",
       number: "03",
     },
   ];
@@ -1163,14 +1259,13 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                Ecommerce Website Development for Different Business Models
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            A high-performing store looks different depending on your
+            business model. Here's how we tailor our approach for each.
           </motion.p>
         </motion.div>
 
@@ -1227,34 +1322,34 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "Business-Focused Ecommerce Strategy",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "Development decisions are aligned with commercial objectives, sales, conversion, retention, rather than design alone.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Conversion-Centered UX",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "The shopping journey is designed around reducing friction and actually helping customers complete purchases, not just browse.",
     },
     {
-      title: "Transparent Reporting",
+      title: "SEO-Friendly Development",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "Technical architecture considers crawlability, URLs, performance, mobile usability, and structured data where appropriate.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Scalable Development",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
+        "The platform and functionality are planned around where the business is headed, not just where it is today.",
     },
     {
-      title: "Multi-Channel Expertise",
+      title: "Integration Expertise",
       description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
+        "Ecommerce systems connect properly with the business and marketing platforms your operations already depend on.",
     },
     {
-      title: "Local Market Understanding",
+      title: "Dubai & UAE Market Understanding",
       description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "Local customer expectations, mobile-first shopping habits, preferred payment methods, and competitive conditions all shape how we approach an ecommerce build in this market.",
     },
   ];
 
@@ -1275,8 +1370,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Choose ENH for Ecommerce Website Development in Dubai?
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1430,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Ecommerce Solutions for Businesses Across Dubai & the UAE
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            Different product categories bring different ecommerce
+            requirements, and we build accordingly for online retailers
+            across the region.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1510,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Ecommerce Website Development Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,9 +1532,9 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns a storefront build into
+            a sales channel. Here's exactly how we take a store from
+            discovery to launch and beyond.
           </p>
         </motion.div>
 
@@ -1516,7 +1610,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help Your Store Sell More
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,12 +1786,13 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Our Ecommerce Development
+            Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
-            experience when they partner with ENH Consulting.
+            Every build we deliver is judged against real sales outcomes, not
+            visual polish alone. Here's what businesses typically experience
+            when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
 
@@ -1765,8 +1860,8 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
-                Dubai
+                Frequently Asked Questions About Ecommerce Website
+                Development in Dubai
               </motion.h4>
 
               <motion.div className="svp-faq__media" variants={fadeUp}>
@@ -1788,8 +1883,8 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
-                marketing agency in Dubai.
+                Everything you need to know before partnering with an
+                ecommerce website development company in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -1868,7 +1963,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2089,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start building an online store that
+                actually converts, with expert ecommerce development.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2188,34 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="custom-ecommerce">
+                        Custom Ecommerce Website Development
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="ecommerce-ui-ux">
+                        Ecommerce UI/UX Design & Development
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="ecommerce-platform">
+                        Ecommerce Platform Development
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="payment-gateway">
+                        Ecommerce Payment Gateway Integration
+                      </option>
+                      <option value="checkout-development">
+                        Shopping Cart & Checkout Development
+                      </option>
+                      <option value="ecommerce-integration">
+                        Ecommerce API & Third-Party Integration
+                      </option>
+                      <option value="inventory-management">
+                        Product & Inventory Management
+                      </option>
+                      <option value="ecommerce-migration">
+                        Ecommerce Migration & Platform Upgrade
+                      </option>
+                      <option value="ecommerce-maintenance">
+                        Ecommerce Maintenance & Optimization
+                      </option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2343,16 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Partner with an Ecommerce Website Development Company in
+            Dubai?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            Sustainable ecommerce growth starts with a website built to do
+            more than look good. Let's create a fast, secure,
+            conversion-focused online store designed to attract customers,
+            increase sales, and support long-term growth across Dubai and
+            the UAE.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2270,21 +2378,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function EcommerceWebDevDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = ECOM_DATA[slug] || ECOM_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Ecommerce Web Development Company in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Boost online sales with an ecommerce website development company in Dubai. ENH Consulting builds fast, secure, mobile-friendly stores designed to convert."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/ecommerce-website-development-company-in-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2401,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Ecommerce Web Development Company in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Boost online sales with an ecommerce website development company in Dubai. ENH Consulting builds fast, secure, mobile-friendly stores designed to convert."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/ecommerce-website-development-company-in-dubai"
         />
         <meta
           property="og:image"
@@ -2312,24 +2420,27 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Ecommerce Web Development Company in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Ecommerce Web Development Company in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Boost online sales with an ecommerce website development company in Dubai. ENH Consulting builds fast, secure, mobile-friendly stores designed to convert."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(ecomFaqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(ecomServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
@@ -2348,5 +2459,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

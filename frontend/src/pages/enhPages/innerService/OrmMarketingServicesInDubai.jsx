@@ -40,6 +40,10 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaEye,
+  FaAward,
+  FaComments,
+  FaChartLine,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +95,150 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const ormFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "What is online reputation management?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "Online reputation management is the ongoing process of monitoring, responding to, and shaping how a business is perceived across reviews, search results, and social media - helping ensure that what customers find reflects your business accurately and favorably.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "What do online reputation management services include?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "Our services include reputation monitoring, review and ratings management, negative content and search result management, brand reputation building, social media reputation management, and ongoing reporting and strategy.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "How can ORM help my business in Dubai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "In a competitive market where most customers research online before making contact, a well-managed reputation builds the trust needed to convert that research into enquiries, bookings, or sales, rather than losing customers to better-reviewed competitors.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "Can you remove negative reviews?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "We can't guarantee removal of specific reviews or search results - no agency legitimately can. We focus on professional response, dispute processes where a review genuinely violates a platform's policies, and building a stronger overall reputation that puts negative content in context.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "How do you handle negative search results?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "We build compliant strategies to strengthen your overall search footprint with more authoritative, relevant content, helping accurate and positive information rank more prominently over time, rather than attempting to guarantee removal of specific results.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "How long does reputation management take?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "Response to active issues can begin immediately, but building a stronger overall reputation - improved review sentiment, better search visibility - is a gradual process that typically develops over several months of consistent monitoring and activity.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "How do you improve online reviews?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "We respond professionally to existing reviews, encourage genuine customers to share their experience, and address service issues that may be driving negative feedback, building a more accurate and balanced review profile over time.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "How do you measure ORM success?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "We track review sentiment, rating trends, search visibility, and mention volume over time, reporting on how your online reputation is changing rather than relying on a single metric.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is online reputation management suitable for small businesses?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Smaller businesses often have fewer reviews, which means each one carries more weight - making early, consistent reputation management especially valuable while a business is still building its online presence.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Why should I hire an ORM agency in Dubai?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "An agency brings continuous monitoring, response capacity, and reputation-building expertise that's difficult to maintain consistently in-house, along with an understanding of how Dubai and UAE customers specifically research and choose businesses.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const ormServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/online-reputation-management-services-in-dubai/#service",
+  name: "Online Reputation Management Services in Dubai",
+  serviceType: "Online Reputation Management",
+  url: "https://enh.consulting/online-reputation-management-services-in-dubai/",
+  description:
+    "ENH Consulting provides online reputation management services in Dubai to help businesses monitor reviews and online mentions, manage reputation risks, strengthen positive brand signals, improve search visibility, build customer trust, and protect their online reputation through ethical and data-driven reputation management strategies.",
+  provider: {
+    "@id": "https://enh.consulting/#organization",
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Dubai",
+    },
+    {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Online Reputation Management Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Online Reputation Monitoring" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Review and Ratings Management" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Negative Content and Search Result Management",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Brand Reputation Building" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Social Media Reputation Management" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "ORM Reporting and Reputation Strategy" },
+      },
+    ],
+  },
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,84 +288,63 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const ORM_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
-    headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+    badge: "ORM Services",
+    headline: "Online Reputation Management Services in Dubai That Protect & Grow Your Brand",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "Before a customer calls, books, or buys, they search. What shows up, reviews, ratings, search results, social mentions, often decides whether they trust your business enough to move forward. Online reputation management services in Dubai help you shape that first impression: monitoring what's being said, responding to reviews and complaints, and building the kind of consistent, positive presence that turns searchers into customers.",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Business Struggling to Protect Its Online Reputation?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Reputation problems rarely appear as one major crisis. They often build gradually through negative reviews, poor ratings, unanswered complaints, and negative search results that influence potential customers before they contact your business. These challenges can become more serious when online reputation management services in Dubai are not supported by consistent monitoring and a clear response strategy.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "Without structured reputation management, negative conversations can spread across Google, social media, and review platforms while competitors with stronger ratings gain customer trust. ENH Consulting helps Dubai businesses monitor their online reputation, respond to reputation risks, manage negative content, and strengthen positive brand signals. The goal is to protect customer trust, improve brand perception, and help businesses maintain a stronger online presence that supports long-term growth.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven Online Reputation Management Agency in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "Reputation issues move fast, and they show up across more channels than most businesses can track on their own, Google reviews, search results, social media, and industry-specific platforms all shaping how you're perceived at once. Managing that well takes continuous monitoring, not an occasional check-in, along with a fast, appropriate response when something needs addressing.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "As an online reputation management agency, ENH Consulting builds that as an ongoing system rather than a reactive scramble. We monitor across the channels that matter for your business, respond to reviews and reputation risks quickly, and build positive reputation signals strategically over time. Every decision is backed by real monitoring data, not guesswork, and shaped by an understanding of how Dubai and UAE audiences actually research and choose businesses before they buy.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Online Reputation Management Services Designed to Build Trust",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaEye />,
+        title: "Online Reputation Monitoring",
+        desc: "We track reviews, mentions, search results, and social conversations across the platforms most relevant to your business, so reputation risks are identified early rather than after they've already affected customer perception. Most reputation damage happens in the gap between an issue appearing and someone noticing it.",
       },
       {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
-      },
-      {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
-      },
-      {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
-      },
-      {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        icon: <FaStar />,
+        title: "Review & Ratings Management",
+        desc: "We monitor and respond to customer reviews across the platforms that matter to your business, helping you address negative feedback professionally while encouraging genuine customers to share their experience. The goal is a review profile that reflects real customer sentiment accurately, not manipulated numbers.",
       },
       {
         icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
+        title: "Negative Content & Search Result Management",
+        desc: "We identify content in search results that's damaging your reputation and build compliant strategies to reduce its visibility, primarily through stronger, more authoritative, and more relevant content that earns better search placement over time. We don't promise removal of specific negative reviews or search results, since no agency can legitimately guarantee that.",
       },
       {
-        icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
+        icon: <FaAward />,
+        title: "Brand Reputation Building",
+        desc: "We build positive brand signals through authoritative content, PR opportunities, social media presence, and other digital channels that strengthen how credible and trustworthy your business appears. This is the proactive side of reputation management, building the kind of consistent positive presence that makes isolated negative content far less influential.",
       },
       {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaComments />,
+        title: "Social Media Reputation Management",
+        desc: "We monitor comments, mentions, and sentiment across the social platforms relevant to your business, responding appropriately when a reputation risk appears rather than letting it sit unanswered. Social platforms often move faster than search results, so this ongoing monitoring catches issues while they're still small and manageable.",
+      },
+      {
+        icon: <FaChartLine />,
+        title: "ORM Reporting & Reputation Strategy",
+        desc: "We track sentiment, review volume, visibility, and mention trends over time, turning that data into an ongoing strategy rather than a one-off report. Reputation management works best as a continuous cycle, monitor, respond, build, measure, adjust, and this is where that cycle is reviewed and refined.",
       },
     ],
 
@@ -295,161 +353,174 @@ const SERVICE_DATA = {
       {
         icon: <FaHeartbeat />,
         title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
+        desc: "Patient reviews and search results heavily influence which providers people trust with their care.",
       },
       {
         icon: <FaGraduationCap />,
         title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        desc: "Parent and student reviews shape enrollment decisions long before a school or institute is contacted directly.",
       },
       {
         icon: <FaBuilding />,
         title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
+        desc: "Buyer and investor trust depends heavily on how a developer or agency is perceived online before any deal begins.",
       },
       {
         icon: <FaHotel />,
         title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
+        desc: "Guest reviews on platforms like Google and TripAdvisor directly influence booking decisions and occupancy.",
       },
       {
         icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
+        title: "Retail & E-commerce",
+        desc: "Product and seller reviews are often the deciding factor between competing options at the point of purchase.",
       },
       {
-        icon: <FaIndustry />,
-        title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        icon: <FaHandshake />,
+        title: "Professional & B2B Services",
+        desc: "Case studies, reviews, and search presence build the credibility needed before a business commits to a longer-term engagement.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — Reputation Audit",
+        text: "We assess your current reviews, search results, mentions, and social presence to understand exactly where you stand today.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — Monitoring & Analysis",
+        text: "We set up ongoing monitoring across the platforms most relevant to your business and audience.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — Risk Identification",
+        text: "We flag existing and emerging reputation risks before they have a chance to affect customer perception.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — Reputation Strategy",
+        text: "We build a plan for monitoring, response, and positive reputation building tied to your specific situation.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — Reputation Building & Response",
+        text: "We respond to reviews and mentions and actively build positive signals across relevant channels.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Monitoring, Reporting & Optimization",
+        text: "We track sentiment and visibility over time, adjusting the strategy based on what the data shows.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
-        icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        icon: <FaShieldAlt />,
+        title: "Stronger Online Reputation",
+        desc: "A more consistently monitored and actively managed presence across the platforms that shape how customers see your business.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaStar />,
+        title: "Improved Review Sentiment",
+        desc: "More responsive, professional handling of reviews, supporting a more balanced and accurate reflection of customer experience over time.",
       },
       {
         num: "03",
-        icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        icon: <FaSearch />,
+        title: "Better Search Visibility",
+        desc: "A stronger overall search footprint, with more authoritative, relevant content supporting how your brand appears in results.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaHandshake />,
+        title: "Increased Customer Trust",
+        desc: "A more consistent, well-managed online presence that gives new customers confidence before they ever make contact.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaEye />,
+        title: "Faster Reputation Risk Response",
+        desc: "Ongoing monitoring designed to catch and address reputation issues early, before they have room to spread.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaRocket />,
+        title: "Greater Conversion Confidence",
+        desc: "A stronger reputation that supports the trust customers need to move from researching your business to actually choosing it.",
       },
     ],
+    resultsNote:
+      "We don't promise the removal of specific negative reviews or guaranteed ranking positions, no agency can honestly guarantee either. What we can commit to is consistent monitoring, professional response, and a strategy built to strengthen your reputation over time.",
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "What is online reputation management?",
+        a: "Online reputation management is the ongoing process of monitoring, responding to, and shaping how a business is perceived across reviews, search results, and social media, helping ensure that what customers find reflects your business accurately and favorably.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "What ORM covers",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "What do online reputation management services include?",
+        a: "Our services include reputation monitoring, review and ratings management, negative content and search result management, brand reputation building, social media reputation management, and ongoing reporting and strategy.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Six connected services",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "How can ORM help my business in Dubai?",
+        a: "In a competitive market where most customers research online before making contact, a well-managed reputation builds the trust needed to convert that research into enquiries, bookings, or sales, rather than losing customers to better-reviewed competitors.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "Why ORM matters in Dubai",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "Can you remove negative reviews?",
+        a: "We can't guarantee removal of specific reviews or search results, no agency legitimately can. We focus on professional response, dispute processes where a review genuinely violates a platform's policies, and building a stronger overall reputation that puts negative content in context.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "On review removal",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "How do you handle negative search results?",
+        a: "We build compliant strategies to strengthen your overall search footprint with more authoritative, relevant content, helping accurate and positive information rank more prominently over time, rather than attempting to guarantee removal of specific results.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "Handling negative search results",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        q: "How long does reputation management take?",
+        a: "Response to active issues can begin immediately, but building a stronger overall reputation, improved review sentiment, better search visibility, is a gradual process that typically develops over several months of consistent monitoring and activity.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Timelines for reputation building",
+      },
+      {
+        q: "How do you improve online reviews?",
+        a: "We respond professionally to existing reviews, encourage genuine customers to share their experience, and address service issues that may be driving negative feedback, building a more accurate and balanced review profile over time.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
+        imgLabel: "Improving review profiles",
       },
       {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        q: "How do you measure ORM success?",
+        a: "We track review sentiment, rating trends, search visibility, and mention volume over time, reporting on how your online reputation is changing rather than relying on a single metric.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Metrics that matter",
+        imgLabel: "Measuring ORM success",
+      },
+      {
+        q: "Is online reputation management suitable for small businesses?",
+        a: "Yes. Smaller businesses often have fewer reviews, which means each one carries more weight, making early, consistent reputation management especially valuable while a business is still building its online presence.",
+        img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
+        imgLabel: "ORM for small businesses",
+      },
+      {
+        q: "Why should I hire an ORM agency in Dubai?",
+        a: "An agency brings continuous monitoring, response capacity, and reputation-building expertise that's difficult to maintain consistently in-house, along with an understanding of how Dubai and UAE customers specifically research and choose businesses.",
+        img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+        imgLabel: "Why hire an agency",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Let's Build a Stronger Online Reputation",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
-    growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
+      "Your online reputation is already shaping how customers see your business, whether it's being actively managed or not. ENH Consulting can help you monitor reviews and mentions, respond to reputation risks, and build the kind of consistent trust that turns searches into customers.",
+    growthNote: "Talk to ENH Consulting about your online reputation.",
     growthCta: "Get Started",
   },
 };
@@ -907,7 +978,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1106,11 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                A strong online reputation isn't the result of one fix, it's
+                built through consistent monitoring, response, and positive
+                reputation-building working together. ENH Consulting
+                structures that work into six connected services, covering
+                everything from day-to-day monitoring to long-term strategy.
               </p>
             </Col>
           </Row>
@@ -1099,9 +1169,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1127,21 +1201,21 @@ function Services() {
       icon: <FaRocket />,
       title: "Startups",
       description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
+        "New businesses are often building their online reputation from close to zero, which makes every early review and mention disproportionately influential. We focus on establishing a consistent review presence, monitoring closely from the start, and building the kind of early positive signals that give new customers confidence in a business with limited track record.",
       number: "01",
     },
     {
       icon: <FaBriefcase />,
       title: "Small & Medium Businesses",
       description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
+        "Growing businesses typically have an established reputation that needs active, ongoing management rather than occasional attention. We focus on consistent review response, monitoring across the channels your customers actually use, and steadily building positive reputation signals that keep pace as your customer base and visibility grow.",
       number: "02",
     },
     {
       icon: <FaGlobe />,
       title: "Enterprises",
       description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
+        "Larger organizations often manage reputation across multiple locations, brands, or business units, with a higher volume of reviews and mentions to track. We handle structured monitoring at that scale, coordinated response processes, and reporting built for stakeholders who need visibility into reputation trends across the wider business.",
       number: "03",
     },
   ];
@@ -1163,14 +1237,14 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                Reputation Management Solutions for Businesses of Every Size
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            Reputation management needs shift with the size of the business
+            and the volume of reviews and mentions to track. Here's how we
+            tailor our approach for each.
           </motion.p>
         </motion.div>
 
@@ -1227,34 +1301,34 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "Proactive Reputation Monitoring",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "We track reviews, mentions, and search visibility continuously, so reputation risks are identified early rather than discovered after they've already affected customer trust.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Data-Driven Reputation Strategies",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "Every strategy is built around real monitoring data, sentiment, review trends, search visibility, rather than assumptions about what your reputation needs.",
+    },
+    {
+      title: "Ethical Reputation Management",
+      description:
+        "We build reputation through legitimate monitoring, response, and content strategies, never through fake reviews, manipulation, or misleading suppression tactics.",
+    },
+    {
+      title: "Cross-Channel Expertise",
+      description:
+        "We manage reputation across search, reviews, and social media together, so your presence stays consistent rather than strong in one place and neglected in another.",
     },
     {
       title: "Transparent Reporting",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "You get clear visibility into sentiment, review trends, and reputation performance over time, so progress is measurable rather than assumed.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Dubai & UAE Market Understanding",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
-    },
-    {
-      title: "Multi-Channel Expertise",
-      description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
-    },
-    {
-      title: "Local Market Understanding",
-      description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "Strategies reflect how Dubai and UAE audiences actually research and choose businesses, rather than applying a generic global approach to a local market.",
     },
   ];
 
@@ -1275,8 +1349,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Businesses Choose ENH for Online Reputation Management
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1409,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Industries We Help Protect Through Reputation Management
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            Reputation carries different weight in every industry, so what
+            gets monitored and how it's responded to has to match how that
+            audience actually researches and decides.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1489,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Online Reputation Management Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,9 +1511,9 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns reputation management
+            into a system instead of a reaction. Here's exactly how we take
+            it from audit to ongoing results.
           </p>
         </motion.div>
 
@@ -1516,7 +1589,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help You Protect Your Reputation
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,12 +1765,12 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Our ORM Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
-            experience when they partner with ENH Consulting.
+            Every strategy we build is focused on outcomes that matter to
+            your business, not vanity metrics. Here's what businesses
+            typically experience when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
 
@@ -1740,6 +1813,19 @@ function WhyChooseENH({ data }) {
             ))}
           </Row>
         </motion.div>
+
+        {data.resultsNote && (
+          <motion.p
+            initial="hidden"
+            whileInView="show"
+            viewport={vp}
+            variants={fadeUp}
+            className="mt-4"
+            style={{ color: "#532a06", fontSize: "0.95rem", fontStyle: "italic" }}
+          >
+            {data.resultsNote}
+          </motion.p>
+        )}
       </Container>
     </section>
   );
@@ -1765,8 +1851,8 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
-                Dubai
+                Frequently Asked Questions About Online Reputation Management
+                in Dubai
               </motion.h4>
 
               <motion.div className="svp-faq__media" variants={fadeUp}>
@@ -1788,8 +1874,8 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
-                marketing agency in Dubai.
+                Everything you need to know before partnering with an ORM
+                agency in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -1868,7 +1954,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2080,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start protecting and strengthening your
+                online reputation with expert guidance.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2179,25 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="orm-monitoring">
+                        Online Reputation Monitoring
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="review-management">
+                        Review & Ratings Management
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="negative-content-management">
+                        Negative Content & Search Result Management
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="brand-reputation-building">
+                        Brand Reputation Building
+                      </option>
+                      <option value="social-reputation-management">
+                        Social Media Reputation Management
+                      </option>
+                      <option value="orm-reporting">
+                        ORM Reporting & Reputation Strategy
+                      </option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2325,15 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Protect and Grow Your Online Reputation?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            Whether you're dealing with negative reviews, inconsistent search
+            results, or simply want stronger visibility into how your
+            business is perceived, ENH Consulting can build an online
+            reputation management strategy designed around your business and
+            your Dubai market.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2270,21 +2359,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function ORMServicesDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = ORM_DATA[slug] || ORM_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Online Reputation Management Services in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Build trust and protect your brand with online reputation management services in Dubai from ENH Consulting. Monitor reviews and manage your online presence."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/online-reputation-management-services-in-dubai/`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2382,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Online Reputation Management Services in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Build trust and protect your brand with online reputation management services in Dubai from ENH Consulting. Monitor reviews and manage your online presence."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/online-reputation-management-services-in-dubai/"
         />
         <meta
           property="og:image"
@@ -2312,24 +2401,27 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Online Reputation Management Services in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Online Reputation Management Services in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Build trust and protect your brand with online reputation management services in Dubai from ENH Consulting. Monitor reviews and manage your online presence."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(ormFaqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(ormServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
@@ -2348,5 +2440,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

@@ -53,15 +53,18 @@ function Footer() {
           <Col lg={3} md={3} sm={6} xs={12} className="footer-col">
             <h5 className="footer-heading">Digital &amp; IT Solutions</h5>
             <ul className="footer-list">
-              <li><a href="/">Digital Marketing Services</a></li>
-              <li><a href="/">SEO Services</a></li>
-              <li><a href="/">PPC Services</a></li>
-              <li><a href="/">Web Development</a></li>
-              <li><a href="/">App Development</a></li>
-              <li><a href="/">Software Development</a></li>
+              <li><a href="/digital-marketing-agency-in-dubai">Digital Marketing Solution</a></li>
+              <li><a href="/best-seo-agency-in-dubai">SEO Marketing Solution</a></li>
+              <li><a href="/ppc-company-in-dubai">PPC Marketing Solution</a></li>
+              <li><a href="/social-media-marketing-company-in-dubai">Social Media Marketing Solution</a></li>
+              <li><a href="/content-marketing-services-in-dubai">Content Marketing Solution</a></li>
+              <li><a href="/email-marketing-agency-in-dubai">Email Marketing Solution</a></li>
+              <li><a href="/online-reputation-management-services-in-dubai">ORM Marketing Solution</a></li>
+              <li><a href="/conversion-rate-optimization-agency-dubai">CRO Marketing Solution</a></li>
+              <li><a href="/web-development-agency-in-dubai">Web Development Solution</a></li>
             </ul>
           </Col>
-
+ 
           {/* Contact US */}
           <Col lg={4} md={3} sm={6} xs={12} className="footer-col contact-col">
             <h5 className="footer-heading">Contact US</h5>

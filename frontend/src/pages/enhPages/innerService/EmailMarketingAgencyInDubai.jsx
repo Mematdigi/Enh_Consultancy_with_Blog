@@ -40,6 +40,10 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaCalendarAlt,
+  FaPaintBrush,
+  FaSyncAlt,
+  FaChartLine,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +95,145 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const emailFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "What is email marketing and how can it help my business?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "Email marketing is direct, permission-based communication with people who've already shown interest in your business. Used well, it nurtures leads, retains customers, and encourages repeat purchases - often at a lower cost than continuously acquiring new customers.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "Why should I hire an email marketing agency in Dubai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "An agency brings strategy, segmentation, automation, and design expertise that's difficult to maintain consistently in-house, along with the ongoing testing and analytics needed to keep improving results rather than campaigns depending on spare internal time.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "What email marketing services do you provide?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "We provide strategy and campaign management, design and copywriting, automation and personalization, e-commerce email marketing, deliverability and list management, and analytics, testing, and optimization - managed as one connected program.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "Can you create automated email campaigns?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "Yes. We build welcome sequences, abandoned cart flows, post-purchase follow-ups, and re-engagement campaigns, so your business keeps nurturing leads and customers without manual sending.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "Can you help segment and personalize email campaigns?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "Yes. We segment audiences by behavior, purchase history, engagement level, funnel stage, location, and interests, so campaigns reflect who's actually receiving them instead of treating the whole list the same way.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "Which email marketing platforms do you work with?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "We work with platforms including Mailchimp, HubSpot, Brevo, Salesforce Marketing Cloud, Zoho, and Klaviyo, chosen based on your existing systems and specific automation needs.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "How do you measure email marketing performance?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "We track click-through rate, conversions, revenue attribution, and campaign performance rather than relying on open rate alone, so reporting reflects actual business impact, not just activity.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "How long does it take to see results from email marketing?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "Engagement improvements from better segmentation and design can appear within the first few campaigns. Stronger, compounding results - retention, repeat purchases, automation performance - typically build over a couple of months as workflows mature.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much do email marketing services cost in Dubai?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Cost depends on factors like database size, campaign frequency, automation complexity, platform requirements, and the number of campaigns involved, so pricing varies by scope rather than following a fixed rate. Get in touch with ENH Consulting for a quote based on your specific goals and current setup.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const emailServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/email-marketing-agency-in-dubai#service",
+  name: "Email Marketing Services in Dubai",
+  serviceType: "Email Marketing",
+  url: "https://enh.consulting/email-marketing-agency-in-dubai",
+  description:
+    "ENH Consulting provides email marketing services in Dubai to help businesses generate qualified leads, improve customer engagement, increase conversions, strengthen customer retention, and drive repeat purchases through strategic campaigns, email design, automation, personalization, e-commerce email marketing, deliverability management, analytics, testing, and optimization.",
+  provider: {
+    "@id": "https://enh.consulting/#organization",
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Dubai",
+    },
+    {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Email Marketing Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Email Marketing Strategy and Campaign Management",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Email Design and Copywriting" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Email Automation and Personalization" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "E-commerce Email Marketing" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Email Deliverability and List Management" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Email Analytics, A/B Testing and Optimization",
+        },
+      },
+    ],
+  },
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,247 +283,245 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const EMAIL_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
-    headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+    badge: "Email Marketing Agency",
+    headline: "Email Marketing Agency in Dubai for Customer Engagement & Business Growth",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "Most Dubai businesses already have something valuable sitting in their email databases: subscribers, leads, and past customers who've shown interest before. An email marketing agency in Dubai puts that existing database to work, nurturing leads that aren't ready to buy yet, encouraging repeat purchases, and keeping communication personalized and automated instead of manual and inconsistent. Rather than always paying to reach someone new, it's a channel built around the people who already know your business.",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Business Struggling to Generate Results from Email Marketing?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many Dubai businesses send emails regularly but still struggle with low open rates, weak click-throughs, poor deliverability, and limited conversions. These challenges often arise when email marketing in Dubai lacks proper segmentation, automation, personalization, and a consistent strategy.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "Sending the same message to every subscriber rarely produces strong results. Effective email marketing requires understanding where customers are in their journey, delivering relevant content, and using automated workflows to nurture prospects and encourage action. ENH Consulting takes a strategic approach to email marketing, combining audience segmentation, personalized campaigns, automation, and performance tracking to help Dubai businesses improve engagement, generate qualified leads, increase conversions, and build stronger customer relationships.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven Email Marketing Agency in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "Email marketing looks simple from the outside, but performing well requires strategy, segmentation, personalization, automation, copywriting, design, testing, analytics, and deliverability management working together, not a newsletter sent whenever there's time. Most in-house teams can manage a piece of that consistently, rarely all of it.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "As an email marketing agency in Dubai, ENH Consulting builds that as one connected system. We start with your business goals and customer journey, then build automated workflows and personalized campaigns designed around how your specific audience actually behaves, not a generic template. Every campaign is built to convert and measured against real outcomes, so you always know what's working and why. If your email marketing has been ad hoc, this is the shift: from occasional sends to a structured system focused on revenue.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Email Marketing Services in Dubai",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaCalendarAlt />,
+        title: "Email Marketing Strategy & Campaign Management",
+        desc: "We start with your business goals, audience research, and customer journey, then build a campaign calendar that separates newsletters, promotional campaigns, seasonal sends, and lead-nurturing sequences so nothing competes for attention in the same week. As your email marketing agency, we handle the scheduling and execution behind that plan too, so campaigns go out consistently rather than whenever there's spare time.",
       },
       {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
+        icon: <FaPaintBrush />,
+        title: "Email Design & Copywriting",
+        desc: "Responsive email design that holds up across inboxes and screen sizes, paired with subject lines, preheader text, and body copy built to be read and acted on. CTAs, visual hierarchy, and brand consistency are treated as conversion tools, not finishing touches, since most email opens happen on mobile first, so every layout is built mobile-first rather than adapted afterward.",
       },
       {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
+        icon: <FaSyncAlt />,
+        title: "Email Automation & Personalization",
+        desc: "Welcome sequences, lead nurturing, abandoned cart reminders, post-purchase follow-ups, and re-engagement campaigns, built around where each subscriber actually sits in the customer lifecycle. Segmentation behind these workflows is based on behavior, purchase history, location, interests, and funnel stage, so messaging reflects who's receiving it rather than treating the whole list the same way.",
       },
       {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
-      },
-      {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        icon: <FaShoppingCart />,
+        title: "E-commerce Email Marketing",
+        desc: "Abandoned cart recovery, personalized product recommendations, new product launch campaigns, and cross-sell and upsell sequences, layered alongside post-purchase emails built to bring customers back. For online stores, this is one of the more direct ways email marketing contributes to revenue, turning existing customers into repeat purchases and stronger retention.",
       },
       {
         icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
+        title: "Email Deliverability & List Management",
+        desc: "List hygiene, bounce management, unsubscribe handling, and spam prevention, alongside sender reputation fundamentals like SPF, DKIM, and DMARC, with consent management built in from the start. We can't promise guaranteed inbox placement, but every factor within our control is actively managed to support strong deliverability and keep a list clean and useful over time.",
       },
       {
-        icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
-      },
-      {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaChartLine />,
+        title: "Email Analytics, A/B Testing & Optimization",
+        desc: "Ongoing testing across subject lines, CTAs, content, layouts, and send times, with results tracked against click-through rate, conversions, revenue, and campaign attribution, open rate is one input, not the main measure of success. Testing and reporting run continuously, so each campaign feeds directly into how the next one is built.",
       },
     ],
 
     // Industries we serve
     whyUs: [
       {
-        icon: <FaHeartbeat />,
-        title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
-      },
-      {
-        icon: <FaGraduationCap />,
-        title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        icon: <FaShoppingCart />,
+        title: "E-commerce & Retail",
+        desc: "Abandoned cart recovery, product recommendations, and promotions that turn browsers into repeat buyers.",
       },
       {
         icon: <FaBuilding />,
         title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
+        desc: "Property launch updates and lead nurturing that keep buyers and investors engaged through long decision cycles.",
+      },
+      {
+        icon: <FaHeartbeat />,
+        title: "Healthcare",
+        desc: "Appointment reminders and educational newsletters that keep patients engaged between visits.",
+      },
+      {
+        icon: <FaGraduationCap />,
+        title: "Education",
+        desc: "Enrollment nurturing and event communication aligned to admissions and academic calendars.",
       },
       {
         icon: <FaHotel />,
         title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
+        desc: "Booking confirmations and loyalty campaigns that encourage direct, repeat bookings.",
       },
       {
-        icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
+        icon: <FaWallet />,
+        title: "Financial Services",
+        desc: "Compliant, trust-building communication that nurtures leads through longer decision-making.",
       },
       {
-        icon: <FaIndustry />,
-        title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        icon: <FaLaptopCode />,
+        title: "SaaS & Technology",
+        desc: "Onboarding sequences and churn-reduction campaigns aimed at existing users.",
+      },
+      {
+        icon: <FaHandshake />,
+        title: "Professional Services",
+        desc: "Relationship-building newsletters that shorten the trust-building stage of a sale.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — Discovery & Goal Setting",
+        text: "We define what success looks like for your business, so every later step is built toward a specific outcome.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — Audience & Database Analysis",
+        text: "We review your existing list and engagement history, so you know exactly what you're starting from.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — Strategy & Campaign Planning",
+        text: "We build a campaign calendar tied to your goals, so activity has a clear purpose behind it.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — Segmentation & Personalization",
+        text: "We split your audience into meaningful segments, so messaging matches who's actually receiving it.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — Email Design & Content Creation",
+        text: "We design and write every campaign, so each send is built to convert, not just inform.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Automation, Testing & Campaign Launch",
+        text: "We build workflows and test key variables before launch, so nothing goes live on a guess.",
+      },
+      {
+        step: "Step 7 — Performance Analysis & Optimization",
+        text: "We track results and refine ongoing campaigns, so performance keeps improving over time.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
         icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        title: "Higher Customer Engagement",
+        desc: "Relevant, segmented messaging is designed to earn more attention than a generic send to your entire list.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaHandshake />,
+        title: "Better Lead Nurturing",
+        desc: "Automated sequences are built to keep prospects moving toward a decision without manual follow-up.",
       },
       {
         num: "03",
         icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        title: "More Conversions",
+        desc: "Personalized, well-timed campaigns are optimized to turn engagement into actual enquiries and sales.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaShieldAlt />,
+        title: "Higher Customer Retention",
+        desc: "Consistent, relevant communication helps keep your business front of mind well after the first purchase.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaShoppingCart />,
+        title: "More Repeat Purchases",
+        desc: "Post-purchase and recommendation campaigns are built to encourage customers to return and buy again.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaWallet />,
+        title: "Better Marketing ROI",
+        desc: "Focusing effort on your existing database helps generate more value from contacts you've already earned.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "What is email marketing and how can it help my business?",
+        a: "Email marketing is direct, permission-based communication with people who've already shown interest in your business. Used well, it nurtures leads, retains customers, and encourages repeat purchases, often at a lower cost than continuously acquiring new customers.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "What email marketing does",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "Why should I hire an email marketing agency in Dubai?",
+        a: "An agency brings strategy, segmentation, automation, and design expertise that's difficult to maintain consistently in-house, along with the ongoing testing and analytics needed to keep improving results rather than campaigns depending on spare internal time.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Why hire an agency",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "What email marketing services do you provide?",
+        a: "We provide strategy and campaign management, design and copywriting, automation and personalization, e-commerce email marketing, deliverability and list management, and analytics, testing, and optimization, managed as one connected program.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "One connected program",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "Can you create automated email campaigns?",
+        a: "Yes. We build welcome sequences, abandoned cart flows, post-purchase follow-ups, and re-engagement campaigns, so your business keeps nurturing leads and customers without manual sending.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "Automation that keeps working",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "Can you help segment and personalize email campaigns?",
+        a: "Yes. We segment audiences by behavior, purchase history, engagement level, funnel stage, location, and interests, so campaigns reflect who's actually receiving them instead of treating the whole list the same way.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "Segmentation that matters",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        q: "Which email marketing platforms do you work with?",
+        a: "We work with platforms including Mailchimp, HubSpot, Brevo, Salesforce Marketing Cloud, Zoho, and Klaviyo, chosen based on your existing systems and specific automation needs.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Platforms we work with",
+      },
+      {
+        q: "How do you measure email marketing performance?",
+        a: "We track click-through rate, conversions, revenue attribution, and campaign performance rather than relying on open rate alone, so reporting reflects actual business impact, not just activity.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
+        imgLabel: "Metrics that matter",
       },
       {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        q: "How long does it take to see results from email marketing?",
+        a: "Engagement improvements from better segmentation and design can appear within the first few campaigns. Stronger, compounding results, retention, repeat purchases, automation performance, typically build over a couple of months as workflows mature.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Metrics that matter",
+        imgLabel: "Timelines for results",
+      },
+      {
+        q: "How much do email marketing services cost in Dubai?",
+        a: "Cost depends on factors like database size, campaign frequency, automation complexity, platform requirements, and the number of campaigns involved, so pricing varies by scope rather than following a fixed rate.",
+        img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
+        imgLabel: "Pricing built around scope",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Let's Build an Email Strategy That Drives Business Growth",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
-    growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
+      "Your existing subscriber and customer database already holds real potential for lead nurturing, retention, and repeat purchases, the question is whether it's being used strategically. ENH Consulting can build the automation and campaigns needed to turn that database into a measurable growth channel.",
+    growthNote: "Talk to ENH Consulting about your email marketing strategy.",
     growthCta: "Get Started",
   },
 };
@@ -907,7 +979,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1107,12 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                ENH Consulting provides a complete email marketing system
+                covering strategy, campaign management, design, automation,
+                personalization, e-commerce email, deliverability, and
+                ongoing optimization. Rather than offering these as
+                disconnected add-ons, we build them into one program designed
+                around your business and audience.
               </p>
             </Col>
           </Row>
@@ -1099,9 +1171,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1127,21 +1203,21 @@ function Services() {
       icon: <FaRocket />,
       title: "Startups",
       description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
+        "Early-stage businesses usually need to generate engagement without a large marketing team or budget behind it. We focus on lead nurturing with limited resources, setting up automated communication that keeps working in the background, and building customer relationships from a smaller list without requiring constant manual input to maintain them.",
       number: "01",
     },
     {
       icon: <FaBriefcase />,
       title: "Small & Medium Businesses",
       description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
+        "Growing businesses typically need email that supports customer retention and repeat purchases as reliably as it supports promotions. We focus on consistent campaigns that don't depend on spare time, database growth alongside your customer base, and scalable automation that keeps working as your list grows larger and more complex.",
       number: "02",
     },
     {
       icon: <FaGlobe />,
       title: "Enterprises",
       description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
+        "Larger organizations are often managing large databases, multiple customer segments, and an existing CRM that email needs to work alongside. We handle CRM integration, advanced segmentation across those different audiences, and the reporting structure needed to keep campaigns consistent and accountable across teams and stakeholders.",
       number: "03",
     },
   ];
@@ -1163,14 +1239,14 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                Email Marketing Solutions for Businesses in Dubai & UAE
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            Email marketing priorities shift with business size, database
+            size, and growth stage. Here's how we tailor our approach for
+            each.
           </motion.p>
         </motion.div>
 
@@ -1227,34 +1303,34 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "Strategy-First Email Marketing",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "Every campaign starts with a plan tied to your business goals, so activity is aimed at leads and revenue rather than filling a content calendar.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Personalized Campaigns",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "We segment audiences by behavior, purchase history, and funnel stage, so your customers receive relevant messages instead of generic campaigns that are easy to ignore.",
     },
     {
-      title: "Transparent Reporting",
+      title: "Automation & Lifecycle Marketing",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "Welcome flows, abandoned cart sequences, and re-engagement campaigns run continuously in the background, so leads and customers keep getting nurtured without manual effort.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Conversion-Focused Copy & Design",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
+        "Every email is written and designed around a specific action, so campaigns are built to move recipients toward a click or a purchase, not just an open.",
     },
     {
-      title: "Multi-Channel Expertise",
+      title: "Data-Driven Optimization",
       description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
+        "Campaigns are refined using real performance data, so decisions are based on what's actually working for your audience, not general assumptions.",
     },
     {
-      title: "Local Market Understanding",
+      title: "Understanding of Dubai & UAE Audiences",
       description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "Strategies account for the mix of local, international, B2B, and B2C audiences common across Dubai businesses, so messaging is built for who you actually serve.",
     },
   ];
 
@@ -1275,8 +1351,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Businesses Choose ENH Consulting for Email Marketing
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1411,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Industries We Serve with Email Marketing
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            Every industry uses email differently, so campaigns and
+            automation have to reflect how that specific audience actually
+            moves through their decision cycle.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1491,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Email Marketing Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,15 +1513,15 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns a database into a
+            revenue channel. Here's exactly how we take email marketing from
+            discovery to measurable results.
           </p>
         </motion.div>
 
         <Row className="g-4 mt-2">
           {data.testimonials.map((t, i) => (
-            <Col lg={4} md={6} key={i}>
+            <Col lg={12} md={6} key={i}>
               <motion.div
                 className={`svp-testimonials__card${i === active ? " svp-testimonials__card--active" : ""}`}
                 animate={{
@@ -1516,7 +1591,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help You Grow with Email
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,12 +1767,12 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Email Marketing?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
-            experience when they partner with ENH Consulting.
+            Every campaign we build is focused on outcomes that matter to
+            your business, not open rates alone. Here's what businesses
+            typically experience when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
 
@@ -1765,8 +1840,7 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
-                Dubai
+                Frequently Asked Questions About Email Marketing in Dubai
               </motion.h4>
 
               <motion.div className="svp-faq__media" variants={fadeUp}>
@@ -1788,7 +1862,7 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
+                Everything you need to know before partnering with an email
                 marketing agency in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
@@ -1868,7 +1942,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2068,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start turning your existing database
+                into a measurable growth channel with expert email marketing.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2167,25 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="email-strategy">
+                        Email Marketing Strategy & Campaign Management
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="email-design">
+                        Email Design & Copywriting
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="email-automation">
+                        Email Automation & Personalization
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="ecommerce-email">
+                        E-commerce Email Marketing
+                      </option>
+                      <option value="email-deliverability">
+                        Email Deliverability & List Management
+                      </option>
+                      <option value="email-analytics">
+                        Email Analytics, A/B Testing & Optimization
+                      </option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2313,15 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Grow with an Email Marketing Agency in Dubai?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            Whether you need automated lead nurturing, e-commerce email
+            campaigns, stronger customer retention, or a complete email
+            marketing strategy, ENH Consulting helps Dubai businesses turn
+            their existing audience into measurable revenue opportunities.
+            Get in touch to discuss your email marketing goals.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2270,21 +2347,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function EmailMarketingDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = EMAIL_DATA[slug] || EMAIL_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Email Marketing Agency in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Email marketing in Dubai that generates more leads, increases sales, and builds lasting customer relationships. Partner with ENH Consulting - Get started today!"
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/email-marketing-agency-in-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2370,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Email Marketing Agency in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Email marketing in Dubai that generates more leads, increases sales, and builds lasting customer relationships. Partner with ENH Consulting - Get started today!"
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/email-marketing-agency-in-dubai"
         />
         <meta
           property="og:image"
@@ -2312,24 +2389,27 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Email Marketing Agency in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Email Marketing Agency in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Email marketing in Dubai that generates more leads, increases sales, and builds lasting customer relationships. Partner with ENH Consulting - Get started today!"
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(emailFaqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(emailServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
@@ -2348,5 +2428,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

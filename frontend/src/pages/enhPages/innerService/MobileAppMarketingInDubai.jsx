@@ -40,6 +40,16 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaMobileAlt,
+  FaApple,
+  FaAndroid,
+  FaLayerGroup,
+  FaReact,
+  FaPaintBrush,
+  FaChartLine,
+  FaUtensils,
+  FaTaxi,
+  FaPlane,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +101,125 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const mobileAppFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "How much does mobile app development cost in Dubai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "Cost depends on complexity, platform choice, features, and integrations, so there's no single fixed price that applies to every project. A simple MVP costs far less than a feature-rich app with multiple integrations. Rather than quoting a generic figure, we scope pricing around your specific requirements once we understand what the app actually needs to do.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "How long does it take to develop a mobile app?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "Timelines vary significantly with scope - a focused MVP with limited features launches faster than a complex app with extensive integrations and custom functionality. Platform choice also plays a role, since building for both iOS and Android natively takes longer than a single cross-platform build. We provide a realistic timeline once we understand your requirements in detail.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "Can you develop both iOS and Android apps?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "Yes, we build native iOS and Android apps when maximum platform-specific performance matters, as well as cross-platform apps using Flutter or React Native when that approach genuinely fits the project's requirements and budget. Which route makes sense depends on your priorities around performance, timeline, and cost, which we assess honestly during planning.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "Do you provide custom mobile app development?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "Yes, when a standard app template can't support your specific business workflows or customer requirements, we build custom functionality and architecture designed around what your business actually needs. This matters most for businesses with unique booking logic, specialized customer journeys, or integration requirements a generic build simply can't accommodate properly.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "Which technology is best for my mobile app?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "It depends on your performance requirements, budget, timeline, and platform priorities - there's no universally correct answer. Native development suits apps needing maximum performance and full access to platform-specific features, while Flutter or React Native can suit projects prioritizing a shared codebase and faster, more cost-efficient development across both platforms.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "Can you integrate APIs and third-party systems into my app?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "Yes, we integrate APIs, CRMs, payment systems, and other third-party tools so your app works properly with the systems your business already depends on, rather than operating as a disconnected standalone product. These integrations are tested thoroughly to make sure data flows reliably between the app and your existing systems.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "Can you redesign or improve an existing mobile app?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "Yes, we work with existing apps to improve performance, UX, and functionality, often through targeted fixes rather than a full rebuild, depending on what's actually holding the app back. We start by identifying the specific issues - slow performance, confusing navigation, outdated design - before recommending the right scope of work.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "Do you provide ongoing mobile app maintenance and support?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "Yes, we offer ongoing maintenance covering performance, security, bug fixes, and platform updates, along with continued improvements based on real usage data after launch. Apps need consistent attention as operating systems and user expectations evolve - treating launch as the finish line is usually where performance quietly starts slipping.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const mobileAppServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/mobile-app-development-company-in-dubai#service",
+  name: "Mobile App Development Services in Dubai",
+  serviceType: "Mobile App Development",
+  url: "https://enh.consulting/mobile-app-development-company-in-dubai",
+  description:
+    "ENH Consulting provides custom mobile app development services in Dubai for businesses that need secure, scalable and high-performance iOS, Android, Flutter and React Native applications designed around their users, business goals and technical requirements.",
+  provider: {
+    "@type": "Organization",
+    "@id": "https://enh.consulting/#organization",
+    name: "ENH Consulting",
+    url: "https://enh.consulting/",
+  },
+  areaServed: {
+    "@type": "City",
+    name: "Dubai",
+    containedInPlace: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  },
+  audience: {
+    "@type": "BusinessAudience",
+    audienceType: "Startups, Growing Businesses, Enterprises, B2B Businesses and Ecommerce Businesses",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Mobile App Development Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Mobile App Development" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "iOS App Development" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Android App Development" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Flutter App Development" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "React Native App Development" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Mobile App UI/UX Design and Development" },
+      },
+    ],
+  },
+  category: "Mobile Application Development",
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,84 +269,102 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const MOBILEAPP_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
-    headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+    badge: "Mobile App Development",
+    headline: "Mobile App Development Company in Dubai for Scalable, High-Performance Apps",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "As a mobile app development company in Dubai, ENH Consulting builds custom applications for businesses that need more than a working app, they need one that performs well, holds up under real usage, and supports the business behind it. Our mobile app developers build Android, iOS, and cross-platform applications around specific users, workflows, and business requirements, with performance, security, integrations, and long-term scalability considered from the start.",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Mobile App Holding Back Your Business Growth?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many business apps are live but still struggle with poor performance, slow loading, weak user experience, low engagement, onboarding abandonment, integration issues, security gaps, and scalability limitations. These problems can quietly reduce customer retention and limit the value of your app.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "Successful mobile app development in Dubai requires more than launching an application. The app needs to be built around real user behavior, business objectives, technical requirements, and long-term growth. ENH Consulting focuses on performance, intuitive UX, secure development, seamless integrations, and scalable architecture to help businesses improve engagement, reduce abandonment, increase conversions, and create stronger customer experiences.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven Mobile App Development Company in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "Building a mobile app that simply works is not enough to support long-term business growth. ENH Consulting is a mobile app development company in Dubai focused on creating applications around your users, business objectives, and operational requirements. Our approach goes beyond the initial build to create digital experiences designed to increase engagement, encourage customer actions, and support measurable business growth.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "Our mobile app development services in Dubai combine user-focused UX, scalable development, strong security, and seamless API integrations to create apps that perform reliably across real-world usage. We connect your application with the tools your business already relies on, including CRM, payment, booking, ecommerce, and other business systems, while planning performance and scalability from the beginning. As an experienced mobile application development company in Dubai, ENH Consulting focuses on usability, technical performance, and long-term support rather than treating launch as the finish line.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Mobile App Development Services We Provide",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaMobileAlt />,
+        title: "Custom Mobile App Development",
+        desc: "We build applications around your specific business workflows and customer requirements rather than adapting your business to fit an off-the-shelf template. Particularly useful when standard functionality can't support unique booking logic, specific customer journeys, or integration needs.",
       },
       {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
+        icon: <FaApple />,
+        title: "iOS App Development",
+        desc: "iOS mobile app development for businesses that need to reach Apple's ecosystem with an app that feels genuinely native, not adapted from somewhere else. Performance tuned specifically for iOS, UX that follows Apple's design conventions, and App Store readiness considered from the start.",
       },
       {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
+        icon: <FaAndroid />,
+        title: "Android App Development",
+        desc: "We build for the device diversity Android represents, different screen sizes, hardware, and OS versions all need to work reliably, not just flagship devices. Performance, security, and scalability get the same attention, with Google Play readiness considered from the start.",
       },
       {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
+        icon: <FaLayerGroup />,
+        title: "Flutter App Development",
+        desc: "Cross-platform apps built from a single shared codebase when that approach genuinely fits the project, often faster and more cost-efficient than fully separate iOS and Android builds. Flutter isn't automatically the better choice for every business; it's assessed honestly rather than defaulted to.",
       },
       {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        icon: <FaReact />,
+        title: "React Native App Development",
+        desc: "Cross-platform apps that share a codebase across iOS and Android while still aiming for a native-like user experience. Performance considerations and business suitability are weighed against the alternatives during planning, before any code gets written.",
       },
       {
-        icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
+        icon: <FaPaintBrush />,
+        title: "Mobile App UI/UX Design & Development",
+        desc: "Mobile app UI/UX built around how people actually hold, tap, and navigate a phone, not a shrunk-down website. Every screen is designed around the real user journey, with navigation and usability tested against actual tasks rather than visual polish alone.",
       },
+    ],
+
+    // Who we serve (by business type)
+    whoWeServe: [
       {
         icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
+        title: "Startups & New Businesses",
+        description:
+          "Startups often need an MVP that validates the idea without overbuilding, keeping development costs controlled while still leaving room to scale once the concept proves out. We prioritize what actually needs testing first.",
+        number: "01",
       },
       {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaChartLine />,
+        title: "Growing Businesses",
+        description:
+          "Businesses past the MVP stage need customer-facing apps with more automation, deeper integrations, and the scalability to handle a growing user base without a rebuild.",
+        number: "02",
+      },
+      {
+        icon: <FaBuilding />,
+        title: "Established Brands & Enterprises",
+        description:
+          "Larger organizations need more complex applications, stronger security, broader integrations, and infrastructure built to handle large, active user bases reliably.",
+        number: "03",
+      },
+      {
+        icon: <FaBriefcase />,
+        title: "B2B & Business Applications",
+        description:
+          "Business mobile app development often means internal tools, portals, or workflow apps built around operational needs rather than consumer-facing design conventions.",
+        number: "04",
+      },
+      {
+        icon: <FaShoppingCart />,
+        title: "Ecommerce & D2C Businesses",
+        description:
+          "Mobile apps for ecommerce and D2C brands are built around product discovery, checkout, and customer engagement features that keep buyers coming back through the app itself.",
+        number: "05",
       },
     ],
 
@@ -295,162 +373,166 @@ const SERVICE_DATA = {
       {
         icon: <FaHeartbeat />,
         title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
-      },
-      {
-        icon: <FaGraduationCap />,
-        title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
-      },
-      {
-        icon: <FaBuilding />,
-        title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
-      },
-      {
-        icon: <FaHotel />,
-        title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
+        desc: "As a healthcare app development company, we build patient-focused apps around appointment booking, secure data handling, and clear, accessible information.",
       },
       {
         icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
+        title: "Ecommerce & Retail",
+        desc: "Ecommerce app development in Dubai built around product browsing, checkout, and the kind of experience that keeps customers ordering through the app.",
       },
       {
-        icon: <FaIndustry />,
-        title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        icon: <FaUtensils />,
+        title: "Food & Restaurants",
+        desc: "As a food delivery app development company, we build ordering flows, real-time tracking, and restaurant-side management into one connected system.",
+      },
+      {
+        icon: <FaTaxi />,
+        title: "Taxi & Transportation",
+        desc: "As a taxi booking app development company, we build booking, live tracking, and driver-side functionality designed for reliability under real-time demand.",
+      },
+      {
+        icon: <FaWallet />,
+        title: "Fintech & Financial Services",
+        desc: "Fintech app development with the security and compliance considerations financial data genuinely requires, not treated as an afterthought.",
+      },
+      {
+        icon: <FaGraduationCap />,
+        title: "Education & E-Learning",
+        desc: "As educational app developers, we build learning apps around engagement, progress tracking, and content delivery that actually holds attention.",
+      },
+      {
+        icon: <FaPlane />,
+        title: "Travel & Hospitality",
+        desc: "Travel mobile app development built around bookings, itineraries, and the kind of experience that reduces friction during actual travel.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — Discovery & App Strategy",
+        text: "We understand your business goals, target users, competitors, and technical requirements before any design work starts.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — UX Planning & App Architecture",
+        text: "User journeys, core features, navigation, and technical architecture get mapped out.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — UI Design & Mobile App Development",
+        text: "Interface design comes first, followed by development against that approved design.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — API Integration & Testing",
+        text: "APIs, third-party systems, and core functionality are integrated and tested for compatibility.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — Security, Performance & App Store Readiness",
+        text: "The app is tested for security, speed, and performance, with deployment readiness confirmed.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Launch & Continuous Optimization",
+        text: "The app is deployed, monitored, and improved based on how it actually performs with real users.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
-        icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        icon: <FaHandshake />,
+        title: "Better User Experience",
+        desc: "An app that's intuitive enough that users don't need to think about how to use it.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaRocket />,
+        title: "Improved App Performance",
+        desc: "Faster load times and smoother interactions that keep users from bouncing early.",
       },
       {
         num: "03",
-        icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        icon: <FaBullseye />,
+        title: "Higher User Engagement",
+        desc: "An app people actually return to, not one they open once and forget.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaLayerGroup />,
+        title: "Scalable App Infrastructure",
+        desc: "Architecture that handles growing usage without needing a rebuild.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaTools />,
+        title: "Streamlined Business Operations",
+        desc: "Integrations that connect the app to how your business actually runs day to day.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaGlobe />,
+        title: "Greater Customer Accessibility",
+        desc: "A direct channel to reach and serve customers wherever they are.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "How much does mobile app development cost in Dubai?",
+        a: "Cost depends on complexity, platform choice, features, and integrations, so there's no single fixed price that applies to every project. A simple MVP costs far less than a feature-rich app with multiple integrations.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "Pricing built around scope",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "How long does it take to develop a mobile app?",
+        a: "Timelines vary significantly with scope, a focused MVP with limited features launches faster than a complex app with extensive integrations and custom functionality. Platform choice also plays a role.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Timelines by scope",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "Can you develop both iOS and Android apps?",
+        a: "Yes, we build native iOS and Android apps when maximum platform-specific performance matters, as well as cross-platform apps using Flutter or React Native when that approach genuinely fits the project.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "iOS and Android development",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "Do you provide custom mobile app development?",
+        a: "Yes, when a standard app template can't support your specific business workflows or customer requirements, we build custom functionality and architecture designed around what your business actually needs.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "Custom app builds",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "Which technology is best for my mobile app?",
+        a: "It depends on your performance requirements, budget, timeline, and platform priorities, there's no universally correct answer. Native development suits apps needing maximum performance, while Flutter or React Native can suit shared-codebase projects.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "Choosing the right technology",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        q: "Can you integrate APIs and third-party systems into my app?",
+        a: "Yes, we integrate APIs, CRMs, payment systems, and other third-party tools so your app works properly with the systems your business already depends on, tested thoroughly for reliable data flow.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "API and system integrations",
+      },
+      {
+        q: "Can you redesign or improve an existing mobile app?",
+        a: "Yes, we work with existing apps to improve performance, UX, and functionality, often through targeted fixes rather than a full rebuild, depending on what's actually holding the app back.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
+        imgLabel: "Improving existing apps",
       },
       {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        q: "Do you provide ongoing mobile app maintenance and support?",
+        a: "Yes, we offer ongoing maintenance covering performance, security, bug fixes, and platform updates, along with continued improvements based on real usage data after launch.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Metrics that matter",
+        imgLabel: "Ongoing maintenance",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Ready to Build a Mobile App That Supports Your Business Growth?",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
-    growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
-    growthCta: "Get Started",
+      "Whether you need a new app or want to improve an existing one, ENH Consulting provides experienced mobile app developers in Dubai to build secure, scalable solutions around your business goals, users, and technical needs. Our services cover development, integrations, testing, optimization, and ongoing support.",
+    growthNote: "Talk to ENH Consulting about your mobile app project.",
+    growthCta: "Get Your Mobile App Development Consultation",
   },
 };
 
@@ -907,7 +989,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1117,9 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                From strategy and design through development, integration,
+                testing, and support, here's how we structure end-to-end
+                mobile app development.
               </p>
             </Col>
           </Row>
@@ -1099,9 +1178,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1121,31 +1204,7 @@ function RDSection({ data }) {
   );
 }
 
-function Services() {
-  const serviceList = [
-    {
-      icon: <FaRocket />,
-      title: "Startups",
-      description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
-      number: "01",
-    },
-    {
-      icon: <FaBriefcase />,
-      title: "Small & Medium Businesses",
-      description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
-      number: "02",
-    },
-    {
-      icon: <FaGlobe />,
-      title: "Enterprises",
-      description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
-      number: "03",
-    },
-  ];
-
+function Services({ data }) {
   return (
     <section className="services-section">
       <Container>
@@ -1163,14 +1222,13 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                Mobile App Solutions for Different Business Needs
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            What a mobile app needs to do differs by business stage and
+            model. Here's how we tailor our approach for each.
           </motion.p>
         </motion.div>
 
@@ -1181,7 +1239,7 @@ function Services() {
           viewport={{ once: true, amount: 0.1 }}
           variants={staggerContainer}
         >
-          {serviceList.map((service, index) => (
+          {data.whoWeServe.map((service, index) => (
             <motion.div key={index} className="service-card-wrap">
               <motion.div
                 className="service-card"
@@ -1227,34 +1285,39 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "Business-Focused Mobile App Development Company",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "ENH Consulting builds mobile applications around what the business actually needs to achieve, rather than choosing technology simply because it's popular or trendy.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Custom App Development",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "We build custom functionality where a generic template genuinely can't deliver what your business and users actually need.",
     },
     {
-      title: "Transparent Reporting",
+      title: "User-Centered UI/UX",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "Every screen and flow is designed around real user behavior, not assumptions about how people should use the app.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Scalable & Secure Development",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
+        "Apps are built to handle growth in usage and complexity, with security treated as a requirement from day one, not an afterthought.",
     },
     {
-      title: "Multi-Channel Expertise",
+      title: "Integration & Technical Expertise",
       description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
+        "APIs and third-party systems are integrated to actually work reliably with the tools your business depends on.",
     },
     {
-      title: "Local Market Understanding",
+      title: "Dubai & UAE Market Understanding",
       description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "Our approach reflects what actually works for businesses and users across Dubai and the UAE, considering local customer expectations, mobile usage patterns, payment requirements, and regional growth.",
+    },
+    {
+      title: "Experienced Mobile App Development Agency",
+      description:
+        "We combine strategy, UI/UX, development, integrations, testing, and ongoing optimization within one structured development process.",
     },
   ];
 
@@ -1275,8 +1338,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Choose ENH for Mobile App Development in Dubai?
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1398,11 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Mobile App Development for Different Industries
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            Every industry uses mobile apps differently, so functionality and
+            UX have to reflect how that specific audience actually behaves.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1477,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Mobile App Development Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,9 +1499,9 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns an app build into a
+            business asset. Here's exactly how we take an app from discovery
+            to launch and beyond.
           </p>
         </motion.div>
 
@@ -1516,7 +1577,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help You Build Better Apps
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,11 +1753,12 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Our Mobile App Development
+            Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
+            Every app we build is judged against real business outcomes, not
+            technical achievement alone. Here's what businesses typically
             experience when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
@@ -1765,7 +1827,7 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
+                Frequently Asked Questions About Mobile App Development in
                 Dubai
               </motion.h4>
 
@@ -1788,8 +1850,8 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
-                marketing agency in Dubai.
+                Everything you need to know before partnering with a mobile
+                app development company in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -1868,7 +1930,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2056,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start building a mobile app that
+                actually supports your business goals.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2155,25 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="custom-mobile-app-development">
+                        Custom Mobile App Development
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="ios-app-development">
+                        iOS App Development
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="android-app-development">
+                        Android App Development
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="flutter-app-development">
+                        Flutter App Development
+                      </option>
+                      <option value="react-native-app-development">
+                        React Native App Development
+                      </option>
+                      <option value="mobile-app-ui-ux">
+                        Mobile App UI/UX Design & Development
+                      </option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2301,16 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Partner with a Results-Driven Mobile App Development
+            Company in Dubai?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            Sustainable app growth starts with a mobile experience built
+            around your customers and business goals. Let's build a secure,
+            scalable, high-performing app designed to increase engagement,
+            improve conversions, and support long-term growth across Dubai
+            and the UAE.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2270,21 +2336,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+function MobileAppDevDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = MOBILEAPP_DATA[slug] || MOBILEAPP_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Mobile App Development Company in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="ENH Consulting is a mobile app development company in Dubai building custom iOS, Android and cross-platform apps designed for performance and growth."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/mobile-app-development-company-in-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2359,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Mobile App Development Company in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="ENH Consulting is a mobile app development company in Dubai building custom iOS, Android and cross-platform apps designed for performance and growth."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/mobile-app-development-company-in-dubai"
         />
         <meta
           property="og:image"
@@ -2312,31 +2378,36 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Mobile App Development Company in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Mobile App Development Company in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="ENH Consulting is a mobile app development company in Dubai building custom iOS, Android and cross-platform apps designed for performance and growth."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(mobileAppFaqSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(mobileAppServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
       <IntroSection2 data={data} />
       <RDSection data={data} />
       <GrowthCTASection data={data} />
-      <Services />
+      <Services data={data} />
       <WhyUsSection data={data} />
       <TestimonialsSection data={data} />
       <WhyChooseENH data={data} />
@@ -2349,4 +2420,4 @@ function DigitalMarketingAgency() {
   );
 }
 
-export default DigitalMarketingAgency;
+export default MobileAppDevDubai;

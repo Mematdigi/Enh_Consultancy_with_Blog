@@ -40,6 +40,13 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaPaintBrush,
+  FaCalendarAlt,
+  FaComments,
+  FaChartLine,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +98,136 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const smmFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "What social media platforms do you manage?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "We manage Facebook, Instagram, LinkedIn and paid campaigns through Meta Ads. Which platforms make sense for your business depends on where your audience actually spends time, which we assess during discovery rather than managing every platform by default regardless of fit.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "Which platform is best for my business?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "It depends on your industry and audience. B2B businesses often see the strongest results on LinkedIn, while consumer brands tend to perform better on Instagram. We recommend platforms based on where your specific customers are active, not a one-size-fits-all approach applied to every client.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "How long does social media marketing take to show results?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "Engagement and brand awareness improvements often show within four to eight weeks of consistent activity. Lead generation and measurable business impact typically build over three to six months, as content, audience trust, and platform algorithms respond to sustained, strategic activity rather than short bursts.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "Do you provide paid social media advertising?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "Yes, we manage paid campaigns primarily through Meta Ads Manager, covering Facebook and Instagram, focused on lead generation, conversions, and remarketing. Paid and organic strategy are built together, so advertising extends the reach of content that's already resonating rather than running in isolation.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "Do you create content and creatives?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "Yes, content creation is core to what we do - graphics, carousel posts, reels planning, and copywriting are all produced in-house, built around your brand rather than generic templates. Every asset is planned ahead through a content calendar, not created last-minute before a posting deadline.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "How do you measure campaign success?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "We track engagement, reach, follower growth, website traffic, and conversions against your specific goals, not platform-native vanity metrics alone. Reporting ties activity back to real business outcomes, so it's always clear whether social media is actually contributing to growth, not just visibility.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "Can social media generate leads?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "Yes, when it's approached strategically rather than just for visibility. Combining organic content with targeted paid campaigns and clear calls to action turns engaged followers into real inquiries, particularly on platforms like LinkedIn and Instagram where audience intent tends to be higher.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "How often will you post on my accounts?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "Posting frequency depends on your platforms, industry, and goals, and gets set during strategy development rather than applied as a fixed number across every client. What matters more than frequency is consistency and relevance - irregular posting or generic content rarely performs, regardless of volume.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Why should I hire a social media marketing company in Dubai?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "An agency brings dedicated strategy, creative, platform, and paid advertising expertise that's difficult to replicate with a single in-house hire. It also means execution stays consistent even as priorities shift internally, with local Dubai and UAE market insight built into every decision from day one.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const smmServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/social-media-marketing-company-in-dubai#service",
+  name: "Social Media Marketing Services in Dubai",
+  serviceType: "Social Media Marketing",
+  url: "https://enh.consulting/social-media-marketing-company-in-dubai",
+  description:
+    "ENH Consulting provides social media marketing services in Dubai to help businesses increase brand awareness, audience engagement, qualified leads, website traffic, customer relationships, and conversion opportunities through social media strategy, social media management, content creation, platform-specific marketing, paid social advertising, community management, and performance analytics.",
+  provider: {
+    "@id": "https://enh.consulting/#organization",
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Dubai",
+    },
+    {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Social Media Marketing Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Social Media Strategy" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Social Media Management" } },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Content Creation and Creative Design",
+        },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Facebook Marketing" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Instagram Marketing" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "LinkedIn Marketing" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Social Media Advertising (Meta Ads)" },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Community Management" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Social Media Analytics and Reporting" },
+      },
+    ],
+  },
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,84 +277,79 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const SMM_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
+    badge: "SMM Company",
     headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+      "Best Social Media Marketing Company in Dubai for Brand Growth & Customer Engagement",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "Your customers are already judging your business on social media before they ever visit your website. A weak social presence costs trust, engagement, and sales. As the best social media marketing company in Dubai, ENH Consulting creates data-driven social media strategies that increase brand awareness, customer engagement, and qualified leads across every major platform.",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Business Struggling to Build a Strong Social Media Presence?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many Dubai businesses post consistently but still struggle with low engagement, limited reach, inconsistent branding, and difficulty turning followers into qualified leads. These challenges often arise when social media marketing in Dubai is managed without a clear strategy, defined content pillars, or measurable business goals.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "Posting regularly alone doesn't guarantee results. Businesses need content built around audience interests, platform behavior, brand positioning, and conversion opportunities. ENH Consulting takes a strategic approach to social media marketing in Dubai, combining audience research, content planning, creative execution, and performance tracking. With a data-driven strategy, businesses can turn social media into a consistent growth channel and improve ROI over time.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven Social Media Marketing Company in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "Running social media well takes more time and range of skills than most internal teams have available - strategy, content creation, design, copywriting, community management, and paid campaigns, all running at once. A professional agency brings that full setup without the hiring curve.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "Working with ENH Consulting means dedicated specialists per platform, not one person managing five accounts. Creative content gets produced consistently rather than assembled last-minute, and each platform gets handled according to what actually works there - Instagram isn't managed like LinkedIn, and neither is managed like TikTok. Every campaign is reported against real outcomes - qualified leads, website traffic, engagement, conversions, and brand awareness - not follower counts or vanity numbers.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Result-Driven Social Media Marketing Services in Dubai",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaLightbulb />,
+        title: "Social Media Strategy",
+        desc: "Before anything gets posted, we map out audience research, competitor analysis, content pillars, and a posting schedule built around what your specific audience responds to. The result is a campaign roadmap that gives every post a purpose, instead of content decided week to week with no direction behind it.",
       },
       {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
+        icon: <FaCalendarAlt />,
+        title: "Social Media Management",
+        desc: "Day-to-day account management - publishing, scheduling, profile optimization, and responding to engagement - keeps your presence active and consistent without eating into your team's time. We handle the operational side so your brand voice stays steady across every post, comment, and update.",
+      },
+      {
+        icon: <FaPaintBrush />,
+        title: "Content Creation & Creative Design",
+        desc: "Graphics, carousel posts, reels planning, and copywriting built around your brand rather than generic templates. We work from a content calendar so creativity doesn't get produced in a scramble, and storytelling ties each post back to what your business actually wants people to remember.",
+      },
+      {
+        icon: <FaFacebook />,
+        title: "Facebook Marketing",
+        desc: "Organic growth and business page optimization keep your Facebook presence credible, while audience engagement and lead generation campaigns turn that presence into actual pipeline. Community building on Facebook still matters for a lot of Dubai audiences, particularly for local and repeat-customer businesses.",
+      },
+      {
+        icon: <FaInstagram />,
+        title: "Instagram Marketing",
+        desc: "Reels, stories, and carousel posts built around what's actually performing on the platform right now, not what worked a year ago. Profile optimization and, where relevant, influencer collaborations extend reach beyond your existing followers and keep engagement genuinely active rather than passive.",
+      },
+      {
+        icon: <FaLinkedin />,
+        title: "LinkedIn Marketing",
+        desc: "For B2B brands, LinkedIn is where executive positioning and employer branding do real work. We build content and lead generation campaigns aimed at decision makers, using professional networking and thought leadership to build credibility that a sales pitch alone can't.",
       },
       {
         icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
+        title: "Social Media Advertising (Meta Ads)",
+        desc: "Paid Facebook and Instagram campaigns built for lead generation and conversions, not just reach. Remarketing brings back people who've already engaged, and every campaign gets optimized against ROI, so ad spend keeps working harder rather than plateauing after the first few weeks.",
       },
       {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
+        icon: <FaComments />,
+        title: "Community Management",
+        desc: "Comments, direct messages, and day-to-day customer engagement get handled promptly and on-brand, which matters more than most businesses realize - an ignored comment or slow reply damages trust quietly. This also covers reputation management, keeping relationships with your audience active and positive.",
       },
       {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
-      },
-      {
-        icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
-      },
-      {
-        icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
-      },
-      {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaChartLine />,
+        title: "Social Media Analytics & Reporting",
+        desc: "We track engagement, reach, follower growth, and conversions against your actual goals, not just platform-native metrics that look impressive but don't mean much. That data feeds back into strategy continuously, so campaigns keep improving instead of running the same playbook indefinitely.",
       },
     ],
 
@@ -295,161 +358,167 @@ const SERVICE_DATA = {
       {
         icon: <FaHeartbeat />,
         title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
+        desc: "Building patient trust through credible, consistent content that supports longer research-driven decisions.",
       },
       {
         icon: <FaGraduationCap />,
         title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        desc: "Reaching prospective students and parents with content aligned to enrollment cycles and academic milestones.",
       },
       {
         icon: <FaBuilding />,
         title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
+        desc: "Showcasing listings and market expertise to attract serious buyer and investor engagement.",
       },
       {
         icon: <FaHotel />,
         title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
+        desc: "Driving bookings and visibility through visual content tied to seasonal demand and experience.",
       },
       {
         icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
+        title: "Ecommerce & Retail",
+        desc: "Turning product content and engagement directly into traffic and online sales.",
       },
       {
         icon: <FaIndustry />,
         title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        desc: "Building credibility and reach with decision makers across longer, relationship-driven sales cycles.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — Discovery & Brand Analysis",
+        text: "We review your current presence, brand voice, and goals to understand where the real opportunity sits.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — Audience Research",
+        text: "We identify who your audience actually is and how they behave on each relevant platform.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — Strategy Development",
+        text: "Findings shape a content and platform strategy built around your specific business goals.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — Content Planning & Creative Production",
+        text: "Content calendars and creative assets get built ahead of schedule, not last-minute.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — Campaign Launch & Community Management",
+        text: "Content goes live and engagement gets managed actively across every platform.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Performance Monitoring & Optimization",
+        text: "Results get tracked continuously, with strategy adjusted based on what's actually working.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
         icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        title: "Increased Brand Awareness",
+        desc: "More people recognizing and remembering your business across platforms.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaComments />,
+        title: "Higher Audience Engagement",
+        desc: "Real interaction, not just passive impressions or scroll-past views.",
       },
       {
         num: "03",
-        icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        icon: <FaHandshake />,
+        title: "Better Lead Generation",
+        desc: "Social activity that actually feeds your sales pipeline.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaGlobe />,
+        title: "More Website Traffic",
+        desc: "Social platforms driving visitors who are already primed to engage.",
       },
       {
         num: "05",
         icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        title: "Stronger Customer Relationships",
+        desc: "Consistent, responsive presence that builds ongoing trust.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaRocket />,
+        title: "Higher Conversion Opportunities",
+        desc: "Engaged audiences that convert more readily than cold traffic.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "What social media platforms do you manage?",
+        a: "We manage Facebook, Instagram, LinkedIn and paid campaigns through Meta Ads. Which platforms make sense for your business depends on where your audience actually spends time, which we assess during discovery rather than managing every platform by default regardless of fit.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "Platforms we manage",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "Which platform is best for my business?",
+        a: "It depends on your industry and audience. B2B businesses often see the strongest results on LinkedIn, while consumer brands tend to perform better on Instagram. We recommend platforms based on where your specific customers are active, not a one-size-fits-all approach applied to every client.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Choosing the right platform",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "How long does social media marketing take to show results?",
+        a: "Engagement and brand awareness improvements often show within four to eight weeks of consistent activity. Lead generation and measurable business impact typically build over three to six months, as content, audience trust, and platform algorithms respond to sustained, strategic activity rather than short bursts.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "Timelines for results",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "Do you provide paid social media advertising?",
+        a: "Yes, we manage paid campaigns primarily through Meta Ads Manager, covering Facebook and Instagram, focused on lead generation, conversions, and remarketing. Paid and organic strategy are built together, so advertising extends the reach of content that's already resonating rather than running in isolation.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "Paid and organic together",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "Do you create content and creatives?",
+        a: "Yes, content creation is core to what we do - graphics, carousel posts, reels planning, and copywriting are all produced in-house, built around your brand rather than generic templates. Every asset is planned ahead through a content calendar, not created last-minute before a posting deadline.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "In-house content creation",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
-        img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
-      },
-      {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
-        img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
+        q: "How do you measure campaign success?",
+        a: "We track engagement, reach, follower growth, website traffic, and conversions against your specific goals, not platform-native vanity metrics alone. Reporting ties activity back to real business outcomes, so it's always clear whether social media is actually contributing to growth, not just visibility.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
         imgLabel: "Metrics that matter",
+      },
+      {
+        q: "Can social media generate leads?",
+        a: "Yes, when it's approached strategically rather than just for visibility. Combining organic content with targeted paid campaigns and clear calls to action turns engaged followers into real inquiries, particularly on platforms like LinkedIn and Instagram where audience intent tends to be higher.",
+        img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+        imgLabel: "From engagement to leads",
+      },
+      {
+        q: "How often will you post on my accounts?",
+        a: "Posting frequency depends on your platforms, industry, and goals, and gets set during strategy development rather than applied as a fixed number across every client. What matters more than frequency is consistency and relevance - irregular posting or generic content rarely performs, regardless of volume.",
+        img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
+        imgLabel: "Posting frequency",
+      },
+      {
+        q: "Why should I hire a social media marketing company in Dubai?",
+        a: "An agency brings dedicated strategy, creative, platform, and paid advertising expertise that's difficult to replicate with a single in-house hire. It also means execution stays consistent even as priorities shift internally, with local Dubai and UAE market insight built into every decision from day one.",
+        img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
+        imgLabel: "Why hire an agency",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Let's Build a Stronger Social Media Presence",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
+      "Inconsistent posting and flat engagement usually come down to missing strategy, not a lack of effort. Talk to ENH Consulting about your social media goals, and we'll map out where your brand actually has room to grow across the platforms your audience uses most.",
     growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
+      "Discover how a strategic social media approach can turn followers into qualified leads.",
     growthCta: "Get Started",
   },
 };
@@ -907,7 +976,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1104,11 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                Social media that actually grows a business combines
+                strategy, creative execution, audience engagement,
+                advertising, and ongoing optimization. Skip any one of those
+                and the rest tends to underperform. Here's how we structure
+                that work across each platform and discipline.
               </p>
             </Col>
           </Row>
@@ -1054,7 +1122,7 @@ function RDSection({ data }) {
         >
           <Row className="g-4">
             {data.rdCards.map((card, i) => (
-              <Col lg={6} md={6} key={i}>
+              <Col lg={4} md={6} key={i}>
                 <motion.div
                   variants={cardV}
                   onHoverStart={() => setHovered(i)}
@@ -1099,9 +1167,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1127,21 +1199,21 @@ function Services() {
       icon: <FaRocket />,
       title: "Startups",
       description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
+        "Startups need to build brand recognition and community quickly, often with a limited budget and no existing following to work from. We prioritize consistent content and organic engagement first, layering in targeted paid campaigns once there's a foundation worth building on, so early spend goes toward traction that compounds rather than one-off visibility.",
       number: "01",
     },
     {
       icon: <FaBriefcase />,
       title: "Small & Medium Businesses",
       description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
+        "Growing businesses need social media that scales as the brand does, without needing a full strategy rebuild every time reach or ambitions increase. We expand content output and platform coverage gradually, keeping quality consistent as your following and campaign complexity grow, so results improve steadily rather than plateauing.",
       number: "02",
     },
     {
       icon: <FaGlobe />,
       title: "Enterprises",
       description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
+        "Larger organizations often need multi-platform, multi-market social media managed under one coherent brand voice, sometimes across several business units or regions at once. We bring structured governance and reporting to that complexity, keeping every account aligned with the same standards while still allowing platform-specific execution where it matters.",
       number: "03",
     },
   ];
@@ -1163,14 +1235,15 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                Social Media Solutions for Businesses of Every Size
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            Every business has different goals, audiences, and resources, so
+            a strategy built for a startup rarely fits an enterprise, and the
+            reverse is just as true. Here's how we tailor our approach for
+            each.
           </motion.p>
         </motion.div>
 
@@ -1227,34 +1300,34 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "ROI-Focused Social Media Strategies",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "Every platform and campaign gets measured against real business outcomes, not follower counts or engagement numbers that don't translate into growth.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Creative Content That Builds Engagement",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "Content is built around what your specific audience responds to, not generic templates recycled across every client account we manage.",
+    },
+    {
+      title: "Platform-Specific Marketing Specialists",
+      description:
+        "Each platform gets handled by someone who understands how it actually works, instead of one person managing every account the same way.",
+    },
+    {
+      title: "Data-Driven Campaign Optimization",
+      description:
+        "Strategy adjusts continuously based on real performance data, keeping content and ad spend focused on what's genuinely working.",
     },
     {
       title: "Transparent Reporting",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "You see exactly what's driving engagement, traffic, and leads, with reporting tied to outcomes rather than vague monthly summaries.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Deep Understanding of Dubai & UAE Markets",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
-    },
-    {
-      title: "Multi-Channel Expertise",
-      description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
-    },
-    {
-      title: "Local Market Understanding",
-      description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "Local audience behavior and platform trends shape every strategy, giving your business an edge generic, market-agnostic approaches can't match.",
     },
   ];
 
@@ -1275,8 +1348,8 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Businesses Choose ENH Consulting for Social Media
+                Marketing
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1409,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Industries We Help Grow Through Social Media Marketing
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            Every industry engages differently on social media, so strategy
+            has to reflect how that specific audience actually behaves
+            online.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1489,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Social Media Marketing Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,15 +1511,15 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns posting into a growth
+            channel. Here's exactly how we take a brand from discovery to
+            measurable results.
           </p>
         </motion.div>
 
         <Row className="g-4 mt-2">
           {data.testimonials.map((t, i) => (
-            <Col lg={4} md={6} key={i}>
+            <Col lg={12} md={6} key={i}>
               <motion.div
                 className={`svp-testimonials__card${i === active ? " svp-testimonials__card--active" : ""}`}
                 animate={{
@@ -1516,7 +1589,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help You Grow on Social
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,12 +1765,13 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Our Social Media Marketing
+            Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
-            experience when they partner with ENH Consulting.
+            Every strategy we build is focused on outcomes that matter to
+            your business, not follower counts. Here's what businesses
+            typically experience when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
 
@@ -1765,7 +1839,7 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
+                Frequently Asked Questions About Social Media Marketing in
                 Dubai
               </motion.h4>
 
@@ -1788,8 +1862,8 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
-                marketing agency in Dubai.
+                Everything you need to know before partnering with a social
+                media marketing company in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -1868,7 +1942,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2068,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start building a stronger, more
+                engaged social media presence with expert guidance.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2167,34 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="social-strategy">
+                        Social Media Strategy
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="social-management">
+                        Social Media Management
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="content-creation">
+                        Content Creation & Creative Design
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="facebook-marketing">
+                        Facebook Marketing
+                      </option>
+                      <option value="instagram-marketing">
+                        Instagram Marketing
+                      </option>
+                      <option value="linkedin-marketing">
+                        LinkedIn Marketing
+                      </option>
+                      <option value="meta-ads">
+                        Social Media Advertising (Meta Ads)
+                      </option>
+                      <option value="community-management">
+                        Community Management
+                      </option>
+                      <option value="social-analytics">
+                        Social Media Analytics & Reporting
+                      </option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2322,17 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Grow with the Best Social Media Marketing Company in
+            Dubai?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            Stronger brand awareness, real engagement, and qualified leads
+            start with a strategy built around your audience, not a generic
+            posting calendar. Let's talk about your social media goals and
+            build an approach across Instagram, LinkedIn, Facebook, and
+            beyond that drives customer loyalty and long-term business
+            growth, not just impressions.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2270,21 +2358,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function SMMCompanyDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = SMM_DATA[slug] || SMM_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Best Social Media Marketing Company in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Boost your brand with a trusted Social Media Marketing Company in Dubai. ENH Consulting increases engagement, visibility, and leads with proven strategies."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/social-media-marketing-company-in-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2381,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Best Social Media Marketing Company in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Boost your brand with a trusted Social Media Marketing Company in Dubai. ENH Consulting increases engagement, visibility, and leads with proven strategies."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/social-media-marketing-company-in-dubai"
         />
         <meta
           property="og:image"
@@ -2312,24 +2400,27 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Best Social Media Marketing Company in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Best Social Media Marketing Company in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Boost your brand with a trusted Social Media Marketing Company in Dubai. ENH Consulting increases engagement, visibility, and leads with proven strategies."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(smmFaqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(smmServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
@@ -2348,5 +2439,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

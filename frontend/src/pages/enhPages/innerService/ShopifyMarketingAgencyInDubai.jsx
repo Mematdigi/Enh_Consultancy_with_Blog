@@ -40,6 +40,19 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaShopify,
+  FaPaintBrush,
+  FaPalette,
+  FaPlug,
+  FaExchangeAlt,
+  FaChartLine,
+  FaLayerGroup,
+  FaTshirt,
+  FaSpa,
+  FaMicrochip,
+  FaShoppingBasket,
+  FaCouch,
+  FaTags,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +104,137 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const shopifyFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "How much does Shopify web development cost in Dubai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "Cost depends on scope, customization, app integrations, and catalogue size, so there's no single fixed price. We scope pricing around your specific requirements once we understand what the store actually needs to do.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "How long does it take to develop a Shopify website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "Timelines vary with complexity - a straightforward store with a customized theme launches faster than one with extensive custom functionality and multiple integrations. We provide a realistic timeline after discovery.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "Can you build a custom Shopify website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "Yes, when a standard theme and app stack can't deliver what your business needs, we build custom functionality around your specific catalogue, workflows, and customer journey.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "Can you customize an existing Shopify theme?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "Yes, we customize existing themes to improve brand consistency, performance, and mobile responsiveness, often without needing a full rebuild from scratch.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "Can you integrate payment gateways with Shopify?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "Yes, we implement secure payment gateway integrations suited to your market, tested thoroughly across the full checkout and transaction flow.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "Can you migrate my existing ecommerce store to Shopify?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "Yes, we handle migrations to Shopify while protecting your data, products, customer information, URLs, and existing functionality throughout the move.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "Is Shopify suitable for businesses in Dubai and the UAE?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "Yes, Shopify supports the payment methods, shipping integrations, and multi-currency functionality relevant to Dubai and UAE ecommerce businesses, when the store is set up correctly for the local market.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "Can you provide ongoing Shopify maintenance and support?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "Yes, we offer ongoing maintenance covering performance, security, bug fixes, and updates, along with continued conversion optimization after the store is live.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const shopifyServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/shopify-web-development-company-in-dubai/#service",
+  name: "Shopify Web Development Services in Dubai",
+  serviceType: "Shopify Web Development",
+  url: "https://enh.consulting/shopify-web-development-company-in-dubai/",
+  description:
+    "ENH Consulting provides Shopify web development services in Dubai, including custom Shopify development, Shopify store design and development, theme development and customization, Shopify app and API integration, Shopify migration and store upgrades, and ongoing Shopify maintenance and optimization.",
+  provider: {
+    "@type": "Organization",
+    "@id": "https://enh.consulting/#organization",
+    name: "ENH Consulting",
+    url: "https://enh.consulting/",
+  },
+  areaServed: {
+    "@type": "City",
+    name: "Dubai",
+    containedInPlace: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  },
+  audience: {
+    "@type": "BusinessAudience",
+    audienceType: [
+      "Startups",
+      "Growing Ecommerce Businesses",
+      "Established Brands",
+      "Enterprises",
+      "B2B Ecommerce Businesses",
+      "D2C Ecommerce Brands",
+    ],
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Shopify Web Development Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Shopify Development" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Shopify Store Design & Development" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Shopify Theme Development & Customization" },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Shopify App & API Integration" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Shopify Migration & Store Upgrade" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Shopify Maintenance & Optimization" },
+      },
+    ],
+  },
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,248 +284,275 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const SHOPIFY_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
-    headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+    badge: "Shopify Web Development",
+    headline: "Shopify Web Development Company in Dubai for High-Converting Online Stores",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "As a Shopify web development company in Dubai, ENH Consulting builds stores that do more than look good on launch day, they load fast, convert consistently, and scale as your business grows. A standard Shopify theme can get you online, but serious ecommerce businesses often need more control over performance, customer experience, functionality, and integrations. We build Shopify stores around your customers, catalogue, and growth goals.",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Shopify Store Limiting Your Online Growth?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many Shopify stores are live but still struggle with flat conversion rates, slow performance, poor mobile experiences, weak product presentation, checkout friction, and limited integrations. These issues can reduce sales even when the store is receiving consistent traffic.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "A standard theme may be enough to launch, but long-term growth often requires a more tailored approach. As a Shopify web development company in Dubai, ENH Consulting builds Shopify stores around your customers, products, business goals, and operational needs. We focus on performance, mobile-first UX, SEO-friendly development, custom functionality, seamless integrations, and smoother checkout experiences to help Dubai businesses increase conversions and build a Shopify store designed for sustainable growth.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven Shopify Web Development Company in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "Building a Shopify store that simply looks professional isn't enough to generate consistent sales. ENH Consulting develops Shopify stores around your products, customers, business goals, and growth plans, creating a shopping experience designed to turn visitors into customers rather than relying on generic themes and standard layouts.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "Our approach combines custom Shopify development, mobile-first design, conversion-focused UX, and performance optimization to make it easier for customers to browse products, build trust, and complete purchases. We also integrate the Shopify apps and third-party tools your business depends on, including payment, CRM, inventory, shipping, and marketing solutions, while keeping the store secure and scalable as your catalogue and traffic grow. With an SEO-friendly technical foundation and a strong focus on conversion performance, your Shopify store is built to attract qualified traffic and turn more of that traffic into revenue.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Shopify Web Development Services We Provide",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaShopify />,
+        title: "Custom Shopify Development",
+        desc: "Custom functionality built around your specific business workflows and customer journey, for cases where standard Shopify themes and default apps genuinely can't do what the business needs, tailored rather than forced into a generic setup.",
       },
       {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
+        icon: <FaPaintBrush />,
+        title: "Shopify Store Design & Development",
+        desc: "Store structure, theme customization, and responsive design built around conversion, clean navigation and product and category pages designed to move visitors toward checkout, not just look presentable.",
       },
       {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
+        icon: <FaPalette />,
+        title: "Shopify Theme Development & Customization",
+        desc: "Custom themes and theme customization built around brand consistency, performance-conscious design, and mobile responsiveness, so the storefront reflects your brand without sacrificing speed or usability.",
       },
       {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
+        icon: <FaPlug />,
+        title: "Shopify App & API Integration",
+        desc: "Shopify apps and APIs connected with CRM, ERP, inventory, and marketing tools, so your store works with the systems your business already depends on rather than operating in isolation.",
       },
       {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        icon: <FaExchangeAlt />,
+        title: "Shopify Migration & Store Upgrade",
+        desc: "Migration from an existing platform or an outdated Shopify setup, handled with data and product migration, URL preservation, SEO considerations, and thorough testing so the move doesn't cost you rankings or orders.",
       },
       {
-        icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
+        icon: <FaTools />,
+        title: "Shopify Maintenance & Optimization",
+        desc: "Ongoing technical maintenance, performance improvements, security monitoring, bug fixes, and updates, plus conversion optimization, so the store keeps improving rather than slowly degrading after launch.",
       },
+    ],
+
+    // Who we serve (by business type)
+    whoWeServe: [
       {
         icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
+        title: "Startups & New Shopify Stores",
+        description:
+          "New stores need a professional setup that launches efficiently without unnecessary complexity, while still leaving room to add functionality as the business grows.",
+        number: "01",
       },
       {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaChartLine />,
+        title: "Growing Ecommerce Businesses",
+        description:
+          "Businesses scaling past their first setup need stores that handle more products, more traffic, and more complexity without a full rebuild.",
+        number: "02",
+      },
+      {
+        icon: <FaBuilding />,
+        title: "Established Brands & Enterprises",
+        description:
+          "Larger operations often need Shopify Plus-level capability, deeper integrations, and governance across a bigger catalogue and team.",
+        number: "03",
+      },
+      {
+        icon: <FaBriefcase />,
+        title: "B2B Shopify Stores",
+        description:
+          "Wholesale ordering, account-based pricing, and bulk-order functionality built for how business buyers actually purchase.",
+        number: "04",
+      },
+      {
+        icon: <FaGlobe />,
+        title: "D2C Ecommerce Brands",
+        description:
+          "Storefronts that let brands own the full customer relationship, data, experience, and purchasing, without depending on third-party marketplaces.",
+        number: "05",
       },
     ],
 
     // Industries we serve
     whyUs: [
       {
+        icon: <FaTshirt />,
+        title: "Fashion & Apparel",
+        desc: "Shopify stores with strong product discovery, variants, and mobile-friendly shopping experiences.",
+      },
+      {
+        icon: <FaSpa />,
+        title: "Beauty & Cosmetics",
+        desc: "Visually engaging storefronts with easy product discovery and repeat-purchase functionality.",
+      },
+      {
+        icon: <FaMicrochip />,
+        title: "Electronics",
+        desc: "Product-focused stores with detailed specifications, filtering, and comparison-friendly navigation.",
+      },
+      {
+        icon: <FaShoppingBasket />,
+        title: "Food & Grocery",
+        desc: "Fast shopping experiences with simple navigation, checkout, and relevant delivery integrations.",
+      },
+      {
+        icon: <FaCouch />,
+        title: "Furniture & Home",
+        desc: "Rich product presentation designed for higher-consideration purchases.",
+      },
+      {
         icon: <FaHeartbeat />,
-        title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
+        title: "Healthcare & Wellness",
+        desc: "Clear product information and trust-focused ecommerce experiences.",
       },
       {
-        icon: <FaGraduationCap />,
-        title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        icon: <FaBriefcase />,
+        title: "B2B & Wholesale",
+        desc: "Shopify solutions supporting account-based pricing, bulk ordering, and business purchasing.",
       },
       {
-        icon: <FaBuilding />,
-        title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
-      },
-      {
-        icon: <FaHotel />,
-        title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
-      },
-      {
-        icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
-      },
-      {
-        icon: <FaIndustry />,
-        title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        icon: <FaTags />,
+        title: "Consumer & D2C Brands",
+        desc: "Shopify storefronts designed around direct customer relationships and scalable ecommerce growth.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — Discovery & Shopify Strategy",
+        text: "We understand your products, customers, business model, and conversion goals before touching a theme.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — UX Planning & Store Architecture",
+        text: "Navigation, categories, and user journeys get mapped around how customers actually shop.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — Design & Shopify Development",
+        text: "The storefront, theme, and functionality get built to match that plan.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — Integration & Testing",
+        text: "Payments, apps, APIs, and mobile experience are tested thoroughly before anything goes live.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — SEO, Security & Performance Optimization",
+        text: "The store's technical foundation is checked for speed, crawlability, and security.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Launch & Continuous Optimization",
+        text: "The store launches, and performance gets monitored and improved based on real data, not assumptions.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
-        icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        icon: <FaShoppingCart />,
+        title: "Better Shopping Experience",
+        desc: "Easier product discovery and checkout across desktop and mobile.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaBullseye />,
+        title: "Higher Conversion Potential",
+        desc: "Less friction across product pages, cart, and checkout.",
       },
       {
         num: "03",
         icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        title: "Improved Website Performance",
+        desc: "A faster store that keeps visitors around long enough to buy.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaGlobe />,
+        title: "Better Mobile Shopping",
+        desc: "A responsive experience built for how most Shopify traffic actually shops.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaTools />,
+        title: "Streamlined Store Management",
+        desc: "A store your team can actually run day to day without constant developer support.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaLayerGroup />,
+        title: "Scalable Ecommerce Infrastructure",
+        desc: "A foundation that can handle more products, traffic, and complexity as you grow.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "How much does Shopify web development cost in Dubai?",
+        a: "Cost depends on scope, customization, app integrations, and catalogue size, so there's no single fixed price. We scope pricing around your specific requirements once we understand what the store actually needs to do.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "Pricing built around scope",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "How long does it take to develop a Shopify website?",
+        a: "Timelines vary with complexity, a straightforward store with a customized theme launches faster than one with extensive custom functionality and multiple integrations. We provide a realistic timeline after discovery.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Timelines by complexity",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "Can you build a custom Shopify website?",
+        a: "Yes, when a standard theme and app stack can't deliver what your business needs, we build custom functionality around your specific catalogue, workflows, and customer journey.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "Custom Shopify builds",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "Can you customize an existing Shopify theme?",
+        a: "Yes, we customize existing themes to improve brand consistency, performance, and mobile responsiveness, often without needing a full rebuild from scratch.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "Theme customization",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "Can you integrate payment gateways with Shopify?",
+        a: "Yes, we implement secure payment gateway integrations suited to your market, tested thoroughly across the full checkout and transaction flow.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "Payment gateway integration",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        q: "Can you migrate my existing ecommerce store to Shopify?",
+        a: "Yes, we handle migrations to Shopify while protecting your data, products, customer information, URLs, and existing functionality throughout the move.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Migrating to Shopify",
+      },
+      {
+        q: "Is Shopify suitable for businesses in Dubai and the UAE?",
+        a: "Yes, Shopify supports the payment methods, shipping integrations, and multi-currency functionality relevant to Dubai and UAE ecommerce businesses, when the store is set up correctly for the local market.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
+        imgLabel: "Shopify for the Dubai market",
       },
       {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        q: "Can you provide ongoing Shopify maintenance and support?",
+        a: "Yes, we offer ongoing maintenance covering performance, security, bug fixes, and updates, along with continued conversion optimization after the store is live.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Metrics that matter",
+        imgLabel: "Ongoing maintenance",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Ready to Build a Shopify Store That Converts?",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
-    growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
-    growthCta: "Get Started",
+      "Whether you're launching a new Shopify store, upgrading an existing one, or looking to improve ecommerce performance, ENH Consulting can help build a Shopify experience around your products, customers, and growth goals.",
+    growthNote: "Talk to ENH Consulting about your Shopify project.",
+    growthCta: "Get Your Shopify Development Consultation",
   },
 };
 
@@ -907,7 +1009,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1137,8 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                Here's how we structure Shopify development work, from first
+                build to ongoing performance.
               </p>
             </Col>
           </Row>
@@ -1099,9 +1197,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1121,31 +1223,7 @@ function RDSection({ data }) {
   );
 }
 
-function Services() {
-  const serviceList = [
-    {
-      icon: <FaRocket />,
-      title: "Startups",
-      description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
-      number: "01",
-    },
-    {
-      icon: <FaBriefcase />,
-      title: "Small & Medium Businesses",
-      description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
-      number: "02",
-    },
-    {
-      icon: <FaGlobe />,
-      title: "Enterprises",
-      description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
-      number: "03",
-    },
-  ];
-
+function Services({ data }) {
   return (
     <section className="services-section">
       <Container>
@@ -1163,14 +1241,13 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                Shopify Solutions for Different Business Needs
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            What a Shopify store needs to do differs by business stage and
+            model. Here's how we tailor our approach for each.
           </motion.p>
         </motion.div>
 
@@ -1181,7 +1258,7 @@ function Services() {
           viewport={{ once: true, amount: 0.1 }}
           variants={staggerContainer}
         >
-          {serviceList.map((service, index) => (
+          {data.whoWeServe.map((service, index) => (
             <motion.div key={index} className="service-card-wrap">
               <motion.div
                 className="service-card"
@@ -1227,34 +1304,34 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "Business-Focused Shopify Strategy",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "Development decisions are driven by what actually grows sales, not by what looks impressive in a portfolio.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Conversion-Centered Store Development",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "Every layout and navigation decision gets weighed against how it affects the path from browsing to checkout.",
     },
     {
-      title: "Transparent Reporting",
+      title: "SEO-Friendly Shopify Development",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "Technical foundations, structure, speed, crawlability, are built in from day one, not patched on after launch.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Custom Shopify Solutions",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
+        "We build custom functionality where a default theme and app stack genuinely can't deliver what your business needs.",
     },
     {
-      title: "Multi-Channel Expertise",
+      title: "Integration & Technical Expertise",
       description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
+        "Shopify apps and third-party systems get connected to actually work together, not just sit side by side.",
     },
     {
-      title: "Local Market Understanding",
+      title: "Dubai & UAE Market Understanding",
       description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "Local shopping behavior, payment preferences, and competitive conditions shape how we approach every Shopify build in this market.",
     },
   ];
 
@@ -1275,8 +1352,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Choose ENH for Shopify Web Development in Dubai?
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1412,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Industries We Help Grow Through Shopify Development
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            Different product categories bring different Shopify
+            requirements, and we build accordingly for online retailers
+            across the region.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1492,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Shopify Web Development Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,9 +1514,9 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns a Shopify build into a
+            sales channel. Here's exactly how we take a store from discovery
+            to launch and beyond.
           </p>
         </motion.div>
 
@@ -1516,7 +1592,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help Your Shopify Store Sell More
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,12 +1768,13 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Our Shopify Development
+            Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
-            experience when they partner with ENH Consulting.
+            Every build we deliver is judged against real sales outcomes, not
+            visual polish alone. Here's what businesses typically experience
+            when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
 
@@ -1765,7 +1842,7 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
+                Frequently Asked Questions About Shopify Web Development in
                 Dubai
               </motion.h4>
 
@@ -1788,8 +1865,8 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
-                marketing agency in Dubai.
+                Everything you need to know before partnering with a Shopify
+                web development company in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -1868,7 +1945,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2071,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start building a Shopify store that
+                actually converts, with expert development guidance.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2170,25 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="custom-shopify-development">
+                        Custom Shopify Development
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="shopify-store-design">
+                        Shopify Store Design & Development
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="shopify-theme-development">
+                        Shopify Theme Development & Customization
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="shopify-app-integration">
+                        Shopify App & API Integration
+                      </option>
+                      <option value="shopify-migration">
+                        Shopify Migration & Store Upgrade
+                      </option>
+                      <option value="shopify-maintenance">
+                        Shopify Maintenance & Optimization
+                      </option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2316,15 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Partner with a Results-Driven Shopify Web Development
+            Company in Dubai?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            Sustainable ecommerce growth starts with a Shopify store built to
+            convert, perform, and scale. Let's create a high-performing
+            online store designed to attract customers, increase sales, and
+            maximize your Shopify investment across Dubai and the UAE.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2270,21 +2350,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function ShopifyWebDevDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = SHOPIFY_DATA[slug] || SHOPIFY_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Shopify Web Development Company in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Drive more sales with a Shopify web development company in Dubai. ENH Consulting builds fast, scalable Shopify stores designed to convert and grow revenue."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/shopify-web-development-company-in-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2373,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Shopify Web Development Company in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Drive more sales with a Shopify web development company in Dubai. ENH Consulting builds fast, scalable Shopify stores designed to convert and grow revenue."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/shopify-web-development-company-in-dubai"
         />
         <meta
           property="og:image"
@@ -2312,31 +2392,34 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Shopify Web Development Company in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Shopify Web Development Company in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Drive more sales with a Shopify web development company in Dubai. ENH Consulting builds fast, scalable Shopify stores designed to convert and grow revenue."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(shopifyFaqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(shopifyServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
       <IntroSection2 data={data} />
       <RDSection data={data} />
       <GrowthCTASection data={data} />
-      <Services />
+      <Services data={data} />
       <WhyUsSection data={data} />
       <TestimonialsSection data={data} />
       <WhyChooseENH data={data} />
@@ -2348,5 +2431,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 import { FaPhoneAlt, FaEnvelope, FaChevronDown } from "react-icons/fa";
 
 const ENH_logo = "/ENH_logo.png";
@@ -14,17 +14,46 @@ const serviceList = [
   { title: "Startup Consulting", link: "/startup-consulting-services-in-dubai", number: "06", name: 'startup consulting services in dubai' },
 ];
 
-function Header() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const timeoutRef = useRef(null);
+const serviceListTwo = [
+  { title: "Digital Marketing Solution", link: "/digital-marketing-agency-in-dubai", number: "01", name: 'Digital Marketing Solution' },
+  { title: "SEO Marketing Solution", link: "/best-seo-agency-in-dubai", number: "02", name: 'SEO Marketing Solution' },
+  { title: "PPC Marketing Solution", link: "/ppc-company-in-dubai", number: "03", name: 'PPC Marketing Solution' },
+  { title: "SMM Marketing Solution", link: "/social-media-marketing-company-in-dubai", number: "04", name: 'Social Marketing Solution' },
+  { title: "Content Marketing Solution", link: "/content-marketing-services-in-dubai", number: "05", name: 'Content Marketing Solution' },
+  { title: "Email Marketing Solution", link: "/email-marketing-agency-in-dubai", number: "06", name: '"Email Marketing Solution' },
+  { title: "ORM Marketing Solution", link: "/online-reputation-management-services-in-dubai", number: "07", name: 'ORM Marketing Solution' },
+  { title: "CRO Marketing Solution", link: "/conversion-rate-optimization-agency-dubai", number: "08", name: 'CRO Marketing Solution' },
+  { title: "Web Development Solution", link: "/web-development-agency-in-dubai", number: "09", name: 'Web Development Solution' },
+  { title: "E-Commerce Marketing Solution", link: "/ecommerce-website-development-company-in-dubai", number: "10", name: 'E-Commerce Marketing Solution' },
+  { title: "Shopify Marketing Solution", link: "/shopify-web-development-company-in-dubai", number: "11", name: 'Shopify Marketing Solution' },
+  { title: "Mobile App Development Solution", link: "/mobile-app-development-company-in-dubai", number: "12", name: 'Mobile App Development Solution' },
+  { title: "Android App Development Solution", link: "/android-app-development-company-in-dubai", number: "12", name: 'Android App Development Solution' },
+];
 
-  const handleMouseEnter = () => {
-    clearTimeout(timeoutRef.current);
-    setDropdownOpen(true);
+function Header() {
+  // Separate state controls for Consulting and Solutions dropdowns
+  const [consultingOpen, setConsultingOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+
+  const consultingTimeoutRef = useRef(null);
+  const solutionsTimeoutRef = useRef(null);
+
+  const handleConsultingEnter = () => {
+    clearTimeout(consultingTimeoutRef.current);
+    setConsultingOpen(true);
   };
 
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => setDropdownOpen(false), 150);
+  const handleConsultingLeave = () => {
+    consultingTimeoutRef.current = setTimeout(() => setConsultingOpen(false), 150);
+  };
+
+  const handleSolutionsEnter = () => {
+    clearTimeout(solutionsTimeoutRef.current);
+    setSolutionsOpen(true);
+  };
+
+  const handleSolutionsLeave = () => {
+    solutionsTimeoutRef.current = setTimeout(() => setSolutionsOpen(false), 150);
   };
 
   return (
@@ -54,22 +83,47 @@ function Header() {
               <Nav.Link as={Link} to="/" title="home page">Home</Nav.Link>
               <Nav.Link as={Link} to="/about" title="about page">About Us</Nav.Link>
 
+              {/* Consulting Dropdown */}
               <div
                 className="services-dropdown-wrapper nav-item"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={handleConsultingEnter}
+                onMouseLeave={handleConsultingLeave}
               >
-                <Link to="/consulting" className={`nav-link services-nav-link ${dropdownOpen ? "open" : ""}`}>
+                <Link to="/consulting" className={`nav-link services-nav-link ${consultingOpen ? "open" : ""}`}>
                   Consulting
                   <FaChevronDown className="chevron" />
                 </Link>
-                <div className={`services-dropdown-menu ${dropdownOpen ? "open" : ""}`}>
+                <div className={`services-dropdown-menu ${consultingOpen ? "open" : ""}`}>
                   {serviceList.map((service, index) => (
                     <div key={service.number}>
                       <Link to={service.link} title={service.name} className="dropdown-service-item">
                         {service.title}
                       </Link>
                       {index < serviceList.length - 1 && (
+                        <div className="dropdown-divider-line" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Solutions Dropdown */}
+              <div
+                className="services-dropdown-wrapper nav-item"
+                onMouseEnter={handleSolutionsEnter}
+                onMouseLeave={handleSolutionsLeave}
+              >
+                <Link to="/solutions" className={`nav-link services-nav-link ${solutionsOpen ? "open" : ""}`}>
+                  Solutions
+                  <FaChevronDown className="chevron" />
+                </Link>
+                <div className={`services-dropdown-menu ${solutionsOpen ? "open" : ""}`}>
+                  {serviceListTwo.map((service, index) => (
+                    <div key={service.number}>
+                      <Link to={service.link} title={service.name} className="dropdown-service-item">
+                        {service.title}
+                      </Link>
+                      {index < serviceListTwo.length - 1 && (
                         <div className="dropdown-divider-line" />
                       )}
                     </div>

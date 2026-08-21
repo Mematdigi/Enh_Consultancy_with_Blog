@@ -40,6 +40,16 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaAndroid,
+  FaPaintBrush,
+  FaPlug,
+  FaClipboardCheck,
+  FaExchangeAlt,
+  FaGooglePlay,
+  FaChartLine,
+  FaUtensils,
+  FaTaxi,
+  FaPlane,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +101,154 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const androidFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "How much does Android app development cost in Dubai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "Cost depends on complexity, features, integrations, and testing requirements - there's no single fixed price. Simple apps cost less than ones with extensive custom functionality or multiple integrations. Pricing is scoped around your specific requirements once the project scope is understood.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "How long does it take to develop an Android app?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "Timelines vary with scope. A focused MVP with limited features can launch in a matter of weeks, while a complex app with extensive integrations, custom functionality, and broad device testing takes several months. A realistic timeline depends on the specific requirements involved.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "Can you develop a custom Android app?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "Yes. When a standard app template can't support specific business workflows or customer requirements, custom functionality and architecture can be built around what the app actually needs to do, rather than adapting the business to fit a generic build.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "Can you develop Android apps for different industries?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "Yes. Android apps can be built across industries including healthcare, ecommerce, food and hospitality, transportation, fintech, education, and real estate, with functionality adapted to what each specific business model and use case actually requires.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "Can you integrate APIs and third-party systems into an Android app?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "Yes. REST APIs, CRMs, payment gateways, and other backend systems can be integrated so the Android app works properly with the systems a business already depends on, rather than functioning as a disconnected standalone product.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "Can you migrate or upgrade an existing Android application?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "Yes. Legacy Android apps can be modernized - improving OS compatibility, performance, and codebase health - while preserving data and API compatibility throughout the upgrade, so existing functionality isn't lost in the process.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "Will my Android app work across different devices and Android versions?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "Yes. Testing across multiple devices, screen sizes, and Android OS versions is standard practice, since Android's device diversity is a genuine engineering consideration that has to be accounted for, not something that can be safely assumed away.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "Do you provide Android app maintenance and support?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "Yes. Ongoing maintenance covers bug fixes, security updates, Android version compatibility, and performance monitoring, along with feature enhancements as the app evolves and usage patterns or requirements change over time.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is Android app development?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Android app development is the process of designing, building, testing, deploying, and maintaining applications specifically for Android devices, with attention to device compatibility, performance, security, integrations, and Google Play requirements throughout.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is the difference between native Android development and cross-platform development?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Native Android development is built specifically for Android and can provide deeper access to platform-specific capabilities and performance optimization. Cross-platform development shares code across multiple platforms. The right choice depends on functionality, performance needs, budget, and long-term maintenance requirements.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const androidServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/android-app-development-company-in-dubai#service",
+  name: "Android App Development Services in Dubai",
+  serviceType: "Android App Development",
+  url: "https://enh.consulting/android-app-development-company-in-dubai",
+  description:
+    "ENH Consulting provides custom Android app development services in Dubai, building secure, scalable and high-performance Android applications with custom functionality, UI/UX design, API integrations, testing, Google Play deployment and ongoing maintenance.",
+  provider: {
+    "@type": "Organization",
+    "@id": "https://enh.consulting/#organization",
+    name: "ENH Consulting",
+    url: "https://enh.consulting/",
+  },
+  areaServed: {
+    "@type": "City",
+    name: "Dubai",
+    containedInPlace: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  },
+  audience: {
+    "@type": "BusinessAudience",
+    audienceType: "Startups, Growing Businesses, Enterprises, B2B Businesses and Ecommerce Businesses",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Android App Development Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Android App Development" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Android UI/UX Design and Development" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Android App API and Backend Integration" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Android App Testing and Quality Assurance" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Android App Migration and Upgrade" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Android App Maintenance and Support" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Google Play Store Deployment and Optimization" },
+      },
+    ],
+  },
+  category: "Mobile Application Development",
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,84 +298,107 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const ANDROID_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
-    headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+    badge: "Android App Development",
+    headline: "Android App Development Company in Dubai for Scalable, High-Performance Apps",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "As an Android app development company in Dubai, ENH Consulting builds custom Android applications designed around your business goals, target users, and technical requirements. We focus on creating apps that are fast, secure, scalable, and easy to use across different Android devices. From UI/UX design and custom functionality to API integrations, testing, and ongoing support, our development approach is built to deliver reliable mobile experiences that support long-term business growth.",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Android App Holding Back Your Business Growth?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many Android apps underperform once real users begin using them across different devices and network conditions. Common challenges include poor performance, slow loading, device compatibility issues, outdated Android support, confusing UX, user abandonment, security gaps, integration problems, and scalability limitations.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "Successful Android app development in Dubai requires planning for real-world device diversity rather than optimizing for a single test environment. ENH Consulting focuses on performance, compatibility, intuitive Android UX, secure development, API integrations, and scalable architecture. We help businesses improve app reliability, reduce user drop-off, increase engagement, and create better customer experiences across a wider range of Android devices.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven Android App Development Company in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "Building an Android app that simply gets published on Google Play isn't enough to support business growth. ENH Consulting develops Android applications around your users, business objectives, and technical requirements, creating secure and high-performance experiences designed to turn app usage into meaningful customer and business outcomes.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "Our approach combines custom Android development, user-focused UX, strong security, and scalable architecture to ensure your app performs reliably across the wide range of Android devices used by your customers. We also plan API and backend integrations from the beginning, connecting your app with essential systems such as CRM, payment, ecommerce, and other business platforms while keeping performance and scalability in focus. As an experienced mobile app development company, ENH Consulting builds with Google Play readiness, device compatibility, and long-term support in mind.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Android App Development Services We Provide",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaAndroid />,
+        title: "Custom Android App Development",
+        desc: "We build custom functionality around your specific business workflows rather than adapting operations to fit a generic template, essential when unique booking logic, approval workflows, or integrations exceed standard capabilities. Architecture is planned with scalability in mind from day one.",
       },
       {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
+        icon: <FaPaintBrush />,
+        title: "Android UI/UX Design & Development",
+        desc: "Android-first UX built around how users actually navigate, not an iOS design adjusted afterward. We follow Material Design principles where they genuinely improve usability, with navigation, accessibility, and layouts designed around real user flows.",
       },
       {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
+        icon: <FaPlug />,
+        title: "Android App API & Backend Integration",
+        desc: "REST APIs and third-party integrations connect your Android app to CRM, ERP, payment gateways, authentication systems, and backend platforms, so it works with your actual operations rather than as a disconnected front end. Real-time data handling gets particular attention.",
       },
       {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
+        icon: <FaClipboardCheck />,
+        title: "Android App Testing & Quality Assurance",
+        desc: "Testing across multiple Android devices, screen sizes, and OS versions, since Android's fragmentation makes this a genuine engineering challenge, not a formality. Functional, performance, security, and API testing are all covered, with specific attention to crash and ANR issues.",
       },
       {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        icon: <FaExchangeAlt />,
+        title: "Android App Migration & Upgrade",
+        desc: "Modernizing existing Android apps, legacy codebases, outdated OS compatibility, and performance issues built up over time. Migration work preserves data and API compatibility throughout the process, so an upgrade genuinely improves the app without breaking what already works.",
       },
       {
-        icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
+        icon: <FaTools />,
+        title: "Android App Maintenance & Support",
+        desc: "Ongoing bug fixes, security updates, and Android version compatibility updates, alongside performance monitoring and feature enhancements as the app evolves. Android apps need consistent attention as the OS and device landscape keeps shifting.",
       },
+      {
+        icon: <FaGooglePlay />,
+        title: "Google Play Store Deployment & Optimization",
+        desc: "Play Store submission handled properly, technical requirements, app signing, and release preparation, with thorough testing before launch and monitoring afterward to catch issues early. This covers technical deployment readiness specifically.",
+      },
+    ],
+
+    // Who we serve (by business type)
+    whoWeServe: [
       {
         icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
+        title: "Startups & New Businesses",
+        description:
+          "Startups often need a cost-conscious MVP that validates the idea without overbuilding, keeping development focused on what actually needs testing first.",
+        number: "01",
       },
       {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaChartLine />,
+        title: "Growing Businesses",
+        description:
+          "Apps designed to handle increasing users, functionality, and integrations as the business scales past its initial launch.",
+        number: "02",
+      },
+      {
+        icon: <FaBuilding />,
+        title: "Established Brands & Enterprises",
+        description:
+          "Secure, scalable Android applications with deeper integrations and the reliability larger user bases require.",
+        number: "03",
+      },
+      {
+        icon: <FaBriefcase />,
+        title: "B2B & Business Applications",
+        description:
+          "Internal applications, employee apps, workflow tools, and business portals built around operational needs rather than consumer-facing design conventions.",
+        number: "04",
+      },
+      {
+        icon: <FaShoppingCart />,
+        title: "Ecommerce & D2C Businesses",
+        description:
+          "Android shopping applications focused on product discovery, checkout, and the kind of engagement that keeps customers ordering through the app.",
+        number: "05",
       },
     ],
 
@@ -295,162 +407,185 @@ const SERVICE_DATA = {
       {
         icon: <FaHeartbeat />,
         title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
+        desc: "Patient-focused Android apps built around appointment booking, secure data handling, and accessible information.",
+      },
+      {
+        icon: <FaShoppingCart />,
+        title: "Ecommerce & Retail",
+        desc: "Android shopping apps built around product discovery, checkout, and repeat engagement.",
+      },
+      {
+        icon: <FaUtensils />,
+        title: "Food & Restaurants",
+        desc: "Ordering flows, real-time tracking, and restaurant-side management built into one connected Android app.",
+      },
+      {
+        icon: <FaTaxi />,
+        title: "Taxi & Transportation",
+        desc: "Booking, live tracking, and driver-side functionality designed for reliability under real-time demand.",
+      },
+      {
+        icon: <FaWallet />,
+        title: "Fintech & Financial Services",
+        desc: "Android apps built with the security and compliance considerations financial data genuinely requires.",
       },
       {
         icon: <FaGraduationCap />,
-        title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        title: "Education & E-Learning",
+        desc: "Learning apps built around engagement, progress tracking, and content delivery that holds attention.",
+      },
+      {
+        icon: <FaPlane />,
+        title: "Travel & Hospitality",
+        desc: "Android apps built around bookings, itineraries, and reducing friction during actual travel.",
       },
       {
         icon: <FaBuilding />,
         title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
-      },
-      {
-        icon: <FaHotel />,
-        title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
-      },
-      {
-        icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
-      },
-      {
-        icon: <FaIndustry />,
-        title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        desc: "Property browsing, enquiry, and lead-focused Android apps built for a fast-moving market.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — Discovery & Android App Strategy",
+        text: "We define business objectives, target users, required devices and Android versions, integrations, security requirements, and core functionality before development begins.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — UX Planning & App Architecture",
+        text: "We map user journeys, features, navigation, and technical architecture around how the app will actually be used.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — UI Design & Android Development",
+        text: "The interface is designed and the application built against that approved architecture.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — API Integration & Testing",
+        text: "Backend systems and APIs are connected, with functionality tested against real integration and data scenarios.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — Security, Performance & Google Play Readiness",
+        text: "Compatibility, security, performance, and deployment requirements are tested and confirmed before submission.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Launch & Continuous Optimization",
+        text: "The app is deployed, monitored, and improved based on real usage data rather than assumptions.",
       },
     ],
+    crossLinkHref: "/mobile-app-development-company-in-dubai",
+    crossLinkLabel: "Mobile App Development Services",
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
-        icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        icon: <FaHandshake />,
+        title: "Better User Experience",
+        desc: "Smooth navigation and usability built around how Android users actually behave.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaRocket />,
+        title: "Improved App Performance",
+        desc: "Faster loading and smoother interactions across a range of devices, not just flagship models.",
       },
       {
         num: "03",
-        icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        icon: <FaAndroid />,
+        title: "Better Device Compatibility",
+        desc: "Reliable performance across the Android devices and OS versions your users actually have.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaShieldAlt />,
+        title: "Stronger Security",
+        desc: "Protection for user accounts, data, and every interaction the app handles.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaTools />,
+        title: "Streamlined Business Operations",
+        desc: "A clearer connection between the app and the business systems it needs to work with.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaGlobe />,
+        title: "Scalable Android Infrastructure",
+        desc: "Architecture designed to support growing users and functionality without a rebuild.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "How much does Android app development cost in Dubai?",
+        a: "Cost depends on complexity, features, integrations, and testing requirements, there's no single fixed price. Simple apps cost less than ones with extensive custom functionality or multiple integrations.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "Pricing built around scope",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "How long does it take to develop an Android app?",
+        a: "Timelines vary with scope. A focused MVP with limited features can launch in a matter of weeks, while a complex app with extensive integrations, custom functionality, and broad device testing takes several months.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Timelines by scope",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "Can you develop a custom Android app?",
+        a: "Yes. When a standard app template can't support specific business workflows or customer requirements, custom functionality and architecture can be built around what the app actually needs to do.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "Custom Android builds",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "Can you develop Android apps for different industries?",
+        a: "Yes. Android apps can be built across industries including healthcare, ecommerce, food and hospitality, transportation, fintech, education, and real estate, with functionality adapted to what each business model requires.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "Android across industries",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "Can you integrate APIs and third-party systems into an Android app?",
+        a: "Yes. REST APIs, CRMs, payment gateways, and other backend systems can be integrated so the Android app works properly with the systems a business already depends on.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "API and backend integrations",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        q: "Can you migrate or upgrade an existing Android application?",
+        a: "Yes. Legacy Android apps can be modernized, improving OS compatibility, performance, and codebase health, while preserving data and API compatibility throughout the upgrade.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Modernizing legacy apps",
+      },
+      {
+        q: "Will my Android app work across different devices and Android versions?",
+        a: "Yes. Testing across multiple devices, screen sizes, and Android OS versions is standard practice, since Android's device diversity is a genuine engineering consideration that has to be accounted for.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
+        imgLabel: "Device and OS testing",
       },
       {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        q: "Do you provide Android app maintenance and support?",
+        a: "Yes. Ongoing maintenance covers bug fixes, security updates, Android version compatibility, and performance monitoring, along with feature enhancements as the app evolves.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Metrics that matter",
+        imgLabel: "Ongoing maintenance",
+      },
+      {
+        q: "What is Android app development?",
+        a: "Android app development is the process of designing, building, testing, deploying, and maintaining applications specifically for Android devices, with attention to device compatibility, performance, security, integrations, and Google Play requirements.",
+        img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+        imgLabel: "What Android development covers",
+      },
+      {
+        q: "What is the difference between native Android development and cross-platform development?",
+        a: "Native Android development is built specifically for Android and can provide deeper access to platform-specific capabilities and performance optimization. Cross-platform development shares code across multiple platforms.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Native vs cross-platform",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Ready to Build an Android App That Supports Your Business Growth?",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
-    growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
-    growthCta: "Get Started",
+      "Whether you need a new Android app built from scratch or an existing one improved, ENH Consulting builds custom Android applications around your specific business objectives and the devices your users actually have. Every project starts with understanding what the app needs to achieve, not just what it needs to look like.",
+    growthNote: "Talk to ENH Consulting about your Android app project.",
+    growthCta: "Get Your Consultation",
   },
 };
 
@@ -907,7 +1042,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1170,9 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                From architecture and design through integration, testing,
+                and deployment, here's how we structure Android development
+                work.
               </p>
             </Col>
           </Row>
@@ -1054,7 +1186,7 @@ function RDSection({ data }) {
         >
           <Row className="g-4">
             {data.rdCards.map((card, i) => (
-              <Col lg={6} md={6} key={i}>
+              <Col lg={12} md={6} key={i}>
                 <motion.div
                   variants={cardV}
                   onHoverStart={() => setHovered(i)}
@@ -1099,9 +1231,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1121,31 +1257,7 @@ function RDSection({ data }) {
   );
 }
 
-function Services() {
-  const serviceList = [
-    {
-      icon: <FaRocket />,
-      title: "Startups",
-      description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
-      number: "01",
-    },
-    {
-      icon: <FaBriefcase />,
-      title: "Small & Medium Businesses",
-      description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
-      number: "02",
-    },
-    {
-      icon: <FaGlobe />,
-      title: "Enterprises",
-      description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
-      number: "03",
-    },
-  ];
-
+function Services({ data }) {
   return (
     <section className="services-section">
       <Container>
@@ -1163,14 +1275,14 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                Android App Solutions for Different Business Needs
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            As an Android app development company businesses across the UAE
+            rely on at different stages, we scope each engagement around
+            where the business actually is, not a one-size-fits-all package.
           </motion.p>
         </motion.div>
 
@@ -1181,7 +1293,7 @@ function Services() {
           viewport={{ once: true, amount: 0.1 }}
           variants={staggerContainer}
         >
-          {serviceList.map((service, index) => (
+          {data.whoWeServe.map((service, index) => (
             <motion.div key={index} className="service-card-wrap">
               <motion.div
                 className="service-card"
@@ -1227,34 +1339,34 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "Business-Focused Android Strategy",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "Development decisions are based on business objectives, not on what technology looks impressive in a portfolio. Technology decisions are evaluated against users, functionality, integration requirements, performance expectations, and long-term maintenance needs.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Custom Android Development",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "Functionality is built around your actual requirements, not stretched from a generic template that approximately fits.",
     },
     {
-      title: "Transparent Reporting",
+      title: "Android-Centered UI/UX",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "Interfaces are designed specifically for how Android users navigate, not adapted from an iOS design after the fact.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Scalable & Secure Development",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
+        "Architecture accounts for future growth and treats security as a requirement from day one, not an afterthought.",
     },
     {
-      title: "Multi-Channel Expertise",
+      title: "API & Integration Expertise",
       description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
+        "Android applications connect properly with the CRM, payment, and business systems you already depend on.",
     },
     {
-      title: "Local Market Understanding",
+      title: "Dubai & UAE Market Understanding",
       description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "We factor in local customer expectations, payment requirements, language considerations, and regional business needs where relevant, rather than applying a generic global approach.",
     },
   ];
 
@@ -1275,8 +1387,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Choose ENH for Android App Development in Dubai?
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1447,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Android App Development for Different Industries
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            Every industry uses Android apps differently, so functionality
+            and UX have to reflect how that specific audience actually
+            behaves.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1527,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Android App Development Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,9 +1549,9 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns an Android build into a
+            business asset. Here's exactly how we take an app from discovery
+            to launch and beyond.
           </p>
         </motion.div>
 
@@ -1479,6 +1590,28 @@ function TestimonialsSection({ data }) {
             />
           ))}
         </div>
+
+        {data.crossLinkHref && (
+          <motion.p
+            initial="hidden"
+            whileInView="show"
+            viewport={vp}
+            variants={fadeUp}
+            className="mt-4"
+            style={{ color: "#532a06", fontSize: "0.95rem" }}
+          >
+            Businesses planning a broader mobile strategy can also explore
+            our{" "}
+            <Link
+              to={data.crossLinkHref}
+              style={{ color: "#d45b08", fontWeight: 600 }}
+            >
+              {data.crossLinkLabel}
+            </Link>
+            , covering iOS, Flutter, and React Native alongside native
+            Android work.
+          </motion.p>
+        )}
       </Container>
     </section>
   );
@@ -1516,7 +1649,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help You Build Better Apps
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,11 +1825,12 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Our Android App Development
+            Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
+            Every app we build is judged against real business outcomes, not
+            technical achievement alone. Here's what businesses typically
             experience when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
@@ -1765,7 +1899,7 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
+                Frequently Asked Questions About Android App Development in
                 Dubai
               </motion.h4>
 
@@ -1788,8 +1922,8 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
-                marketing agency in Dubai.
+                Everything you need to know before partnering with an Android
+                app development company in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -1868,7 +2002,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2128,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start building an Android app that
+                actually supports your business goals.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2227,28 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="custom-android-app-development">
+                        Custom Android App Development
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="android-ui-ux">
+                        Android UI/UX Design & Development
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="android-api-integration">
+                        Android App API & Backend Integration
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="android-testing-qa">
+                        Android App Testing & Quality Assurance
+                      </option>
+                      <option value="android-migration">
+                        Android App Migration & Upgrade
+                      </option>
+                      <option value="android-maintenance">
+                        Android App Maintenance & Support
+                      </option>
+                      <option value="google-play-deployment">
+                        Google Play Store Deployment & Optimization
+                      </option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2376,16 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Partner with a Results-Driven Android App Development
+            Company in Dubai?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            Sustainable app growth starts with an Android experience built to
+            perform, convert, and scale. Let's build a secure,
+            high-performance app designed to engage customers, increase
+            conversions, and support long-term business growth across Dubai
+            and the UAE.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2270,21 +2411,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function AndroidAppDevDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = ANDROID_DATA[slug] || ANDROID_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Android App Development Company in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Drive more customers and sales with an Android app development company in Dubai. ENH Consulting builds secure, high-performance apps designed to convert."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/android-app-development-company-in-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2434,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Android App Development Company in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Drive more customers and sales with an Android app development company in Dubai. ENH Consulting builds secure, high-performance apps designed to convert."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/android-app-development-company-in-dubai"
         />
         <meta
           property="og:image"
@@ -2312,31 +2453,36 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Android App Development Company in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Android App Development Company in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Drive more customers and sales with an Android app development company in Dubai. ENH Consulting builds secure, high-performance apps designed to convert."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(androidFaqSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(androidServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
       <IntroSection2 data={data} />
       <RDSection data={data} />
       <GrowthCTASection data={data} />
-      <Services />
+      <Services data={data} />
       <WhyUsSection data={data} />
       <TestimonialsSection data={data} />
       <WhyChooseENH data={data} />
@@ -2348,5 +2494,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

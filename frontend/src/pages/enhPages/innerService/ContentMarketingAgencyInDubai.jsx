@@ -40,6 +40,11 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaBlog,
+  FaPen,
+  FaFileAlt,
+  FaSyncAlt,
+  FaChartLine,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +96,146 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const contentFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "What are content marketing services?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "Content marketing services cover strategy, SEO writing, website copy, blogs, landing pages, and email content, all built around your business goals. Every piece supports search visibility, lead generation, and long-term brand authority as part of one coordinated approach.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "Why is content marketing important?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "Content is what search engines rank, what buyers read before deciding, and what fuels SEO, PPC, and social media. Without it, other channels have little to work with. Strong content builds trust and visibility that keeps generating results long after publishing.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "How long does content marketing take to deliver results?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "Landing pages and email copy can influence conversions almost immediately. Organic traffic and ranking improvements from blog and SEO content typically build over three to six months, with stronger, compounding results developing over six to twelve months.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "Do you provide SEO content writing?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "Yes. SEO content writing is core to what we do - landing pages, service pages, and evergreen content built around search intent, semantic SEO, and EEAT, written to rank and to genuinely inform the people reading it.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "Do you create website content?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "Yes, we write homepage, About, Contact, service page, industry page, and location page content, focused on conversion and brand consistency. Website content is often a prospect's first real impression, so it gets the same strategic weight as blog content.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "How do you measure content marketing success?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "We track organic traffic, rankings, engagement, and conversions using Google Analytics and Search Console, tied back to content ROI rather than word count. If content isn't generating leads or traffic, that's a signal to optimize, not just publish more.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "Can content marketing generate leads?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "Yes, when it's built around buyer intent and paired with clear calls to action. Educational content brings people in, landing pages and copywriting convert them, and email content nurtures the ones who aren't ready yet.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "How often should businesses publish content?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "There's no universal number - it depends on your industry, goals, and current content gaps. Consistency matters more than volume. A steady schedule tied to real topics tends to outperform sporadic bursts of high-volume content.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does AI-generated content help SEO?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI can speed up drafting, but unedited AI content alone tends to underperform. Google's helpful content systems reward original insight, real experience, and human editorial review - which is why every piece we produce goes through human editing and EEAT-focused review before publishing.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How many blogs should businesses publish every month?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "It depends on your content gaps and competitive landscape more than a fixed target. Some businesses see stronger results from two well-researched, strategically placed posts a month than from eight rushed ones. We recommend a cadence based on your specific topic map, not a generic rule.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Why hire a content marketing agency in Dubai?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "An agency brings strategists, SEO writers, and editors together with local market understanding, difficult to replicate with a single in-house hire. It also keeps publishing consistent and strategy-driven, rather than depending on whoever has spare time that week.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const contentServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/content-marketing-services-in-dubai#service",
+  name: "Content Marketing Services in Dubai",
+  serviceType: "Content Marketing",
+  url: "https://enh.consulting/content-marketing-services-in-dubai",
+  description:
+    "ENH Consulting provides content marketing services in Dubai to help businesses build authority, improve organic visibility, attract qualified traffic, generate leads, and support sustainable growth through content strategy, SEO content writing, website content, blog writing, landing page copywriting, email content, content optimization, and performance analytics.",
+  provider: {
+    "@id": "https://enh.consulting/#organization",
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Dubai",
+    },
+    {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Content Marketing Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Content Strategy" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO Content Writing" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website Content Writing" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Blog Writing Services" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Landing Page Copywriting" },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Copywriting Services" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Email Content Writing" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Content Optimization" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Content Performance and Analytics" },
+      },
+    ],
+  },
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,84 +285,79 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const CONTENT_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
+    badge: "Content Marketing",
     headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+      "Content Marketing Services in Dubai That Build Authority, Traffic & Qualified Leads",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "Content marketing services in Dubai help businesses build authority, improve organic visibility, attract qualified traffic, and turn visitors into customers. ENH Consulting creates strategic, SEO-focused content aligned with search intent and buyer journeys, from blogs and website pages to conversion-focused content. Our approach combines expertise, relevance, and measurable performance to generate sustainable traffic, stronger brand trust, and qualified leads.",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Business Struggling to Generate Results from Content?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many businesses publish content consistently but still struggle with low traffic, weak rankings, limited engagement, and few leads. These challenges often occur when content marketing in Dubai is managed without a clear strategy connecting topics, search intent, audience needs, and business goals.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "Publishing more content doesn't automatically create growth. Content needs to provide genuine value, target relevant searches, support topical authority, and guide potential customers toward action. ENH Consulting takes a strategic approach to content marketing, combining audience research, content planning, SEO, and performance analysis. We help Dubai businesses create useful, search-focused content that strengthens visibility, supports lead generation, improves brand credibility, and contributes to measurable long-term growth.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven Content Marketing Agency in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "Producing content that ranks and converts takes more than a writer with a deadline. It takes strategists who understand search intent, SEO writers who understand structure, and editors who catch what doesn't work before it goes live. Most in-house teams don't have all three skill sets at once.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "A content marketing agency in Dubai brings that full setup together. Content planning is built around real topic gaps. Writing is conversion-focused, not just informative. Performance tracking shows what's actually working, so effort goes where it pays off. As a content marketing agency Dubai businesses return to for long-term growth, the goal isn't hitting a word count. It's content that keeps generating traffic and leads well after it's published, while supporting broader digital marketing in Dubai efforts.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Result-Driven Content Marketing Services in Dubai",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
-      },
-      {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
-      },
-      {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
-      },
-      {
         icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
+        title: "Content Strategy",
+        desc: "We map the buyer journey, research your audience, and build topic clusters and keyword mapping around what your customers are actually searching for. The result is an editorial calendar and content roadmap that ties every piece back to a business goal, instead of topics picked at random.",
+      },
+      {
+        icon: <FaSearch />,
+        title: "SEO Content Writing",
+        desc: "SEO landing pages, service pages, and evergreen content built around search intent, semantic SEO, and entity optimization, not just keyword placement. Every piece is written with EEAT in mind and supports topical authority through deliberate internal linking, so individual pages strengthen the site as a whole.",
+      },
+      {
+        icon: <FaLaptopCode />,
+        title: "Website Content Writing",
+        desc: "Homepage, About, Contact, service pages, industry pages, and location pages written to convert, not just describe. Google reads a site's full architecture, so we treat every page, not just blog content, as part of the same strategy. This is where branding and business outcomes meet.",
+      },
+      {
+        icon: <FaBlog />,
+        title: "Blog Writing Services",
+        desc: "Pillar pages and cluster pages built around both informational and commercial search intent, establishing topical authority over time. Strong internal linking connects these pieces back to your service pages, turning organic traffic into a pipeline that keeps feeding the rest of your site.",
+      },
+      {
+        icon: <FaFileAlt />,
+        title: "Landing Page Copywriting",
+        desc: "Conversion-focused copy for lead generation and PPC landing pages, built around CRO principles, conversion psychology, and CTA optimization. A landing page has one job - convert - and every element is written with that outcome in mind.",
+      },
+      {
+        icon: <FaPen />,
+        title: "Copywriting Services",
+        desc: "Sales copy, product descriptions, ad copy, and website copy written to persuade, not just inform. This broadens the page's coverage beyond long-form content into every place your brand shows up in writing, all tied together by consistent messaging.",
       },
       {
         icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        title: "Email Content Writing",
+        desc: "Email campaigns, newsletters, lead nurturing sequences, and automation emails written to keep prospects engaged after they leave your site. Good email content plays a direct role in customer retention, turning one-time visitors into long-term relationships.",
       },
       {
-        icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
+        icon: <FaSyncAlt />,
+        title: "Content Optimization",
+        desc: "Refreshing existing content through historical optimization - updating statistics, realigning with current search intent, strengthening internal linking, and applying EEAT and schema recommendations. Often faster and more cost-effective than starting from scratch, since the page already has ranking history to build on.",
       },
       {
-        icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
-      },
-      {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaChartLine />,
+        title: "Content Performance & Analytics",
+        desc: "We track organic traffic, keyword rankings, CTR, engagement, leads, and assisted conversions using Google Search Console and Google Analytics 4. That data shapes what gets optimized next, so content strategy keeps improving rather than running on assumptions.",
       },
     ],
 
@@ -295,161 +366,179 @@ const SERVICE_DATA = {
       {
         icon: <FaHeartbeat />,
         title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
+        desc: "Building patient trust through accurate, research-backed content for long, careful decision journeys.",
       },
       {
         icon: <FaGraduationCap />,
         title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        desc: "Supporting enrollment with content aligned to academic calendars and parent research habits.",
       },
       {
         icon: <FaBuilding />,
         title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
+        desc: "Educating buyers and investors through market insight in a fast-moving, high-consideration sector.",
       },
       {
         icon: <FaHotel />,
         title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
+        desc: "Driving bookings with content tied to seasonal demand and destination appeal.",
       },
       {
         icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
+        title: "Ecommerce & Retail",
+        desc: "Turning product and category content into qualified, purchase-ready traffic.",
       },
       {
         icon: <FaIndustry />,
         title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        desc: "Supporting longer, multi-stakeholder sales cycles with technical, trust-building content.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — Discovery & Goal Setting",
+        text: "We review your business, target audience, existing content, competitors, and growth goals to identify the biggest content opportunities.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — Audience & Keyword Research",
+        text: "We research search behavior, keywords, buyer intent, and content gaps to identify the topics your potential customers are actively looking for.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — Content Strategy & Planning",
+        text: "We turn the research into a structured content roadmap, including topic clusters, content priorities, and an editorial calendar aligned with your business objectives.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — Content Creation & SEO Optimization",
+        text: "Our strategists, writers, and editors create high-quality content optimized for search intent, semantic relevance, EEAT, conversions, and your brand voice.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — Publishing & Performance Tracking",
+        text: "Content is published consistently, while rankings, organic traffic, engagement, leads, and conversions are monitored through performance data.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Continuous Optimization & Growth",
+        text: "We refresh existing content, strengthen internal linking, improve underperforming pages, and refine the strategy based on real performance data to drive sustainable growth.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
-        icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        icon: <FaGlobe />,
+        title: "Higher Organic Traffic",
+        desc: "More visitors arriving through search, not paid channels.",
       },
       {
         num: "02",
         icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        title: "Better Keyword Rankings",
+        desc: "Stronger positions for the terms your customers actually use.",
       },
       {
         num: "03",
-        icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        icon: <FaHandshake />,
+        title: "More Qualified Leads",
+        desc: "Content that attracts the right visitors, not just more of them.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaShieldAlt />,
+        title: "Improved Topical Authority",
+        desc: "A site Google recognizes as a credible source on your subject matter.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaRocket />,
+        title: "Higher Conversion Rates",
+        desc: "Pages written to move people toward a decision, not just inform them.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaStar />,
+        title: "Increased Brand Trust",
+        desc: "Consistent, expert-level content that builds credibility over time.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "What are content marketing services?",
+        a: "Content marketing services cover strategy, SEO writing, website copy, blogs, landing pages, and email content, all built around your business goals. Every piece supports search visibility, lead generation, and long-term brand authority as part of one coordinated approach.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "What content marketing covers",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "Why is content marketing important?",
+        a: "Content is what search engines rank, what buyers read before deciding, and what fuels SEO, PPC, and social media. Without it, other channels have little to work with. Strong content builds trust and visibility that keeps generating results long after publishing.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Why content matters",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "How long does content marketing take to deliver results?",
+        a: "Landing pages and email copy can influence conversions almost immediately. Organic traffic and ranking improvements from blog and SEO content typically build over three to six months, with stronger, compounding results developing over six to twelve months.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "Timelines for content results",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "Do you provide SEO content writing?",
+        a: "Yes. SEO content writing is core to what we do - landing pages, service pages, and evergreen content built around search intent, semantic SEO, and EEAT, written to rank and to genuinely inform the people reading it.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "SEO content writing",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "Do you create website content?",
+        a: "Yes, we write homepage, About, Contact, service page, industry page, and location page content, focused on conversion and brand consistency. Website content is often a prospect's first real impression, so it gets the same strategic weight as blog content.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "Website content that converts",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        q: "How do you measure content marketing success?",
+        a: "We track organic traffic, rankings, engagement, and conversions using Google Analytics and Search Console, tied back to content ROI rather than word count. If content isn't generating leads or traffic, that's a signal to optimize, not just publish more.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Measuring content ROI",
+      },
+      {
+        q: "Can content marketing generate leads?",
+        a: "Yes, when it's built around buyer intent and paired with clear calls to action. Educational content brings people in, landing pages and copywriting convert them, and email content nurtures the ones who aren't ready yet.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
+        imgLabel: "Content built to convert",
       },
       {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        q: "How often should businesses publish content?",
+        a: "There's no universal number - it depends on your industry, goals, and current content gaps. Consistency matters more than volume. A steady schedule tied to real topics tends to outperform sporadic bursts of high-volume content.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Metrics that matter",
+        imgLabel: "Consistency over volume",
+      },
+      {
+        q: "Does AI-generated content help SEO?",
+        a: "AI can speed up drafting, but unedited AI content alone tends to underperform. Google's helpful content systems reward original insight, real experience, and human editorial review, which is why every piece we produce goes through human editing and EEAT-focused review before publishing.",
+        img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
+        imgLabel: "AI content, human-reviewed",
+      },
+      {
+        q: "How many blogs should businesses publish every month?",
+        a: "It depends on your content gaps and competitive landscape more than a fixed target. Some businesses see stronger results from two well-researched, strategically placed posts a month than from eight rushed ones. We recommend a cadence based on your specific topic map, not a generic rule.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Finding the right publishing cadence",
+      },
+      {
+        q: "Why hire a content marketing agency in Dubai?",
+        a: "An agency brings strategists, SEO writers, and editors together with local market understanding, difficult to replicate with a single in-house hire. It also keeps publishing consistent and strategy-driven, rather than depending on whoever has spare time that week.",
+        img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+        imgLabel: "Why hire an agency",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Let's Build a Content Strategy That Drives Business Growth",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
+      "Every business's content gaps look different, shaped by industry, current site content, and growth goals. Discuss your business goals with ENH Consulting, and we'll assess your current content and map out where the real growth opportunities are.",
     growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
+      "Discover how a strategic content roadmap can turn traffic into qualified leads.",
     growthCta: "Get Started",
   },
 };
@@ -907,7 +996,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1124,11 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                Content that actually performs combines strategy, research,
+                writing, optimization, and performance measurement, not just
+                publishing blogs and hoping they rank. Here's how that breaks
+                down across what we deliver, in the order it typically
+                happens.
               </p>
             </Col>
           </Row>
@@ -1054,7 +1142,7 @@ function RDSection({ data }) {
         >
           <Row className="g-4">
             {data.rdCards.map((card, i) => (
-              <Col lg={6} md={6} key={i}>
+              <Col lg={4} md={6} key={i}>
                 <motion.div
                   variants={cardV}
                   onHoverStart={() => setHovered(i)}
@@ -1099,9 +1187,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1127,21 +1219,21 @@ function Services() {
       icon: <FaRocket />,
       title: "Startups",
       description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
+        "Startups need brand awareness and an SEO foundation built quickly, without stretching a limited budget too thin. We prioritize the pages and topics most likely to generate early leads. Spend goes toward content that starts working sooner, not a broad library built out all at once.",
       number: "01",
     },
     {
       icon: <FaBriefcase />,
       title: "Small & Medium Businesses",
       description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
+        "Growing businesses need content that scales with the brand, building authority and generating consistent leads as competition grows. We expand topic coverage steadily, building on what's already ranking rather than starting every new push from zero.",
       number: "02",
     },
     {
       icon: <FaGlobe />,
       title: "Enterprises",
       description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
+        "Larger organizations need content governance across multi-location or multi-language sites. That often means large websites and multiple stakeholders. We bring structured processes and executive reporting to that complexity, keeping content consistent across every region and business unit.",
       number: "03",
     },
   ];
@@ -1163,14 +1255,14 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                Content Marketing Solutions for Businesses of Every Size
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            Every business needs content marketing solutions suited to its
+            stage. A startup's content priorities look nothing like an
+            enterprise's, and shouldn't.
           </motion.p>
         </motion.div>
 
@@ -1227,34 +1319,34 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "SEO-Driven Content Strategy",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "Every piece is built around real search data and buyer intent, not guesswork about what might rank.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Experienced Content Strategists & SEO Specialists",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "Dedicated strategists, SEO specialists, and industry writers work together on every piece, backed by a structured editorial review process.",
     },
     {
-      title: "Transparent Reporting",
+      title: "EEAT-Focused Content Creation",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "Content demonstrates real expertise and trustworthiness through an AI-assisted, human-reviewed workflow, never published unedited.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Conversion-Focused Copywriting",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
+        "Every page is written to move someone toward a decision, so content contributes directly to leads and revenue.",
     },
     {
-      title: "Multi-Channel Expertise",
+      title: "Transparent Performance Reporting",
       description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
+        "You see exactly what's ranking, driving traffic, and generating leads, tied to outcomes instead of publishing volume.",
     },
     {
-      title: "Local Market Understanding",
+      title: "Deep Understanding of Dubai & UAE Markets",
       description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "Local search behavior and buyer expectations shape every strategy, built on an EEAT-focused methodology throughout.",
     },
   ];
 
@@ -1275,8 +1367,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Businesses Choose ENH Consulting for Content Marketing
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1427,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Industries We Help Grow Through Content Marketing
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            Content that works in one industry rarely translates directly to
+            another. Buyer behavior, sales cycles, and trust signals all
+            differ.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1507,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Content Marketing Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,9 +1529,9 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns publishing into a
+            growth channel. Here's exactly how we take content from
+            discovery to measurable results.
           </p>
         </motion.div>
 
@@ -1516,7 +1607,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help You Content Market Smarter
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,11 +1783,11 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Our Content Marketing Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
+            Every content plan we build is focused on outcomes that matter to
+            your business, not word count. Here's what businesses typically
             experience when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
@@ -1765,7 +1856,7 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
+                Frequently Asked Questions About Content Marketing Services in
                 Dubai
               </motion.h4>
 
@@ -1788,7 +1879,7 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
+                Everything you need to know before partnering with a content
                 marketing agency in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
@@ -1868,7 +1959,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2085,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start turning content into traffic and
+                qualified leads with expert content marketing.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2184,28 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="content-strategy">Content Strategy</option>
+                      <option value="seo-content-writing">
+                        SEO Content Writing
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="website-content-writing">
+                        Website Content Writing
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="blog-writing">Blog Writing Services</option>
+                      <option value="landing-page-copywriting">
+                        Landing Page Copywriting
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="copywriting">Copywriting Services</option>
+                      <option value="email-content-writing">
+                        Email Content Writing
+                      </option>
+                      <option value="content-optimization">
+                        Content Optimization
+                      </option>
+                      <option value="content-analytics">
+                        Content Performance & Analytics
+                      </option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2333,16 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Grow with a Leading Content Marketing Agency in Dubai?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            Whether you need SEO content, website copy, landing pages, or a
+            complete long-term content strategy, ENH Consulting helps
+            businesses create content that ranks, builds authority, and
+            converts visitors into customers. Get in touch for a free
+            consultation, and let's map out where your content can take your
+            business next.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2270,21 +2368,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function ContentMarketingDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = CONTENT_DATA[slug] || CONTENT_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Best Content Marketing Services in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Partner with ENH Consulting for content marketing services in Dubai. Build authority, improve rankings, attract qualified traffic and generate business leads."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/content-marketing-services-in-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2391,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Best Content Marketing Services in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Partner with ENH Consulting for content marketing services in Dubai. Build authority, improve rankings, attract qualified traffic and generate business leads."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/content-marketing-services-in-dubai"
         />
         <meta
           property="og:image"
@@ -2312,24 +2410,29 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Best Content Marketing Services in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Best Content Marketing Services in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Partner with ENH Consulting for content marketing services in Dubai. Build authority, improve rankings, attract qualified traffic and generate business leads."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(contentFaqSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(contentServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
@@ -2348,5 +2451,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

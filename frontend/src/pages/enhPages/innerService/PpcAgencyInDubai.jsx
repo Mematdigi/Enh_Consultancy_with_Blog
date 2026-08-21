@@ -40,6 +40,16 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaGoogle,
+  FaFacebook,
+  FaLinkedin,
+  FaYoutube,
+  FaAd,
+  FaChartLine,
+  FaSyncAlt,
+  FaClipboardList,
+  FaSlidersH,
+  FaShoppingBag,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +101,136 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const ppcFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "What is PPC advertising?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "PPC, or pay-per-click, is advertising where you pay each time someone clicks your ad rather than paying for placement upfront. It covers Google Ads, Meta Ads, LinkedIn Ads, and similar platforms, and it's one of the fastest ways to get in front of people actively searching for what you offer.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "Which platforms do you manage?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "We manage Google Ads, Meta Ads Manager for Facebook and Instagram, LinkedIn Campaign Manager, and Microsoft Advertising. Which platform makes sense depends on where your customers actually spend time and how they search - something we work out during discovery rather than assuming upfront.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "How much does PPC cost in Dubai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "It depends on your industry, competition, and goals - CPC varies a lot between sectors. Rather than a flat number, we build a budget around what it actually takes to hit your targets, and walk through that with you directly before anything launches.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "How quickly can PPC generate leads?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "Campaigns can start generating clicks and leads within days of launch, though the first few weeks are usually spent testing and refining. Most accounts hit a stronger, more efficient stride within four to six weeks as we gather enough data to optimize properly.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "How do you measure PPC success?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "We track cost per acquisition, ROAS, conversion rate, and lead quality - not just clicks or impressions. A campaign with a great CTR that generates the wrong leads isn't a success, so we measure against business outcomes, not vanity metrics.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "Do you provide remarketing campaigns?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "Yes. Remarketing across Google and Meta is part of most PPC strategies we build, since most visitors don't convert on their first visit. It's usually one of the more cost-effective ways to bring people back and improve overall ROI.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "Can PPC work alongside SEO?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "Yes, and they work well together. PPC gets you immediate visibility while SEO builds organic rankings over time - running both means you're not entirely dependent on either channel, and data from paid campaigns often informs which keywords are worth targeting organically.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "Should my business invest in SEO or PPC?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "It depends on how quickly you need results and what budget you're working with. PPC delivers immediate traffic and leads, which suits businesses that need visibility now. SEO builds sustainable, long-term organic growth that keeps paying off without ongoing spend per click. Most businesses get the most value from running both together, weighted differently depending on goals - something our SEO services team can help map out alongside your PPC strategy.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do you reduce wasted ad spend?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Through negative keywords, tighter audience targeting, ongoing bid adjustments, and cutting underperforming campaigns quickly instead of letting them run. Most wasted spend comes from accounts nobody's actively managing - regular optimization is what actually prevents it.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do you guarantee results?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No agency can honestly guarantee specific lead numbers or a fixed ROAS, and any that claims to isn't being straight with you. What we can guarantee is continuous optimization, transparent reporting, and decisions based on your actual data rather than assumptions.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const ppcServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/ppc-company-in-dubai#service",
+  name: "PPC Services in Dubai",
+  serviceType: "Pay-Per-Click Advertising (PPC)",
+  url: "https://enh.consulting/ppc-company-in-dubai",
+  description:
+    "ENH Consulting provides PPC services in Dubai to help businesses generate qualified leads, improve advertising efficiency, reduce wasted ad spend, increase conversions, and achieve stronger returns through Google Ads, Meta Ads, LinkedIn Advertising, Google Shopping Ads, Display Advertising, YouTube Advertising, remarketing, conversion tracking, PPC audits, and campaign optimization.",
+  provider: {
+    "@id": "https://enh.consulting/#organization",
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Dubai",
+    },
+    {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "PPC Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Google Ads Management" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Meta Ads Management" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "LinkedIn Advertising" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Google Shopping Ads" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Display Advertising" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "YouTube Advertising" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Conversion Tracking and Analytics" },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Remarketing Campaigns" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "PPC Audit" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Campaign Optimization" } },
+    ],
+  },
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,84 +280,83 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const PPC_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
-    headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+    badge: "PPC Company",
+    headline: "PPC Company in Dubai That Drives Qualified Leads and Higher ROI",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
+      "Every dirham you spend on Google or Meta should bring back a real lead, not just another click. As a PPC company in Dubai that businesses trust when ad costs keep climbing and results fall short, we've seen the same pattern repeatedly: clicks that don't convert, leads that don't match what sales actually needs, and budgets wasted on keywords that were never likely to generate revenue.",
     cta: "Get a Free Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Advertising Budget Delivering the Results You Expect?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many Dubai businesses invest in PPC but struggle with rising CPCs, broad targeting, low-quality clicks, and landing pages that fail to convert. Even when PPC services in Dubai generate traffic, campaigns can underperform when clicks don't translate into qualified leads or advertising costs continue rising without stronger returns.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "These challenges often come from campaigns that aren't optimized consistently. PPC requires ongoing attention to bids, audiences, ad copy, negative keywords, landing pages, and conversion data. ENH Consulting takes a performance-focused approach, continuously refining campaigns to improve targeting, reduce wasted spend, increase qualified leads, and strengthen conversion rates. Our goal is to help Dubai businesses get more value from their advertising investment while building PPC campaigns designed for sustainable, measurable growth.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Partner with a Results-Driven PPC Company in Dubai",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "There's a real difference between running ads and managing a campaign that's actually profitable. Anyone can turn on Google Ads. Getting a positive return out of it, consistently, is a different job. A PPC agency in Dubai worth hiring brings Google Ads and Meta Ads expertise that goes beyond the basics, knowing which levers actually move performance instead of just watching a dashboard.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "That means allocating budget toward what's converting, cutting what isn't, and making decisions based on the data coming in rather than a plan set at kickoff and never revisited. As a PPC company in Dubai, ENH works as an extension of your team. We're in the account weekly, not glancing at it once a month. When paid campaigns need to work alongside broader digital marketing services in Dubai, we can align PPC with SEO, content, social media, and other channels to create a more connected growth strategy.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "PPC Services Designed to Maximize Advertising ROI in Dubai",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaGoogle />,
+        title: "Google Ads Management",
+        desc: "Search, Display, Performance Max, and Shopping campaigns built to reach people with real purchase intent, not just broad traffic. We structure accounts around what actually improves lead quality and ROAS, adjusting keywords and bids as performance data comes in rather than leaving a campaign to run untouched for months.",
       },
       {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
+        icon: <FaFacebook />,
+        title: "Meta Ads Management",
+        desc: "Facebook and Instagram campaigns built around audiences that match your actual customers, not broad demographic guesses. We run lead generation, remarketing, and brand awareness side by side, so people who've already shown interest get another shot at converting instead of disappearing after one visit.",
       },
       {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
+        icon: <FaLinkedin />,
+        title: "LinkedIn Advertising",
+        desc: "For B2B businesses selling to decision makers, LinkedIn is often the only platform where the right person actually sees the ad. We build lead generation and account-based campaigns using LinkedIn Campaign Manager, targeting the specific roles, seniority, and companies that matter to your pipeline.",
       },
       {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
+        icon: <FaShoppingBag />,
+        title: "Google Shopping Ads",
+        desc: "For ecommerce businesses, Shopping Ads put your products in front of buyers who are already comparing prices and ready to purchase. Set up correctly through Google Merchant Center, they tend to improve click-through rates and product visibility while attracting traffic with genuinely high purchase intent.",
       },
       {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        icon: <FaAd />,
+        title: "Display Advertising",
+        desc: "Display campaigns build brand awareness across Google's Display Network through visual ads that reach people while they browse other sites. Paired with audience targeting and remarketing, they keep your business visible to people who aren't ready to search for you directly yet.",
       },
       {
-        icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
+        icon: <FaYoutube />,
+        title: "YouTube Advertising",
+        desc: "Video ads on YouTube help businesses build awareness and promote products in a format that holds attention longer than a static banner. We build campaigns around specific audiences and goals, whether that's generating leads directly or building the kind of recognition that makes future ads convert better.",
       },
       {
-        icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
+        icon: <FaChartLine />,
+        title: "Conversion Tracking & Analytics",
+        desc: "Campaigns are only as good as the data behind them. We set up GA4 and Google Tag Manager properly, so conversion tracking, ROI, and customer acquisition cost are all measured accurately from day one, and reporting reflects what's actually happening rather than a rough estimate.",
       },
       {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaSyncAlt />,
+        title: "Remarketing Campaigns",
+        desc: "Most visitors don't convert on the first visit. Remarketing across Google and Meta brings them back with the right message at the right time, which tends to improve conversion rates and stretch advertising ROI further than chasing new traffic alone.",
+      },
+      {
+        icon: <FaClipboardList />,
+        title: "PPC Audit",
+        desc: "We go through your existing account - keywords, bidding strategy, Quality Score, conversion tracking, audience targeting, and budget allocation - and come back with a clear roadmap for what to fix first. Useful whether you're switching agencies or running PPC in-house and something feels off.",
+      },
+      {
+        icon: <FaSlidersH />,
+        title: "Campaign Optimization",
+        desc: "Bid adjustments, keyword refinement, A/B testing, audience optimization, ad copy improvements, and budget reallocation, this is the ongoing work that separates a campaign that used to perform from one that keeps performing. We do it weekly, not as an afterthought.",
       },
     ],
 
@@ -295,32 +365,32 @@ const SERVICE_DATA = {
       {
         icon: <FaHeartbeat />,
         title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
+        desc: "Getting in front of patients actively searching for care, without wasting spend on low-intent clicks.",
       },
       {
         icon: <FaGraduationCap />,
         title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        desc: "Filling enrollment pipelines around application deadlines and academic calendars.",
       },
       {
         icon: <FaBuilding />,
         title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
+        desc: "Reaching buyers and investors ready to act in a market that moves fast.",
       },
       {
         icon: <FaHotel />,
         title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
+        desc: "Driving direct bookings during the periods that matter most, instead of losing margin to booking platforms.",
       },
       {
         icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
+        title: "Retail",
+        desc: "Turning ad spend into sales through campaigns built around actual purchase intent.",
       },
       {
         icon: <FaIndustry />,
-        title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        title: "Manufacturing",
+        desc: "Generating B2B leads from decision makers, not tire-kickers, across longer sales cycles.",
       },
     ],
 
@@ -328,128 +398,140 @@ const SERVICE_DATA = {
     testimonials: [
       {
         step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        text: "We look at your business, goals, and current account performance to understand what \"success\" actually needs to mean.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — Audience Research",
+        text: "We map out who's actually converting, not just who's clicking, and build targeting around that.",
       },
       {
         step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        text: "Accounts, tracking, and conversion goals get built and tested before a single dirham is spent.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — Ad Creation",
+        text: "Copy and creative built to match search intent, tested against alternatives rather than guessed at once.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — Optimization",
+        text: "Bids, audiences, and budgets get adjusted weekly based on what the data is actually showing.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Reporting",
+        text: "Clear, regular reporting on what's working and why, not a wall of numbers with no context.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
         icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        title: "Higher-Quality Leads",
+        desc: "Attract prospects who match your ideal customer profile rather than simply generating more form fills.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaWallet />,
+        title: "Lower Cost per Acquisition",
+        desc: "Reduce wasted ad spend by continuously optimizing keywords, targeting, bids, and campaign performance.",
       },
       {
         num: "03",
-        icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        icon: <FaChartLine />,
+        title: "Higher ROAS",
+        desc: "Shift budget toward campaigns, audiences, and keywords that consistently generate conversions and stronger returns.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaRocket />,
+        title: "Better Click-Through Rates",
+        desc: "Create relevant, intent-focused ads that encourage more qualified users to engage with your campaigns.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaHandshake />,
+        title: "More Conversions",
+        desc: "Turn more of your existing paid traffic into qualified leads and customers through ongoing campaign and landing page optimization.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaShieldAlt />,
+        title: "Scalable Campaign Growth",
+        desc: "Scale successful campaigns while keeping acquisition costs under control and connecting PPC performance to measurable business revenue.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "What is PPC advertising?",
+        a: "PPC, or pay-per-click, is advertising where you pay each time someone clicks your ad rather than paying for placement upfront. It covers Google Ads, Meta Ads, LinkedIn Ads, and similar platforms, and it's one of the fastest ways to get in front of people actively searching for what you offer.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "What PPC actually means",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "Which platforms do you manage?",
+        a: "We manage Google Ads, Meta Ads Manager for Facebook and Instagram, LinkedIn Campaign Manager, and Microsoft Advertising. Which platform makes sense depends on where your customers actually spend time and how they search, something we work out during discovery rather than assuming upfront.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Platforms we manage",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "How much does PPC cost in Dubai?",
+        a: "It depends on your industry, competition, and goals - CPC varies a lot between sectors. Rather than a flat number, we build a budget around what it actually takes to hit your targets, and walk through that with you directly before anything launches.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "Budgeting built around your targets",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "How quickly can PPC generate leads?",
+        a: "Campaigns can start generating clicks and leads within days of launch, though the first few weeks are usually spent testing and refining. Most accounts hit a stronger, more efficient stride within four to six weeks as we gather enough data to optimize properly.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "Speed to first leads",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
+        q: "How do you measure PPC success?",
+        a: "We track cost per acquisition, ROAS, conversion rate, and lead quality, not just clicks or impressions. A campaign with a great CTR that generates the wrong leads isn't a success, so we measure against business outcomes, not vanity metrics.",
         img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
-        img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
-      },
-      {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
-        img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
-      },
-      {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
-        img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
         imgLabel: "Metrics that matter",
+      },
+      {
+        q: "Do you provide remarketing campaigns?",
+        a: "Yes. Remarketing across Google and Meta is part of most PPC strategies we build, since most visitors don't convert on their first visit. It's usually one of the more cost-effective ways to bring people back and improve overall ROI.",
+        img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+        imgLabel: "Bringing visitors back",
+      },
+      {
+        q: "Can PPC work alongside SEO?",
+        a: "Yes, and they work well together. PPC gets you immediate visibility while SEO builds organic rankings over time - running both means you're not entirely dependent on either channel, and data from paid campaigns often informs which keywords are worth targeting organically.",
+        img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+        imgLabel: "PPC and SEO together",
+      },
+      {
+        q: "Should my business invest in SEO or PPC?",
+        a: "It depends on how quickly you need results and what budget you're working with. PPC delivers immediate traffic and leads, which suits businesses that need visibility now. SEO builds sustainable, long-term organic growth that keeps paying off without ongoing spend per click. Most businesses get the most value from running both together, weighted differently depending on goals.",
+        img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
+        imgLabel: "Choosing between SEO and PPC",
+      },
+      {
+        q: "How do you reduce wasted ad spend?",
+        a: "Through negative keywords, tighter audience targeting, ongoing bid adjustments, and cutting underperforming campaigns quickly instead of letting them run. Most wasted spend comes from accounts nobody's actively managing - regular optimization is what actually prevents it.",
+        img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
+        imgLabel: "Cutting wasted spend",
+      },
+      {
+        q: "Do you guarantee results?",
+        a: "No agency can honestly guarantee specific lead numbers or a fixed ROAS, and any that claims to isn't being straight with you. What we can guarantee is continuous optimization, transparent reporting, and decisions based on your actual data rather than assumptions.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "No empty guarantees",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Let's Turn More Clicks into Customers",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
+      "Wasted ad spend and low-quality leads usually come down to an account nobody's watching closely enough. Talk to ENH Consulting about your advertising goals, and we'll show you where the budget is leaking and what a properly managed campaign could actually return - lower CPA, higher ROAS, and leads your sales team wants to follow up on.",
     growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
+      "Discover how a properly managed PPC account can lower your cost per lead.",
     growthCta: "Get Started",
   },
 };
@@ -907,7 +989,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1117,11 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                A profitable PPC account isn't one lever - it's strategy,
+                audience targeting, creative testing, landing page work, and
+                ongoing refinement, all pulling in the same direction. Here's
+                what that looks like broken down across the platforms and
+                campaign types we manage day to day.
               </p>
             </Col>
           </Row>
@@ -1099,9 +1180,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1127,21 +1212,21 @@ function Services() {
       icon: <FaRocket />,
       title: "Startups",
       description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
+        "Startups usually need leads fast on a budget that doesn't leave room for trial and error. We focus early on the highest-intent keywords and audiences, testing quickly and cutting what isn't working before it eats into a limited budget, so early traction doesn't come at the cost of runway.",
       number: "01",
     },
     {
       icon: <FaBriefcase />,
       title: "Small & Medium Businesses",
       description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
+        "Growing businesses need campaigns that scale without costs spiraling. We expand what's working, new keywords, new audiences, new platforms, while keeping CPA in check, so growth in spend actually translates to growth in leads instead of just higher advertising bills.",
       number: "02",
     },
     {
       icon: <FaGlobe />,
       title: "Enterprises",
       description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
+        "Larger accounts mean bigger budgets across multiple campaigns, regions, or product lines. We manage that complexity with structured reporting and governance, keeping every campaign accountable to the same ROI standard regardless of scale or how many stakeholders are involved.",
       number: "03",
     },
   ];
@@ -1163,14 +1248,14 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                PPC Solutions for Businesses of Every Size
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            Budget, growth stage, and how fast you need results all shape what
+            a PPC account should look like - a startup's account rarely looks
+            like an enterprise's. Here's how we tailor our approach for each.
           </motion.p>
         </motion.div>
 
@@ -1229,32 +1314,32 @@ function Services2() {
     {
       title: "ROI-Focused Campaigns",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "Every campaign decision gets measured against actual return, not clicks or impressions that look good in a screenshot but don't mean much.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Certified PPC Specialists",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "Google and Meta certified specialists manage your account, people who work in these platforms daily, not a generalist splitting time across ten different channels.",
     },
     {
       title: "Transparent Reporting",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "You see what's spent, what it returned, and why decisions were made, no vague summaries standing in for real numbers.",
+    },
+    {
+      title: "Continuous Optimization",
+      description:
+        "Accounts get reviewed weekly. Bids, budgets, and targeting shift as the data comes in, instead of sitting untouched between quarterly check-ins.",
     },
     {
       title: "Data-Driven Decisions",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
+        "Budget moves based on performance, not assumptions about what should work. If something's converting, it gets more spent. If it isn't, it doesn't.",
     },
     {
-      title: "Multi-Channel Expertise",
+      title: "Dubai Market Expertise",
       description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
-    },
-    {
-      title: "Local Market Understanding",
-      description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "We know how local competition, search behavior, and cost benchmarks actually work in Dubai and the UAE, not generic advice pulled from a US or European playbook.",
     },
   ];
 
@@ -1275,8 +1360,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
-                Dubai
+                Why Businesses Choose ENH Consulting for PPC Management
               </span>
             </h2>
           </motion.div>
@@ -1336,12 +1420,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Industries We Help Grow Through PPC Advertising
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            What drives performance and cost-efficiency in one industry rarely
+            translates directly to another, so campaign structure has to
+            adapt to how each sector's buyers actually search and decide.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1500,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our PPC Management Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,9 +1522,9 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what separates a campaign that
+            performs once from one that keeps performing. Here's exactly how
+            we take an account from discovery to results.
           </p>
         </motion.div>
 
@@ -1516,7 +1600,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help You Advertise Smarter
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,11 +1776,11 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect from Our PPC Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
+            Every campaign we run is judged against actual business return,
+            not clicks or impressions alone. Here's what businesses typically
             experience when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
@@ -1765,8 +1849,7 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
-                Dubai
+                Frequently Asked Questions About PPC Services in Dubai
               </motion.h4>
 
               <motion.div className="svp-faq__media" variants={fadeUp}>
@@ -1788,8 +1871,8 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
-                marketing agency in Dubai.
+                Everything you need to know before partnering with a PPC
+                company in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -1868,7 +1951,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2077,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start turning ad spend into qualified
+                leads with expert PPC management.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2176,18 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="google-ads">Google Ads Management</option>
+                      <option value="meta-ads">Meta Ads Management</option>
+                      <option value="linkedin-ads">LinkedIn Advertising</option>
+                      <option value="shopping-ads">Google Shopping Ads</option>
+                      <option value="display-ads">Display Advertising</option>
+                      <option value="youtube-ads">YouTube Advertising</option>
+                      <option value="remarketing">Remarketing Campaigns</option>
+                      <option value="ppc-audit">PPC Audit</option>
+                      <option value="campaign-optimization">
+                        Campaign Optimization
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
-                      </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
-                      </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2315,15 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Grow with a Leading PPC Company in Dubai?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            If your current campaigns are spending more and returning less,
+            it's worth a conversation before you spend another month on
+            autopilot. Let's talk about your advertising goals and build a
+            PPC strategy across Google Ads, Meta Ads, and LinkedIn Ads that's
+            actually built to maximize return, not just impressions.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2270,21 +2349,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function PPCCompanyDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = PPC_DATA[slug] || PPC_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Best PPC Company in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="PPC company in Dubai offering Google Ads, Meta Ads, and PPC management to increase qualified leads and ROI. Partner with ENH Consulting."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/ppc-company-in-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2372,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Best PPC Company in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="PPC company in Dubai offering Google Ads, Meta Ads, and PPC management to increase qualified leads and ROI. Partner with ENH Consulting."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/ppc-company-in-dubai"
         />
         <meta
           property="og:image"
@@ -2312,24 +2391,27 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Best PPC Company in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Best PPC Company in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="PPC company in Dubai offering Google Ads, Meta Ads, and PPC management to increase qualified leads and ROI. Partner with ENH Consulting."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(ppcFaqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(ppcServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
@@ -2348,5 +2430,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

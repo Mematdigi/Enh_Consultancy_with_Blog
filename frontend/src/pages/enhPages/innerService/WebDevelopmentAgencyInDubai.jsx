@@ -40,6 +40,12 @@ import {
   FaShoppingCart,
   FaIndustry,
   FaGlobe,
+  FaPaintBrush,
+  FaShopify,
+  FaEdit,
+  FaDesktop,
+  FaMobileAlt,
+  FaPlug,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../../utils/api";
@@ -91,75 +97,150 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const faqSchema = {
+// ─── JSON-LD: FAQ schema ──────────────────────────────────────────────────────
+const webdevFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "What digital marketing services do you provide?",
+      name: "What does a web development agency do?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics - coordinated under a single growth strategy rather than run as separate services.",
+        text: "A web development agency plans, designs, and builds websites and web applications suited to a business's specific goals - covering front-end design, back-end functionality, integrations, and ongoing maintenance, not just the visual layer.",
       },
     },
     {
       "@type": "Question",
-      name: "How long does digital marketing take to deliver results?",
+      name: "How much does website development cost in Dubai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        text: "Cost depends on project scope, functionality, and platform - a corporate website and a custom web application involve very different levels of work. We scope pricing around your specific requirements rather than a fixed package.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do digital marketing services cost in Dubai?",
+      name: "How long does it take to develop a website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets - factors we walk through when we discuss your growth goals.",
+        text: "Timelines vary based on complexity, from a few weeks for a straightforward corporate site to several months for a custom platform with multiple integrations. We provide a realistic timeline once we understand your requirements.",
       },
     },
     {
       "@type": "Question",
-      name: "Why should I hire a digital marketing agency instead of building an in-house team?",
+      name: "What types of websites do you develop?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        text: "We develop corporate websites, ecommerce stores, Shopify stores, custom web applications, CMS-based websites, and lead-generation sites, suited to different business models and requirements.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channels are best for my business?",
+      name: "Do you provide custom website development?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content - something we assess during discovery.",
+        text: "Yes, for businesses whose requirements go beyond what a standard template can support, we build custom websites and platforms designed specifically around their needs.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide digital marketing services across the UAE?",
+      name: "Do you develop ecommerce websites?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        text: "Yes, we build ecommerce websites designed around product discovery, checkout, mobile usability, and scalable product management, suited to businesses of different sizes and catalog complexity.",
       },
     },
     {
       "@type": "Question",
-      name: "Which digital marketing channel delivers the fastest results?",
+      name: "Do you provide Shopify development?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        text: "Yes, we build and customize Shopify stores, including setup, theme customization, and integrations, for businesses that want a proven ecommerce platform without a fully custom build.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you measure digital marketing success?",
+      name: "Can you redesign an existing website?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Success is measured against the metrics that actually matter to your business - leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        text: "Yes, we work with businesses looking to redesign or rebuild an underperforming website, addressing performance, usability, and technical foundations alongside the visual refresh.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is your web development SEO-friendly?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, technical SEO foundations - clean structure, crawlability, and performance - are built into development from the start, giving your site a stronger base for organic visibility.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Why should I choose a web development agency in Dubai?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A local web development agency in Dubai understands the market, competition, and customer expectations businesses face here, while still bringing the technical expertise needed to build a site that performs well and scales with your business - including maintenance and third-party integrations once the site is live.",
       },
     },
   ],
+};
+
+// ─── JSON-LD: Service schema ──────────────────────────────────────────────────
+const webdevServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://enh.consulting/web-development-agency-in-dubai/#service",
+  name: "Web Development Services in Dubai",
+  serviceType: "Web Development",
+  url: "https://enh.consulting/web-development-agency-in-dubai",
+  description:
+    "ENH Consulting provides web development services in Dubai, including custom web development, website design and development, ecommerce development, Shopify development, CMS development, web application development, responsive web development, API and third-party integrations, and website maintenance and support.",
+  provider: {
+    "@type": "Organization",
+    name: "ENH Consulting",
+    url: "https://enh.consulting/",
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Dubai",
+      containedInPlace: {
+        "@type": "Country",
+        name: "United Arab Emirates",
+      },
+    },
+    {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Web Development Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Web Development" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Website Design and Development" },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ecommerce Web Development" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Shopify Web Development" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "CMS Website Development" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Web Application Development" },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Responsive Web Development" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "API and Third-Party Integrations" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Website Maintenance and Support" },
+      },
+    ],
+  },
 };
 
 // ─── FadeUp wrapper ───────────────────────────────────────────────────────────
@@ -209,247 +290,269 @@ function Eyebrow({ children, gold = false }) {
 }
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
-const SERVICE_DATA = {
+const WEBDEV_DATA = {
   default: {
-    badge: "Digital Marketing Agency",
-    headline:
-      "Hire Best Digital Marketing Agency in Dubai for Measurable Business Growth",
+    badge: "Web Development Agency",
+    headline: "Web Development Agency in Dubai for Custom, Scalable Websites",
     tagline:
-      "Dubai's competitive business landscape demands more than isolated marketing campaigns. Low online visibility, inconsistent lead generation, and rising customer acquisition costs can limit business growth. As a results-driven digital marketing agency in Dubai, ENH Consulting combines SEO, paid advertising, content, and social media into a unified strategy that helps businesses across Dubai and the UAE attract qualified customers, increase conversions, and achieve measurable growth.",
-    cta: "Get a Free Consultation",
+      "A website is often the first real interaction a customer has with your business, and in a market as competitive as Dubai, that interaction needs to hold up. As a web development agency in Dubai, ENH Consulting builds business websites that load fast, work properly on mobile, guide visitors toward a clear next step, and stand on technical foundations that support search visibility, not just sites that look good in a first screenshot.",
+    cta: "Get a Web Development Consultation",
     heroImg: secondSection,
     heroImgTwo: thirdSection,
 
     // Business challenges / intro
-    introTitle:
-      "Is Your Business Struggling to Generate Quality Leads and Online Growth?",
+    introTitle: "Is Your Website Holding Back Your Business Growth?",
     introText:
-      "Most businesses that come to us aren't short on effort, they're short on integration. Local search competition in Dubai means these patterns show up often:",
+      "Many businesses lose valuable opportunities because their website is slow, difficult to navigate, poorly optimized for mobile, or no longer aligned with their business goals. Weak conversion paths, technical SEO issues, security concerns, rigid CMS systems, and poor integrations can further limit performance and growth.",
     introText2:
-      "These issues rarely come down to a lack of budget. They come from digital marketing in Dubai being run as a set of disconnected tactics, one team handling ads, another handling social, SEO left on autopilot. This is especially true for Dubai startups and SMEs, where every marketing dirham needs to work harder against larger, better-funded competitors. ENH Consulting works differently, connecting SEO, paid media, content, and analytics under a single strategy so every channel reinforces the others instead of competing for the same budget line.",
+      "These challenges often indicate the need for a web development company in Dubai that understands both technology and business objectives. ENH Consulting builds websites around real users, conversion goals, performance, scalability, and search visibility. From responsive design and technical foundations to CRM, payment, and business integrations, we create websites designed to reduce visitor drop-off, generate qualified enquiries, improve user experience, and support sustainable business growth.",
     enquireText: "Get a Free Consultation",
 
-    // Why partner with ENH (new section)
-    partnerTitle:
-      "Partner with a Results-Driven Digital Marketing Agency in Dubai",
+    // Why partner with ENH
+    partnerTitle: "Why Partner With a Web Development Agency in Dubai?",
     partnerText1:
-      "Building an in-house team capable of managing SEO, PPC, social media, content, and analytics at a competitive level takes years of experience and a substantial budget. Partnering with an established digital marketing company in Dubai gives businesses access to that expertise from day one, without the hiring curve.",
+      "Development is a different discipline from design, and a site can look polished while still underperforming if the structure underneath, code quality, page speed, security, SEO foundations, wasn't built with intent. A dedicated web development agency in Dubai brings strategic planning, technical expertise, and business requirements together from the start, rather than treating design and development as two disconnected handoffs.",
     partnerText2:
-      "ENH Consulting brings multiple digital marketing capabilities together under one strategy, allowing SEO, paid media, content, social media, and analytics to support each other rather than operate as disconnected activities. Campaign performance is continuously monitored and optimized using real data, while clear reporting helps identify what's working, where budgets can be improved, and what opportunities should be prioritized next.",
+      "That means responsive builds that hold up across devices, performance and security treated as core requirements, and integrations with the tools your business already runs on from day one. Testing happens properly before launch, with support carried through afterward, an ongoing relationship, not a one-off project handed over and forgotten. Competition among Dubai and UAE businesses is high, and customers increasingly research a business online before ever making contact. Mobile-first browsing makes this even more important, a site that isn't genuinely responsive is working against you on the device most people are actually using to find you. A well-built website also becomes the technical foundation everything else, SEO, PPC, content, runs on, with enough scalability to support the business regionally as it grows, not just locally.",
 
     // Services we offer
-    rdTitle:
-      "End-to-End Digital Marketing Services Designed for Business Growth",
+    rdTitle: "Web Development Services Designed Around Your Business",
     rdCards: [
       {
-        icon: <FaSearch />,
-        title: "Search Engine Optimization (SEO)",
-        link: "https://enh.consulting/best-seo-agency-in-dubai",
-        desc: "Businesses invest in SEO to increase visibility, reduce customer acquisition costs, and generate consistent long-term traffic without paying for every click. We improve technical health, on-page structure, and content relevance, tracking performance through Google Search Console and Google Analytics 4, helping your business rank where customers in Dubai and the UAE are already searching.",
+        icon: <FaLaptopCode />,
+        title: "Custom Web Development",
+        desc: "For businesses whose requirements go beyond what a standard template or CMS can support, tailored platforms built around specific functionality, not stretched to fit a pre-built theme.",
       },
       {
-        icon: <FaBullseye />,
-        title: "Pay-Per-Click Advertising (PPC)",
-        link: "https://enh.consulting/ppc-company-in-dubai",
-        desc: "PPC delivers immediate visibility, making it one of the fastest ways to attract qualified traffic and generate measurable results. Our specialists build and optimize Google Ads and Meta Ads campaigns that connect your business with high-intent audiences, continuously refining targeting, bidding, and keywords to maximize every advertising investment across Dubai and the UAE.",
+        icon: <FaPaintBrush />,
+        title: "Website Design & Development",
+        desc: "UX and UI thinking combined with front-end and back-end development, so design and build happen as one connected process rather than a handoff that loses context along the way.",
       },
       {
-        icon: <FaBullhorn />,
-        title: "Social Media Marketing",
-        link: "https://enh.consulting/social-media-marketing-company-in-dubai",
-        desc: "Social media builds the brand recognition and engagement that turns followers into customers. We manage content, community engagement, and paid campaigns across LinkedIn, Instagram, and Facebook, keeping your business visible and top-of-mind across the platforms your Dubai and UAE audience actually uses every day.",
+        icon: <FaShoppingCart />,
+        title: "Ecommerce Web Development",
+        desc: "Online stores built around product discovery, the shopping journey, checkout, payments, and scalable product management, with mobile usability treated as core.",
       },
       {
-        icon: <FaLightbulb />,
-        title: "Content Marketing",
-        link: "https://enh.consulting/content-marketing-services-in-dubai",
-        desc: "Well-researched, relevant content improves search visibility while establishing your business as a credible authority. From blog content published on platforms like WordPress to landing pages, content marketing nurtures prospects who aren't ready to buy yet, keeping them engaged until they're ready to convert.",
+        icon: <FaShopify />,
+        title: "Shopify Web Development",
+        desc: "Shopify stores built and customized around specific business requirements, setup, theme customization, and integrations, for businesses that want a proven ecommerce platform without a fully custom build.",
       },
       {
-        icon: <FaEnvelope />,
-        title: "Email Marketing",
-        link: "https://enh.consulting/email-marketing-agency-in-dubai",
-        desc: "Personalized email campaigns, run through platforms like Mailchimp, keep existing customers engaged and encourage repeat purchases at a fraction of the cost of new customer acquisition. Segmented, well-timed sequences turn one-time buyers into loyal, long-term customers, reducing reliance on constantly acquiring new leads.",
+        icon: <FaEdit />,
+        title: "CMS Website Development",
+        desc: "Manageable websites that let your team update pages, content, and products without depending on a developer for every small change.",
       },
       {
-        icon: <FaShieldAlt />,
-        title: "Online Reputation Management",
-        link: "https://enh.consulting/online-reputation-management-services-in-dubai",
-        desc: "Reviews and online sentiment directly influence whether a prospect converts, particularly in a market where consumers actively compare local options before buying. We help businesses monitor, respond to, and actively build a reputation that reinforces trust at every stage of the buying decision.",
+        icon: <FaDesktop />,
+        title: "Web Application Development",
+        desc: "Custom web applications, portals, dashboards, booking platforms, and business management systems, for businesses that need more than a standard informational website.",
       },
       {
-        icon: <FaRocket />,
-        title: "Conversion Rate Optimization (CRO)",
-        link: "https://enh.consulting/conversion-rate-optimization-agency-dubai",
-        desc: "Traffic without conversions is a wasted opportunity. CRO identifies exactly where visitors drop off and systematically tests improvements to page structure, messaging, and calls to action, turning more of your existing traffic into paying customers without increasing your advertising spend.",
+        icon: <FaMobileAlt />,
+        title: "Responsive Web Development",
+        desc: "Websites built to perform consistently across desktops, tablets, and smartphones, with layout and usability considered for every screen size, not just desktop.",
       },
       {
-        icon: <FaWallet />,
-        title: "Marketing Analytics & Performance Reporting",
-        desc: "Every channel generates data, and that data should drive decisions, not just fill a monthly report. Using Google Analytics 4 and Looker Studio, we track leads, conversion rate, ROI, and organic traffic, so it's always clear what's working, what needs adjustment, and where growth opportunities exist.",
+        icon: <FaPlug />,
+        title: "API & Third-Party Integrations",
+        desc: "Connections with the CRM, payment gateways, booking systems, and marketing tools your business already depends on, built to work reliably rather than bolted on as an afterthought.",
+      },
+      {
+        icon: <FaTools />,
+        title: "Website Maintenance & Support",
+        desc: "Post-launch updates, security monitoring, fixes, and backups, so the site stays functional and secure well after launch, not left to degrade over time.",
       },
     ],
 
     // Industries we serve
     whyUs: [
       {
-        icon: <FaHeartbeat />,
-        title: "Healthcare",
-        desc: "Building trust and visibility for providers navigating longer, research-heavy patient decision journeys, where credibility signals matter as much as visibility.",
-      },
-      {
-        icon: <FaGraduationCap />,
-        title: "Education",
-        desc: "Driving enrollment through campaigns aligned with academic calendars and multi-touch decision cycles that often involve parents as well as students.",
+        icon: <FaShoppingCart />,
+        title: "E-commerce & Retail",
+        desc: "Ecommerce stores and scalable shopping experiences built for growth.",
       },
       {
         icon: <FaBuilding />,
         title: "Real Estate",
-        desc: "Generating qualified buyer and investor leads in a highly visual, high-consideration market shaped by Dubai's fast-moving property sector.",
+        desc: "Property listings, enquiry systems, and lead-focused websites.",
+      },
+      {
+        icon: <FaHeartbeat />,
+        title: "Healthcare",
+        desc: "Service websites, appointment journeys, and patient-focused experiences.",
+      },
+      {
+        icon: <FaGraduationCap />,
+        title: "Education",
+        desc: "Institution websites, course pages, enquiry systems, and student portals.",
       },
       {
         icon: <FaHotel />,
         title: "Hospitality",
-        desc: "Filling bookings through campaigns that respond to seasonality and shifting traveler demand across the UAE's tourism calendar.",
+        desc: "Hotel, restaurant, booking, and enquiry websites built around conversion.",
       },
       {
-        icon: <FaShoppingCart />,
-        title: "Retail & Ecommerce",
-        desc: "Driving traffic and conversions across search, social, and paid channels in a competitive online marketplace where local consumer behaviour shifts quickly.",
+        icon: <FaHandshake />,
+        title: "Professional Services",
+        desc: "Corporate websites and lead-generation platforms for service businesses.",
       },
       {
-        icon: <FaIndustry />,
-        title: "Manufacturing & B2B",
-        desc: "Generating qualified leads through longer sales cycles and multiple decision-makers, often across regional and GCC markets.",
+        icon: <FaLaptopCode />,
+        title: "Technology & SaaS",
+        desc: "Product websites, SaaS platforms, dashboards, and web applications.",
       },
     ],
 
     // Our process
     testimonials: [
       {
-        step: "Step 1 — Discovery",
-        text: "We start by understanding your business, audience, competitors, and current marketing performance to identify where the real opportunities lie.",
+        step: "Step 1 — Discovery & Requirement Analysis",
+        text: "We understand the business, audience, goals, and technical needs before scoping anything.",
       },
       {
-        step: "Step 2 — Strategy",
-        text: "Findings translate into a channel plan built around your specific growth targets, not a generic template.",
+        step: "Step 2 — Strategy & Website Architecture",
+        text: "We plan the sitemap, information architecture, user journeys, and technical foundation.",
       },
       {
-        step: "Step 3 — Campaign Setup",
-        text: "Accounts, tracking, and creative are built and tested before launch, so performance data is accurate from day one.",
+        step: "Step 3 — UI/UX Design",
+        text: "Intuitive, responsive designs are created around usability, brand consistency, and conversion goals.",
       },
       {
-        step: "Step 4 — Campaign Execution",
-        text: "Campaigns go live across the agreed channels, managed by specialists in each discipline.",
+        step: "Step 4 — Development & Integration",
+        text: "The website is built, with required functionality, CMS, APIs, and integrations implemented.",
       },
       {
-        step: "Step 5 — Continuous Optimization",
-        text: "Performance is reviewed regularly, and underperforming elements are adjusted rather than left to run on autopilot.",
+        step: "Step 5 — Testing & Quality Assurance",
+        text: "Functionality, responsiveness, performance, security, and compatibility are tested across devices and browsers.",
       },
       {
-        step: "Step 6 — Reporting & Growth",
-        text: "Clear, regular reporting shows what's driving results, so decisions about where to invest next are based on data, not guesswork.",
+        step: "Step 6 — Launch, Support & Optimization",
+        text: "The site is deployed, performance is monitored, and ongoing improvements are made where required.",
       },
     ],
 
-    // Expected results (rendered via the WhyChooseENH card layout)
+    // Expected results
     whyEnh: [
       {
         num: "01",
-        icon: <FaBullseye />,
-        title: "More Qualified Leads",
-        desc: "Campaigns are built to attract prospects who match your ideal customer profile, not just traffic volume, so your sales team spends less time filtering unqualified inquiries.",
+        icon: <FaRocket />,
+        title: "Faster Website Performance",
+        desc: "Pages built for speed, not weighed down by unnecessary bloat.",
       },
       {
         num: "02",
-        icon: <FaSearch />,
-        title: "Better Online Visibility",
-        desc: "Coordinated SEO and paid strategies put your business in front of the right audience at the moment they're searching, both on Google and across social platforms.",
+        icon: <FaMobileAlt />,
+        title: "Better Mobile Experience",
+        desc: "Consistent performance across smartphones, tablets, and desktops.",
       },
       {
         num: "03",
-        icon: <FaRocket />,
-        title: "Higher Conversion Rates",
-        desc: "Ongoing CRO and messaging refinement turn more of your existing traffic into inquiries and customers, without requiring additional ad spend.",
+        icon: <FaHandshake />,
+        title: "Improved User Experience",
+        desc: "Clear navigation and journeys that don't leave visitors guessing.",
       },
       {
         num: "04",
-        icon: <FaWallet />,
-        title: "Improved Marketing ROI",
-        desc: "Budget is continuously reallocated toward what's proven to convert, so every dirham spent works harder over time.",
+        icon: <FaSearch />,
+        title: "SEO-Friendly Technical Foundation",
+        desc: "A structure built to support organic visibility, not undermine it.",
       },
       {
         num: "05",
-        icon: <FaShieldAlt />,
-        title: "Stronger Brand Authority",
-        desc: "Consistent content, reputation management, and social presence build the credibility that influences buying decisions long before a prospect reaches out.",
+        icon: <FaBullseye />,
+        title: "Higher Conversion Potential",
+        desc: "Layouts and CTAs built to turn visitors into enquiries.",
       },
       {
         num: "06",
-        icon: <FaHandshake />,
-        title: "Sustainable Business Growth",
-        desc: "Channels are built to compound rather than reset with every campaign, so growth becomes less dependent on constantly increasing spend.",
+        icon: <FaGlobe />,
+        title: "Scalable Architecture",
+        desc: "Room to grow without needing a rebuild every time the business does.",
+      },
+      {
+        num: "07",
+        icon: <FaShieldAlt />,
+        title: "Better Security",
+        desc: "Security-conscious development and ongoing maintenance.",
+      },
+      {
+        num: "08",
+        icon: <FaEdit />,
+        title: "Easier Content Management",
+        desc: "A CMS your team can actually use without developer support.",
       },
     ],
 
     // FAQs
     faqs: [
       {
-        q: "What digital marketing services do you provide?",
-        a: "ENH Consulting provides SEO, PPC advertising, social media marketing, content marketing, email marketing, online reputation management, conversion rate optimization, and marketing analytics, coordinated under a single growth strategy rather than run as separate services.",
+        q: "What does a web development agency do?",
+        a: "A web development agency plans, designs, and builds websites and web applications suited to a business's specific goals, covering front-end design, back-end functionality, integrations, and ongoing maintenance, not just the visual layer.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Full-stack digital marketing",
+        imgLabel: "What a web dev agency does",
       },
       {
-        q: "How long does digital marketing take to deliver results?",
-        a: "PPC and social campaigns can generate visibility within weeks. SEO and content marketing typically take three to six months to build meaningful organic traction, since results depend on search engines indexing and ranking improvements over time.",
+        q: "How much does website development cost in Dubai?",
+        a: "Cost depends on project scope, functionality, and platform, a corporate website and a custom web application involve very different levels of work. We scope pricing around your specific requirements rather than a fixed package.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Fast wins, lasting growth",
+        imgLabel: "Pricing built around scope",
       },
       {
-        q: "How much do digital marketing services cost in Dubai?",
-        a: "Costs vary based on the channels used, campaign scope, and business goals. Rather than fixed packages, we scope pricing around what a business actually needs to hit its targets, factors we walk through when we discuss your growth goals.",
+        q: "How long does it take to develop a website?",
+        a: "Timelines vary based on complexity, from a few weeks for a straightforward corporate site to several months for a custom platform with multiple integrations. We provide a realistic timeline once we understand your requirements.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Transparent, flexible pricing",
+        imgLabel: "Realistic timelines",
       },
       {
-        q: "Why should I hire a digital marketing agency instead of building an in-house team?",
-        a: "An agency gives immediate access to specialists across SEO, PPC, social, and analytics without the time and cost of hiring, training, and retaining an in-house team for each discipline.",
+        q: "What types of websites do you develop?",
+        a: "We develop corporate websites, ecommerce stores, Shopify stores, custom web applications, CMS-based websites, and lead-generation sites, suited to different business models and requirements.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
-        imgLabel: "Senior expertise, day one",
+        imgLabel: "Types of websites we build",
       },
       {
-        q: "Which digital marketing channels are best for my business?",
-        a: "It depends on your industry, sales cycle, and audience behavior. A business with immediate demand may prioritize PPC, while one with a longer consideration cycle may benefit more from SEO and content, something we assess during discovery.",
-        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-        imgLabel: "The right channel mix",
-      },
-      {
-        q: "Do you provide digital marketing services across the UAE?",
-        a: "Yes, ENH Consulting works with businesses across Dubai and the wider UAE, including multi-location businesses, building campaigns tailored to each market's local search behavior and competitive landscape.",
+        q: "Do you provide custom website development?",
+        a: "Yes, for businesses whose requirements go beyond what a standard template can support, we build custom websites and platforms designed specifically around their needs.",
         img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
-        imgLabel: "Built for Dubai & the UAE",
+        imgLabel: "Custom development",
       },
       {
-        q: "Which digital marketing channel delivers the fastest results?",
-        a: "PPC typically produces the fastest visibility, often within days of launch, while SEO builds slower but delivers more sustainable, long-term growth. Most businesses benefit from combining both, since the right mix depends on how quickly your business needs results versus how much you're building for the long term.",
+        q: "Do you develop ecommerce websites?",
+        a: "Yes, we build ecommerce websites designed around product discovery, checkout, mobile usability, and scalable product management, suited to businesses of different sizes and catalog complexity.",
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+        imgLabel: "Ecommerce development",
+      },
+      {
+        q: "Do you provide Shopify development?",
+        a: "Yes, we build and customize Shopify stores, including setup, theme customization, and integrations, for businesses that want a proven ecommerce platform without a fully custom build.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-        imgLabel: "Speed and sustainability",
+        imgLabel: "Shopify development",
       },
       {
-        q: "How do you measure digital marketing success?",
-        a: "Success is measured against the metrics that actually matter to your business, leads generated, conversion rate, ROI, revenue, organic traffic growth, and customer acquisition cost. These are tracked continuously so performance is always tied back to real business outcomes, not vanity metrics.",
+        q: "Can you redesign an existing website?",
+        a: "Yes, we work with businesses looking to redesign or rebuild an underperforming website, addressing performance, usability, and technical foundations alongside the visual refresh.",
         img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-        imgLabel: "Metrics that matter",
+        imgLabel: "Redesigns and rebuilds",
+      },
+      {
+        q: "Is your web development SEO-friendly?",
+        a: "Yes, technical SEO foundations, clean structure, crawlability, and performance, are built into development from the start, giving your site a stronger base for organic visibility.",
+        img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
+        imgLabel: "SEO-friendly foundations",
+      },
+      {
+        q: "Why should I choose a web development agency in Dubai?",
+        a: "A local web development agency in Dubai understands the market, competition, and customer expectations businesses face here, while still bringing the technical expertise needed to build a site that performs well and scales with your business, including maintenance and third-party integrations once the site is live.",
+        img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+        imgLabel: "Why choose a local agency",
       },
     ],
 
-    // Let's Talk Growth CTA banner (new section)
-    growthTitle: "Let's Grow Your Business Online",
+    // Let's Talk Growth CTA banner
+    growthTitle: "Let's Build a Better Website for Your Business",
     growthText:
-      "Every business's growth challenges are different, and so is the strategy needed to solve them. Discuss your growth goals with our digital marketing specialists, and we'll map out where the real opportunities for growth are, based on your objectives, industry, and target audience.",
-    growthNote:
-      "Discover how an integrated marketing strategy can generate more qualified leads.",
+      "Your website should generate opportunities, not simply exist online. Design, functionality, performance, SEO foundations, and conversion need to work together, not sit as separate boxes to check.",
+    growthNote: "Talk to ENH Consulting about your web development project.",
     growthCta: "Get Started",
   },
 };
@@ -907,7 +1010,7 @@ function IntroSection({ data }) {
   );
 }
 
-// ─── SECTION 2 · Intro / Business Challenges ─────────────────────────────────
+// ─── SECTION 2 · Why Partner With ENH ────────────────────────────────────────
 function IntroSection2({ data }) {
   return (
     <section
@@ -1035,12 +1138,11 @@ function RDSection({ data }) {
                 style={{ color: "#532a06" }}
                 className="mt-3"
               >
-                Real growth rarely comes from one channel working in isolation.
-                Search visibility feeds paid campaigns, content supports SEO,
-                and retention marketing extends the value of every lead
-                generated. ENH Consulting's digital marketing services in the
-                UAE are built to work together across the full customer journey,
-                from first search to repeat customer.
+                Different businesses need fundamentally different things from
+                a website. We provide custom website development, ecommerce
+                development, Shopify development, web application
+                development, and CMS solutions, each suited to a different
+                kind of business requirement.
               </p>
             </Col>
           </Row>
@@ -1099,9 +1201,13 @@ function RDSection({ data }) {
                     >
                       {card.icon}
                     </motion.div>
-                    <Link to={card.link}>
+                    {card.link ? (
+                      <Link to={card.link}>
+                        <h3 className="svp-rd__card-title">{card.title}</h3>
+                      </Link>
+                    ) : (
                       <h3 className="svp-rd__card-title">{card.title}</h3>
-                    </Link>
+                    )}
                     <p className="svp-rd__card-desc">{card.desc}</p>
 
                     {/* Animated progress bar on hover */}
@@ -1127,21 +1233,21 @@ function Services() {
       icon: <FaRocket />,
       title: "Startups",
       description:
-        "Startups need visibility and credibility built quickly on a tight budget, often while competing against far larger, better-funded brands in the same Dubai market. We prioritize high-impact channels, typically SEO foundations paired with targeted paid campaigns, that generate real traction without overextending early-stage resources.",
+        "Startups need a professional, scalable website without unnecessary complexity slowing down launch. We build with future functionality in mind from the start, so early-stage sites don't require a full rebuild the moment the business grows.",
       number: "01",
     },
     {
       icon: <FaBriefcase />,
       title: "Small & Medium Businesses",
       description:
-        "Growing SMEs in Dubai need marketing that scales alongside them rather than requiring a full strategy rebuild every time the business grows. We build multi-channel strategies that expand as budgets and teams grow, keeping customer acquisition costs efficient at every stage.",
+        "Growing businesses need a stronger digital presence, better lead generation, and a site the internal team can actually manage day to day, without needing developer support for routine content updates.",
       number: "02",
     },
     {
       icon: <FaGlobe />,
       title: "Enterprises",
       description:
-        "Larger organizations, including multi-location businesses operating across the UAE and wider GCC, need coordinated marketing across multiple markets, teams, or product lines. We manage complex, multi-stakeholder campaigns with the reporting rigor enterprise decision-makers expect.",
+        "Larger organizations need websites that handle complex requirements, multiple integrations, scalability, security, and performance, under one coherent platform, with the governance larger stakeholder groups expect.",
       number: "03",
     },
   ];
@@ -1163,14 +1269,13 @@ function Services() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Digital Marketing Solutions for Businesses of Every Size
+                Web Development Solutions for Businesses of Every Size
               </span>
             </h2>
           </motion.div>
           <motion.p className="services-subtitle mt-4" variants={fadeUp}>
-            Every business has different goals, resources, and growth stages, so
-            a Dubai startup's marketing strategy shouldn't look like an
-            enterprise's. Here's how we tailor our approach for each.
+            Web development priorities shift with business size, complexity,
+            and growth stage. Here's how we tailor our approach for each.
           </motion.p>
         </motion.div>
 
@@ -1227,34 +1332,34 @@ function Services() {
 function Services2() {
   const serviceList = [
     {
-      title: "ROI-Focused Campaigns",
+      title: "Business-Focused Development",
       description:
-        "Budget is continuously allocated toward the channels and audiences proven to convert, rather than spread evenly by default, so spend is always working toward measurable business outcomes.",
+        "Your website is built around your business goals, customer needs, and conversion objectives rather than technology for its own sake.",
     },
     {
-      title: "Experienced Marketing Specialists",
+      title: "Custom & Scalable Solutions",
       description:
-        "Dedicated experts manage each channel, rather than one generalist handling everything, which means campaign decisions are backed by deep, discipline-specific expertise.",
+        "We create solutions tailored to your requirements with the flexibility to grow as your business evolves.",
     },
     {
-      title: "Transparent Reporting",
+      title: "SEO-Friendly & Performance-Focused Development",
       description:
-        "Clients receive clear performance insights tied directly to business goals, enabling informed marketing decisions instead of relying on vague, high-level summaries.",
+        "We build websites with a strong technical foundation, fast performance, and SEO-friendly structures to support visibility and user experience.",
     },
     {
-      title: "Data-Driven Decisions",
+      title: "Responsive & Mobile-First Approach",
       description:
-        "Campaign strategies are continuously refined using real performance data, helping maximize ROI and improve long-term growth rather than relying on assumptions or industry averages.",
+        "Your website is designed to provide a smooth, consistent experience across smartphones, tablets, and desktops.",
     },
     {
-      title: "Multi-Channel Expertise",
+      title: "Transparent Development & Ongoing Support",
       description:
-        "One coordinated team manages SEO, PPC, social, and content together, so channels reinforce each other instead of being run as separate, disconnected vendor relationships.",
+        "Clear communication, defined milestones, and post-launch support help ensure a smoother development experience from start to finish.",
     },
     {
-      title: "Local Market Understanding",
+      title: "Dubai & UAE Market Understanding",
       description:
-        "Campaigns are built around how Dubai and UAE audiences actually search, browse, and buy, insight that's difficult to replicate without hands-on experience in the local market.",
+        "Our development approach considers the needs, expectations, and digital landscape of businesses operating across Dubai and the wider UAE.",
     },
   ];
 
@@ -1275,7 +1380,7 @@ function Services2() {
           <motion.div className="services-title-row" variants={fadeUp}>
             <h2 className="services-main-title">
               <span className="title-accent" style={{ color: "#8a5520" }}>
-                Why Businesses Choose ENH as Their Digital Marketing Agency in
+                Why Businesses Choose ENH as Their Web Development Agency in
                 Dubai
               </span>
             </h2>
@@ -1336,12 +1441,12 @@ function WhyUsSection({ data }) {
         >
           <Eyebrow gold>Industries We Serve</Eyebrow>
           <motion.h2 className="svp-whyus__title" variants={fadeLeft}>
-            Industries We Help Grow Through Digital Marketing
+            Industries We Serve With Web Development
           </motion.h2>
           <motion.p className="mt-3 text-white" variants={fadeUp}>
-            Different industries face different buyer behavior, sales cycles,
-            and regulatory considerations, so strategy has to adapt accordingly,
-            especially across Dubai's diverse business landscape.
+            What a website needs to do differs by industry, so structure,
+            content, and functionality are built around how that specific
+            audience actually converts.
           </motion.p>
         </motion.div>
 
@@ -1416,7 +1521,7 @@ function TestimonialsSection({ data }) {
               className="svp-testimonials__title"
               style={{ color: "#532a06" }}
             >
-              Our Digital Marketing Process for Sustainable Business Growth
+              Our Website Development Process
             </h2>
             <div className="svp-testimonials__nav">
               {[-1, 1].map((dir) => (
@@ -1438,9 +1543,9 @@ function TestimonialsSection({ data }) {
             </div>
           </motion.div>
           <p className="mt-4" style={{ color: "#532a06" }}>
-            A clear, repeatable process is what turns marketing spend into
-            measurable growth. Here's exactly how we take a strategy from
-            discovery to results.
+            A clear, repeatable process is what turns a website build into a
+            business asset. Here's exactly how we take a project from
+            discovery to launch and beyond.
           </p>
         </motion.div>
 
@@ -1516,7 +1621,7 @@ function BlogSection() {
           <Eyebrow>News &amp; Blog</Eyebrow>
           <motion.div className="svp-blog__header" variants={fadeUp}>
             <h2 className="svp-blog__title">
-              Insights to Help You Grow Online
+              Insights to Help You Build Better
             </h2>
             <Link to="/blog">
               <motion.button
@@ -1692,11 +1797,11 @@ function WhyChooseENH({ data }) {
         >
           <Eyebrow>Expected Results</Eyebrow>
           <motion.h2 className="svp-why-enh__title" variants={fadeLeft}>
-            What Results Can You Expect from Our Digital Marketing Services?
+            What Results Can You Expect From Our Web Development Services?
           </motion.h2>
           <motion.p className="svp-why-enh__lead" variants={fadeUp}>
-            Every campaign we run is built around outcomes that matter to your
-            business, not vanity metrics. Here's what businesses typically
+            Every build we deliver is judged against real business outcomes,
+            not visual preference alone. Here's what businesses typically
             experience when they partner with ENH Consulting.
           </motion.p>
         </motion.div>
@@ -1765,8 +1870,7 @@ function FAQSection({ data }) {
             >
               <Eyebrow>FAQ</Eyebrow>
               <motion.h4 className="svp-faq__title" variants={fadeLeft}>
-                Frequently Asked Questions About Digital Marketing Services in
-                Dubai
+                Frequently Asked Questions About Web Development in Dubai
               </motion.h4>
 
               <motion.div className="svp-faq__media" variants={fadeUp}>
@@ -1788,8 +1892,8 @@ function FAQSection({ data }) {
               </motion.div>
 
               <motion.p className="svp-faq__lead" variants={fadeUp}>
-                Everything you need to know before partnering with a digital
-                marketing agency in Dubai.
+                Everything you need to know before partnering with a web
+                development agency in Dubai.
               </motion.p>
               <motion.div className="svp-faq__cta-block" variants={fadeUp}>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -1868,7 +1972,7 @@ function FAQSection({ data }) {
   );
 }
 
-// ─── SECTION 8B · Let's Talk Growth banner (NEW) ─────────────────────────────
+// ─── SECTION 8B · Let's Talk Growth banner ───────────────────────────────────
 function GrowthCTASection({ data }) {
   return (
     <section className="svp-growth-banner">
@@ -1994,8 +2098,8 @@ function ContactSection() {
                 variants={fadeUp}
                 style={{ color: "#7a410fe3" }}
               >
-                Get in touch today to start growing your online presence with
-                expert digital marketing guidance.
+                Get in touch today to start building a website that actually
+                performs, with expert web development guidance.
               </motion.p>
 
               <motion.div className="svp-contact__items" variants={staggerSm}>
@@ -2093,22 +2197,34 @@ function ContactSection() {
                       <option value="" disabled>
                         Select Services *
                       </option>
-                      <option value="seo">
-                        Search Engine Optimization (SEO)
+                      <option value="custom-web-development">
+                        Custom Web Development
                       </option>
-                      <option value="ppc">
-                        Pay-Per-Click Advertising (PPC)
+                      <option value="website-design-development">
+                        Website Design & Development
                       </option>
-                      <option value="social">Social Media Marketing</option>
-                      <option value="content">Content Marketing</option>
-                      <option value="email">Email Marketing</option>
-                      <option value="cro">
-                        Conversion Rate Optimization (CRO)
+                      <option value="ecommerce-web-development">
+                        Ecommerce Web Development
                       </option>
-                      <option value="orm">Online Reputation Management</option>
-                      <option value="orm">Web Development</option>
-                      <option value="orm">Mobile App Development</option>
-                      <option value="orm">Other Services</option>
+                      <option value="shopify-web-development">
+                        Shopify Web Development
+                      </option>
+                      <option value="cms-website-development">
+                        CMS Website Development
+                      </option>
+                      <option value="web-application-development">
+                        Web Application Development
+                      </option>
+                      <option value="responsive-web-development">
+                        Responsive Web Development
+                      </option>
+                      <option value="api-integrations">
+                        API & Third-Party Integrations
+                      </option>
+                      <option value="website-maintenance">
+                        Website Maintenance & Support
+                      </option>
+                      <option value="other">Other Services</option>
                     </select>
                   </motion.div>
                 </Col>
@@ -2236,15 +2352,14 @@ function FinalCTA() {
           className="svp-final-cta__inner"
         >
           <motion.h2 className="svp-final-cta__title" variants={fadeUp}>
-            Ready to Partner with a Leading Digital Marketing Agency in Dubai?
+            Ready to Start Your Web Development Project?
           </motion.h2>
 
           <motion.p className="svp-final-cta__text" variants={fadeUp}>
-            Sustainable growth comes from marketing that works as one system,
-            not five disconnected efforts. Let's build a marketing strategy
-            focused on measurable business growth, one designed to strengthen
-            your brand visibility, maximize your marketing investment, and scale
-            sustainably across Dubai and the UAE.
+            Whether you need a new site built from the ground up or an
+            existing one rebuilt to actually perform, ENH Consulting works as
+            a web development agency in Dubai focused on business outcomes,
+            not just visual design.
           </motion.p>
           <motion.div className="svp-final-cta__actions" variants={fadeUp}>
             <Link to="/contact" style={{ textDecoration: "none" }}>
@@ -2257,7 +2372,7 @@ function FinalCTA() {
                 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Book a Free Consultation <FaArrowRight />
+                Get Your Web Development Consultation <FaArrowRight />
               </motion.button>
             </Link>
           </motion.div>
@@ -2270,21 +2385,21 @@ function FinalCTA() {
 const postUrl = window.location.href;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-function DigitalMarketingAgency() {
+export default function WebDevAgencyDubai() {
   const { slug } = useParams();
-  const data = SERVICE_DATA[slug] || SERVICE_DATA["default"];
+  const data = WEBDEV_DATA[slug] || WEBDEV_DATA["default"];
 
   return (
     <div className="service-view-page">
       <Helmet>
-        <title>Best Digital Marketing Agency in Dubai | ENH Consulting</title>
+        <title>Web Development Agency in Dubai | ENH Consulting</title>
         <meta
           name="description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Turn your website into a sales engine with a web development agency in Dubai. ENH Consulting builds fast, SEO-friendly websites that drive leads and sales."
         />
         <link
           rel="canonical"
-          href={`https://enh.consulting/digital-marketing-agency-in-dubai`}
+          href={`https://enh.consulting/web-development-agency-in-dubai`}
         />
 
         <meta property="og:type" content="website" />
@@ -2293,16 +2408,16 @@ function DigitalMarketingAgency() {
 
         <meta
           property="og:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Web Development Agency in Dubai | ENH Consulting"
         />
         <meta
           property="og:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Turn your website into a sales engine with a web development agency in Dubai. ENH Consulting builds fast, SEO-friendly websites that drive leads and sales."
         />
 
         <meta
           property="og:url"
-          content="https://enh.consulting/digital-marketing-agency-in-dubai"
+          content="https://enh.consulting/web-development-agency-in-dubai"
         />
         <meta
           property="og:image"
@@ -2312,24 +2427,27 @@ function DigitalMarketingAgency() {
         <meta property="og:image:height" content="813" />
         <meta
           property="og:image:alt"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Web Development Agency in Dubai | ENH Consulting"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Best Digital Marketing Agency in Dubai | ENH Consulting"
+          content="Web Development Agency in Dubai | ENH Consulting"
         />
         <meta
           name="twitter:description"
-          content="Grow your business with ENH Consulting, a results-driven digital marketing agency in Dubai. SEO, PPC, and social strategies built for measurable ROI. Call Now."
+          content="Turn your website into a sales engine with a web development agency in Dubai. ENH Consulting builds fast, SEO-friendly websites that drive leads and sales."
         />
 
         <meta
           name="twitter:image"
           content="https://enh.consulting/assets/service-hero-banner-BWwONeQz.webp"
         />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(webdevFaqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(webdevServiceSchema)}
+        </script>
       </Helmet>
       <HeroBanner data={data} />
       <IntroSection data={data} />
@@ -2348,5 +2466,3 @@ function DigitalMarketingAgency() {
     </div>
   );
 }
-
-export default DigitalMarketingAgency;

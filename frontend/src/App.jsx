@@ -35,6 +35,18 @@ import EdTechConsultancy from './pages/enhPages/EdTechConsulting';
 import StartupConsultancy from './pages/enhPages/StartupConsulting';
 import DigitalMarketingAgency from './pages/enhPages/innerService/DigitalMarketingAgencyInDubai';
 import SEOAgencyDubai from './pages/enhPages/innerService/SeoAgencyInDubai';
+import PPCCompanyDubai from './pages/enhPages/innerService/PpcAgencyInDubai';
+import SMMCompanyDubai from './pages/enhPages/innerService/SmmAgencyInDubai';
+import ContentMarketingDubai from './pages/enhPages/innerService/ContentMarketingAgencyInDubai';
+import EmailMarketingDubai from './pages/enhPages/innerService/EmailMarketingAgencyInDubai';
+import ORMServicesDubai from './pages/enhPages/innerService/OrmMarketingServicesInDubai';
+import CROAgencyDubai from './pages/enhPages/innerService/CroMarketingAgencyInDubai';
+import WebDevAgencyDubai from './pages/enhPages/innerService/WebDevelopmentAgencyInDubai';
+import EcommerceWebDevDubai from './pages/enhPages/innerService/ECommerceMarketingAgencyInDubai';
+import ShopifyWebDevDubai from './pages/enhPages/innerService/ShopifyMarketingAgencyInDubai';
+import MobileAppDevDubai from './pages/enhPages/innerService/MobileAppMarketingInDubai';
+import Solutions from './pages/enhPages/Solutions';
+import AndroidAppDevDubai from './pages/enhPages/innerService/AndroidAppMarketingAgencyInDubai';
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
@@ -51,6 +63,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/consulting" element={<Services />} />
+        <Route path="/solutions" element={<Solutions />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/ai-consulting-services-in-dubai" element={<AiConsulting />} />
         <Route path="/business-consulting-services-in-dubai" element={<BusinessConsultancy />} />
@@ -61,6 +74,17 @@ export default function App() {
 
         <Route path="/digital-marketing-agency-in-dubai" element={<DigitalMarketingAgency />} />
         <Route path="/best-seo-agency-in-dubai" element={<SEOAgencyDubai />} />
+        <Route path="/ppc-company-in-dubai" element={<PPCCompanyDubai />} />
+        <Route path="/social-media-marketing-company-in-dubai" element={<SMMCompanyDubai />} />
+        <Route path="/content-marketing-services-in-dubai" element={<ContentMarketingDubai />} />
+        <Route path="/email-marketing-agency-in-dubai" element={<EmailMarketingDubai />} />
+        <Route path="/online-reputation-management-services-in-dubai" element={<ORMServicesDubai />} />
+        <Route path="/conversion-rate-optimization-agency-dubai" element={<CROAgencyDubai />} />
+        <Route path="/web-development-agency-in-dubai" element={<WebDevAgencyDubai />} />
+        <Route path="/ecommerce-website-development-company-in-dubai" element={<EcommerceWebDevDubai />} />
+        <Route path="/shopify-web-development-company-in-dubai" element={<ShopifyWebDevDubai />} />
+        <Route path="/mobile-app-development-company-in-dubai" element={<MobileAppDevDubai />} />
+        <Route path="/android-app-development-company-in-dubai" element={<AndroidAppDevDubai />} />
 
         {/* blog Public Routes */}
         <Route path="/blog" element={<BlogHome />} />
